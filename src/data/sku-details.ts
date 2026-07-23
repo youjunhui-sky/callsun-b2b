@@ -118,7 +118,92 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
     ],
   },
-  // TODO: cn180w, cn200w, cn215w
+  // TODO: cn200w, cn215w
+  cn180w: {
+    slug: 'cn180w',
+    model: 'CN180W',
+    subtitle: '180W N-Type Anti-Shading Bifacial Solar Module',
+    tagline: 'N-Type · Bifacial · Anti-Shading',
+    category: 'custom',
+    categoryLabel: 'CUSTOM PV MODULES',
+    categoryHref: '/products/custom-modules/',
+    keyStats: {
+      power: '180W',
+      efficiency: '25%',
+      dimensions: '1180 × 770 × 35 mm',
+      weight: '9.8 kg',
+    },
+    heroImage: '/uploads/callsun/products/180w/hero-05.jpg',
+    datasheet: undefined,
+    features: [
+      {
+        num: '01',
+        title: 'FLAGSHIP N-TYPE TOPCON TECHNOLOGY',
+        body: 'Industry-leading N-type TOPCon cell technology with record cell efficiency, lower degradation rates and exceptional long-term power generation reliability for off-grid deployment.',
+      },
+      {
+        num: '02',
+        title: '30% BIFACIAL POWER GAIN',
+        body: 'Advanced bifacial technology with transparent backsheet captures reflected light from white RV roofs, sand or boat decks — delivering up to 30% additional energy in extreme environments.',
+      },
+      {
+        num: '03',
+        title: 'EXCELLENT LOW TEMPERATURE COEFFICIENT',
+        body: 'Class-leading −0.30%/K temperature coefficient maintains peak voltage output in scorching deserts or intense summer heat, significantly reducing summer power drop-offs.',
+      },
+      {
+        num: '04',
+        title: 'DUAL-CELL PARALLEL CIRCUITRY FOR SHADE RESILIENCE',
+        body: 'Innovative dual-cell parallel design lets the panel operate as two independent units. Even if partially shaded by branches or vents, the unaffected half continues full power output.',
+      },
+      {
+        num: '05',
+        title: 'ALL-TERRAIN, ALL-WEATHER PROTECTION',
+        body: 'IP68 dust and water resistance withstands 35 mm hail impacts and high-speed highway vibrations. Endures high humidity, severe cold and heavy rain for decades of off-grid adventure.',
+      },
+      {
+        num: '06',
+        title: 'DUAL QUALITY ASSURANCE',
+        body: '10-year product material and workmanship warranty plus 25-year linear power performance guarantee safeguard your high-value energy assets.',
+      },
+    ],
+    tech: {
+      electrical: [
+        { label: 'MAXIMUM POWER',           value: '180 W' },
+        { label: 'CELL EFFICIENCY',         value: '25%' },
+        { label: 'VMP / IMP',               value: '21.9 V / 8.21 A' },
+        { label: 'VOC / ISC',               value: '25.56 V / 8.62 A' },
+        { label: 'POWER TOLERANCE',         value: '0 to +5%' },
+        { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1000 V DC' },
+        { label: 'MAXIMUM SERIES FUSE',     value: '25 A' },
+        { label: 'OPERATING TEMPERATURE',   value: '-40°C to +85°C' },
+      ],
+      mechanical: [
+        { label: 'CELL TYPE',        value: 'N-type · 16BB · 182 mm mono-crystalline silicon' },
+        { label: 'DIMENSIONS',       value: '1180 × 770 × 35 mm' },
+        { label: 'WEIGHT',           value: '9.8 kg' },
+        { label: 'GLASS',            value: '3.2 mm tempered' },
+        { label: 'FRAME',            value: 'Anodized aluminium alloy' },
+        { label: 'IP RATING',        value: 'IP68' },
+        { label: 'WIND / SNOW LOAD', value: '2400 Pa / 5400 Pa' },
+        { label: 'CONNECTOR',        value: 'Solar connector' },
+      ],
+      thermal: [
+        { label: 'CIRCUIT DESIGN',          value: 'TwinCell parallel circuitry' },
+        { label: 'PMAX COEFFICIENT',        value: '-0.30%/K' },
+        { label: 'VOC COEFFICIENT',         value: '-0.25%/K' },
+        { label: 'ISC COEFFICIENT',         value: '+0.045%/K' },
+        { label: 'FIRST-YEAR DEGRADATION',  value: '1%' },
+        { label: 'LINEAR DEGRADATION',      value: '0.4% per year' },
+        { label: '25-YEAR OUTPUT',          value: '84.5%' },
+        { label: 'PRODUCT WARRANTY',        value: '10 years product · 25 years linear power' },
+      ],
+    },
+    certifications: [
+      'IEC 61215 · IEC 61730',
+      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+    ],
+  },
   cn720w: {
     slug: 'cn720w',
     model: 'CN720W',
