@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { SITE } from '@/data/site';
+import { PRODUCTS_L1 } from '@/data/products-l1';
+---
+<BaseLayout
+  title={`PV Module Portfolio — ${SITE.name}`}
+  description={PRODUCTS_L1.hero.intro}
+  canonical="/products/"
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 1: Hero (dark photo bg + breadcrumb + h1 + intro + CTA)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="relative overflow-hidden text-white">
+    <img
+      src={PRODUCTS_L1.hero.background}
+      alt=""
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-callsun-ink/55" aria-hidden="true"></div>
+
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
+      <Breadcrumbs items={PRODUCTS_L1.breadcrumb} theme="dark" />
+      <h1 class="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] max-w-4xl">
+        {PRODUCTS_L1.hero.title}
+      </h1>
+      <p class="mt-6 text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+        {PRODUCTS_L1.hero.intro}
+      </p>
+      <a
+        href={PRODUCTS_L1.hero.cta.href}
+        class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg"
+      >
+        {PRODUCTS_L1.hero.cta.label} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 2: Category cards (Standard + Custom, top lime accent stripe)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-bg">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="max-w-3xl mb-10 md:mb-14">
+        <Eyebrow>{PRODUCTS_L1.categoriesEyebrow}</Eyebrow>
+      </div>
+
+      <div class="grid gap-8 md:gap-10">
+        {PRODUCTS_L1.categories.map((cat, i) => {
+          const dark = cat.theme === 'dark';
+          const bg = dark ? 'bg-callsun-ink text-white' : 'bg-white';
+          const headingClr = dark ? 'text-white' : 'text-callsun-ink';
+          const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
+          const imgBg = dark ? 'bg-white/5' : 'bg-callsun-surface';
+          const dotClr = dark ? 'text-white/40' : 'text-callsun-mute/50';
+          const gridCols = dark
+            ? 'grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-6 lg:gap-10 items-center p-8 md:p-10 lg:p-12'
+            : 'grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6 lg:gap-10 items-center p-8 md:p-10 lg:p-12';
+          const textOrder = dark ? 'lg:order-2' : '';
+          const imgOrder = dark ? 'lg:order-1' : '';
+          const imgGridCols = cat.images.length === 4 ? 'grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4' : 'grid grid-cols-3 gap-3 md:gap-4';
+          const eyebrowText = cat.key === 'standard' ? 'STANDARD MODULES' : 'CUSTOM MODULES';
+          const orderNum = String(i + 1).padStart(2, '0');
+          return (
+            <article class={`relative overflow-hidden border-t-4 border-callsun ${bg} shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]`}>
+              <div class={gridCols}>
+                <div class={textOrder}>
+                  <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime mb-4">
+                    {eyebrowText} · {orderNum}
+                  </p>
+                  <h2 class={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold ${headingClr}`}>
+                    {cat.title}
+                  </h2>
+                  <p class="mt-5 font-display text-xl md:text-2xl font-bold text-callsun-lime">
+                    {cat.wattTags.join('  ·  ')}
+                  </p>
+                  <p class={`mt-5 text-base leading-relaxed max-w-xl ${bodyClr}`}>
+                    {cat.description}
+                  </p>
+                  <a
+                    href={cat.cta.href}
+                    class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+                  >
+                    {cat.cta.label} <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+                <div class={imgOrder}>
+                  <div class={imgGridCols}>
+                    {cat.images.map((src) => (
+                      <div class={`aspect-square overflow-hidden ${imgBg}`}>
+                        <img src={src} alt="" loading="lazy" class="w-full h-full object-contain p-2" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 3: Inquiry (dark bg + white form card, 复用首页)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
+        <div>
+          <Eyebrow class="mb-3">{PRODUCTS_L1.inquiry.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+            {PRODUCTS_L1.inquiry.title}
+          </h2>
+          <p class="mt-6 text-white/70 text-base leading-relaxed max-w-lg">
+            {PRODUCTS_L1.inquiry.intro}
+          </p>
+        </div>
+        <InquiryForm formSource="products-l1" formTitle={PRODUCTS_L1.inquiry.formTitle} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

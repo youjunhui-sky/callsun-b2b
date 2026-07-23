@@ -1,0 +1,32 @@
+---
+// 面包屑
+interface Item {
+  label: string;
+  href: string | null;
+}
+interface Props {
+  items: Item[];
+  theme?: 'light' | 'dark';
+}
+const { items, theme = 'light' } = Astro.props;
+
+const linkColor = theme === 'dark' ? 'text-white/80 hover:text-callsun-lime' : 'text-callsun-mute hover:text-callsun-ink';
+const currentColor = theme === 'dark' ? 'text-callsun-lime' : 'text-callsun-ink';
+const sepColor = theme === 'dark' ? 'text-white/40' : 'text-callsun-mute/60';
+---
+<nav aria-label="Breadcrumb" class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase">
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+    {items.map((it, i) => (
+      <li class="flex items-center gap-2">
+        {it.href ? (
+          <a href={it.href} class:list={['transition-colors', linkColor]}>{it.label}</a>
+        ) : (
+          <span class={currentColor}>{it.label}</span>
+        )}
+        {i < items.length - 1 && (
+          <span class={sepColor} aria-hidden="true">/</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
