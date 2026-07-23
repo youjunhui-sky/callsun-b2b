@@ -112,17 +112,9 @@ const homeSchema = {
           <li>
             <a
               href={p.href}
-              class:list={[
-                'group flex flex-col h-full border transition-all',
-                p.isCta
-                  ? 'bg-callsun-ink text-white border-callsun-ink hover:border-callsun-lime'
-                  : 'bg-white border-callsun-line hover:border-callsun-ink hover:shadow-card',
-              ]}
+              class="group flex flex-col h-full border border-callsun-line bg-white hover:border-callsun-ink hover:shadow-card transition-all"
             >
-              <div class:list={[
-                'relative aspect-[4/3] overflow-hidden',
-                p.isCta ? 'bg-callsun-panel' : 'bg-callsun-surface',
-              ]}>
+              <div class="relative aspect-[4/3] overflow-hidden bg-callsun-surface">
                 <img
                   src={p.image}
                   alt={p.name}
@@ -130,33 +122,19 @@ const homeSchema = {
                   decoding="async"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
-                {!p.isCta && (
-                  <span class="absolute top-3 left-3 bg-callsun text-callsun-ink text-[10px] font-bold tracking-eyebrow uppercase px-2 py-1">
-                    {p.tag}
-                  </span>
-                )}
+                <span class="absolute top-3 left-3 bg-callsun text-callsun-ink text-[10px] font-bold tracking-eyebrow uppercase px-2 py-1">
+                  {p.tag}
+                </span>
               </div>
-              <div class:list={[
-                'flex-1 p-4 md:p-5 flex flex-col gap-2',
-                p.isCta ? 'text-white' : '',
-              ]}>
-                <p class:list={[
-                  'text-xs font-bold tracking-eyebrow uppercase',
-                  p.isCta ? 'text-callsun-lime' : 'text-callsun-lime',
-                ]}>
+              <div class="flex-1 p-4 md:p-5 flex flex-col gap-2">
+                <p class="text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
                   {p.model}
                 </p>
-                <h3 class:list={[
-                  'font-display font-bold text-[15px] leading-snug flex-1',
-                  p.isCta ? 'text-white' : 'text-callsun-ink',
-                ]}>
+                <h3 class="font-display font-bold text-[15px] leading-snug flex-1 text-callsun-ink">
                   {p.name}
                 </h3>
-                <span class:list={[
-                  'text-xs font-semibold tracking-wider mt-1 inline-flex items-center gap-1',
-                  p.isCta ? 'text-callsun-lime group-hover:text-white' : 'text-callsun-ink group-hover:text-callsun-lime',
-                ]}>
-                  {p.isCta ? 'VIEW ALL' : 'PRODUCT DETAILS'}
+                <span class="text-xs font-semibold tracking-wider mt-1 inline-flex items-center gap-1 text-callsun-ink group-hover:text-callsun-lime">
+                  PRODUCT DETAILS
                   <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
                 </span>
               </div>
@@ -196,17 +174,13 @@ const homeSchema = {
           </a>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[1, 2, 3, 4].map((i) => (
-            <div class="aspect-[3/4] bg-white/5 border border-white/10 overflow-hidden">
-              <img
-                src={QUALITY.certificateImages[0].src}
-                alt={QUALITY.certificateImages[0].alt}
-                loading="lazy"
-                class="w-full h-full object-cover opacity-90"
-              />
-            </div>
-          ))}
+        <div class="relative aspect-[4/5] bg-white/5 border border-white/10 overflow-hidden">
+          <img
+            src={QUALITY.certificateImage}
+            alt="Callsun certificate document"
+            loading="lazy"
+            class="w-full h-full object-contain bg-white"
+          />
         </div>
       </div>
     </div>
@@ -319,13 +293,18 @@ const homeSchema = {
         <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
           {VIDEOS.map((v) => (
             <li>
-              <a href={v.href} class="group block bg-callsun-ink text-white overflow-hidden">
-                <div class="relative aspect-video overflow-hidden">
+              <a
+                href={v.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block bg-callsun-ink text-white overflow-hidden"
+              >
+                <div class="relative aspect-video overflow-hidden bg-black">
                   <img
                     src={v.thumb}
                     alt={v.title}
                     loading="lazy"
-                    class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.04] transition-all duration-500"
+                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.04] transition-all duration-500"
                   />
                   <div class="absolute inset-0 flex items-center justify-center">
                     <div class="w-14 h-14 bg-callsun/90 flex items-center justify-center group-hover:bg-callsun transition-colors">

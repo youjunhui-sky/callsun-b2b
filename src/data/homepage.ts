@@ -10,7 +10,7 @@ export const HERO = {
     'In-House R&D, Manufacturing, and Testing. Callsun focuses on standard and custom PV products, providing partners with full-chain support from product selection to sample validation and volume delivery.',
   primaryCta: { label: 'EXPLORE PRODUCTS', href: '/products/' },
   secondaryCta: { label: 'DISCUSS REQUIREMENTS', href: '/contact/' },
-  backgroundImage: '/uploads/callsun/about/hero-desktop.jpg',
+  backgroundImage: '/uploads/callsun/homepage/hero-desktop.jpg',
 };
 
 export const STATS = [
@@ -20,65 +20,57 @@ export const STATS = [
   { value: '180–720W', label: 'Module Power Range' },
 ];
 
-// 首页 8 产品网格（第一排 4 款 Standard 高功率，第二排 3 款 Custom + 1 款 slot 备用）
+// 首页 7 产品网格（标准 4 + 非标 3，不加第 8 格）
+// 卡片图根据东家 2026-07-23 指定：对齐 jinko-rebuild 旧站已认可的取图
 export const HOME_PRODUCTS = [
   {
     model: 'CN450W',
     name: '450W N-Type Bifacial Double-Glass Module',
     href: '/products/cn450w/',
-    image: '/uploads/callsun/products/450w/hero-01.jpg',
+    image: '/uploads/callsun/products/450w/01-front.jpg',
     tag: 'STANDARD',
   },
   {
     model: 'CN580W',
     name: '580W N-Type Bifacial Double-Glass Module',
     href: '/products/cn580w/',
-    image: '/uploads/callsun/products/580w/hero-01.jpg',
+    image: '/uploads/callsun/products/580w/front-back.jpg',
     tag: 'STANDARD',
   },
   {
     model: 'CN620W',
     name: '620W N-Type Bifacial Double-Glass Module',
     href: '/products/cn620w/',
-    image: '/uploads/callsun/products/620w/hero-01.jpg',
+    image: '/uploads/callsun/products/620w/front-back.jpg',
     tag: 'STANDARD',
   },
   {
     model: 'CN720W',
     name: '720W N-Type Bifacial Dual-Glass Module',
     href: '/products/cn720w/',
-    image: '/uploads/callsun/products/720w/hero-01.jpg',
+    image: '/uploads/callsun/products/720w/front-back.jpg',
     tag: 'STANDARD',
   },
   {
     model: 'CN180W',
     name: '180W Custom N-Type Anti-Shading Bifacial',
     href: '/products/cn180w/',
-    image: '/uploads/callsun/products/180w/hero-01.jpg',
+    image: '/uploads/callsun/products/180w/hero-05.jpg',
     tag: 'CUSTOM',
   },
   {
     model: 'CN200W',
     name: '200W Custom N-Type 16BB Bifacial',
     href: '/products/cn200w/',
-    image: '/uploads/callsun/products/200w/hero-01.jpg',
+    image: '/uploads/callsun/products/200w/front-back.jpg',
     tag: 'CUSTOM',
   },
   {
     model: 'CN215W',
     name: '215W Custom N-Type Anti-Shading Bifacial',
     href: '/products/cn215w/',
-    image: '/uploads/callsun/products/215w/hero-01.jpg',
+    image: '/uploads/callsun/products/215w/front-back.jpg',
     tag: 'CUSTOM',
-  },
-  // 第 8 格 — 原型有 8 张卡但只标注了 7 个型号，此位保留一个"完整产品线入口"卡
-  {
-    model: 'VIEW ALL',
-    name: 'Explore Full Portfolio',
-    href: '/products/',
-    image: '/uploads/callsun/about/factory-concept.png',
-    tag: 'PORTFOLIO',
-    isCta: true,
   },
 ];
 
@@ -88,9 +80,7 @@ export const QUALITY = {
   intro:
     'Quality control spans raw materials, in-line production and finished-product testing. Certification documents and product evaluations are available on request.',
   certifications: ['CE', 'RoHS', 'IEC', 'ISO 9001', 'ISO 14001', 'ISO 45001'],
-  certificateImages: [
-    { src: '/uploads/callsun/about/certificates.jpg', alt: 'Callsun certificate document' },
-  ],
+  certificateImage: '/uploads/callsun/homepage/certificate.jpg',
   cta: { label: 'VIEW CERTIFICATES', href: '/resources/' },
 };
 
@@ -113,7 +103,7 @@ export const GLOBAL_SUPPLY = {
     'Brazil',
     'Canada',
   ],
-  mapImage: '/uploads/callsun/homepage/global-map.webp',
+  mapImage: '/uploads/callsun/homepage/global-map.jpg',
   cta: { label: 'ABOUT CALLSUN', href: '/about/' },
 };
 
@@ -141,26 +131,22 @@ export const ARTICLES = [
   },
 ];
 
-export const VIDEOS = [
-  {
-    title: 'Callsun 450W Bifacial Solar Panel Review',
-    channel: 'ReeWay Outdoors',
-    href: '#',
-    thumb: '/uploads/callsun/products/450w/hero-02.jpg',
-  },
-  {
-    title: 'Callsun 450W N-Type: Testing and Review',
-    channel: 'Our Black Cat Cottage',
-    href: '#',
-    thumb: '/uploads/callsun/products/450w/hero-03.jpg',
-  },
-  {
-    title: '215W Anti-Shading Lab Test',
-    channel: 'Callsun',
-    href: '#',
-    thumb: '/uploads/callsun/products/215w/hero-01.jpg',
-  },
+// YouTube 视频 — 2026-07-23 客户提供 5 个链接（首页只展 3 个，Video Center 展全部）
+export const VIDEO_ITEMS = [
+  { id: 'ckNe2EctH5w', title: 'Callsun 450W Bifacial Solar Panel Review', channel: 'ReeWay Outdoors' },
+  { id: 'zSQSWBTLaL8', title: 'Callsun 450W N-Type: Testing and Review',   channel: 'Our Black Cat Cottage' },
+  { id: 'Qa-0HqwHgR0', title: '215W Anti-Shading Lab Test',                 channel: 'Callsun' },
+  { id: 'JN9tKhtubUM', title: 'Callsun Solar Panel Field Test',              channel: 'Callsun' },
+  { id: 'iMB6SgkuG_w', title: 'Callsun Product Overview',                    channel: 'Callsun' },
 ];
+
+export const VIDEOS = VIDEO_ITEMS.slice(0, 3).map((v) => ({
+  title: v.title,
+  channel: v.channel,
+  href: `https://www.youtube.com/watch?v=${v.id}`,
+  thumb: `/uploads/callsun/videos/${v.id}.jpg`,
+  videoId: v.id,
+}));
 
 export const INQUIRY = {
   eyebrow: 'PRODUCT INQUIRY',
