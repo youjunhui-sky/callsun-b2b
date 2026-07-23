@@ -118,7 +118,92 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
     ],
   },
-  // TODO: cn200w, cn215w
+  // TODO: cn215w
+  cn200w: {
+    slug: 'cn200w',
+    model: 'CN200W',
+    subtitle: '200W N-Type 16BB Bifacial Solar Module',
+    tagline: 'N-Type · Bifacial · Anti-Shading',
+    category: 'custom',
+    categoryLabel: 'CUSTOM PV MODULES',
+    categoryHref: '/products/custom-modules/',
+    keyStats: {
+      power: '200W',
+      efficiency: '25%',
+      dimensions: '1304 × 770 × 35 mm',
+      weight: '10.8 kg',
+    },
+    heroImage: '/uploads/callsun/products/200w/front-back.jpg',
+    datasheet: undefined,
+    features: [
+      {
+        num: '01',
+        title: 'N-TYPE 16BB TECHNOLOGY',
+        body: 'Advanced N-type cells with 16BB architecture deliver up to 25% cell efficiency and superior reliability by minimizing micro-cracks and hot spots.',
+      },
+      {
+        num: '02',
+        title: 'BIFACIAL POWER GAIN',
+        body: 'Transparent backsheet design harnesses direct, reflected and diffuse light from the backside, increasing total power output by up to 30%.',
+      },
+      {
+        num: '03',
+        title: 'TWINCELL ANTI-SHADE TECHNOLOGY',
+        body: 'Innovative dual-module parallel design boosts shading tolerance by up to 50%, ensuring uninterrupted power generation even under partial coverage.',
+      },
+      {
+        num: '04',
+        title: 'LOW TEMPERATURE COEFFICIENT',
+        body: 'Industry-leading −0.30%/K temperature coefficient minimizes power loss, ensuring stable and consistent performance in extreme heat.',
+      },
+      {
+        num: '05',
+        title: 'INDUSTRIAL GRADE & COMPACT FIT',
+        body: 'Ultra-strong 3.2 mm tempered glass and IP68 waterproofing in a compact footprint — engineered for tight spaces and an extended 30-year lifespan.',
+      },
+      {
+        num: '06',
+        title: 'INDUSTRY-LEADING WARRANTY',
+        body: 'Backed by a 25-year linear performance commitment and 10 years of dedicated technical support for long-term reliability and secure returns.',
+      },
+    ],
+    tech: {
+      electrical: [
+        { label: 'MAXIMUM POWER',           value: '200 W' },
+        { label: 'CELL EFFICIENCY',         value: '25%' },
+        { label: 'VMP / IMP',               value: '23.70 V / 8.43 A' },
+        { label: 'VOC / ISC',               value: '27.31 V / 8.91 A' },
+        { label: 'POWER TOLERANCE',         value: '0 to +5%' },
+        { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1000 V DC' },
+        { label: 'MAXIMUM SERIES FUSE',     value: '25 A' },
+        { label: 'OPERATING TEMPERATURE',   value: '-40°C to +85°C' },
+      ],
+      mechanical: [
+        { label: 'CELL TYPE',         value: 'N-type · 16BB · 182 mm mono-crystalline silicon' },
+        { label: 'CELL ARRANGEMENT',  value: '80 pcs (4 × 10) × 2' },
+        { label: 'DIMENSIONS',        value: '1304 × 770 × 35 mm' },
+        { label: 'WEIGHT',            value: '10.8 kg' },
+        { label: 'GLASS',             value: '3.2 mm tempered' },
+        { label: 'FRAME',             value: 'Anodized aluminium alloy' },
+        { label: 'IP RATING',         value: 'IP68' },
+        { label: 'WIND / SNOW LOAD',  value: '2400 Pa / 5400 Pa' },
+      ],
+      thermal: [
+        { label: 'CIRCUIT DESIGN',          value: 'TwinCell anti-shading design' },
+        { label: 'PMAX COEFFICIENT',        value: '-0.30%/K' },
+        { label: 'VOC COEFFICIENT',         value: '-0.25%/K' },
+        { label: 'ISC COEFFICIENT',         value: '+0.045%/K' },
+        { label: 'FIRST-YEAR DEGRADATION',  value: '1%' },
+        { label: 'LINEAR DEGRADATION',      value: '0.4% per year' },
+        { label: '25-YEAR OUTPUT',          value: '84.5%' },
+        { label: 'CONNECTOR',               value: 'Solar connector' },
+      ],
+    },
+    certifications: [
+      'IEC 61215 · IEC 61730',
+      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+    ],
+  },
   cn180w: {
     slug: 'cn180w',
     model: 'CN180W',
