@@ -53,32 +53,32 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       {
         num: '01',
         title: 'N-TYPE TECHNOLOGY',
-        body: 'In-house N-type cell technology delivers 22.52% module efficiency with lower LID degradation and improved long-term reliability compared to P-type equivalents.',
+        body: 'N-type cells offer our advanced in-house cell technology with better performance and improved reliability, delivering an exceptional module efficiency of 22.52%.',
       },
       {
         num: '02',
         title: 'BIFACIAL POWER GAIN',
-        body: 'N-type architecture pushes bifaciality up to 80% ± 5% for a higher backside bonus and greater lifetime yield, optimized by multi-busbar cell interconnection.',
+        body: 'N-type architecture increases bifaciality up to 80% ± 5% for a higher backside bonus and better lifetime yield, optimized by multi-busbar technology.',
       },
       {
         num: '03',
         title: 'LOW TEMPERATURE COEFFICIENT',
-        body: 'Highly competitive Pmax temperature coefficient of −0.290%/°C for stronger real-world output across hot, cold and variable climates.',
+        body: 'Features a highly competitive temperature coefficient (Pmax) of −0.290%/°C for the highest lifetime energy yield in all climates.',
       },
       {
         num: '04',
-        title: 'INDUSTRIAL-GRADE CONSTRUCTION',
-        body: 'Dual-glass 2.0 + 2.0 mm heat-strengthened glass and silver anodized aluminium alloy frame deliver high mechanical load resistance and durability.',
+        title: 'INDUSTRIAL GRADE CONSTRUCTION',
+        body: 'Optimized dual-glass construction (2.0 + 2.0 mm tempered glass) with a silver anodized aluminium alloy frame for the highest mechanical load resistance.',
       },
       {
         num: '05',
-        title: 'ALL-ENVIRONMENT PROTECTION',
-        body: 'Certified to withstand humidity, heat, rain, marine environments, wind, hailstorms and packed snow — built for reliable global deployment.',
+        title: 'PROTECTED AGAINST ALL ENVIRONMENTS',
+        body: 'Certified to withstand humidity, heat, rain, marine environments, wind, hailstorms and packed snow for reliable global deployment.',
       },
       {
         num: '06',
-        title: 'LONG-TERM WARRANTY',
-        body: '25-year product warranty and 30-year linear power warranty with 87.4% output at year 30 for maximum long-term investment protection.',
+        title: 'WARRANTY',
+        body: '25-year product warranty and 30-year linear power warranty (87.4% output at year 30) for maximum long-term investment protection.',
       },
     ],
     tech: {
@@ -138,33 +138,33 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     features: [
       {
         num: '01',
-        title: 'N-TYPE TECHNOLOGY',
-        body: 'In-house N-type cell technology delivers 22.45% module efficiency with lower LID degradation and improved long-term reliability compared to P-type equivalents.',
+        title: 'ADVANCED N-TYPE TECHNOLOGY',
+        body: 'N-type architecture delivers lower LID and stronger low-light performance than P-type, for higher yield at dawn, dusk and under overcast — maximizing the commercial value of every installed watt.',
       },
       {
         num: '02',
-        title: 'BIFACIAL POWER GAIN',
-        body: 'N-type architecture pushes bifaciality up to 80% ± 5% for a higher backside bonus and greater lifetime yield, optimized by multi-busbar cell interconnection.',
+        title: 'BIFACIAL POWER BOOST',
+        body: 'Double-sided generation with 80% ± 5% bifaciality captures rear-side light from ground reflection, snow and light-colored rooftops — translating directly into shorter payback periods.',
       },
       {
         num: '03',
-        title: 'LOW TEMPERATURE COEFFICIENT',
-        body: 'Pmax temperature coefficient of −0.35%/°C keeps output resilient across hot, cold and variable climates for stronger real-world yield.',
+        title: 'MULTI-BUSBAR (MBB) DESIGN',
+        body: '16BB cell design shortens the current collection path, lowers series resistance and improves performance under partial shading — ideal for rooftop and ground-mount installations.',
       },
       {
         num: '04',
-        title: 'INDUSTRIAL-GRADE CONSTRUCTION',
-        body: 'Dual-glass 2.0 + 2.0 mm heat-strengthened glass and silver anodized aluminium alloy frame deliver high mechanical load resistance and durability.',
+        title: 'MINIMIZED PID DEGRADATION',
+        body: 'Anti-PID engineering resists Potential Induced Degradation in high-humidity, high-temperature and 1500 V DC deployments — protecting long-term yield in tropical, coastal and utility-scale environments.',
       },
       {
         num: '05',
-        title: 'ALL-ENVIRONMENT PROTECTION',
-        body: 'Certified to withstand humidity, heat, rain, marine environments, wind, hailstorms and packed snow — built for reliable global deployment.',
+        title: 'INDUSTRIAL-GRADE DUAL-GLASS BUILD',
+        body: '2.0 + 2.0 mm tempered dual-glass with anodized aluminium frame and IP68 junction box — withstands hail, snow, sand and salt mist without micro-crack propagation for a 30+ year service life.',
       },
       {
         num: '06',
-        title: 'LONG-TERM WARRANTY',
-        body: '25-year product warranty and 30-year linear power warranty with 87.4% output at year 30 for maximum long-term investment protection.',
+        title: 'INDUSTRY-LEADING WARRANTY',
+        body: '25-year product warranty and 30-year linear power warranty at 87.4% output, combined with 1% first-year degradation and full IEC 61215 / 61730 + ISO 9001 / 14001 / 45001 certification.',
       },
     ],
     tech: {
