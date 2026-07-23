@@ -149,10 +149,10 @@ export const VIDEOS = VIDEO_ITEMS.slice(0, 3).map((v) => ({
 }));
 
 export const INQUIRY = {
-  eyebrow: 'PRODUCT INQUIRY',
+  eyebrow: 'START A CONVERSATION',
   title: 'From Product Requirements to Consistent Delivery',
   intro:
-    'Share the target power, dimensions, application conditions and expected volume. Our team will review the requirements and respond with the relevant product or next step.',
+    'Tell us about your target power, module dimensions, application conditions or system requirements. Our team will review the information and discuss the next step with you.',
   formTitle: 'Discuss Your Requirements',
 };
 

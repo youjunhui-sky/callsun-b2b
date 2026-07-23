@@ -330,28 +330,17 @@ const homeSchema = {
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 7: Inquiry (Light Grey BG, Left Text + Right Form)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="inquiry" class="bg-white border-t border-callsun-line">
+  <section id="inquiry" class="bg-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
       <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
         <div>
           <Eyebrow class="mb-3">{INQUIRY.eyebrow}</Eyebrow>
-          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.1]">
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
             {INQUIRY.title}
           </h2>
-          <p class="mt-6 text-callsun-mute text-base leading-relaxed max-w-lg">
+          <p class="mt-6 text-white/70 text-base leading-relaxed max-w-lg">
             {INQUIRY.intro}
           </p>
-
-          <dl class="mt-10 grid gap-4 max-w-md">
-            <div class="flex items-start gap-4 border-t border-callsun-line pt-4">
-              <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime w-24 shrink-0">Sales</dt>
-              <dd class="text-callsun-ink font-medium text-sm">{SITE.organization.contact.sales}</dd>
-            </div>
-            <div class="flex items-start gap-4 border-t border-callsun-line pt-4">
-              <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime w-24 shrink-0">Support</dt>
-              <dd class="text-callsun-ink font-medium text-sm">{SITE.organization.contact.support}</dd>
-            </div>
-          </dl>
         </div>
 
         <InquiryForm formSource="homepage" formTitle={INQUIRY.formTitle} />
