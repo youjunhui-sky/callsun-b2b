@@ -172,7 +172,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        1) DESCRIPTION — title + hero image + panel intro
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="description" data-panel="description" class="bg-white pt-16 pb-16 md:pt-20 md:pb-20">
+  <section id="description" data-panel="description" class="bg-white pt-16 pb-16 md:pt-20 md:pb-20 scroll-mt-24">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Description</p>
@@ -211,7 +211,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        2) SPECIFICATIONS — panel dl, battery, inverter, applications, wiring
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="specs" data-panel="specs" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line hidden">
+  <section id="specs" data-panel="specs" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Specifications</p>
@@ -332,7 +332,7 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line hidden">
+  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Includes</p>
@@ -365,7 +365,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        4) DOWNLOADS
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="downloads" data-panel="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line hidden">
+  <section id="downloads" data-panel="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Downloads</p>
@@ -397,7 +397,7 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line hidden">
+  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Application FAQ</p>
@@ -422,7 +422,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        6) REVIEWS — B2B placeholder (no consumer reviews on manufacturer site)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="reviews" data-panel="reviews" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line hidden">
+  <section id="reviews" data-panel="reviews" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Field Reviews</p>
@@ -549,13 +549,14 @@ const kit = KIT_10_8KW;
         });
       }
 
-      /* -------- Tabs -------- */
+      /* -------- Tabs (navigation-only: scroll to section) -------- */
       const troot = document.querySelector('[data-tabs="kit-10-8kw"]');
       if (!troot) return;
       const tabs   = Array.from(troot.querySelectorAll('[data-tab]'));
       const panels = Array.from(document.querySelectorAll('[data-panel]'));
+      const ids    = panels.map((p) => p.getAttribute('data-panel'));
 
-      function activate(id) {
+      function setActive(id) {
         tabs.forEach((t) => {
           const on = t.getAttribute('data-tab') === id;
           if (on) {
@@ -566,23 +567,21 @@ const kit = KIT_10_8KW;
             t.classList.add('border-transparent', 'text-callsun-mute');
           }
         });
-        panels.forEach((p) => {
-          const on = p.getAttribute('data-panel') === id;
-          p.classList.toggle('hidden', !on);
-        });
+      }
+
+      function scrollTo(id) {
+        const panel = document.querySelector('[data-panel="' + id + '"]');
+        if (!panel) return;
+        const bar = troot.getBoundingClientRect();
+        const y = window.scrollY + panel.getBoundingClientRect().top - bar.height - 12;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
 
       tabs.forEach((t) => t.addEventListener('click', () => {
         const id = t.getAttribute('data-tab');
-        activate(id);
+        setActive(id);
         history.replaceState(null, '', '#' + id);
-        /* Scroll to just above the visible panel (below the sticky tab bar) */
-        const bar = troot.getBoundingClientRect();
-        const panel = document.querySelector('[data-panel="' + id + '"]');
-        if (panel) {
-          const y = window.scrollY + panel.getBoundingClientRect().top - bar.height - 12;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+        scrollTo(id);
       }));
 
       /* External anchor triggers (e.g. DOWNLOAD MANUAL button) */
@@ -591,21 +590,37 @@ const kit = KIT_10_8KW;
           const id = el.getAttribute('data-tab-link');
           if (!id) return;
           e.preventDefault();
-          activate(id);
+          setActive(id);
           history.replaceState(null, '', '#' + id);
-          const bar = troot.getBoundingClientRect();
-          const panel = document.querySelector('[data-panel="' + id + '"]');
-          if (panel) {
-            const y = window.scrollY + panel.getBoundingClientRect().top - bar.height - 12;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }
+          scrollTo(id);
         });
       });
 
+      /* Update active tab while user scrolls (spy) */
+      const io = new IntersectionObserver((entries) => {
+        /* Find the panel whose top is closest to the sticky-bar bottom */
+        let bestId = null;
+        let bestTop = Infinity;
+        panels.forEach((p) => {
+          const rect = p.getBoundingClientRect();
+          const barH = troot.getBoundingClientRect().height;
+          /* pick the section whose top is <= (barH + 20) and > -rect.height */
+          if (rect.top <= barH + 40 && rect.bottom > barH + 40) {
+            const dist = Math.abs(rect.top - barH);
+            if (dist < bestTop) { bestTop = dist; bestId = p.getAttribute('data-panel'); }
+          }
+        });
+        if (bestId) setActive(bestId);
+      }, { threshold: [0, 0.1, 0.5, 0.9, 1] });
+      panels.forEach((p) => io.observe(p));
+
       /* Deep-link support: #description, #specs, ... */
       const initial = (location.hash || '#description').slice(1);
-      const valid = ['description','specs','includes','downloads','faq','reviews'];
-      if (valid.indexOf(initial) !== -1) activate(initial);
+      if (ids.indexOf(initial) !== -1) {
+        setActive(initial);
+        /* Delay so browser doesn't fight us for the same anchor */
+        setTimeout(() => scrollTo(initial), 100);
+      }
     })();
   </script>
 </BaseLayout>
