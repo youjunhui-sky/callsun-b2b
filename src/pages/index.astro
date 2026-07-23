@@ -149,18 +149,18 @@ const homeSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-gradient-to-b from-callsun-ink via-callsun-panel to-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 items-center">
         <div>
           <Eyebrow class="mb-3">{QUALITY.eyebrow}</Eyebrow>
           <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
             {QUALITY.title}
           </h2>
-          <p class="mt-5 text-white/70 text-base leading-relaxed max-w-xl">
+          <p class="mt-5 text-white/75 text-base leading-relaxed max-w-xl">
             {QUALITY.intro}
           </p>
           <ul class="mt-8 flex flex-wrap gap-2">
             {QUALITY.certifications.map((c) => (
-              <li class="border border-white/20 text-white text-xs font-bold tracking-eyebrow uppercase px-3 py-1.5">
+              <li class="border border-white/25 bg-white/5 text-white text-xs font-bold tracking-eyebrow uppercase px-3 py-1.5">
                 {c}
               </li>
             ))}
@@ -173,12 +173,12 @@ const homeSchema = {
           </a>
         </div>
 
-        <div class="relative aspect-[4/5] bg-white/5 border border-white/10 overflow-hidden">
+        <div class="relative bg-white p-3 md:p-4 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
           <img
             src={QUALITY.certificateImage}
             alt="Callsun certificate document"
             loading="lazy"
-            class="w-full h-full object-contain bg-white"
+            class="block w-full h-auto max-h-[560px] object-contain mx-auto"
           />
         </div>
       </div>
@@ -188,24 +188,27 @@ const homeSchema = {
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 5: Global Supply
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-ink text-white border-t border-white/5">
+  <section class="bg-callsun-bg border-t border-callsun-line">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-16 items-center">
-        <div>
-          <Eyebrow class="mb-3">{GLOBAL_SUPPLY.eyebrow}</Eyebrow>
-          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
-            {GLOBAL_SUPPLY.title}
-          </h2>
-          <p class="mt-5 text-white/70 text-base leading-relaxed">
-            {GLOBAL_SUPPLY.intro}
-          </p>
-          <a
-            href={GLOBAL_SUPPLY.cta.href}
-            class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-          >
-            {GLOBAL_SUPPLY.cta.label} <span aria-hidden="true">→</span>
-          </a>
-          <ul class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-sm text-white/70">
+      <div class="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] gap-10 lg:gap-14 items-stretch">
+        {/* Left: dark text card */}
+        <div class="bg-callsun-ink text-white p-8 md:p-10 lg:p-12 flex flex-col justify-between shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]">
+          <div>
+            <Eyebrow class="mb-3">{GLOBAL_SUPPLY.eyebrow}</Eyebrow>
+            <h2 class="font-display text-3xl md:text-4xl font-extrabold leading-[1.15]">
+              {GLOBAL_SUPPLY.title}
+            </h2>
+            <p class="mt-5 text-white/75 text-base leading-relaxed">
+              {GLOBAL_SUPPLY.intro}
+            </p>
+            <a
+              href={GLOBAL_SUPPLY.cta.href}
+              class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+            >
+              {GLOBAL_SUPPLY.cta.label} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <ul class="mt-10 pt-8 border-t border-white/10 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/80">
             {GLOBAL_SUPPLY.markets.map((m) => (
               <li class="flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-callsun-lime rounded-full inline-block" aria-hidden="true"></span>
@@ -214,14 +217,15 @@ const homeSchema = {
             ))}
           </ul>
         </div>
-        <div class="relative aspect-[16/10] bg-callsun-panel border border-white/10 overflow-hidden">
+
+        {/* Right: clean map on white, no overlay */}
+        <div class="relative bg-white p-4 md:p-6 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] flex items-center justify-center">
           <img
             src={GLOBAL_SUPPLY.mapImage}
             alt="Callsun global supply and logistics coverage"
             loading="lazy"
-            class="w-full h-full object-cover opacity-85"
+            class="block w-full h-auto max-h-[480px] object-contain"
           />
-          <div class="absolute inset-0 bg-gradient-to-tr from-callsun-ink/60 to-transparent" aria-hidden="true"></div>
         </div>
       </div>
     </div>
