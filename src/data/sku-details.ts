@@ -118,7 +118,92 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
     ],
   },
-  // TODO: cn720w, cn180w, cn200w, cn215w
+  // TODO: cn180w, cn200w, cn215w
+  cn720w: {
+    slug: 'cn720w',
+    model: 'CN720W',
+    subtitle: '720W N-Type Bifacial Dual-Glass Solar Module',
+    tagline: 'N-Type · Bifacial · Double Glass',
+    category: 'standard',
+    categoryLabel: 'STANDARD PV MODULES',
+    categoryHref: '/products/standard-modules/',
+    keyStats: {
+      power: '720W',
+      efficiency: '23.18%',
+      dimensions: '2384 × 1303 × 33 mm',
+      weight: '37.9 kg',
+    },
+    heroImage: '/uploads/callsun/products/720w/card-square.jpg',
+    datasheet: '/uploads/callsun/products/720w/CN720W-datasheet.pdf',
+    features: [
+      {
+        num: '01',
+        title: 'N-TYPE CELL TECHNOLOGY',
+        body: 'N-type monocrystalline cells offer lower light-induced degradation and better low-light response, maintaining stable generation across the 30-year module lifetime — more bankable long-term yield for developers and asset owners.',
+      },
+      {
+        num: '02',
+        title: 'BIFACIAL ENERGY GAIN',
+        body: 'Bifacial architecture generates from both front and rear sides. With 80% ± 5% bifaciality, the CN720W is designed to capture rear-side irradiance across a wider range of project environments, supporting additional yield in optimized installations.',
+      },
+      {
+        num: '03',
+        title: '720W HIGH-POWER OUTPUT',
+        body: 'Up to 720 W rated output with 23.18% module efficiency enables more installed capacity per module — reducing module count for a target system capacity and simplifying array layout, mounting structure, cabling and installation.',
+      },
+      {
+        num: '04',
+        title: 'DURABLE DUAL-GLASS STRUCTURE',
+        body: '2.0 mm AR-coated heat-strengthened front glass and 2.0 mm heat-strengthened rear glass. The symmetrical dual-glass construction protects against moisture ingress, mechanical stress and long-term environmental exposure.',
+      },
+      {
+        num: '05',
+        title: 'DESIGNED FOR 1500 V PV SYSTEMS',
+        body: 'Maximum system voltage 1500 V and maximum series fuse rating 35 A support modern high-capacity PV architectures. IP68 junction box, three bypass diodes and anodized aluminium frame deliver the electrical protection and structural reliability for utility-scale deployment.',
+      },
+      {
+        num: '06',
+        title: 'WIDE OPERATING TEMPERATURE RANGE',
+        body: 'Operates across −40°C to +85°C. N-type cells, dual-glass construction, IP68 junction box and anodized aluminium frame support stable operation from arid desert climates to cold high-altitude installations.',
+      },
+    ],
+    tech: {
+      electrical: [
+        { label: 'MAXIMUM POWER',           value: '720 W' },
+        { label: 'MODULE EFFICIENCY',       value: '23.18%' },
+        { label: 'VMP / IMP',               value: '41.03 V / 17.55 A' },
+        { label: 'VOC / ISC',               value: '49.28 V / 18.55 A' },
+        { label: 'POWER TOLERANCE',         value: '0 to +3%' },
+        { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1500 V DC' },
+        { label: 'MAXIMUM SERIES FUSE',     value: '35 A' },
+        { label: 'BIFACIALITY',             value: '80% ± 5%' },
+      ],
+      mechanical: [
+        { label: 'CELL TYPE',           value: 'N-type mono-crystalline silicon, 210 × 105 mm' },
+        { label: 'CELL CONFIGURATION',  value: '132 pcs (6 × 11) × 2' },
+        { label: 'DIMENSIONS',          value: '2384 × 1303 × 33 mm' },
+        { label: 'WEIGHT',              value: '37.9 kg' },
+        { label: 'FRONT / BACK GLASS',  value: '2.0 mm AR-coated / 2.0 mm heat-strengthened' },
+        { label: 'FRAME',               value: 'Anodized aluminium alloy' },
+        { label: 'JUNCTION BOX',        value: 'IP68 · 3 bypass diodes' },
+        { label: 'CABLE LENGTH',        value: '300 mm' },
+      ],
+      thermal: [
+        { label: 'OPERATING TEMPERATURE', value: '-40°C to +85°C' },
+        { label: 'PMAX COEFFICIENT',      value: '-0.35%/°C' },
+        { label: 'VOC COEFFICIENT',       value: '-0.27%/°C' },
+        { label: 'ISC COEFFICIENT',       value: '+0.045%/°C' },
+        { label: 'NOCT',                  value: '45°C ± 2°C' },
+        { label: 'PRODUCT WARRANTY',      value: '25 years' },
+        { label: 'LINEAR WARRANTY',       value: '30 years · 87.4% at year 30' },
+        { label: 'PACKAGING',             value: '33 pcs/pallet · 594 pcs/40HQ' },
+      ],
+    },
+    certifications: [
+      'IEC 61215 · IEC 61730',
+      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+    ],
+  },
   cn620w: {
     slug: 'cn620w',
     model: 'CN620W',
