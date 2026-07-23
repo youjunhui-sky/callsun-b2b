@@ -150,36 +150,38 @@ const homeSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-gradient-to-b from-callsun-ink via-callsun-panel to-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="max-w-3xl mb-10 md:mb-14">
-        <Eyebrow class="mb-3">{QUALITY.eyebrow}</Eyebrow>
-        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
-          {QUALITY.title}
-        </h2>
-        <p class="mt-5 text-white/70 text-base leading-relaxed max-w-2xl">
-          {QUALITY.intro}
-        </p>
-        <ul class="mt-8 flex flex-wrap gap-2">
-          {QUALITY.certifications.map((c) => (
-            <li class="border border-white/20 text-white text-xs font-bold tracking-eyebrow uppercase px-3 py-1.5">
-              {c}
-            </li>
-          ))}
-        </ul>
-        <a
-          href={QUALITY.cta.href}
-          class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-        >
-          {QUALITY.cta.label} <span aria-hidden="true">→</span>
-        </a>
-      </div>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <Eyebrow class="mb-3">{QUALITY.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
+            {QUALITY.title}
+          </h2>
+          <p class="mt-5 text-white/70 text-base leading-relaxed max-w-xl">
+            {QUALITY.intro}
+          </p>
+          <ul class="mt-8 flex flex-wrap gap-2">
+            {QUALITY.certifications.map((c) => (
+              <li class="border border-white/20 text-white text-xs font-bold tracking-eyebrow uppercase px-3 py-1.5">
+                {c}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={QUALITY.cta.href}
+            class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            {QUALITY.cta.label} <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
-      <div class="relative bg-white border border-white/10 overflow-hidden">
-        <img
-          src={QUALITY.certificateImage}
-          alt="Callsun certificate document"
-          loading="lazy"
-          class="w-full h-auto max-h-[560px] object-contain block mx-auto"
-        />
+        <div class="relative aspect-[4/5] bg-white/5 border border-white/10 overflow-hidden">
+          <img
+            src={QUALITY.certificateImage}
+            alt="Callsun certificate document"
+            loading="lazy"
+            class="w-full h-full object-contain bg-white"
+          />
+        </div>
       </div>
     </div>
   </section>
