@@ -64,10 +64,9 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
           const imgBg = 'bg-white';
           const imgPad = dark ? 'p-3 md:p-4' : 'p-3 md:p-4';
-          const gridCols = 'grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
-          const textOrder = 'md:order-2';
-          const imgOrder = 'md:order-1';
-          const imgGridCols = cat.images.length === 4 ? 'grid grid-cols-2 gap-4 md:gap-5' : 'grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5';
+          const gridCols = 'grid grid-cols-1 sm:grid-cols-[3fr_2fr] gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
+          const textOrder = 'sm:order-2';
+          const imgOrder = 'sm:order-1';
           const eyebrowText = cat.key === 'standard' ? 'STANDARD MODULES' : 'CUSTOM MODULES';
           const orderNum = String(i + 1).padStart(2, '0');
           return (
@@ -94,7 +93,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </a>
                 </div>
                 <div class={imgOrder}>
-                  <div class="sticky top-24" data-carousel>
+                  <div data-carousel>
                     {/* Main image */}
                     <div class="relative aspect-[4/3] bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
                       {cat.images.map((src, si) => (
@@ -118,13 +117,13 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                     </div>
 
                     {/* Thumbnail row */}
-                    <div class="mt-3 grid gap-2" style={`grid-template-columns: repeat(${cat.images.length}, minmax(0, 1fr));`}>
+                    <div class="mt-3 grid gap-1.5" style={`grid-template-columns: repeat(${cat.images.length}, minmax(0, 1fr));`}>
                       {cat.images.map((src, ti) => (
                         <button
                           type="button"
                           data-carousel-thumb={ti}
                           aria-label={`View image ${ti + 1}`}
-                          class={`relative aspect-square bg-white border-2 transition-all overflow-hidden ${ti === 0 ? 'border-callsun shadow-md' : 'border-transparent hover:border-callsun/50'}`}
+                          class={`relative aspect-square bg-white border transition-all overflow-hidden ${ti === 0 ? 'border-callsun shadow-sm' : 'border-callsun-line hover:border-callsun/50'}`}
                         >
                           <img src={src} alt="" loading="lazy" class="w-full h-full object-contain p-1" />
                         </button>
