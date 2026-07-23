@@ -2,86 +2,382 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
 import { SITE } from '@/data/site';
+import {
+  HERO,
+  STATS,
+  HOME_PRODUCTS,
+  QUALITY,
+  GLOBAL_SUPPLY,
+  ARTICLES,
+  VIDEOS,
+  INQUIRY,
+} from '@/data/homepage';
+
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.domain,
+};
 ---
-<BaseLayout title={`${SITE.name} — ${SITE.tagline}`}>
+<BaseLayout
+  title={`${SITE.name} — ${SITE.tagline}`}
+  description={SITE.defaultDescription}
+  canonical="/"
+  schema={homeSchema}
+>
   <Header slot="header" />
   <Footer slot="footer" />
 
-  <!-- 首页占位。真实首页按 0-首页 原型 1:1 复刻，在下一步骤实施 -->
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 1: HERO (Dark, Photo BG, 2 CTAs)
+       ═══════════════════════════════════════════════════════════════════════ */}
   <section class="relative overflow-hidden bg-callsun-ink text-white">
-    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_top_left,rgba(198,246,0,0.25),transparent_60%)]" aria-hidden="true"></div>
-    <div class="relative mx-auto max-w-content px-4 sm:px-6 lg:px-10 py-24 md:py-32 lg:py-40">
-      <p class="text-callsun-lime text-xs font-semibold tracking-eyebrow uppercase mb-5">
-        Foundation Preview · Scaffold Only
-      </p>
-      <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] max-w-3xl">
-        Callsun B2B<br />
-        <span class="text-callsun-lime">Rebuild in Progress</span>
-      </h1>
-      <p class="mt-6 max-w-2xl text-white/70 text-base md:text-lg leading-relaxed">
-        This is the new <code class="text-callsun-lime">callsun-b2b</code> workspace scaffold.
-        Homepage, product pages, solutions, resource center, news &amp; cases and the brand
-        page are being rebuilt page-by-page from the 2026-07-23 client prototypes.
-      </p>
+    {HERO.backgroundImage && (
+      <img
+        src={HERO.backgroundImage}
+        alt=""
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        class="absolute inset-0 w-full h-full object-cover opacity-40"
+      />
+    )}
+    <div class="absolute inset-0 bg-gradient-to-r from-callsun-ink via-callsun-ink/85 to-callsun-ink/40" aria-hidden="true"></div>
 
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a href="/products/" class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:bg-callsun-limeHi transition-colors">
-          EXPLORE PRODUCTS <span aria-hidden="true">→</span>
-        </a>
-        <a href="/contact/" class="inline-flex items-center gap-2 border border-white/40 text-white font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun hover:text-callsun-lime transition-colors">
-          DISCUSS REQUIREMENTS <span aria-hidden="true">→</span>
-        </a>
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-36 lg:pb-32">
+      <div class="max-w-3xl">
+        <Eyebrow class="mb-5">{HERO.eyebrow}</Eyebrow>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold leading-[1.05]">
+          {HERO.title}
+        </h1>
+        <p class="mt-6 text-white/75 text-base md:text-lg leading-relaxed max-w-2xl">
+          {HERO.intro}
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a
+            href={HERO.primaryCta.href}
+            class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            {HERO.primaryCta.label} <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href={HERO.secondaryCta.href}
+            class="inline-flex items-center gap-2 border border-white/40 text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:border-callsun hover:text-callsun-lime transition-colors"
+          >
+            {HERO.secondaryCta.label} <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
+    </div>
 
-      <dl class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6 border-t border-white/10 pt-8">
-        <div>
-          <dt class="text-xs tracking-eyebrow uppercase text-white/50">Manufacturing Area</dt>
-          <dd class="mt-1 font-display text-2xl md:text-3xl font-bold">55,000 m²</dd>
-        </div>
-        <div>
-          <dt class="text-xs tracking-eyebrow uppercase text-white/50">Manufacturing Bases</dt>
-          <dd class="mt-1 font-display text-2xl md:text-3xl font-bold">4</dd>
-        </div>
-        <div>
-          <dt class="text-xs tracking-eyebrow uppercase text-white/50">Global Logistics</dt>
-          <dd class="mt-1 font-display text-2xl md:text-3xl font-bold">6+</dd>
-        </div>
-        <div>
-          <dt class="text-xs tracking-eyebrow uppercase text-white/50">Module Power Range</dt>
-          <dd class="mt-1 font-display text-2xl md:text-3xl font-bold">180–720W</dd>
-        </div>
+    {/* Section 2: 4-KPI Stats Strip (原型：hero 底部通栏) */}
+    <div class="relative border-t border-white/10 bg-black/50 backdrop-blur-sm">
+      <dl class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+        {STATS.map((s) => (
+          <div>
+            <dd class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold text-white">
+              {s.value}
+            </dd>
+            <dt class="mt-2 text-[10px] md:text-xs tracking-eyebrow uppercase text-white/60">
+              {s.label}
+            </dt>
+          </div>
+        ))}
       </dl>
     </div>
   </section>
 
-  <section class="bg-callsun-bg">
-    <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-10 py-16">
-      <p class="text-callsun-mute text-xs tracking-eyebrow uppercase mb-3">Rebuild Roadmap</p>
-      <h2 class="font-display text-2xl md:text-3xl font-bold text-callsun-ink">
-        Pages being rebuilt from client prototypes
-      </h2>
-      <ol class="mt-8 grid md:grid-cols-2 gap-4 text-sm">
-        {[
-          '0 · Homepage — hero + 4 KPIs + 8 product grid + certifications + global supply + articles/videos + inquiry',
-          '1 · Products L1 — Standard / Custom category hub',
-          '1a · Standard PV Modules L2 — CN450 · CN580 · CN620 · CN720',
-          '1b · Custom PV Modules L2 — CN180 · CN200 · CN215',
-          '1c · Product Detail — 7 SKUs (specs + features + downloads + inquiry)',
-          '2 · Solutions L1 — Grid-Tied · Off-Grid',
-          '2a · Solution Detail — 5.4kW · 7.2kW · 10.8kW',
-          '3 · Resource Center — Downloads · FAQ · Video Center',
-          '4 · News & Cases — Blog · Gallery · Project List',
-          '5 · About Callsun — Brand & Global Supply',
-        ].map((line, i) => (
-          <li class="flex items-start gap-3 border border-callsun-line bg-white px-4 py-3">
-            <span class="text-callsun-lime font-bold text-xs tracking-eyebrow shrink-0">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <span class="text-callsun-mute">{line}</span>
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 3: Product Grid (2 rows × 4 cols = 8 cards)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="max-w-3xl mb-10 md:mb-14">
+        <Eyebrow class="mb-3">PV MODULE PORTFOLIO</Eyebrow>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink">
+          Standard and Custom Modules
+        </h2>
+        <p class="mt-4 text-callsun-mute text-base leading-relaxed max-w-2xl">
+          Four high-power standard classes for volume procurement, and three application-specific
+          custom classes for constrained spaces and specialized installations.
+        </p>
+      </div>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {HOME_PRODUCTS.map((p) => (
+          <li>
+            <a
+              href={p.href}
+              class:list={[
+                'group flex flex-col h-full border transition-all',
+                p.isCta
+                  ? 'bg-callsun-ink text-white border-callsun-ink hover:border-callsun-lime'
+                  : 'bg-white border-callsun-line hover:border-callsun-ink hover:shadow-card',
+              ]}
+            >
+              <div class:list={[
+                'relative aspect-[4/3] overflow-hidden',
+                p.isCta ? 'bg-callsun-panel' : 'bg-callsun-surface',
+              ]}>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+                {!p.isCta && (
+                  <span class="absolute top-3 left-3 bg-callsun text-callsun-ink text-[10px] font-bold tracking-eyebrow uppercase px-2 py-1">
+                    {p.tag}
+                  </span>
+                )}
+              </div>
+              <div class:list={[
+                'flex-1 p-4 md:p-5 flex flex-col gap-2',
+                p.isCta ? 'text-white' : '',
+              ]}>
+                <p class:list={[
+                  'text-xs font-bold tracking-eyebrow uppercase',
+                  p.isCta ? 'text-callsun-lime' : 'text-callsun-lime',
+                ]}>
+                  {p.model}
+                </p>
+                <h3 class:list={[
+                  'font-display font-bold text-[15px] leading-snug flex-1',
+                  p.isCta ? 'text-white' : 'text-callsun-ink',
+                ]}>
+                  {p.name}
+                </h3>
+                <span class:list={[
+                  'text-xs font-semibold tracking-wider mt-1 inline-flex items-center gap-1',
+                  p.isCta ? 'text-callsun-lime group-hover:text-white' : 'text-callsun-ink group-hover:text-callsun-lime',
+                ]}>
+                  {p.isCta ? 'VIEW ALL' : 'PRODUCT DETAILS'}
+                  <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                </span>
+              </div>
+            </a>
           </li>
         ))}
-      </ol>
+      </ul>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 4: Quality You Can Verify (Dark)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-gradient-to-b from-callsun-ink via-callsun-panel to-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div>
+          <Eyebrow class="mb-3">{QUALITY.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
+            {QUALITY.title}
+          </h2>
+          <p class="mt-5 text-white/70 text-base leading-relaxed max-w-xl">
+            {QUALITY.intro}
+          </p>
+          <ul class="mt-8 flex flex-wrap gap-2">
+            {QUALITY.certifications.map((c) => (
+              <li class="border border-white/20 text-white text-xs font-bold tracking-eyebrow uppercase px-3 py-1.5">
+                {c}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={QUALITY.cta.href}
+            class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            {QUALITY.cta.label} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[1, 2, 3, 4].map((i) => (
+            <div class="aspect-[3/4] bg-white/5 border border-white/10 overflow-hidden">
+              <img
+                src={QUALITY.certificateImages[0].src}
+                alt={QUALITY.certificateImages[0].alt}
+                loading="lazy"
+                class="w-full h-full object-cover opacity-90"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 5: Global Supply
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-ink text-white border-t border-white/5">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-16 items-center">
+        <div>
+          <Eyebrow class="mb-3">{GLOBAL_SUPPLY.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
+            {GLOBAL_SUPPLY.title}
+          </h2>
+          <p class="mt-5 text-white/70 text-base leading-relaxed">
+            {GLOBAL_SUPPLY.intro}
+          </p>
+          <a
+            href={GLOBAL_SUPPLY.cta.href}
+            class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            {GLOBAL_SUPPLY.cta.label} <span aria-hidden="true">→</span>
+          </a>
+          <ul class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-sm text-white/70">
+            {GLOBAL_SUPPLY.markets.map((m) => (
+              <li class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-callsun-lime rounded-full inline-block" aria-hidden="true"></span>
+                {m}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="relative aspect-[16/10] bg-callsun-panel border border-white/10 overflow-hidden">
+          <img
+            src={GLOBAL_SUPPLY.mapImage}
+            alt="Callsun global supply and logistics coverage"
+            loading="lazy"
+            class="w-full h-full object-cover opacity-85"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-callsun-ink/60 to-transparent" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 6: Technical Content — Latest Articles + Featured Videos
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-bg">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="max-w-3xl mb-10 md:mb-14">
+        <Eyebrow class="mb-3">TECHNICAL CONTENT FROM CALLSUN</Eyebrow>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink">
+          Technical Content from Callsun
+        </h2>
+        <p class="mt-4 text-callsun-mute text-base leading-relaxed max-w-2xl">
+          Technical articles, independent reviews and Callsun testing videos.
+        </p>
+      </div>
+
+      {/* Articles */}
+      <div class="mb-14">
+        <div class="flex items-center justify-between mb-6">
+          <Eyebrow color="ink">LATEST ARTICLES</Eyebrow>
+          <a href="/news/" class="text-xs font-bold tracking-eyebrow uppercase text-callsun-mute hover:text-callsun-ink transition-colors">
+            VIEW ALL →
+          </a>
+        </div>
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          {ARTICLES.map((a) => (
+            <li>
+              <a href={a.href} class="group flex flex-col h-full bg-white border border-callsun-line hover:border-callsun-ink hover:shadow-card transition-all">
+                <div class="relative aspect-[16/10] overflow-hidden bg-callsun-surface">
+                  <img
+                    src={a.image}
+                    alt={a.title}
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div class="flex-1 p-5 flex flex-col gap-3">
+                  <div class="flex items-center gap-3 text-[10px] font-bold tracking-eyebrow uppercase">
+                    <span class="text-callsun-lime">{a.category}</span>
+                    <span class="text-callsun-muteLight">·</span>
+                    <span class="text-callsun-mute">{a.date}</span>
+                  </div>
+                  <h3 class="font-display font-bold text-lg leading-snug text-callsun-ink flex-1">
+                    {a.title}
+                  </h3>
+                  <span class="text-xs font-semibold tracking-wider text-callsun-ink group-hover:text-callsun-lime transition-colors inline-flex items-center gap-1">
+                    READ <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Videos */}
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <Eyebrow color="ink">FEATURED VIDEOS</Eyebrow>
+          <a href="/resources/#video-center" class="text-xs font-bold tracking-eyebrow uppercase text-callsun-mute hover:text-callsun-ink transition-colors">
+            VIDEO CENTER →
+          </a>
+        </div>
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          {VIDEOS.map((v) => (
+            <li>
+              <a href={v.href} class="group block bg-callsun-ink text-white overflow-hidden">
+                <div class="relative aspect-video overflow-hidden">
+                  <img
+                    src={v.thumb}
+                    alt={v.title}
+                    loading="lazy"
+                    class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.04] transition-all duration-500"
+                  />
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-14 h-14 bg-callsun/90 flex items-center justify-center group-hover:bg-callsun transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0F0F0E">
+                        <polygon points="6,4 20,12 6,20"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 md:p-5">
+                  <h3 class="font-display font-bold text-base leading-snug">{v.title}</h3>
+                  <p class="mt-2 text-xs tracking-eyebrow uppercase text-callsun-muteLight">
+                    {v.channel} <span aria-hidden="true">↗</span>
+                  </p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 7: Inquiry (Light Grey BG, Left Text + Right Form)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="bg-white border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
+        <div>
+          <Eyebrow class="mb-3">{INQUIRY.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.1]">
+            {INQUIRY.title}
+          </h2>
+          <p class="mt-6 text-callsun-mute text-base leading-relaxed max-w-lg">
+            {INQUIRY.intro}
+          </p>
+
+          <dl class="mt-10 grid gap-4 max-w-md">
+            <div class="flex items-start gap-4 border-t border-callsun-line pt-4">
+              <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime w-24 shrink-0">Sales</dt>
+              <dd class="text-callsun-ink font-medium text-sm">{SITE.organization.contact.sales}</dd>
+            </div>
+            <div class="flex items-start gap-4 border-t border-callsun-line pt-4">
+              <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime w-24 shrink-0">Support</dt>
+              <dd class="text-callsun-ink font-medium text-sm">{SITE.organization.contact.support}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <InquiryForm formSource="homepage" formTitle={INQUIRY.formTitle} />
+      </div>
     </div>
   </section>
 </BaseLayout>

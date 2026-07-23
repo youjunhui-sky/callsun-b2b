@@ -1,0 +1,105 @@
+---
+// 询盘表单 (原型下方版本 + worker.js /api/inquiry 对接)
+interface Props {
+  formSource?: string;
+  formTitle?: string;
+  submitLabel?: string;
+  compact?: boolean; // 用于产品详情页 (更紧凑)
+  productModel?: string;
+}
+const {
+  formSource = 'homepage',
+  formTitle = 'Discuss Your Requirements',
+  submitLabel = 'SUBMIT INQUIRY',
+  compact = false,
+  productModel = '',
+} = Astro.props;
+---
+<form
+  method="POST"
+  action="/api/inquiry"
+  data-form-source={formSource}
+  class:list={[
+    'grid gap-4',
+    compact ? '' : 'bg-white p-6 md:p-8 border border-callsun-line',
+  ]}
+>
+  {!compact && (
+    <h3 class="font-display text-xl md:text-2xl font-bold text-callsun-ink">{formTitle}</h3>
+  )}
+
+  <input type="hidden" name="form_source" value={formSource} />
+  {productModel && <input type="hidden" name="product_model" value={productModel} />}
+  {/* honeypot */}
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="sr-only" aria-hidden="true" />
+  {/* required by worker.js — hardcode 到当前场景 */}
+  <input type="hidden" name="inquiry_type" value={productModel ? `product-${productModel}` : formSource} />
+
+  <div class="grid md:grid-cols-2 gap-4">
+    <label class="grid gap-1.5">
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Name *</span>
+      <input required name="name" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+    </label>
+    <label class="grid gap-1.5">
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Business Email *</span>
+      <input required name="email" type="email" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+    </label>
+    <label class="grid gap-1.5">
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Company *</span>
+      <input required name="company" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+    </label>
+    <label class="grid gap-1.5">
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Country / Region *</span>
+      <input required name="market" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+    </label>
+  </div>
+  <label class="grid gap-1.5">
+    <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">
+      {productModel ? 'Product or project requirements *' : 'Product specification or project requirements *'}
+    </span>
+    <textarea required name="message" rows="4" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime resize-y"></textarea>
+  </label>
+
+  <button
+    type="submit"
+    class="mt-1 inline-flex items-center justify-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+  >
+    {submitLabel} <span aria-hidden="true">→</span>
+  </button>
+
+  <p class="text-[11px] text-callsun-mute" data-inquiry-status hidden></p>
+</form>
+
+<script is:inline>
+  document.querySelectorAll('form[action="/api/inquiry"]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector('[data-inquiry-status]');
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.classList.add('opacity-60', 'cursor-wait');
+      status.removeAttribute('hidden');
+      status.className = 'text-[11px] text-callsun-mute';
+      status.textContent = 'Sending inquiry…';
+      try {
+        const data = new FormData(form);
+        const res = await fetch('/api/inquiry', { method: 'POST', body: data });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok && json.ok) {
+          status.className = 'text-[11px] font-semibold text-callsun-limeLo';
+          status.textContent = 'Thanks — your inquiry has been received. We will reply shortly.';
+          form.reset();
+        } else {
+          status.className = 'text-[11px] font-semibold text-red-600';
+          status.textContent = json.message || 'Submission failed. Please try again or email sales@callsun.com';
+        }
+      } catch (err) {
+        status.className = 'text-[11px] font-semibold text-red-600';
+        status.textContent = 'Network error. Please try again or email sales@callsun.com';
+      } finally {
+        btn.disabled = false;
+        btn.classList.remove('opacity-60', 'cursor-wait');
+      }
+    });
+  });
+</script>

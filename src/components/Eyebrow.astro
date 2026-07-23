@@ -1,0 +1,18 @@
+---
+// 通用 "eyebrow" 小标签 (荧光黄绿大写小字)
+interface Props {
+  as?: 'p' | 'span' | 'div';
+  color?: 'lime' | 'ink' | 'mute';
+  class?: string;
+}
+const { as: Tag = 'p', color = 'lime', class: cls = '' } = Astro.props;
+
+const colorMap = {
+  lime: 'text-callsun-lime',
+  ink: 'text-callsun-ink',
+  mute: 'text-callsun-muteLight',
+};
+---
+<Tag class={`text-[11px] md:text-xs font-bold tracking-eyebrow uppercase ${colorMap[color]} ${cls}`}>
+  <slot />
+</Tag>
