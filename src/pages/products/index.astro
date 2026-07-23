@@ -64,7 +64,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
           const imgBg = 'bg-white';
           const imgPad = dark ? 'p-3 md:p-4' : 'p-3 md:p-4';
-          const gridCols = 'grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
+          const gridCols = 'grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
           const textOrder = 'md:order-2';
           const imgOrder = 'md:order-1';
           const imgGridCols = cat.images.length === 4 ? 'grid grid-cols-2 gap-4 md:gap-5' : 'grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5';
@@ -94,42 +94,41 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </a>
                 </div>
                 <div class={imgOrder}>
-                  <div
-                    class="relative"
-                    data-carousel
-                    data-carousel-interval="4500"
-                    data-carousel-visible="2"
-                  >
-                    <div class="relative overflow-hidden">
-                      <ul class="flex transition-transform duration-500 ease-out" data-carousel-track>
-                        {cat.images.map((src, si) => (
-                          <li class="shrink-0 basis-1/2 pr-3" data-carousel-slide={si}>
-                            <div class="aspect-square bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] overflow-hidden">
-                              <img
-                                src={src}
-                                alt=""
-                                loading="lazy"
-                                class="w-full h-full object-contain p-3 md:p-4"
-                              />
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Arrows below strip */}
-                    <div class="mt-4 flex items-center gap-3">
+                  <div data-carousel>
+                    {/* Main image */}
+                    <div class="relative aspect-[4/3] bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
+                      {cat.images.map((src, si) => (
+                        <img
+                          src={src}
+                          alt=""
+                          loading="lazy"
+                          class="absolute inset-0 w-full h-full object-contain p-4 md:p-6 transition-opacity duration-300"
+                          style={`opacity: ${si === 0 ? 1 : 0};`}
+                          data-carousel-slide={si}
+                        />
+                      ))}
                       <button type="button" data-carousel-prev aria-label="Previous"
-                        class={`w-10 h-10 flex items-center justify-center border-2 transition-colors ${dark ? 'border-white/40 text-white hover:border-callsun hover:text-callsun-lime' : 'border-callsun-line text-callsun-ink hover:border-callsun hover:text-callsun-lime'}`}>
+                        class="absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/90 hover:bg-callsun text-callsun-ink transition-colors z-10 shadow-md">
                         <span aria-hidden="true">←</span>
                       </button>
                       <button type="button" data-carousel-next aria-label="Next"
-                        class={`w-10 h-10 flex items-center justify-center border-2 transition-colors ${dark ? 'border-white/40 text-white hover:border-callsun hover:text-callsun-lime' : 'border-callsun-line text-callsun-ink hover:border-callsun hover:text-callsun-lime'}`}>
+                        class="absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/90 hover:bg-callsun text-callsun-ink transition-colors z-10 shadow-md">
                         <span aria-hidden="true">→</span>
                       </button>
-                      <p class={`ml-1 text-xs font-semibold tracking-eyebrow uppercase ${dark ? 'text-white/60' : 'text-callsun-mute'}`}>
-                        <span data-carousel-current>1</span> / {cat.images.length}
-                      </p>
+                    </div>
+
+                    {/* Thumbnail row */}
+                    <div class="mt-3 grid gap-2" style={`grid-template-columns: repeat(${cat.images.length}, minmax(0, 1fr));`}>
+                      {cat.images.map((src, ti) => (
+                        <button
+                          type="button"
+                          data-carousel-thumb={ti}
+                          aria-label={`View image ${ti + 1}`}
+                          class={`relative aspect-square bg-white border-2 transition-all overflow-hidden ${ti === 0 ? 'border-callsun shadow-md' : 'border-transparent hover:border-callsun/50'}`}
+                        >
+                          <img src={src} alt="" loading="lazy" class="w-full h-full object-contain p-1" />
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -142,37 +141,24 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
 
     <script is:inline>
       document.querySelectorAll('[data-carousel]').forEach((c) => {
-        const track  = c.querySelector('[data-carousel-track]');
         const slides = c.querySelectorAll('[data-carousel-slide]');
+        const thumbs = c.querySelectorAll('[data-carousel-thumb]');
         const prev   = c.querySelector('[data-carousel-prev]');
         const next   = c.querySelector('[data-carousel-next]');
-        const cur    = c.querySelector('[data-carousel-current]');
-        const interval = parseInt(c.dataset.carouselInterval || '4500', 10);
-        const visible  = parseInt(c.dataset.carouselVisible  || '2', 10);
-        const max = Math.max(0, slides.length - visible);
         let idx = 0;
-        let timer = null;
         const show = (i) => {
-          idx = Math.max(0, Math.min(max, i));
-          const pct = -(100 / slides.length) * idx;
-          track.style.width = (slides.length / visible * 100) + '%';
-          track.style.transform = 'translateX(' + pct + '%)';
-          if (cur) cur.textContent = String(idx + 1);
+          idx = (i + slides.length) % slides.length;
+          slides.forEach((s, si) => { s.style.opacity = si === idx ? 1 : 0; });
+          thumbs.forEach((t, ti) => {
+            const active = ti === idx;
+            t.className = 'relative aspect-square bg-white border-2 transition-all overflow-hidden ' + (active
+              ? 'border-callsun shadow-md'
+              : 'border-transparent hover:border-callsun/50');
+          });
         };
-        const step = (dir) => {
-          let n = idx + dir;
-          if (n > max) n = 0;
-          if (n < 0)   n = max;
-          show(n);
-        };
-        const start = () => { stop(); if (slides.length > visible) timer = setInterval(() => step(1), interval); };
-        const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
-        prev && prev.addEventListener('click', () => { step(-1); start(); });
-        next && next.addEventListener('click', () => { step(1); start(); });
-        c.addEventListener('mouseenter', stop);
-        c.addEventListener('mouseleave', start);
-        show(0);
-        start();
+        prev && prev.addEventListener('click', () => show(idx - 1));
+        next && next.addEventListener('click', () => show(idx + 1));
+        thumbs.forEach((t, ti) => t.addEventListener('click', () => show(ti)));
       });
     </script>
   </section>
