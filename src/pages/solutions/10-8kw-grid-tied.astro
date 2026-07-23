@@ -1,0 +1,392 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { SITE } from '@/data/site';
+import { KIT_10_8KW } from '@/data/kit-10-8kw';
+
+const kit = KIT_10_8KW;
+
+const breadcrumb = [
+  { label: 'SOLUTIONS', href: '/solutions/' },
+  { label: '10.8KW GRID-TIED', href: `/solutions/${kit.slug}/` },
+];
+---
+<BaseLayout
+  title={`${kit.short} — ${SITE.name}`}
+  description={kit.intro}
+  canonical={`/solutions/${kit.slug}/`}
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       1) HERO — 2-column: text (col-3) + hero image (col-2)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="relative overflow-hidden bg-callsun-tint">
+    <div
+      class="absolute inset-0 opacity-[0.35]"
+      aria-hidden="true"
+      style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+    ></div>
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24">
+      <Breadcrumbs items={breadcrumb} theme="light" />
+      <div class="mt-8 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        <div class="col-span-3">
+          <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+            {kit.categoryLabel}
+          </p>
+          <h1 class="mt-3 font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.05]">
+            {kit.title}
+          </h1>
+          <p class="mt-3 text-callsun-mute text-base md:text-lg font-semibold">
+            {kit.tagline}
+          </p>
+
+          <dl class="mt-8 grid grid-cols-3 gap-3 md:gap-4">
+            {kit.keyStats.map((s) => (
+              <div class="bg-white border border-callsun-line px-4 py-4">
+                <p class="text-[10px] md:text-[11px] font-bold tracking-eyebrow uppercase text-callsun-mute">
+                  {s.label}
+                </p>
+                <p class="mt-2 font-display text-lg md:text-xl lg:text-2xl font-extrabold text-callsun-ink leading-none">
+                  {s.value}
+                </p>
+              </div>
+            ))}
+          </dl>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#inquiry"
+              class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+            >
+              REQUEST A QUOTE <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#specifications"
+              class="inline-flex items-center gap-2 bg-white border-2 border-callsun-line text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun-ink transition-colors"
+            >
+              VIEW SPECIFICATIONS <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-span-2">
+          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+            <div class="relative" style="aspect-ratio: 4/5;">
+              <img
+                src={kit.heroImage}
+                alt={kit.short}
+                loading="eager"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       2) KEY FEATURES — 4 cards
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">KEY FEATURES</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1] max-w-3xl">
+        Engineered for whole-home backup and off-grid resilience
+      </h2>
+      <p class="mt-4 text-callsun-mute text-base md:text-lg max-w-3xl leading-relaxed">
+        {kit.intro}
+      </p>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        {kit.keyFeatures.map((f, i) => (
+          <div class="bg-callsun-tint border-l-4 border-callsun p-6">
+            <p class="text-callsun-lime font-display font-extrabold text-xl">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="mt-3 font-display text-base font-extrabold text-callsun-ink tracking-wide uppercase leading-snug">
+              {f.title}
+            </h3>
+            <p class="mt-3 text-callsun-mute text-sm leading-relaxed">
+              {f.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       3) PANEL SECTION — image left / specs right (alternating start)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="specifications" class="bg-callsun-tint border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">SOLAR PANELS</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
+        {kit.panel.title}
+      </h2>
+      <p class="mt-4 text-callsun-mute text-base md:text-lg max-w-3xl leading-relaxed">
+        {kit.panel.intro}
+      </p>
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {kit.panel.highlights.map((tag) => (
+          <li class="inline-flex items-center bg-white border border-callsun-line px-3 py-1.5 text-[11px] font-bold tracking-eyebrow uppercase text-callsun-ink">
+            {tag}
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-10 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        <div class="col-span-2">
+          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+            <div class="relative" style="aspect-ratio: 4/5;">
+              <img src={kit.panel.image} alt="450W N-Type panel" loading="lazy"
+                   class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div class="col-span-3">
+          <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">MECHANICAL CHARACTERISTICS (STC)</p>
+          <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+            {kit.panel.specs.map((s) => (
+              <div class="border-t border-callsun-line pt-2">
+                <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-callsun-mute">{s.label}</dt>
+                <dd class="mt-1 font-semibold text-sm text-callsun-ink">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="mt-6 text-xs text-callsun-mute">
+            STC: Irradiance 1000 W/m² · Cell temperature 25°C · Air mass 1.5
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       4) BATTERY SECTION — image right / specs left (alternate)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">BATTERY STORAGE</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
+        {kit.battery.title}
+      </h2>
+      <p class="mt-4 text-callsun-mute text-base md:text-lg max-w-3xl leading-relaxed">
+        {kit.battery.intro}
+      </p>
+
+      <div class="mt-10 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        <div class="col-span-3 order-2">
+          <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">BATTERY SPECIFICATIONS</p>
+          <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+            {kit.battery.specs.map((s) => (
+              <div class="border-t border-callsun-line pt-2">
+                <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-callsun-mute">{s.label}</dt>
+                <dd class="mt-1 font-semibold text-sm text-callsun-ink">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="col-span-2 order-1">
+          <div class="relative bg-callsun-tint shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+            <div class="relative" style="aspect-ratio: 4/5;">
+              <img src={kit.battery.image} alt="14 kWh LiFePO4 battery" loading="lazy"
+                   class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       5) INVERTER SECTION — 5 spec groups + inverter image
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-ink text-white border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">HYBRID INVERTER</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-white leading-[1.1]">
+        {kit.inverter.title}
+      </h2>
+      <p class="mt-4 text-white/75 text-base md:text-lg max-w-3xl leading-relaxed">
+        {kit.inverter.intro}
+      </p>
+
+      <div class="mt-10 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        <div class="col-span-2">
+          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-white/10">
+            <div class="relative" style="aspect-ratio: 4/5;">
+              <img src={kit.inverter.image} alt="12 kW inverter" loading="lazy"
+                   class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div class="col-span-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {kit.inverter.specGroups.map((g) => (
+              <div class="bg-white/5 border border-white/10 p-5">
+                <p class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime mb-4">{g.name}</p>
+                <dl class="grid grid-cols-1 gap-y-3">
+                  {g.rows.map((r) => (
+                    <div class="border-t border-white/10 pt-2">
+                      <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-white/60">{r.label}</dt>
+                      <dd class="mt-1 font-semibold text-xs text-white leading-snug">{r.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       6) APPLICATIONS — 3 scenario tiles
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">APPLICATIONS</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1] max-w-3xl">
+        Suited for rooftop, farm and backyard installations
+      </h2>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        {kit.applications.map((a) => (
+          <div class="relative overflow-hidden group">
+            <div class="relative" style="aspect-ratio: 4/3;">
+              <img src={a.image} alt={a.label} loading="lazy"
+                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+              <div class="absolute inset-0 bg-gradient-to-t from-callsun-ink/70 to-transparent"></div>
+              <p class="absolute bottom-4 left-5 text-white text-lg md:text-xl font-display font-extrabold tracking-wider">
+                {a.label}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       7) WIRING — diagram + instructions
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-tint border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">WIRING</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1] max-w-3xl">
+        How the system is wired
+      </h2>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-callsun-line overflow-hidden">
+          <div class="relative" style="aspect-ratio: 4/3;">
+            <img src={kit.wiring.diagram} alt="Wiring diagram" loading="lazy"
+                 class="absolute inset-0 w-full h-full object-contain p-4" />
+          </div>
+          <div class="px-5 py-4 border-t border-callsun-line">
+            <p class="text-xs font-bold tracking-eyebrow uppercase text-callsun-mute">WIRING DIAGRAM</p>
+          </div>
+        </div>
+        <div class="bg-white border border-callsun-line overflow-hidden">
+          <div class="relative" style="aspect-ratio: 4/3;">
+            <img src={kit.wiring.instructions} alt="Wiring instructions" loading="lazy"
+                 class="absolute inset-0 w-full h-full object-contain p-4" />
+          </div>
+          <div class="px-5 py-4 border-t border-callsun-line">
+            <p class="text-xs font-bold tracking-eyebrow uppercase text-callsun-mute">WIRING INSTRUCTIONS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       8) INCLUDES — kit contents
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">WHAT'S IN THE KIT</Eyebrow>
+      <div class="mt-4 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        <div class="col-span-2">
+          <div class="relative bg-callsun-tint shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+            <div class="relative" style="aspect-ratio: 4/3;">
+              <img src={kit.includes.image} alt="Kit contents" loading="lazy"
+                   class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div class="col-span-3">
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
+            Complete plug-and-play system
+          </h2>
+          <ul class="mt-6 space-y-4">
+            {kit.includes.items.map((it) => (
+              <li class="flex items-start gap-3 border-t border-callsun-line pt-4">
+                <span class="text-callsun-lime font-display font-extrabold" aria-hidden="true">✓</span>
+                <span class="text-callsun-ink text-base md:text-lg">{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       9) FAQ — 5 items
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-tint border-t border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">FREQUENTLY ASKED QUESTIONS</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1] max-w-3xl">
+        Common pre-sales questions
+      </h2>
+      <div class="mt-10 space-y-4 max-w-4xl">
+        {kit.faq.map((f, i) => (
+          <details class="bg-white border border-callsun-line group">
+            <summary class="flex items-start justify-between gap-4 px-5 py-4 md:px-6 md:py-5 cursor-pointer list-none">
+              <div class="flex items-start gap-4">
+                <span class="text-callsun-lime font-display font-extrabold text-lg">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="font-display text-base md:text-lg font-extrabold text-callsun-ink leading-snug">{f.q}</h3>
+              </div>
+              <span class="text-callsun-mute font-display font-extrabold text-xl group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-5 pb-5 md:px-6 md:pb-6 md:pl-16 text-callsun-mute text-sm md:text-base leading-relaxed border-t border-callsun-line pt-4">
+              {f.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       10) INQUIRY CTA
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-16 items-start">
+        <div class="md:col-span-2">
+          <Eyebrow class="mb-3">PROJECT INQUIRY</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+            Request a quote for the {kit.short}
+          </h2>
+          <p class="mt-4 text-white/70 text-base leading-relaxed max-w-lg">
+            Share your project location, quantity, application and installation notes. Our B2B team will follow up with pricing, freight options and lead-time.
+          </p>
+        </div>
+        <div class="md:col-span-3">
+          <InquiryForm
+            formSource={`kit-${kit.slug}`}
+            formTitle={`${kit.short.toUpperCase()} INQUIRY`}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
