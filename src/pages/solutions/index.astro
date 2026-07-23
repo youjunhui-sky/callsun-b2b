@@ -106,38 +106,6 @@ const offGridFeatured  = offGridKits[0];
           </div>
         </div>
       </div>
-
-      {/* Divider + sub-header */}
-      <hr class="mt-16 border-t border-callsun-line" />
-      <Eyebrow class="mt-10 mb-6">{SOLUTIONS_L1.gridTied.subEyebrow}</Eyebrow>
-
-      {/* Single-kit card (full width) */}
-      <a
-        href={`/solutions/${gridTiedFeatured.slug}/`}
-        class="group grid grid-cols-1 md:grid-cols-3 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
-      >
-        <div class="md:col-span-1 relative bg-callsun-tint" style="aspect-ratio: 4/3;">
-          <img
-            src={gridTiedFeatured.cardImage}
-            alt=""
-            loading="lazy"
-            class="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-        <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-between">
-          <div>
-            <h4 class="font-display text-xl md:text-2xl font-extrabold text-callsun-ink">
-              {gridTiedFeatured.short}
-            </h4>
-            <p class="mt-2 text-callsun-mute text-sm md:text-base">
-              {gridTiedFeatured.specsInline}
-            </p>
-          </div>
-          <span class="mt-6 inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
-            VIEW SYSTEM <span aria-hidden="true">→</span>
-          </span>
-        </div>
-      </a>
     </div>
   </section>
 
