@@ -155,14 +155,21 @@ const kit = KIT_10_8KW;
        ═══════════════════════════════════════════════════════════════════════ */}
   <div data-tabs="kit-10-8kw" class="sticky top-0 z-30 bg-white border-y border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
-      <div class="flex overflow-x-auto no-scrollbar gap-1">
+      <div class="flex overflow-x-auto no-scrollbar">
         {['description','specs','includes','downloads','faq','reviews'].map((id, i) => (
           <button
             type="button"
             data-tab={id}
-            class={`shrink-0 px-5 md:px-6 py-4 text-sm md:text-base font-display font-bold uppercase tracking-eyebrow border-b-2 transition-colors ${i === 0 ? 'border-callsun-lime text-callsun-ink' : 'border-transparent text-callsun-mute hover:text-callsun-ink'}`}
+            class={`relative shrink-0 px-6 md:px-8 py-4 md:py-5 text-sm md:text-base font-display font-bold uppercase tracking-eyebrow transition-all duration-200 ${i === 0 ? 'text-callsun-ink bg-callsun-tint' : 'text-callsun-mute hover:text-callsun-ink hover:bg-callsun-tint/60'}`}
           >
-            {({description:'Description', specs:'Specs', includes:'Includes', downloads:'Downloads', faq:'FAQ', reviews:'Reviews'})[id]}
+            <span class="relative z-10">
+              {({description:'Description', specs:'Specs', includes:'Includes', downloads:'Downloads', faq:'FAQ', reviews:'Reviews'})[id]}
+            </span>
+            <span
+              data-tab-underline
+              class={`absolute bottom-0 left-0 right-0 h-[3px] bg-callsun-lime transition-transform duration-200 ${i === 0 ? 'scale-x-100' : 'scale-x-0'}`}
+              aria-hidden="true"
+            ></span>
           </button>
         ))}
       </div>
@@ -559,12 +566,21 @@ const kit = KIT_10_8KW;
       function setActive(id) {
         tabs.forEach((t) => {
           const on = t.getAttribute('data-tab') === id;
+          const underline = t.querySelector('[data-tab-underline]');
           if (on) {
-            t.classList.add('border-callsun-lime', 'text-callsun-ink');
-            t.classList.remove('border-transparent', 'text-callsun-mute');
+            t.classList.add('text-callsun-ink', 'bg-callsun-tint');
+            t.classList.remove('text-callsun-mute', 'hover:text-callsun-ink', 'hover:bg-callsun-tint/60');
+            if (underline) {
+              underline.classList.add('scale-x-100');
+              underline.classList.remove('scale-x-0');
+            }
           } else {
-            t.classList.remove('border-callsun-lime', 'text-callsun-ink');
-            t.classList.add('border-transparent', 'text-callsun-mute');
+            t.classList.remove('text-callsun-ink', 'bg-callsun-tint');
+            t.classList.add('text-callsun-mute', 'hover:text-callsun-ink', 'hover:bg-callsun-tint/60');
+            if (underline) {
+              underline.classList.add('scale-x-0');
+              underline.classList.remove('scale-x-100');
+            }
           }
         });
       }
