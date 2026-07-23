@@ -191,7 +191,27 @@ const kit = KIT_10_8KW;
         </p>
       </div>
 
-      <figure class="mt-10">
+      {/* KEY FEATURES — 4 cards, matching reference site */}
+      <div class="mt-12">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Key Features</p>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {kit.keyFeatures.map((f, i) => (
+            <div class="relative rounded-2xl border border-callsun-line shadow-card bg-white p-6 hover:border-callsun-lime transition-colors">
+              <div class="absolute -top-3 left-6 inline-flex items-center justify-center w-8 h-8 bg-callsun-lime text-white font-display font-extrabold text-sm rounded-full">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <h3 class="mt-2 font-display font-bold text-callsun-ink text-base uppercase tracking-wide leading-snug">
+                {f.title}
+              </h3>
+              <p class="mt-3 text-sm text-callsun-mute leading-relaxed">
+                {f.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <figure class="mt-12">
         <img
           src={kit.heroImage}
           alt="Callsun 10.8kW solar generator system with 12kW hybrid inverter and 28kWh LiFePO4 battery storage kit components laid out"
@@ -350,22 +370,76 @@ const kit = KIT_10_8KW;
           Everything shipped in the package for a complete installation.
         </p>
       </div>
-      <figure class="mt-10">
+
+      {/* Component cards grid — mirroring reference site's kit breakdown */}
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card overflow-hidden">
+          <div class="relative bg-callsun-tint" style="aspect-ratio: 4/3;">
+            <img src={kit.panel.image} alt="24 x 450W solar panels" class="absolute inset-0 w-full h-full object-contain p-4" loading="lazy" />
+          </div>
+          <div class="p-5 border-t border-callsun-line">
+            <p class="text-xs uppercase tracking-eyebrow font-bold text-callsun-lime">24 pcs</p>
+            <p class="mt-1 font-display font-bold text-callsun-ink">450W N-Type Bifacial Solar Panels</p>
+            <p class="mt-2 text-sm text-callsun-mute">25.6% efficiency · 16BB · IP68 · ShadeGuard™</p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card overflow-hidden">
+          <div class="relative bg-callsun-tint" style="aspect-ratio: 4/3;">
+            <img src={kit.battery.image} alt="14.34kWh LiFePO4 battery modules" class="absolute inset-0 w-full h-full object-contain p-4" loading="lazy" />
+          </div>
+          <div class="p-5 border-t border-callsun-line">
+            <p class="text-xs uppercase tracking-eyebrow font-bold text-callsun-lime">2 pcs</p>
+            <p class="mt-1 font-display font-bold text-callsun-ink">14.34kWh LiFePO4 Battery</p>
+            <p class="mt-2 text-sm text-callsun-mute">51.2V · 280Ah · IP65 · UL1973 certified</p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card overflow-hidden">
+          <div class="relative bg-callsun-tint" style="aspect-ratio: 4/3;">
+            <img src={kit.inverter.image} alt="12kW hybrid inverter" class="absolute inset-0 w-full h-full object-contain p-4" loading="lazy" />
+          </div>
+          <div class="p-5 border-t border-callsun-line">
+            <p class="text-xs uppercase tracking-eyebrow font-bold text-callsun-lime">1 pc</p>
+            <p class="mt-1 font-display font-bold text-callsun-ink">12kW Hybrid Inverter</p>
+            <p class="mt-2 text-sm text-callsun-mute">Split-phase · dual MPPT · 200A grid pass-through</p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card overflow-hidden">
+          <div class="relative bg-callsun-tint" style="aspect-ratio: 4/3;">
+            <img src={kit.includes.image} alt="Cables, hardware and accessories" class="absolute inset-0 w-full h-full object-contain p-4" loading="lazy" />
+          </div>
+          <div class="p-5 border-t border-callsun-line">
+            <p class="text-xs uppercase tracking-eyebrow font-bold text-callsun-lime">Complete BOM</p>
+            <p class="mt-1 font-display font-bold text-callsun-ink">Cables, Mounts & Accessories</p>
+            <p class="mt-2 text-sm text-callsun-mute">PV cables · battery cables · mounting hardware · manual</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Full kit contents flat-lay */}
+      <figure class="mt-10 rounded-2xl border border-callsun-line shadow-card bg-white overflow-hidden">
         <img
           src={kit.includes.image}
           alt="Complete kit contents"
-          class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+          class="w-full block"
           loading="lazy"
         />
       </figure>
-      <ul class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl">
-        {kit.includes.items.map((it) => (
-          <li class="flex items-start gap-3">
-            <span class="text-callsun-lime font-display font-extrabold mt-0.5" aria-hidden="true">✓</span>
-            <span class="text-callsun-ink text-base">{it}</span>
-          </li>
-        ))}
-      </ul>
+
+      {/* Checklist */}
+      <div class="mt-10 rounded-2xl bg-callsun-tint border border-callsun-line p-6 md:p-8">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Everything in the box</p>
+        <ul class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+          {kit.includes.items.map((it) => (
+            <li class="flex items-start gap-3">
+              <span class="text-callsun-lime font-display font-extrabold mt-0.5" aria-hidden="true">✓</span>
+              <span class="text-callsun-ink text-base">{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -415,11 +489,21 @@ const kit = KIT_10_8KW;
           Answers your installer or end-customer usually asks before specifying a system.
         </p>
       </div>
-      <div class="mt-8 grid gap-4">
-        {kit.faq.map((f) => (
-          <details class="rounded-2xl border border-callsun-line bg-white shadow-card p-6">
-            <summary class="font-display font-bold cursor-pointer text-callsun-ink">{f.q}</summary>
-            <p class="mt-3 text-callsun-mute leading-relaxed">{f.a}</p>
+      <div class="mt-10 rounded-2xl border border-callsun-line bg-white shadow-card overflow-hidden">
+        {kit.faq.map((f, i) => (
+          <details class="group border-b border-callsun-line last:border-b-0">
+            <summary class="flex items-start gap-4 md:gap-6 px-6 py-5 md:px-8 md:py-6 cursor-pointer list-none hover:bg-callsun-tint/50 transition-colors">
+              <span class="shrink-0 font-display font-extrabold text-callsun-lime text-lg md:text-xl leading-none pt-0.5">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="flex-1 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug">
+                {f.q}
+              </span>
+              <span class="shrink-0 text-callsun-mute font-display font-extrabold text-2xl leading-none pt-0.5 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-14 md:px-8 md:pb-8 md:pl-20 text-callsun-mute leading-relaxed">
+              {f.a}
+            </div>
           </details>
         ))}
       </div>
