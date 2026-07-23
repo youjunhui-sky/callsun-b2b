@@ -1,0 +1,18 @@
+---
+import { SITE } from '@/data/site';
+
+const year = new Date().getFullYear();
+---
+<footer class="bg-callsun-ink text-white/70">
+  <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <img src="/logo.png" alt="Callsun" class="h-6 w-auto" />
+      <span class="hidden md:inline-block text-white/50 text-xs tracking-eyebrow uppercase">
+        {SITE.tagline}
+      </span>
+    </div>
+    <p class="text-xs tracking-wider text-white/50 uppercase">
+      © {year} {SITE.name}. All Rights Reserved.
+    </p>
+  </div>
+</footer>

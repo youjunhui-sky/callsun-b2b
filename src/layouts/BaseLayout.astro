@@ -1,0 +1,101 @@
+---
+import { SITE } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+  keywords?: string[];
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+}
+
+const {
+  title = SITE.defaultTitle,
+  description = SITE.defaultDescription,
+  canonical = Astro.url.pathname,
+  ogImage = SITE.defaultOgImage,
+  ogType = 'website',
+  noindex = false,
+  keywords = [],
+  schema,
+  bodyClass = '',
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, SITE.domain).href;
+const ogImageUrl = new URL(ogImage, SITE.domain).href;
+
+const defaultOrg = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.organization.legalName,
+  url: SITE.domain,
+  logo: new URL('/logo.png', SITE.domain).href,
+  sameAs: SITE.organization.sameAs,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: SITE.organization.contact.sales,
+    contactType: 'sales',
+    availableLanguage: ['English'],
+  },
+};
+
+const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
+---
+<!doctype html>
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0A0A" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800;900&display=swap"
+    />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    {schemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+
+    <slot name="head" />
+  </head>
+  <body class={`bg-white text-callsun-ink font-sans antialiased ${bodyClass}`}>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-callsun focus:text-callsun-ink focus:px-4 focus:py-2">
+      Skip to content
+    </a>
+
+    <slot name="header" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+<BaseLayout title="404 — Page Not Found | Callsun" noindex>
+  <Header slot="header" />
+  <Footer slot="footer" />
+  <section class="min-h-[60vh] flex items-center justify-center bg-callsun-ink text-white">
+    <div class="text-center px-6">
+      <p class="text-callsun-lime text-xs tracking-eyebrow uppercase mb-4">ERROR 404</p>
+      <h1 class="font-display text-5xl md:text-7xl font-extrabold">Page Not Found</h1>
+      <p class="mt-6 text-white/60 max-w-md mx-auto">
+        The page you are looking for is not available on the new Callsun site yet.
+      </p>
+      <a href="/" class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:bg-callsun-limeHi transition-colors">
+        BACK TO HOME <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
