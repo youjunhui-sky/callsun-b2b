@@ -32,26 +32,65 @@ const kit = KIT_10_8KW;
 
       <div class="rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-          {/* LEFT: stacked images */}
-          <div class="grid grid-cols-1 grid-rows-2 gap-0 bg-callsun-tint">
-            <div class="relative bg-white border-b border-callsun-line" style="aspect-ratio: 16/9;">
-              <img
-                src={kit.panel.image}
-                alt="24 Pcs 450W N-Type solar panel array"
-                class="absolute inset-0 w-full h-full object-cover"
-                loading="eager"
-              />
-              <span class="absolute top-0 left-0 bg-callsun-tag text-white text-xs font-bold tracking-eyebrow uppercase px-4 py-1.5">
+          {/* LEFT: gallery */}
+          <div class="bg-white border-r border-callsun-line" data-gallery="kit-10-8kw">
+            <div class="relative overflow-hidden bg-white" style="aspect-ratio: 1/1;">
+              {[1,2,3,4,5,6,7,8,9].map((n, i) => (
+                <img
+                  src={`/uploads/callsun/solutions/10-8kw-gallery/hero-${String(n).padStart(2,'0')}.jpg`}
+                  alt={`10.8kW Solar Generator System - view ${n}`}
+                  data-slide={i}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class={`absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                />
+              ))}
+
+              {/* 450W corner ribbon (only on slide 1) */}
+              <span class="absolute top-0 left-0 bg-callsun-tag text-white text-xs font-bold tracking-eyebrow uppercase px-4 py-1.5 z-10" data-ribbon>
                 450W
               </span>
+
+              {/* Prev / Next arrows */}
+              <button
+                type="button"
+                data-prev
+                aria-label="Previous image"
+                class="absolute top-1/2 left-3 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-card flex items-center justify-center text-callsun-ink z-10"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button
+                type="button"
+                data-next
+                aria-label="Next image"
+                class="absolute top-1/2 right-3 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-card flex items-center justify-center text-callsun-ink z-10"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+
+              {/* Counter */}
+              <span class="absolute bottom-4 right-4 bg-callsun-ink/85 text-white text-xs font-bold tracking-wider px-3 py-1.5 z-10" data-counter>
+                1 / 9
+              </span>
             </div>
-            <div class="relative bg-white" style="aspect-ratio: 16/9;">
-              <img
-                src={kit.heroImage}
-                alt="Complete system kit components — hybrid inverter, batteries, cables, accessories"
-                class="absolute inset-0 w-full h-full object-contain p-4"
-                loading="eager"
-              />
+
+            {/* Thumbnail strip */}
+            <div class="grid grid-cols-9 gap-1 p-3 bg-callsun-tint border-t border-callsun-line">
+              {[1,2,3,4,5,6,7,8,9].map((n, i) => (
+                <button
+                  type="button"
+                  data-thumb={i}
+                  aria-label={`Show image ${n}`}
+                  class={`relative aspect-square bg-white border transition-colors ${i === 0 ? 'border-callsun-lime border-2' : 'border-callsun-line hover:border-callsun-ink'}`}
+                >
+                  <img
+                    src={`/uploads/callsun/solutions/10-8kw-gallery/hero-${String(n).padStart(2,'0')}.jpg`}
+                    alt=""
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-contain p-1"
+                  />
+                </button>
+              ))}
             </div>
           </div>
 
@@ -389,4 +428,50 @@ const kit = KIT_10_8KW;
       </div>
     </div>
   </section>
+
+  {/* Gallery interaction script */}
+  <script is:inline>
+    (function () {
+      const root = document.querySelector('[data-gallery="kit-10-8kw"]');
+      if (!root) return;
+      const slides   = Array.from(root.querySelectorAll('[data-slide]'));
+      const thumbs   = Array.from(root.querySelectorAll('[data-thumb]'));
+      const prevBtn  = root.querySelector('[data-prev]');
+      const nextBtn  = root.querySelector('[data-next]');
+      const counter  = root.querySelector('[data-counter]');
+      const ribbon   = root.querySelector('[data-ribbon]');
+      const total    = slides.length;
+      let current    = 0;
+
+      function show(i) {
+        current = (i + total) % total;
+        slides.forEach((s, idx) => {
+          s.classList.toggle('opacity-100', idx === current);
+          s.classList.toggle('opacity-0', idx !== current);
+          s.classList.toggle('pointer-events-none', idx !== current);
+        });
+        thumbs.forEach((t, idx) => {
+          if (idx === current) {
+            t.classList.add('border-callsun-lime', 'border-2');
+            t.classList.remove('border-callsun-line');
+          } else {
+            t.classList.remove('border-callsun-lime', 'border-2');
+            t.classList.add('border-callsun-line');
+          }
+        });
+        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+        if (ribbon) ribbon.style.display = current === 0 ? '' : 'none';
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
+      nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
+      thumbs.forEach((t, idx) => t.addEventListener('click', () => show(idx)));
+
+      // Keyboard nav when focus is in the gallery
+      root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+    })();
+  </script>
 </BaseLayout>
