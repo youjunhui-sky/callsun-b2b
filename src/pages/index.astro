@@ -35,7 +35,7 @@ const homeSchema = {
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 1: HERO (Dark, Photo BG, 2 CTAs)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="relative overflow-hidden bg-callsun-ink text-white">
+  <section class="relative overflow-hidden text-white">
     {HERO.backgroundImage && (
       <img
         src={HERO.backgroundImage}
@@ -46,28 +46,26 @@ const homeSchema = {
         class="absolute inset-0 w-full h-full object-cover"
       />
     )}
-    <div class="absolute inset-0 bg-gradient-to-r from-callsun-ink/70 via-callsun-ink/25 to-transparent" aria-hidden="true"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-callsun-ink/40" aria-hidden="true"></div>
 
     <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-36 lg:pb-32">
       <div class="max-w-3xl">
         <Eyebrow class="mb-5">{HERO.eyebrow}</Eyebrow>
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold leading-[1.05]">
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold leading-[1.05] drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
           {HERO.title}
         </h1>
-        <p class="mt-6 text-white/75 text-base md:text-lg leading-relaxed max-w-2xl">
+        <p class="mt-6 text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
           {HERO.intro}
         </p>
         <div class="mt-10 flex flex-wrap gap-3">
           <a
             href={HERO.primaryCta.href}
-            class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+            class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg"
           >
             {HERO.primaryCta.label} <span aria-hidden="true">→</span>
           </a>
           <a
             href={HERO.secondaryCta.href}
-            class="inline-flex items-center gap-2 border border-white/40 text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:border-callsun hover:text-callsun-lime transition-colors"
+            class="inline-flex items-center gap-2 border border-white/70 bg-black/25 backdrop-blur-sm text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:border-callsun hover:text-callsun-lime transition-colors"
           >
             {HERO.secondaryCta.label} <span aria-hidden="true">→</span>
           </a>
