@@ -86,6 +86,12 @@ const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [sche
     ))}
 
     <slot name="head" />
+
+    <style is:global>
+      /* Hide scrollbars for horizontal tab strips while keeping scrollability */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
   </head>
   <body class={`bg-white text-callsun-ink font-sans antialiased ${bodyClass}`}>
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-callsun focus:text-callsun-ink focus:px-4 focus:py-2">

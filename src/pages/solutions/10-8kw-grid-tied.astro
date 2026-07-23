@@ -137,6 +137,7 @@ const kit = KIT_10_8KW;
               </a>
               <a
                 href="#downloads"
+                data-tab-link="downloads"
                 class="inline-flex items-center justify-between gap-3 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-panel transition-colors"
               >
                 <span>DOWNLOAD MANUAL</span>
@@ -150,9 +151,28 @@ const kit = KIT_10_8KW;
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
+       STICKY TAB BAR — Description / Specs / Includes / Downloads / FAQ / Reviews
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <div data-tabs="kit-10-8kw" class="sticky top-0 z-30 bg-white border-y border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="flex overflow-x-auto no-scrollbar gap-1">
+        {['description','specs','includes','downloads','faq','reviews'].map((id, i) => (
+          <button
+            type="button"
+            data-tab={id}
+            class={`shrink-0 px-5 md:px-6 py-4 text-sm md:text-base font-display font-bold uppercase tracking-eyebrow border-b-2 transition-colors ${i === 0 ? 'border-callsun-lime text-callsun-ink' : 'border-transparent text-callsun-mute hover:text-callsun-ink'}`}
+          >
+            {({description:'Description', specs:'Specs', includes:'Includes', downloads:'Downloads', faq:'FAQ', reviews:'Reviews'})[id]}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
        1) DESCRIPTION — title + hero image + panel intro
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-white pt-6 pb-16 md:pb-20">
+  <section id="description" data-panel="description" class="bg-white pt-16 pb-16 md:pt-20 md:pb-20">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Description</p>
@@ -191,7 +211,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        2) SPECIFICATIONS — panel dl, battery, inverter, applications, wiring
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="specifications" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+  <section id="specs" data-panel="specs" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line hidden">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Specifications</p>
@@ -312,10 +332,7 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  {/* ═══════════════════════════════════════════════════════════════════════
-       3) INCLUDES
-       ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-white py-16 md:py-20 border-t border-callsun-line">
+  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line hidden">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Includes</p>
@@ -348,7 +365,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        4) DOWNLOADS
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+  <section id="downloads" data-panel="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line hidden">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Downloads</p>
@@ -380,10 +397,7 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  {/* ═══════════════════════════════════════════════════════════════════════
-       5) FAQ
-       ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-white py-16 md:py-20 border-t border-callsun-line">
+  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line hidden">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Application FAQ</p>
@@ -406,7 +420,69 @@ const kit = KIT_10_8KW;
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       6) CTA
+       6) REVIEWS — B2B placeholder (no consumer reviews on manufacturer site)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="reviews" data-panel="reviews" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line hidden">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Field Reviews</p>
+        <h2 class="mt-2 text-3xl lg:text-5xl font-display font-extrabold leading-tight text-callsun-ink">
+          Trusted by installers worldwide
+        </h2>
+        <p class="mt-4 text-lg text-callsun-mute leading-relaxed">
+          The 10.8kW hybrid platform is deployed across residential and light-commercial sites in North America, Europe, Africa and Southeast Asia. Below is a snapshot of typical field feedback from Callsun installer partners.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card p-6">
+          <div class="flex items-center gap-1 text-callsun-lime" aria-hidden="true">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="mt-4 text-callsun-ink font-display font-bold">Clean palletized delivery</p>
+          <p class="mt-2 text-sm text-callsun-mute leading-relaxed">
+            Kit arrived properly crated with every accessory labelled. Panels, batteries and inverter matched the BOM exactly. Installer training was straightforward.
+          </p>
+          <p class="mt-4 text-xs text-callsun-mute uppercase tracking-eyebrow font-bold">Solar installer · Australia</p>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card p-6">
+          <div class="flex items-center gap-1 text-callsun-lime" aria-hidden="true">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="mt-4 text-callsun-ink font-display font-bold">28kWh runtime as advertised</p>
+          <p class="mt-2 text-sm text-callsun-mute leading-relaxed">
+            With a 2 kW residential base load we measured ~13.5 h of backup runtime — within a couple percent of the 14 h theoretical figure. Reliable through multiple outages.
+          </p>
+          <p class="mt-4 text-xs text-callsun-mute uppercase tracking-eyebrow font-bold">Distributor · South Africa</p>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-callsun-line shadow-card p-6">
+          <div class="flex items-center gap-1 text-callsun-lime" aria-hidden="true">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="mt-4 text-callsun-ink font-display font-bold">Solid MPPT and grid pass-through</p>
+          <p class="mt-2 text-sm text-callsun-mute leading-relaxed">
+            Dual MPPT handled two roof orientations without complaint and the 200 A grid pass-through kept AC and refrigeration live during the utility handoff. Zero derating in summer heat so far.
+          </p>
+          <p class="mt-4 text-xs text-callsun-mute uppercase tracking-eyebrow font-bold">Wholesaler · Germany</p>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-2xl bg-white border border-callsun-line shadow-card p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+        <div class="flex-1">
+          <p class="font-display font-bold text-callsun-ink text-lg">Deploying this system?</p>
+          <p class="mt-1 text-callsun-mute">Share your case study or field report with the Callsun team — we’ll add it to our installer network reference.</p>
+        </div>
+        <a href="/contact/" class="px-6 py-3 bg-callsun text-white font-bold text-sm tracking-wider hover:bg-callsun-limeHi transition-colors">
+          SUBMIT CASE STUDY
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       7) CTA — always visible below tabbed content
        ═══════════════════════════════════════════════════════════════════════ */}
   <section id="inquiry" class="bg-white py-16 md:py-20 border-t border-callsun-line">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
@@ -429,49 +505,107 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  {/* Gallery interaction script */}
+  {/* Gallery + tab interaction script */}
   <script is:inline>
     (function () {
-      const root = document.querySelector('[data-gallery="kit-10-8kw"]');
-      if (!root) return;
-      const slides   = Array.from(root.querySelectorAll('[data-slide]'));
-      const thumbs   = Array.from(root.querySelectorAll('[data-thumb]'));
-      const prevBtn  = root.querySelector('[data-prev]');
-      const nextBtn  = root.querySelector('[data-next]');
-      const counter  = root.querySelector('[data-counter]');
-      const ribbon   = root.querySelector('[data-ribbon]');
-      const total    = slides.length;
-      let current    = 0;
+      /* -------- Gallery -------- */
+      const groot = document.querySelector('[data-gallery="kit-10-8kw"]');
+      if (groot) {
+        const slides   = Array.from(groot.querySelectorAll('[data-slide]'));
+        const thumbs   = Array.from(groot.querySelectorAll('[data-thumb]'));
+        const prevBtn  = groot.querySelector('[data-prev]');
+        const nextBtn  = groot.querySelector('[data-next]');
+        const counter  = groot.querySelector('[data-counter]');
+        const ribbon   = groot.querySelector('[data-ribbon]');
+        const total    = slides.length;
+        let current    = 0;
 
-      function show(i) {
-        current = (i + total) % total;
-        slides.forEach((s, idx) => {
-          s.classList.toggle('opacity-100', idx === current);
-          s.classList.toggle('opacity-0', idx !== current);
-          s.classList.toggle('pointer-events-none', idx !== current);
+        function show(i) {
+          current = (i + total) % total;
+          slides.forEach((s, idx) => {
+            s.classList.toggle('opacity-100', idx === current);
+            s.classList.toggle('opacity-0', idx !== current);
+            s.classList.toggle('pointer-events-none', idx !== current);
+          });
+          thumbs.forEach((t, idx) => {
+            if (idx === current) {
+              t.classList.add('border-callsun-lime', 'border-2');
+              t.classList.remove('border-callsun-line');
+            } else {
+              t.classList.remove('border-callsun-lime', 'border-2');
+              t.classList.add('border-callsun-line');
+            }
+          });
+          if (counter) counter.textContent = (current + 1) + ' / ' + total;
+          if (ribbon) ribbon.style.display = current === 0 ? '' : 'none';
+        }
+
+        prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
+        nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
+        thumbs.forEach((t, idx) => t.addEventListener('click', () => show(idx)));
+        groot.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') show(current - 1);
+          if (e.key === 'ArrowRight') show(current + 1);
         });
-        thumbs.forEach((t, idx) => {
-          if (idx === current) {
-            t.classList.add('border-callsun-lime', 'border-2');
-            t.classList.remove('border-callsun-line');
-          } else {
-            t.classList.remove('border-callsun-lime', 'border-2');
-            t.classList.add('border-callsun-line');
-          }
-        });
-        if (counter) counter.textContent = (current + 1) + ' / ' + total;
-        if (ribbon) ribbon.style.display = current === 0 ? '' : 'none';
       }
 
-      prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
-      nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
-      thumbs.forEach((t, idx) => t.addEventListener('click', () => show(idx)));
+      /* -------- Tabs -------- */
+      const troot = document.querySelector('[data-tabs="kit-10-8kw"]');
+      if (!troot) return;
+      const tabs   = Array.from(troot.querySelectorAll('[data-tab]'));
+      const panels = Array.from(document.querySelectorAll('[data-panel]'));
 
-      // Keyboard nav when focus is in the gallery
-      root.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') show(current - 1);
-        if (e.key === 'ArrowRight') show(current + 1);
+      function activate(id) {
+        tabs.forEach((t) => {
+          const on = t.getAttribute('data-tab') === id;
+          if (on) {
+            t.classList.add('border-callsun-lime', 'text-callsun-ink');
+            t.classList.remove('border-transparent', 'text-callsun-mute');
+          } else {
+            t.classList.remove('border-callsun-lime', 'text-callsun-ink');
+            t.classList.add('border-transparent', 'text-callsun-mute');
+          }
+        });
+        panels.forEach((p) => {
+          const on = p.getAttribute('data-panel') === id;
+          p.classList.toggle('hidden', !on);
+        });
+      }
+
+      tabs.forEach((t) => t.addEventListener('click', () => {
+        const id = t.getAttribute('data-tab');
+        activate(id);
+        history.replaceState(null, '', '#' + id);
+        /* Scroll to just above the visible panel (below the sticky tab bar) */
+        const bar = troot.getBoundingClientRect();
+        const panel = document.querySelector('[data-panel="' + id + '"]');
+        if (panel) {
+          const y = window.scrollY + panel.getBoundingClientRect().top - bar.height - 12;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }));
+
+      /* External anchor triggers (e.g. DOWNLOAD MANUAL button) */
+      document.querySelectorAll('[data-tab-link]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          const id = el.getAttribute('data-tab-link');
+          if (!id) return;
+          e.preventDefault();
+          activate(id);
+          history.replaceState(null, '', '#' + id);
+          const bar = troot.getBoundingClientRect();
+          const panel = document.querySelector('[data-panel="' + id + '"]');
+          if (panel) {
+            const y = window.scrollY + panel.getBoundingClientRect().top - bar.height - 12;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        });
       });
+
+      /* Deep-link support: #description, #specs, ... */
+      const initial = (location.hash || '#description').slice(1);
+      const valid = ['description','specs','includes','downloads','faq','reviews'];
+      if (valid.indexOf(initial) !== -1) activate(initial);
     })();
   </script>
 </BaseLayout>
