@@ -1,0 +1,337 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import {
+  APPLICATIONS,
+  APPLICATION_WORKFLOW,
+  APPLICATION_FAQ,
+} from '@/data/applications';
+
+const pageTitle = 'Applications — Callsun Solar B2B';
+const pageDescription =
+  'Solar application scenarios for B2B distributors, dealers and EPC installers. Choose your project path — commercial rooftop, home storage or off-grid.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  {/* ---------- HERO ---------- */}
+  <section class="bg-callsun-ink text-white pt-16 pb-20 md:pt-20 md:pb-24 relative overflow-hidden">
+    <div class="max-w-wide mx-auto px-4 lg:px-6 relative z-10">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Applications' },
+        ]}
+        theme="dark"
+      />
+      <div class="mt-8 max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Applications
+        </p>
+        <h1 class="mt-3 text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-[0.95]">
+          Solar application scenarios for B2B distributors, dealers and EPC installers.
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl">
+          Use application pages to move buyers from a real project scenario to the right products, system packages, proof cases and inquiry path.
+        </p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="#scenarios"
+          class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-bold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+        >
+          Browse Scenarios
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 border-2 border-white text-white font-display font-bold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-white hover:text-callsun-ink transition-colors"
+        >
+          Discuss Your Application
+        </a>
+      </div>
+    </div>
+
+    {/* subtle diagonal grid */}
+    <div
+      class="absolute inset-0 opacity-[0.04] pointer-events-none"
+      style="background-image: linear-gradient(45deg, white 1px, transparent 1px), linear-gradient(-45deg, white 1px, transparent 1px); background-size: 24px 24px;"
+      aria-hidden="true"
+    ></div>
+  </section>
+
+  {/* ---------- SECTION INTRO ---------- */}
+  <section class="bg-callsun-tint py-16 md:py-20">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Scenario-led navigation
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Help buyers start from their project instead of a part number.
+        </h2>
+        <p class="mt-4 text-lg text-callsun-ink/80 leading-relaxed">
+          Many B2B solar buyers search by application first: rooftop, home storage, off-grid, backup power or remote energy. This page organizes those paths and routes each visitor to relevant products, solutions, cases and downloads.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 3 SCENARIO CARDS ---------- */}
+  <section id="scenarios" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {APPLICATIONS.map((app, i) => (
+          <a
+            href={`#${app.slug}`}
+            class="group relative bg-white border border-callsun-line hover:border-callsun-lime shadow-card overflow-hidden transition-colors flex flex-col"
+          >
+            <div class="relative bg-callsun-tint" style="aspect-ratio: 4/3;">
+              <img
+                src={app.image}
+                alt={app.title}
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute top-4 left-4 inline-flex items-center gap-2 bg-callsun-ink text-white text-xs font-display font-extrabold uppercase tracking-eyebrow px-3 py-1.5">
+                {String(i + 1).padStart(2, '0')} · {app.eyebrow}
+              </div>
+            </div>
+            <div class="p-6 md:p-8 flex-1 flex flex-col">
+              <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+                Application scenario
+              </p>
+              <h3 class="mt-2 text-2xl font-display font-extrabold text-callsun-ink leading-tight">
+                {app.title}
+              </h3>
+              <p class="mt-2 text-sm text-callsun-mute">{app.solutionCount}</p>
+              <p class="mt-4 text-base text-callsun-ink/80 leading-relaxed flex-1">
+                {app.intro}
+              </p>
+              <div class="mt-6 inline-flex items-center gap-2 text-callsun-ink font-display font-bold text-sm uppercase tracking-eyebrow group-hover:text-callsun-lime transition-colors">
+                Learn more <span aria-hidden="true">→</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- DETAILED SCENARIO SECTIONS ---------- */}
+  {APPLICATIONS.map((app, i) => (
+    <section
+      id={app.slug}
+      class={`${i % 2 === 0 ? 'bg-callsun-tint' : 'bg-white'} py-16 md:py-24 border-t border-callsun-line scroll-mt-24`}
+    >
+      <div class="max-w-wide mx-auto px-4 lg:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* text */}
+          <div class={i % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}>
+            <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+              {app.eyebrow}
+            </p>
+            <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+              Start with {app.title}
+            </h2>
+            <p class="mt-5 text-lg text-callsun-ink/80 leading-relaxed">
+              {app.bestFor}
+            </p>
+
+            <div class="mt-8">
+              <p class="text-xs uppercase tracking-eyebrow text-callsun-mute font-bold">
+                What you get
+              </p>
+              <ul class="mt-4 space-y-3">
+                {app.highlights.map((h) => (
+                  <li class="flex items-start gap-3">
+                    <span class="shrink-0 mt-1.5 w-2 h-2 bg-callsun-lime" aria-hidden="true"></span>
+                    <span class="text-callsun-ink text-base leading-snug">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-8">
+              <p class="text-xs uppercase tracking-eyebrow text-callsun-mute font-bold">
+                Recommended paths
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {app.linkedSolutions.map((s) => (
+                  <a
+                    href={s.href}
+                    class="inline-flex items-center gap-2 bg-white border border-callsun-line hover:border-callsun-lime text-callsun-ink font-display font-bold text-xs uppercase tracking-eyebrow px-4 py-2.5 transition-colors"
+                  >
+                    {s.label}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#inquiry"
+                class="inline-flex items-center gap-2 bg-callsun-ink text-white font-display font-bold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-dark transition-colors"
+              >
+                Request Application Advice
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="/products/"
+                class="inline-flex items-center gap-2 border-2 border-callsun-ink text-callsun-ink font-display font-bold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-ink hover:text-white transition-colors"
+              >
+                Browse Products
+              </a>
+            </div>
+          </div>
+
+          {/* image */}
+          <figure class={i % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}>
+            <div class="relative bg-white border border-callsun-line shadow-card overflow-hidden" style="aspect-ratio: 4/3;">
+              <img
+                src={app.image}
+                alt={app.title}
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  {/* ---------- WORKFLOW: 3 STEPS ---------- */}
+  <section class="bg-callsun-ink text-white py-16 md:py-24 border-t border-callsun-lineDark">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Inquiry workflow
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+          From application page to qualified RFQ.
+        </h2>
+        <p class="mt-4 text-lg text-white/75 leading-relaxed">
+          Application pages should collect enough context before sales follows up. This keeps the first reply practical and reduces low-quality inquiries.
+        </p>
+      </div>
+
+      <div class="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
+        {APPLICATION_WORKFLOW.map((s) => (
+          <div class="relative bg-white/5 border border-white/10 p-8 md:p-10">
+            <div class="text-callsun-lime font-display font-extrabold text-6xl leading-none">
+              {s.step}
+            </div>
+            <h3 class="mt-6 font-display font-extrabold text-xl uppercase tracking-wide">
+              {s.title}
+            </h3>
+            <p class="mt-3 text-white/70 leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- FAQ ---------- */}
+  <section class="bg-white py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Application FAQ
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Questions buyers ask before choosing a path.
+        </h2>
+      </div>
+
+      <div class="mt-10 max-w-4xl border border-callsun-line bg-white shadow-card overflow-hidden">
+        {APPLICATION_FAQ.map((f, i) => (
+          <details class="group border-b border-callsun-line last:border-b-0">
+            <summary class="flex items-start gap-4 md:gap-6 px-6 py-5 md:px-8 md:py-6 cursor-pointer list-none hover:bg-callsun-tint/50 transition-colors">
+              <span class="shrink-0 font-display font-extrabold text-callsun-lime text-lg md:text-xl leading-none pt-0.5">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="flex-1 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug">
+                {f.q}
+              </span>
+              <span
+                class="shrink-0 text-callsun-mute font-display font-extrabold text-2xl leading-none pt-0.5 group-open:rotate-45 transition-transform"
+                aria-hidden="true"
+              >+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-14 md:px-8 md:pb-8 md:pl-20 text-callsun-mute leading-relaxed">
+              {f.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- INQUIRY ---------- */}
+  <section id="inquiry" class="bg-callsun-tint py-16 md:py-24 border-t border-callsun-line scroll-mt-24">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
+        <div class="lg:col-span-2">
+          <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+            Not sure which application fits?
+          </p>
+          <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+            Tell us about your project.
+          </h2>
+          <p class="mt-4 text-lg text-callsun-ink/80 leading-relaxed">
+            Send load type, target capacity, installation market and timeline. Callsun will recommend a product or package path for the first quote discussion.
+          </p>
+          <div class="mt-6 space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-callsun-lime font-display font-extrabold mt-0.5">✓</span>
+              <span class="text-callsun-ink">Reply within 24 hours by regional sales team</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-callsun-lime font-display font-extrabold mt-0.5">✓</span>
+              <span class="text-callsun-ink">Product path + BOM recommendation with the first reply</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-callsun-lime font-display font-extrabold mt-0.5">✓</span>
+              <span class="text-callsun-ink">CRM-tracked so follow-up stays with the same sales rep</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3">
+          <InquiryForm formSource="applications" formTitle="APPLICATION INQUIRY" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- BOTTOM CTA ---------- */}
+  <section class="bg-callsun-ink text-white py-16 md:py-20">
+    <div class="max-w-wide mx-auto px-4 lg:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-display font-extrabold leading-tight">
+          Ready to build your next solar package?
+        </h2>
+        <p class="mt-3 text-white/70 text-base md:text-lg">
+          Talk to our B2B sales team about your market and target capacity.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/solutions/"
+          class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-bold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+        >
+          View Solutions
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 border-2 border-white text-white font-display font-bold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-white hover:text-callsun-ink transition-colors"
+        >
+          Request a Quote
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
