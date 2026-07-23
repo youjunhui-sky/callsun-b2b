@@ -21,6 +21,7 @@ export default {
           lineDark: '#2A2A2A',  // 深色区块分割线
           bg: '#F7F7F7',        // 浅背景 (near-white gray)
           surface: '#FAFAFA',   // 卡片浅底
+          tag:     '#1D4ED8',   // 角标蓝 (450W solar panel corner badge)
         },
         // 向后兼容 jinko-rebuild 组件的 jinko.* token (等重写完删)
         jinko: {

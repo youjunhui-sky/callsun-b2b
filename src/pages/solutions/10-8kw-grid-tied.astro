@@ -16,9 +16,11 @@ const kit = KIT_10_8KW;
   <Footer slot="footer" />
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       1) DESCRIPTION — breadcrumb + title + hero image + panel intro
+       0) COMPLETE SYSTEM KIT — hero showcase block (added 22:42)
+       Left: 2 stacked images (panel array + component flat-lay)
+       Right: eyebrow + title + specs list + dual CTA
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-white py-16 md:py-20">
+  <section class="bg-white pt-10 md:pt-14">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <nav class="text-sm text-callsun-mute mb-8">
         <a href="/" class="hover:text-callsun-ink">Home</a>
@@ -28,6 +30,91 @@ const kit = KIT_10_8KW;
         <span>10.8kW Grid-Tied Solar + Storage System</span>
       </nav>
 
+      <div class="rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          {/* LEFT: stacked images */}
+          <div class="grid grid-cols-1 grid-rows-2 gap-0 bg-callsun-tint">
+            <div class="relative bg-white border-b border-callsun-line" style="aspect-ratio: 16/9;">
+              <img
+                src={kit.panel.image}
+                alt="24 Pcs 450W N-Type solar panel array"
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="eager"
+              />
+              <span class="absolute top-0 left-0 bg-callsun-tag text-white text-xs font-bold tracking-eyebrow uppercase px-4 py-1.5">
+                450W
+              </span>
+            </div>
+            <div class="relative bg-white" style="aspect-ratio: 16/9;">
+              <img
+                src={kit.heroImage}
+                alt="Complete system kit components — hybrid inverter, batteries, cables, accessories"
+                class="absolute inset-0 w-full h-full object-contain p-4"
+                loading="eager"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT: text panel */}
+          <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-between bg-white">
+            <div>
+              <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+                10.8kW SOLAR GENERATOR SYSTEM
+              </p>
+              <h2 class="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.95] text-callsun-ink">
+                Complete<br />System Kit
+              </h2>
+              <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed max-w-md">
+                PV array, hybrid inverter and battery storage — everything shipped in one B2B pallet.
+              </p>
+            </div>
+
+            <dl class="mt-8 border-t border-callsun-line">
+              <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">PV ARRAY</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">10.8kW</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">HYBRID INVERTER</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">12kW</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">BATTERY STORAGE</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">28kWh</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-3">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">SYSTEM TYPE</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">Grid-Tied / Hybrid</dd>
+              </div>
+            </dl>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href="#inquiry"
+                class="inline-flex items-center justify-between gap-3 bg-callsun text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+              >
+                <span>REQUEST A QUOTE</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#downloads"
+                class="inline-flex items-center justify-between gap-3 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-panel transition-colors"
+              >
+                <span>DOWNLOAD MANUAL</span>
+                <span class="text-callsun-lime" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       1) DESCRIPTION — title + hero image + panel intro
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white pt-6 pb-16 md:pb-20">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Description</p>
         <h1 class="mt-2 text-3xl lg:text-5xl font-display font-extrabold leading-tight text-callsun-ink">
@@ -222,7 +309,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        4) DOWNLOADS
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+  <section id="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Downloads</p>
