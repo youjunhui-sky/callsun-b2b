@@ -1,0 +1,227 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { SITE } from '@/data/site';
+import { SKU_DETAILS } from '@/data/sku-details';
+
+const sku = SKU_DETAILS.cn620w;
+
+const breadcrumb = [
+  { label: 'PRODUCTS', href: '/products/' },
+  { label: sku.categoryLabel, href: sku.categoryHref },
+  { label: sku.model, href: `/products/${sku.slug}/` },
+];
+---
+<BaseLayout
+  title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
+  description={sku.subtitle}
+  canonical={`/products/${sku.slug}/`}
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 1: Hero (light grid bg, 2-col: left text+stats+CTAs / right image)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="relative overflow-hidden bg-callsun-tint">
+    {/* Grid pattern overlay */}
+    <div
+      class="absolute inset-0 opacity-[0.35]"
+      aria-hidden="true"
+      style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+    ></div>
+
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24">
+      <Breadcrumbs items={breadcrumb} theme="light" />
+
+      <div class="mt-8 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        {/* LEFT: text + stats + CTAs (col-span-3) */}
+        <div class="col-span-3">
+          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-ink leading-[1.02]">
+            {sku.model}
+          </h1>
+          <p class="mt-3 font-display text-xl md:text-2xl font-bold text-callsun-ink leading-snug max-w-2xl">
+            {sku.subtitle}
+          </p>
+          <p class="mt-2 text-callsun-mute text-sm md:text-base">
+            {sku.tagline}
+          </p>
+
+          {/* 2x2 stat cards */}
+          <div class="mt-8 grid grid-cols-2 gap-3 md:gap-4 max-w-2xl">
+            {[
+              { label: 'POWER',       value: sku.keyStats.power },
+              { label: 'EFFICIENCY',  value: sku.keyStats.efficiency },
+              { label: 'DIMENSIONS',  value: sku.keyStats.dimensions },
+              { label: 'WEIGHT',      value: sku.keyStats.weight },
+            ].map((s) => (
+              <div class="bg-white border border-callsun-line px-4 py-4 md:px-5 md:py-5">
+                <p class="text-[10px] md:text-[11px] font-bold tracking-eyebrow uppercase text-callsun-mute">
+                  {s.label}
+                </p>
+                <p class="mt-2 font-display text-xl md:text-2xl font-extrabold text-callsun-ink leading-none">
+                  {s.value}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div class="mt-8 flex flex-wrap gap-3">
+            {sku.datasheet && (
+              <a
+                href={sku.datasheet}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+              >
+                DOWNLOAD DATASHEET <span aria-hidden="true">↓</span>
+              </a>
+            )}
+            <a
+              href="#inquiry"
+              class="inline-flex items-center gap-2 bg-white border-2 border-callsun-line text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun-ink transition-colors"
+            >
+              REQUEST A QUOTE <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* RIGHT: single static product image (col-span-2) */}
+        <div class="col-span-2">
+          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+            <div class="relative" style="aspect-ratio: 4/5;">
+              <img
+                src={sku.heroImage}
+                alt={sku.model}
+                loading="eager"
+                class="absolute inset-0 w-full h-full object-contain p-6 md:p-8"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 2: Product Features (3 cards)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <Eyebrow class="mb-4">PRODUCT FEATURES</Eyebrow>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {sku.features.map((f) => (
+          <div class="bg-callsun-tint border-l-4 border-callsun p-6 md:p-7">
+            <p class="text-callsun-lime font-display font-extrabold text-xl">{f.num}</p>
+            <h3 class="mt-3 font-display text-base md:text-lg font-extrabold text-callsun-ink tracking-wide uppercase">
+              {f.title}
+            </h3>
+            <p class="mt-3 text-callsun-mute text-sm md:text-base leading-relaxed">
+              {f.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 3: Technical Specifications (3 columns, dark bg)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <Eyebrow class="mb-4">TECHNICAL SPECIFICATIONS</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
+        {sku.model} datasheet
+      </h2>
+
+      <div class="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        {[
+          { title: 'ELECTRICAL',              rows: sku.tech.electrical },
+          { title: 'MECHANICAL',              rows: sku.tech.mechanical },
+          { title: 'TEMPERATURE & DELIVERY',  rows: sku.tech.thermal },
+        ].map((col) => (
+          <div class="bg-white/5 border border-white/10 p-6 md:p-7">
+            <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime mb-5">
+              {col.title}
+            </p>
+            <dl class="grid grid-cols-1 gap-y-3">
+              {col.rows.map((r) => (
+                <div class="border-t border-white/10 pt-2">
+                  <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-white/60">{r.label}</dt>
+                  <dd class="mt-1 font-semibold text-sm text-white">{r.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-8 text-center text-white/50 text-xs md:text-sm">
+        STC: Irradiance 1000 W/m² · Cell temperature 25°C · Air mass 1.5
+      </p>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 4: Documents & Inquiry
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="relative bg-callsun-tint overflow-hidden">
+    <div
+      class="absolute inset-0 opacity-[0.35]"
+      aria-hidden="true"
+      style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
+    ></div>
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid grid-cols-5 gap-10 lg:gap-16 items-start">
+        {/* LEFT: documents (col-span-2) */}
+        <div class="col-span-2">
+          <Eyebrow class="mb-4">DOCUMENTS & INQUIRY</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
+            {sku.model} product resources
+          </h2>
+
+          <div class="mt-6 space-y-2">
+            {sku.certifications.map((c) => (
+              <p class="text-sm md:text-base text-callsun-mute font-medium">
+                {c}
+              </p>
+            ))}
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            {sku.datasheet && (
+              <a
+                href={sku.datasheet}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors"
+              >
+                DOWNLOAD DATASHEET <span aria-hidden="true">↓</span>
+              </a>
+            )}
+            <a
+              href="#inquiry-form"
+              class="inline-flex items-center gap-2 bg-white border-2 border-callsun-line text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun-ink transition-colors"
+            >
+              INSTALLATION MANUAL <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* RIGHT: inquiry form (col-span-3) */}
+        <div class="col-span-3" id="inquiry-form">
+          <InquiryForm
+            formSource={`sku-${sku.slug}`}
+            formTitle={`${sku.model} PRODUCT INQUIRY`}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

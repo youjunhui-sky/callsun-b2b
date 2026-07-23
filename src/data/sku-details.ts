@@ -118,7 +118,92 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
     ],
   },
-  // TODO: cn580w, cn620w, cn720w, cn180w, cn200w, cn215w
+  // TODO: cn720w, cn180w, cn200w, cn215w
+  cn620w: {
+    slug: 'cn620w',
+    model: 'CN620W',
+    subtitle: '620W N-Type Bifacial Double-Glass Solar Module',
+    tagline: 'N-Type · Bifacial · Double Glass',
+    category: 'standard',
+    categoryLabel: 'STANDARD PV MODULES',
+    categoryHref: '/products/standard-modules/',
+    keyStats: {
+      power: '620W',
+      efficiency: '22.95%',
+      dimensions: '2382 × 1134 × 30 mm',
+      weight: '32.5 kg',
+    },
+    heroImage: '/uploads/callsun/products/620w/card-square.jpg',
+    datasheet: '/uploads/callsun/products/620w/CN620W-datasheet.pdf',
+    features: [
+      {
+        num: '01',
+        title: 'NEXT-GEN N-TYPE EFFICIENCY',
+        body: 'Advanced N-type technology minimizes first-year degradation to just 1% while delivering industry-leading low-light performance — harvesting more energy at dawn, dusk and under overcast for higher project IRR.',
+      },
+      {
+        num: '02',
+        title: 'MASSIVE 620W BIFACIAL YIELD',
+        body: '620 W frontal power combined with 80% bifaciality unleashes powerful double-sided generation. The 132-cell architecture on a 2382 mm chassis delivers the highest power-per-rack in the Callsun standard lineup — reducing BOS cost on utility-scale farms.',
+      },
+      {
+        num: '03',
+        title: 'OPTIMIZED TEMPERATURE COEFFICIENT',
+        body: 'Exceptional Pmax coefficient of −0.28%/°C sustains yield in scorching climates. Industry-leading thermal performance translates directly into higher daily output in desert, tropical and high-irradiance deployments.',
+      },
+      {
+        num: '04',
+        title: 'MULTI-BUSBAR (MBB) PRECISION',
+        body: '16BB cell architecture shortens carrier travel distance, lowers hot-spot risk and improves performance under partial shading — ideal for utility-scale ground mounts with mixed light conditions and O&M simplicity.',
+      },
+      {
+        num: '05',
+        title: 'HEAVY-DUTY DUAL-GLASS CONSTRUCTION',
+        body: '2.0 mm tempered dual-glass, anodized aluminium frame and IP68 junction box withstand extreme mechanical loads. Dual-glass build eliminates PID pathways, hits Class C fire rating and extends service life beyond 30 years.',
+      },
+      {
+        num: '06',
+        title: 'PREMIUM 30-YEAR WARRANTY COMMITMENT',
+        body: '25-year product warranty and 30-year linear power warranty at 87.4% output at year 30. Combined with 1% first-year degradation and full IEC 61215 / 61730 + ISO 9001 / 14001 / 45001 certification for bankable long-term returns.',
+      },
+    ],
+    tech: {
+      electrical: [
+        { label: 'MAXIMUM POWER',           value: '620 W' },
+        { label: 'MODULE EFFICIENCY',       value: '22.95%' },
+        { label: 'VMP / IMP',               value: '40.82 V / 15.19 A' },
+        { label: 'VOC / ISC',               value: '48.10 V / 16.06 A' },
+        { label: 'POWER TOLERANCE',         value: '0 to +5 W' },
+        { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1500 V DC' },
+        { label: 'MAXIMUM SERIES FUSE',     value: '30 A' },
+        { label: 'BIFACIALITY',             value: '80% ± 5%' },
+      ],
+      mechanical: [
+        { label: 'CELL TYPE',           value: 'N-type mono-crystalline silicon, 182 × 105 mm' },
+        { label: 'CELL CONFIGURATION',  value: '132 pcs (6 × 11) × 2' },
+        { label: 'DIMENSIONS',          value: '2382 × 1134 × 30 mm' },
+        { label: 'WEIGHT',              value: '32.5 kg' },
+        { label: 'FRONT / BACK GLASS',  value: '2.0 mm / 2.0 mm heat-strengthened' },
+        { label: 'FRAME',               value: 'Anodized aluminium alloy' },
+        { label: 'JUNCTION BOX',        value: 'IP68 · 3 bypass diodes' },
+        { label: 'CABLE LENGTH',        value: '300 mm' },
+      ],
+      thermal: [
+        { label: 'OPERATING TEMPERATURE', value: '-40°C to +85°C' },
+        { label: 'PMAX COEFFICIENT',      value: '-0.28%/°C' },
+        { label: 'VOC COEFFICIENT',       value: '-0.24%/°C' },
+        { label: 'ISC COEFFICIENT',       value: '+0.045%/°C' },
+        { label: 'NOCT',                  value: '45°C ± 2°C' },
+        { label: 'PRODUCT WARRANTY',      value: '25 years' },
+        { label: 'LINEAR WARRANTY',       value: '30 years · 87.4% at year 30' },
+        { label: 'PACKAGING',             value: '36 pcs/pallet · 720 pcs/40HQ' },
+      ],
+    },
+    certifications: [
+      'IEC 61215 · IEC 61730',
+      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+    ],
+  },
   cn580w: {
     slug: 'cn580w',
     model: 'CN580W',
