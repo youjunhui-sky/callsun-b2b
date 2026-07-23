@@ -52,18 +52,33 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     features: [
       {
         num: '01',
-        title: 'N-TYPE CELL TECHNOLOGY',
-        body: 'Lower LID degradation and better low-light performance than P-type equivalents.',
+        title: 'N-TYPE TECHNOLOGY',
+        body: 'In-house N-type cell technology delivers 22.52% module efficiency with lower LID degradation and improved long-term reliability compared to P-type equivalents.',
       },
       {
         num: '02',
-        title: 'BIFACIAL DOUBLE-GLASS DESIGN',
-        body: 'Generates from front-side light and reflected light reaching the rear glass surface.',
+        title: 'BIFACIAL POWER GAIN',
+        body: 'N-type architecture pushes bifaciality up to 80% ± 5% for a higher backside bonus and greater lifetime yield, optimized by multi-busbar cell interconnection.',
       },
       {
         num: '03',
-        title: 'CONTROLLED MODULE CONSTRUCTION',
-        body: '16-busbar cell layout, anodized aluminium frame, and IP68 junction box with 3 bypass diodes.',
+        title: 'LOW TEMPERATURE COEFFICIENT',
+        body: 'Highly competitive Pmax temperature coefficient of −0.290%/°C for stronger real-world output across hot, cold and variable climates.',
+      },
+      {
+        num: '04',
+        title: 'INDUSTRIAL-GRADE CONSTRUCTION',
+        body: 'Dual-glass 2.0 + 2.0 mm heat-strengthened glass and silver anodized aluminium alloy frame deliver high mechanical load resistance and durability.',
+      },
+      {
+        num: '05',
+        title: 'ALL-ENVIRONMENT PROTECTION',
+        body: 'Certified to withstand humidity, heat, rain, marine environments, wind, hailstorms and packed snow — built for reliable global deployment.',
+      },
+      {
+        num: '06',
+        title: 'LONG-TERM WARRANTY',
+        body: '25-year product warranty and 30-year linear power warranty with 87.4% output at year 30 for maximum long-term investment protection.',
       },
     ],
     tech: {
