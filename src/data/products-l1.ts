@@ -12,7 +12,7 @@ export const PRODUCTS_L1 = {
     title: 'PV Module Portfolio',
     intro:
       'Two product families for volume module procurement and application-specific engineering requirements.',
-    background: '/uploads/callsun/cases/industrial-rooftop-aerial.jpg',
+    background: '/uploads/callsun/products/l1-hero.jpg',
     cta: { label: 'REQUEST PRODUCT INFORMATION', href: '/contact/' },
   },
   categoriesEyebrow: 'PV MODULE CATEGORIES',
@@ -25,7 +25,7 @@ export const PRODUCTS_L1 = {
         'Four high-power module classes for residential rooftops, distributed PV, off-grid systems, and small commercial and industrial projects.',
       cta: { label: 'VIEW STANDARD MODULES', href: '/products/standard-modules/' },
       images: [
-        '/uploads/callsun/products/450w/01-front.jpg',
+        '/uploads/callsun/products/450w/tile.jpg',
         '/uploads/callsun/products/580w/card-square.jpg',
         '/uploads/callsun/products/620w/card-square.jpg',
         '/uploads/callsun/products/720w/card-square.jpg',
@@ -40,9 +40,9 @@ export const PRODUCTS_L1 = {
         'Three application-specific module classes for RVs, vehicle rooftops, balconies, off-grid equipment, and other special installation conditions.',
       cta: { label: 'VIEW CUSTOM MODULES', href: '/products/custom-modules/' },
       images: [
-        '/uploads/callsun/products/180w/front-back.jpg',
-        '/uploads/callsun/products/200w/front-back.jpg',
-        '/uploads/callsun/products/215w/front-back.jpg',
+        '/uploads/callsun/products/180w/tile.jpg',
+        '/uploads/callsun/products/200w/tile.jpg',
+        '/uploads/callsun/products/215w/tile.jpg',
       ],
       theme: 'dark' as const,
     },

@@ -62,14 +62,14 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           const bg = dark ? 'bg-callsun-ink text-white' : 'bg-white';
           const headingClr = dark ? 'text-white' : 'text-callsun-ink';
           const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
-          const imgBg = dark ? 'bg-white/5' : 'bg-callsun-surface';
-          const dotClr = dark ? 'text-white/40' : 'text-callsun-mute/50';
+          const imgBg = 'bg-white';
+          const imgPad = dark ? 'p-3 md:p-4' : 'p-3 md:p-4';
           const gridCols = dark
-            ? 'grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-6 lg:gap-10 items-center p-8 md:p-10 lg:p-12'
-            : 'grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6 lg:gap-10 items-center p-8 md:p-10 lg:p-12';
+            ? 'grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-6 lg:gap-12 items-center p-8 md:p-10 lg:p-14'
+            : 'grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-6 lg:gap-12 items-center p-8 md:p-10 lg:p-14';
           const textOrder = dark ? 'lg:order-2' : '';
           const imgOrder = dark ? 'lg:order-1' : '';
-          const imgGridCols = cat.images.length === 4 ? 'grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4' : 'grid grid-cols-3 gap-3 md:gap-4';
+          const imgGridCols = cat.images.length === 4 ? 'grid grid-cols-2 gap-4 md:gap-5' : 'grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5';
           const eyebrowText = cat.key === 'standard' ? 'STANDARD MODULES' : 'CUSTOM MODULES';
           const orderNum = String(i + 1).padStart(2, '0');
           return (
@@ -98,8 +98,8 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                 <div class={imgOrder}>
                   <div class={imgGridCols}>
                     {cat.images.map((src) => (
-                      <div class={`aspect-square overflow-hidden ${imgBg}`}>
-                        <img src={src} alt="" loading="lazy" class="w-full h-full object-contain p-2" />
+                      <div class={`aspect-square overflow-hidden shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] ${imgBg} ${imgPad}`}>
+                        <img src={src} alt="" loading="lazy" class="w-full h-full object-contain" />
                       </div>
                     ))}
                   </div>
