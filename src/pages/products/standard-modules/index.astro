@@ -1,0 +1,287 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { SITE } from '@/data/site';
+import { STANDARD_L2 } from '@/data/standard-l2';
+---
+<BaseLayout
+  title={`Standard PV Modules — ${SITE.name}`}
+  description={STANDARD_L2.hero.subtitle}
+  canonical="/products/standard-modules/"
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 1: Hero — dark bg + subtle grid overlay + text/CTA left / thumbs right
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="relative overflow-hidden bg-callsun-ink text-white">
+    {/* Subtle grid overlay */}
+    <div
+      class="absolute inset-0 opacity-[0.08]"
+      aria-hidden="true"
+      style="background-image: linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 48px 48px;"
+    ></div>
+
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24">
+      <Breadcrumbs items={STANDARD_L2.breadcrumb} theme="dark" />
+
+      <div class="mt-8 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-center">
+        {/* LEFT (col-span-3): title / subtitle / powerRange / tags / CTA */}
+        <div class="col-span-3">
+          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] max-w-3xl">
+            {STANDARD_L2.hero.title}
+          </h1>
+          <p class="mt-6 text-white/85 text-base md:text-lg leading-relaxed max-w-2xl">
+            {STANDARD_L2.hero.subtitle}
+          </p>
+          <p class="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-lime tracking-tight">
+            {STANDARD_L2.hero.powerRange}
+          </p>
+          <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+            {STANDARD_L2.hero.tags.map((t) => (
+              <li>· {t}</li>
+            ))}
+          </ul>
+          <a
+            href={STANDARD_L2.hero.cta.href}
+            class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            {STANDARD_L2.hero.cta.label} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        {/* RIGHT (col-span-2): 4 module thumbs in a 2x2 grid */}
+        <div class="col-span-2">
+          <div class="grid grid-cols-2 gap-3 md:gap-4">
+            {STANDARD_L2.hero.thumbs.map((src, ti) => (
+              <div class="bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] overflow-hidden" style="aspect-ratio: 1/1;">
+                <img
+                  src={src}
+                  alt=""
+                  loading={ti === 0 ? 'eager' : 'lazy'}
+                  class="w-full h-full object-contain p-3 md:p-4"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 2: SKU Tab Selector (light band, jump-anchors)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-tint border-b border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-5 md:py-6">
+      <div class="flex flex-wrap items-center gap-4 md:gap-6">
+        <span class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+          {STANDARD_L2.selectorEyebrow}
+        </span>
+        <div class="flex flex-wrap gap-2 md:gap-3">
+          {STANDARD_L2.skus.map((sku, si) => (
+            <a
+              href={`#${sku.key}`}
+              class={`inline-flex items-center border-2 border-callsun-line hover:border-callsun px-4 py-2 font-bold text-sm tracking-wider transition-colors ${si === 0 ? 'bg-callsun-ink text-white border-callsun-ink' : 'bg-white text-callsun-ink'}`}
+              data-sku-tab={sku.key}
+            >
+              {sku.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 3: Series Overview banner (dark)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-14 md:py-16">
+      <Eyebrow class="mb-3">{STANDARD_L2.overview.eyebrow}</Eyebrow>
+      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
+        {STANDARD_L2.overview.title}
+      </h2>
+      <p class="mt-6 text-white/75 text-base md:text-lg leading-relaxed max-w-3xl">
+        {STANDARD_L2.overview.intro}
+      </p>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 4: SKU sections (alternating image LEFT / RIGHT)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white">
+    {STANDARD_L2.skus.map((sku, i) => {
+      const alt = i % 2 === 1; // sku 2 & 4 → image RIGHT
+      const bandBg = i % 2 === 0 ? 'bg-white' : 'bg-callsun-tint';
+      const galleryOrder = alt ? 'order-2 col-span-3' : 'order-1 col-span-3';
+      const textOrder    = alt ? 'order-1 col-span-2' : 'order-2 col-span-2';
+      return (
+        <div id={sku.key} class={`${bandBg} border-b border-callsun-line`}>
+          <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-14 md:py-20 lg:py-24">
+            <div class="grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+              {/* Gallery */}
+              <div class={galleryOrder} data-gallery>
+                <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+                  <div class="relative" style="aspect-ratio: 4/3;">
+                    {sku.images.map((src, si) => (
+                      <img
+                        src={src}
+                        alt=""
+                        loading={si === 0 ? 'eager' : 'lazy'}
+                        class="absolute inset-0 w-full h-full object-contain p-4 md:p-6 transition-opacity duration-300"
+                        style={`opacity: ${si === 0 ? 1 : 0};`}
+                        data-gallery-slide={si}
+                      />
+                    ))}
+                  </div>
+                  <button type="button" data-gallery-prev aria-label="Previous"
+                    class="absolute top-1/2 left-3 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/95 hover:bg-callsun text-callsun-ink transition-colors shadow-md rounded-full z-10">
+                    <span aria-hidden="true" class="text-lg">←</span>
+                  </button>
+                  <button type="button" data-gallery-next aria-label="Next"
+                    class="absolute top-1/2 right-3 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/95 hover:bg-callsun text-callsun-ink transition-colors shadow-md rounded-full z-10">
+                    <span aria-hidden="true" class="text-lg">→</span>
+                  </button>
+                </div>
+                <div class="mt-3 grid gap-2 grid-cols-4">
+                  {sku.images.map((src, ti) => (
+                    <button
+                      type="button"
+                      data-gallery-thumb={ti}
+                      aria-label={`View image ${ti + 1}`}
+                      class={`relative bg-white border-2 transition-all overflow-hidden ${ti === 0 ? 'border-callsun shadow-sm' : 'border-callsun-line hover:border-callsun'}`}
+                      style="aspect-ratio: 1/1;"
+                    >
+                      <img src={src} alt="" loading="lazy" class="w-full h-full object-contain p-1.5" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Text */}
+              <div class={textOrder}>
+                <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime mb-3">
+                  STANDARD MODULE · {String(i + 1).padStart(2, '0')}
+                </p>
+                <h3 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.05]">
+                  {sku.title}
+                </h3>
+                <p class="mt-3 text-callsun-mute text-base md:text-lg leading-relaxed">
+                  {sku.subtitle}
+                </p>
+
+                <div class="mt-6 flex flex-wrap items-baseline gap-4">
+                  <span class="inline-block bg-callsun text-callsun-ink font-display font-extrabold text-3xl md:text-4xl px-4 py-2 leading-none">
+                    {sku.power}
+                  </span>
+                  <span class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+                    {sku.efficiency}
+                  </span>
+                </div>
+
+                <p class="mt-5 text-callsun-mute text-base leading-relaxed max-w-xl">
+                  {sku.description}
+                </p>
+
+                <dl class="mt-7 grid grid-cols-2 gap-x-8 gap-y-3">
+                  {sku.specs.map((s) => (
+                    <div class="border-t border-callsun-line pt-2">
+                      <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-callsun-mute">{s.label}</dt>
+                      <dd class="mt-1 font-semibold text-sm text-callsun-ink">{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <div class="mt-8 flex flex-wrap items-center gap-6">
+                  <a href={sku.detailHref}
+                     class="inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-ink hover:text-callsun-lime border-b-2 border-callsun-ink hover:border-callsun-lime pb-1 transition-colors">
+                    VIEW PRODUCT DETAILS <span aria-hidden="true">→</span>
+                  </a>
+                  <a href={sku.datasheetHref} target="_blank" rel="noopener"
+                     class="inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-mute hover:text-callsun-ink transition-colors">
+                    DOWNLOAD DATASHEET <span aria-hidden="true">↓</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+
+    <script is:inline>
+      document.querySelectorAll('[data-gallery]').forEach((g) => {
+        const slides = g.querySelectorAll('[data-gallery-slide]');
+        const thumbs = g.querySelectorAll('[data-gallery-thumb]');
+        const prev   = g.querySelector('[data-gallery-prev]');
+        const next   = g.querySelector('[data-gallery-next]');
+        let idx = 0;
+        const base = 'relative bg-white border-2 transition-all overflow-hidden';
+        const activeCls = 'border-callsun shadow-sm';
+        const idleCls   = 'border-callsun-line hover:border-callsun';
+        const show = (i) => {
+          idx = (i + slides.length) % slides.length;
+          slides.forEach((s, si) => { s.style.opacity = si === idx ? 1 : 0; });
+          thumbs.forEach((t, ti) => {
+            t.className = base + ' ' + (ti === idx ? activeCls : idleCls);
+          });
+        };
+        prev && prev.addEventListener('click', () => show(idx - 1));
+        next && next.addEventListener('click', () => show(idx + 1));
+        thumbs.forEach((t, ti) => t.addEventListener('click', () => show(ti)));
+      });
+
+      // Highlight the current tab based on nearest visible SKU
+      const tabs = Array.from(document.querySelectorAll('[data-sku-tab]'));
+      const activeTabCls = 'bg-callsun-ink text-white border-callsun-ink';
+      const idleTabCls   = 'bg-white text-callsun-ink';
+      const setActiveTab = (key) => {
+        tabs.forEach((t) => {
+          const isActive = t.getAttribute('data-sku-tab') === key;
+          t.className = t.className
+            .replace(activeTabCls, '')
+            .replace(idleTabCls, '')
+            .trim() + ' ' + (isActive ? activeTabCls : idleTabCls);
+        });
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveTab(e.target.id);
+        });
+      }, { rootMargin: '-40% 0px -50% 0px' });
+      tabs.forEach((t) => {
+        const el = document.getElementById(t.getAttribute('data-sku-tab'));
+        if (el) io.observe(el);
+      });
+    </script>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       Section 5: Product Inquiry (dark bg + white form card)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid grid-cols-5 gap-10 lg:gap-16 items-start">
+        <div class="col-span-2">
+          <Eyebrow class="mb-3">{STANDARD_L2.inquiry.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+            {STANDARD_L2.inquiry.title}
+          </h2>
+          <p class="mt-6 text-white/70 text-base leading-relaxed max-w-lg">
+            {STANDARD_L2.inquiry.intro}
+          </p>
+        </div>
+        <div class="col-span-3">
+          <InquiryForm formSource="standard-l2" formTitle={STANDARD_L2.inquiry.formTitle} />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
