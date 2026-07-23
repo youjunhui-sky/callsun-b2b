@@ -67,11 +67,10 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           const isStandard = cat.key === 'standard';
           // Standard: text-left 40% / images-right 60% (4 tiles)
           // Custom : images-left 50% / text-right 50% (3 tiles)
-          const gridCols = isStandard
-            ? 'grid grid-cols-[2fr_3fr] gap-8 md:gap-10 lg:gap-14 items-center p-6 md:p-8 lg:p-12'
-            : 'grid grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-center p-6 md:p-8 lg:p-12';
-          const textOrder = isStandard ? 'order-1' : 'order-2';
-          const imgOrder  = isStandard ? 'order-2' : 'order-1';
+          // Both cards: 5-column grid; Standard = text(2) / images(3); Custom = images(3) / text(2)
+          const gridCols = 'grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-center p-6 md:p-8 lg:p-12';
+          const textOrder = isStandard ? 'order-1 col-span-2' : 'order-2 col-span-2';
+          const imgOrder  = isStandard ? 'order-2 col-span-3' : 'order-1 col-span-3';
           const tileCols  = cat.images.length === 4
             ? 'grid grid-cols-4 gap-3 md:gap-4'
             : 'grid grid-cols-3 gap-3 md:gap-4';
