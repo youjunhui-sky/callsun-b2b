@@ -64,7 +64,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
           const imgBg = 'bg-white';
           const imgPad = dark ? 'p-3 md:p-4' : 'p-3 md:p-4';
-          const gridCols = 'grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
+          const gridCols = 'grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
           const textOrder = 'md:order-2';
           const imgOrder = 'md:order-1';
           const imgGridCols = cat.images.length === 4 ? 'grid grid-cols-2 gap-4 md:gap-5' : 'grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5';
@@ -94,7 +94,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </a>
                 </div>
                 <div class={imgOrder}>
-                  <div data-carousel>
+                  <div class="sticky top-24" data-carousel>
                     {/* Main image */}
                     <div class="relative aspect-[4/3] bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
                       {cat.images.map((src, si) => (
