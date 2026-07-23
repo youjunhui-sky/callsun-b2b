@@ -153,9 +153,9 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        STICKY TAB BAR — Description / Specs / Includes / Downloads / FAQ / Reviews
        ═══════════════════════════════════════════════════════════════════════ */}
-  <div data-tabs="kit-10-8kw" class="sticky top-0 z-30 bg-white border-y border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
+  <div data-tabs="kit-10-8kw" class="sticky top-16 z-20 bg-white border-y border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
-      <div class="flex overflow-x-auto no-scrollbar">
+      <div class="flex overflow-x-auto no-scrollbar justify-center">
         {['description','specs','includes','downloads','faq','reviews'].map((id, i) => (
           <button
             type="button"
@@ -179,7 +179,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        1) DESCRIPTION — title + hero image + panel intro
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="description" data-panel="description" class="bg-white pt-16 pb-16 md:pt-20 md:pb-20 scroll-mt-24">
+  <section id="description" data-panel="description" class="bg-white pt-16 pb-16 md:pt-20 md:pb-20 scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Description</p>
@@ -218,7 +218,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        2) SPECIFICATIONS — panel dl, battery, inverter, applications, wiring
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="specs" data-panel="specs" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
+  <section id="specs" data-panel="specs" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Specifications</p>
@@ -339,7 +339,7 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
+  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Includes</p>
@@ -426,7 +426,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        4) DOWNLOADS
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="downloads" data-panel="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
+  <section id="downloads" data-panel="downloads" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Downloads</p>
@@ -458,7 +458,7 @@ const kit = KIT_10_8KW;
     </div>
   </section>
 
-  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
+  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Application FAQ</p>
@@ -493,7 +493,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        6) REVIEWS — B2B placeholder (no consumer reviews on manufacturer site)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section id="reviews" data-panel="reviews" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-24">
+  <section id="reviews" data-panel="reviews" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl">
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">Field Reviews</p>
@@ -652,8 +652,10 @@ const kit = KIT_10_8KW;
       function scrollTo(id) {
         const panel = document.querySelector('[data-panel="' + id + '"]');
         if (!panel) return;
-        const bar = troot.getBoundingClientRect();
-        const y = window.scrollY + panel.getBoundingClientRect().top - bar.height - 12;
+        const header = document.querySelector('header');
+        const headerH = header ? header.getBoundingClientRect().height : 64;
+        const barH = troot.getBoundingClientRect().height;
+        const y = window.scrollY + panel.getBoundingClientRect().top - headerH - barH - 8;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
 
@@ -678,15 +680,17 @@ const kit = KIT_10_8KW;
 
       /* Update active tab while user scrolls (spy) */
       const io = new IntersectionObserver((entries) => {
-        /* Find the panel whose top is closest to the sticky-bar bottom */
+        const header = document.querySelector('header');
+        const headerH = header ? header.getBoundingClientRect().height : 64;
+        const barH = troot.getBoundingClientRect().height;
+        const anchor = headerH + barH + 20;
+        /* Find the panel whose top is closest to (headerH + barH) */
         let bestId = null;
         let bestTop = Infinity;
         panels.forEach((p) => {
           const rect = p.getBoundingClientRect();
-          const barH = troot.getBoundingClientRect().height;
-          /* pick the section whose top is <= (barH + 20) and > -rect.height */
-          if (rect.top <= barH + 40 && rect.bottom > barH + 40) {
-            const dist = Math.abs(rect.top - barH);
+          if (rect.top <= anchor + 40 && rect.bottom > anchor) {
+            const dist = Math.abs(rect.top - anchor);
             if (dist < bestTop) { bestTop = dist; bestId = p.getAttribute('data-panel'); }
           }
         });
