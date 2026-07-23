@@ -96,12 +96,45 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </a>
                 </div>
                 <div class={imgOrder}>
-                  <div class={imgGridCols}>
-                    {cat.images.map((src) => (
-                      <div class={`aspect-square overflow-hidden shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] ${imgBg} ${imgPad}`}>
-                        <img src={src} alt="" loading="lazy" class="w-full h-full object-contain" />
-                      </div>
-                    ))}
+                  <div
+                    class="relative overflow-hidden bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]"
+                    data-carousel
+                    data-carousel-interval="3500"
+                  >
+                    <div class="aspect-square" data-carousel-frame>
+                      {cat.images.map((src, si) => (
+                        <img
+                          src={src}
+                          alt=""
+                          loading="lazy"
+                          class="absolute inset-0 w-full h-full object-contain p-4 md:p-6 transition-opacity duration-700"
+                          style={`opacity: ${si === 0 ? 1 : 0};`}
+                          data-carousel-slide={si}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Arrows */}
+                    <button type="button" data-carousel-prev aria-label="Previous"
+                      class="absolute top-1/2 left-2 md:left-3 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-callsun-ink/80 text-white hover:bg-callsun transition-colors z-10">
+                      <span aria-hidden="true">←</span>
+                    </button>
+                    <button type="button" data-carousel-next aria-label="Next"
+                      class="absolute top-1/2 right-2 md:right-3 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-callsun-ink/80 text-white hover:bg-callsun transition-colors z-10">
+                      <span aria-hidden="true">→</span>
+                    </button>
+
+                    {/* Dots */}
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                      {cat.images.map((_, di) => (
+                        <button
+                          type="button"
+                          data-carousel-dot={di}
+                          aria-label={`Slide ${di + 1}`}
+                          class={`w-2 h-2 rounded-full transition-all ${di === 0 ? 'bg-callsun w-6' : 'bg-callsun-ink/25 hover:bg-callsun-ink/50'}`}
+                        ></button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -110,6 +143,36 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
         })}
       </div>
     </div>
+
+    <script is:inline>
+      document.querySelectorAll('[data-carousel]').forEach((c) => {
+        const slides = c.querySelectorAll('[data-carousel-slide]');
+        const dots   = c.querySelectorAll('[data-carousel-dot]');
+        const prev   = c.querySelector('[data-carousel-prev]');
+        const next   = c.querySelector('[data-carousel-next]');
+        const interval = parseInt(c.dataset.carouselInterval || '3500', 10);
+        let idx = 0;
+        let timer = null;
+        const show = (i) => {
+          idx = (i + slides.length) % slides.length;
+          slides.forEach((s, si) => { s.style.opacity = si === idx ? 1 : 0; });
+          dots.forEach((d, di) => {
+            const active = di === idx;
+            d.className = 'w-2 h-2 rounded-full transition-all ' + (active
+              ? 'bg-callsun w-6'
+              : 'bg-callsun-ink/25 hover:bg-callsun-ink/50');
+          });
+        };
+        const start = () => { stop(); timer = setInterval(() => show(idx + 1), interval); };
+        const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
+        prev && prev.addEventListener('click', () => { show(idx - 1); start(); });
+        next && next.addEventListener('click', () => { show(idx + 1); start(); });
+        dots.forEach((d, di) => d.addEventListener('click', () => { show(di); start(); }));
+        c.addEventListener('mouseenter', stop);
+        c.addEventListener('mouseleave', start);
+        start();
+      });
+    </script>
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
