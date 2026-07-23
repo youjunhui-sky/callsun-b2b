@@ -62,13 +62,22 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           const bg = dark ? 'bg-callsun-ink text-white' : 'bg-white';
           const headingClr = dark ? 'text-white' : 'text-callsun-ink';
           const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
-          const imgBg = 'bg-white';
-          const imgPad = dark ? 'p-3 md:p-4' : 'p-3 md:p-4';
-          const gridCols = 'grid grid-cols-[3fr_2fr] gap-8 md:gap-10 lg:gap-14 items-start p-6 md:p-8 lg:p-12';
-          const textOrder = 'order-1';
-          const imgOrder = 'order-2';
           const eyebrowText = cat.key === 'standard' ? 'STANDARD MODULES' : 'CUSTOM MODULES';
           const orderNum = String(i + 1).padStart(2, '0');
+          const isStandard = cat.key === 'standard';
+          // Standard: text-left 40% / images-right 60% (4 tiles)
+          // Custom : images-left 50% / text-right 50% (3 tiles)
+          const gridCols = isStandard
+            ? 'grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-8 md:gap-10 lg:gap-14 items-center p-6 md:p-8 lg:p-12'
+            : 'grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 md:gap-10 lg:gap-14 items-center p-6 md:p-8 lg:p-12';
+          const textOrder = isStandard ? 'order-1' : 'order-2';
+          const imgOrder  = isStandard ? 'order-2' : 'order-1';
+          const tileCols  = cat.images.length === 4
+            ? 'grid grid-cols-4 gap-3 md:gap-4'
+            : 'grid grid-cols-3 gap-3 md:gap-4';
+          const ctaClass = dark
+            ? 'mt-8 inline-flex items-center gap-2 border-2 border-callsun text-callsun-lime font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors'
+            : 'mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors';
           return (
             <article class={`relative overflow-hidden border-t-4 border-callsun ${bg} shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]`}>
               <div class={gridCols}>
@@ -82,53 +91,25 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   <p class="mt-5 font-display text-xl md:text-2xl font-bold text-callsun-lime">
                     {cat.wattTags.join('  ·  ')}
                   </p>
-                  <p class={`mt-5 text-base leading-relaxed max-w-xl ${bodyClr}`}>
+                  <p class={`mt-5 text-base leading-relaxed max-w-md ${bodyClr}`}>
                     {cat.description}
                   </p>
-                  <a
-                    href={cat.cta.href}
-                    class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-                  >
+                  <a href={cat.cta.href} class={ctaClass}>
                     {cat.cta.label} <span aria-hidden="true">→</span>
                   </a>
                 </div>
                 <div class={imgOrder}>
-                  <div data-carousel>
-                    {/* Main image */}
-                    <div class="relative aspect-[4/3] bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
-                      {cat.images.map((src, si) => (
+                  <div class={tileCols}>
+                    {cat.images.map((src) => (
+                      <div class="aspect-square bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)] overflow-hidden">
                         <img
                           src={src}
                           alt=""
                           loading="lazy"
-                          class="absolute inset-0 w-full h-full object-contain p-4 md:p-6 transition-opacity duration-300"
-                          style={`opacity: ${si === 0 ? 1 : 0};`}
-                          data-carousel-slide={si}
+                          class="w-full h-full object-contain p-3 md:p-4"
                         />
-                      ))}
-                      <button type="button" data-carousel-prev aria-label="Previous"
-                        class="absolute top-1/2 left-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/90 hover:bg-callsun text-callsun-ink transition-colors z-10 shadow-md">
-                        <span aria-hidden="true">←</span>
-                      </button>
-                      <button type="button" data-carousel-next aria-label="Next"
-                        class="absolute top-1/2 right-2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/90 hover:bg-callsun text-callsun-ink transition-colors z-10 shadow-md">
-                        <span aria-hidden="true">→</span>
-                      </button>
-                    </div>
-
-                    {/* Thumbnail row */}
-                    <div class="mt-3 grid gap-1.5" style={`grid-template-columns: repeat(${cat.images.length}, minmax(0, 1fr));`}>
-                      {cat.images.map((src, ti) => (
-                        <button
-                          type="button"
-                          data-carousel-thumb={ti}
-                          aria-label={`View image ${ti + 1}`}
-                          class={`relative aspect-square bg-white border transition-all overflow-hidden ${ti === 0 ? 'border-callsun shadow-sm' : 'border-callsun-line hover:border-callsun/50'}`}
-                        >
-                          <img src={src} alt="" loading="lazy" class="w-full h-full object-contain p-1" />
-                        </button>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -138,28 +119,6 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
       </div>
     </div>
 
-    <script is:inline>
-      document.querySelectorAll('[data-carousel]').forEach((c) => {
-        const slides = c.querySelectorAll('[data-carousel-slide]');
-        const thumbs = c.querySelectorAll('[data-carousel-thumb]');
-        const prev   = c.querySelector('[data-carousel-prev]');
-        const next   = c.querySelector('[data-carousel-next]');
-        let idx = 0;
-        const show = (i) => {
-          idx = (i + slides.length) % slides.length;
-          slides.forEach((s, si) => { s.style.opacity = si === idx ? 1 : 0; });
-          thumbs.forEach((t, ti) => {
-            const active = ti === idx;
-            t.className = 'relative aspect-square bg-white border-2 transition-all overflow-hidden ' + (active
-              ? 'border-callsun shadow-md'
-              : 'border-transparent hover:border-callsun/50');
-          });
-        };
-        prev && prev.addEventListener('click', () => show(idx - 1));
-        next && next.addEventListener('click', () => show(idx + 1));
-        thumbs.forEach((t, ti) => t.addEventListener('click', () => show(ti)));
-      });
-    </script>
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
