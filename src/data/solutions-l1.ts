@@ -59,7 +59,7 @@ export const SOLUTIONS_L1 = {
         { label: 'BATTERY STORAGE',  value: '28 kWh' },
       ],
       specsInline: '12 kW hybrid inverter \u00b7 28 kWh battery storage',
-      heroImage: '/uploads/callsun/solutions/12kw/01-system-overview.webp',
+      heroImage: '/uploads/callsun/solutions/12kw/homepage-card.webp',
       cardImage: '/uploads/callsun/solutions/12kw/homepage-card.webp',
     },
     {
@@ -75,7 +75,7 @@ export const SOLUTIONS_L1 = {
         { label: 'BATTERY STORAGE',  value: '10 kWh' },
       ],
       specsInline: '6.5 kW hybrid inverter \u00b7 10 kWh battery storage',
-      heroImage: '/uploads/callsun/solutions/5-4kw/01-system-overview.webp',
+      heroImage: '/uploads/callsun/solutions/5-4kw/01-solar-panels.jpg',
       cardImage: '/uploads/callsun/solutions/5-4kw/01-solar-panels.jpg',
     },
     {
@@ -91,7 +91,7 @@ export const SOLUTIONS_L1 = {
         { label: 'BATTERY STORAGE',  value: '14 kWh' },
       ],
       specsInline: '10 kW hybrid inverter \u00b7 14 kWh battery storage',
-      heroImage: '/uploads/callsun/solutions/10kw/01-system-overview.jpg',
+      heroImage: '/uploads/callsun/solutions/10kw/homepage-card.jpg',
       cardImage: '/uploads/callsun/solutions/10kw/homepage-card.jpg',
     },
   ] as SolutionKit[],
