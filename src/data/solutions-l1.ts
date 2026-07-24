@@ -1,8 +1,8 @@
 /**
  * Solutions L1 index page data
  * 3 kits split across 2 categories:
- *   - Grid-Tied / Hybrid: 10.8kW
- *   - Off-Grid: 5.4kW + 7.2kW
+ *   - Grid-Tied / Hybrid: 5.4kW
+ *   - Off-Grid: 10.8kW + 7.2kW
  */
 
 export interface SolutionKit {
@@ -48,8 +48,8 @@ export const SOLUTIONS_L1 = {
   kits: [
     {
       slug: '10-8kw-grid-tied',
-      category: 'grid-tied',
-      categoryLabel: 'GRID-TIED / HYBRID',
+      category: 'off-grid',
+      categoryLabel: 'OFF-GRID',
       name: '10.8kW Grid-Tied System',
       short: '10.8kW Hybrid System',
       subtitle: 'For residential and light commercial use',
@@ -64,8 +64,8 @@ export const SOLUTIONS_L1 = {
     },
     {
       slug: '5-4kw-off-grid',
-      category: 'off-grid',
-      categoryLabel: 'OFF-GRID',
+      category: 'grid-tied',
+      categoryLabel: 'GRID-TIED / HYBRID',
       name: '5.4kW Off-Grid System',
       short: '5.4kW Off-Grid System',
       subtitle: 'Compact off-grid system for independent residential power',
@@ -79,9 +79,9 @@ export const SOLUTIONS_L1 = {
       cardImage: '/uploads/callsun/solutions/5-4kw/01-solar-panels.jpg',
     },
     {
-      slug: '7-2kw-off-grid',
-      category: 'off-grid',
-      categoryLabel: 'OFF-GRID',
+      slug: '7-2kw-grid-tied',
+      category: 'grid-tied',
+      categoryLabel: 'GRID-TIED / HYBRID',
       name: '7.2kW Off-Grid System',
       short: '7.2kW Off-Grid System',
       subtitle: 'Larger off-grid system for extended residential loads',

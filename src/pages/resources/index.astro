@@ -1,17 +1,42 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { DOWNLOAD_CATEGORIES, RESOURCE_FAQ, VIDEO_CARDS } from '@/data/resources';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { DOWNLOAD_CATEGORIES, RESOURCE_FAQ, VIDEO_CARDS, DATASHEETS } from '@/data/resources';
 
 const pageTitle = 'Resource Center — Callsun Solar B2B';
 const pageDescription =
   'Callsun Resource Center: technical datasheets, installation manuals, certificates, product FAQ and independent video reviews for B2B distributors and EPC installers.';
+
+// Group datasheets by category for the accordion download center
+const DATASHEET_GROUPS: { category: string; items: typeof DATASHEETS }[] = [];
+for (const d of DATASHEETS) {
+  let g = DATASHEET_GROUPS.find((x) => x.category === d.category);
+  if (!g) {
+    g = { category: d.category, items: [] };
+    DATASHEET_GROUPS.push(g);
+  }
+  g.items.push(d);
+}
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
+  <Header slot="header" />
+  <Footer slot="footer" />
 
-  {/* ---------- 1) SHORT DARK HERO ---------- */}
-  <section class="bg-callsun-ink text-white py-14 md:py-16">
-    <div class="max-w-wide mx-auto px-4 lg:px-6">
+  {/* ---------- 1+2) HERO + DOWNLOADS with shared background image ---------- */}
+  <section class="relative bg-callsun-ink text-white pt-14 md:pt-16 pb-16 md:pb-20 overflow-hidden">
+    <img
+      src="/uploads/callsun/resources/hero.jpg"
+      alt=""
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+
+    {/* --- Hero block --- */}
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
       <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
         Resources
       </p>
@@ -22,22 +47,13 @@ const pageDescription =
         Technical documents, product support and video resources.
       </p>
     </div>
-  </section>
 
-  {/* ---------- 2) DOWNLOADS with aerial-photo overlay bg ---------- */}
-  <section class="relative bg-callsun-ink text-white py-16 md:py-20 border-t border-white/10 overflow-hidden">
-    {/* aerial industrial photo overlay */}
-    <div
-      class="absolute inset-0 opacity-25 pointer-events-none"
-      style="background-image: url('/uploads/callsun/solutions/12kw/01-system-overview.webp'); background-size: cover; background-position: center;"
-      aria-hidden="true"
-    ></div>
-    <div
-      class="absolute inset-0 pointer-events-none"
-      style="background-color: rgba(15, 15, 14, 0.6);"
-      aria-hidden="true"
-    ></div>
+    {/* divider */}
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6 my-12 md:my-14">
+      <div class="h-px bg-white/10"></div>
+    </div>
 
+    {/* --- Downloads block --- */}
     <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
       <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
         Technical Documents
@@ -66,36 +82,69 @@ const pageDescription =
         </button>
       </div>
 
-      {/* 3 white cards, lime top accent, 01/02/03 top-left */}
-      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-        {DOWNLOAD_CATEGORIES.map((c) => (
-          <a
-            href={c.href}
-            class="group relative bg-white shadow-card flex flex-col overflow-hidden transition-all hover:shadow-lg"
-          >
-            <div class="h-1 w-full bg-callsun-lime" aria-hidden="true"></div>
-            <div class="p-6 md:p-8 flex-1 flex flex-col">
-              <span class="font-display font-extrabold text-callsun-ink text-sm">
-                {c.step}
-              </span>
-              <h3 class="mt-6 font-display font-extrabold text-callsun-ink text-lg md:text-xl uppercase tracking-wide leading-snug">
+      {/* 3 white cards, one column, 01 has expandable PDF list inside itself */}
+      <div class="mt-8 space-y-4 md:space-y-5">
+        {DOWNLOAD_CATEGORIES.map((c, idx) => {
+          const isToggle = c.step === '01';
+          if (isToggle) {
+            return (
+            <details class="group bg-white shadow-card overflow-hidden">
+              <summary class="relative flex flex-col cursor-pointer list-none p-4 md:p-5">
+                <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0" aria-hidden="true"></div>
+                <h3 class="font-display font-extrabold text-callsun-ink text-lg md:text-xl uppercase tracking-wide leading-snug inline-flex items-center gap-2">
+                  {c.title}
+                  <span class="text-callsun-lime group-open:rotate-45 transition-transform text-base" aria-hidden="true">↓</span>
+                </h3>
+              </summary>
+              <div class="px-6 pb-6 md:px-8 md:pb-8 border-t border-callsun-line">
+                <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {DATASHEET_GROUPS.flatMap((g) => g.items).map((d) => (
+                    <a
+                      href={d.file}
+                      target="_blank"
+                      rel="noopener"
+                      class="group/item bg-white shadow-card flex items-center gap-4 p-3 md:p-4 hover:shadow-lg transition-shadow rounded"
+                    >
+                      <div class="shrink-0 w-10 h-12 md:w-12 md:h-14 bg-callsun-tint border border-callsun-line flex items-center justify-center text-callsun-ink font-display font-extrabold text-[10px] tracking-wider">
+                        PDF
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-display font-extrabold text-callsun-ink text-sm md:text-base leading-snug truncate">
+                          {d.model}
+                        </div>
+                        <div class="mt-0.5 text-xs text-callsun-mute leading-snug truncate">
+                          {d.spec}
+                        </div>
+                      </div>
+                      <div class="shrink-0 flex flex-col items-end gap-0.5">
+                        <span class="text-[10px] text-callsun-mute">{d.size}</span>
+                        <span class="inline-flex items-center gap-1 font-display font-extrabold text-callsun-ink text-[10px] uppercase tracking-eyebrow group-hover/item:text-callsun-lime transition-colors">
+                          Download
+                          <span class="text-callsun-lime" aria-hidden="true">↓</span>
+                        </span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+                <p class="mt-4 text-xs text-callsun-mute">
+                  Documents are provided by product model. Contact Callsun if a required file is not listed.
+                </p>
+              </div>
+            </details>
+            );
+          }
+          return (
+          <div class="bg-white shadow-card overflow-hidden">
+            <div class="relative flex flex-col p-4 md:p-5">
+              <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0" aria-hidden="true"></div>
+              <h3 class="font-display font-extrabold text-callsun-ink text-lg md:text-xl uppercase tracking-wide leading-snug inline-flex items-center gap-2">
                 {c.title}
               </h3>
-              <p class="mt-3 text-sm md:text-base text-callsun-mute leading-relaxed flex-1">
-                {c.body}
-              </p>
-              <div class="mt-8 inline-flex items-center gap-2 font-display font-extrabold text-callsun-ink text-xs uppercase tracking-eyebrow group-hover:text-callsun-lime transition-colors">
-                {c.cta}
-                <span class="text-callsun-lime" aria-hidden="true">↓</span>
-              </div>
             </div>
-          </a>
-        ))}
+          </div>
+          );
+        })}
       </div>
-
-      <p class="mt-6 text-xs text-white/60 max-w-2xl">
-        Documents are provided by product model. Contact Callsun if a required file is not listed.
-      </p>
     </div>
   </section>
 
@@ -156,7 +205,12 @@ const pageDescription =
 
       <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {VIDEO_CARDS.map((v) => (
-          <article class="group bg-white shadow-card flex flex-col overflow-hidden">
+          <a
+            href={v.href}
+            target="_blank"
+            rel="noopener"
+            class="group bg-white shadow-card flex flex-col overflow-hidden"
+          >
             <div class="relative bg-callsun-ink" style="aspect-ratio: 16/9;">
               <img
                 src={v.thumb}
@@ -192,7 +246,7 @@ const pageDescription =
                 {v.credit}
               </p>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </div>

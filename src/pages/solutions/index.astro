@@ -10,7 +10,6 @@ import { SOLUTIONS_L1 } from '@/data/solutions-l1';
 const gridTiedKits = SOLUTIONS_L1.kits.filter((k) => k.category === 'grid-tied');
 const offGridKits  = SOLUTIONS_L1.kits.filter((k) => k.category === 'off-grid');
 
-// Grid-Tied is a single featured kit; Off-Grid has one primary kit + a 2-card row
 const gridTiedFeatured = gridTiedKits[0];
 const offGridFeatured  = offGridKits[0];
 ---
@@ -46,191 +45,108 @@ const offGridFeatured  = offGridKits[0];
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       Grid-Tied / Hybrid block
+       Grid-Tied / Hybrid block  (featured split has hero image as bg)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white border-b border-callsun-line">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      {/* Section header */}
-      <Eyebrow class="mb-3">{SOLUTIONS_L1.gridTied.eyebrow}</Eyebrow>
-      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.1] max-w-3xl">
-        {SOLUTIONS_L1.gridTied.title}
-      </h2>
-      <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed max-w-3xl">
-        {SOLUTIONS_L1.gridTied.subtitle}
-      </p>
 
-      {/* Featured split: text left, image right */}
-      <div class="mt-12 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-center">
-        <div class="col-span-2">
-          <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
-            {gridTiedFeatured.categoryLabel}
-          </p>
-          <h3 class="mt-3 font-display text-2xl md:text-3xl lg:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
-            {gridTiedFeatured.name}
-          </h3>
-          <p class="mt-3 text-callsun-mute text-base leading-relaxed">
-            {gridTiedFeatured.subtitle}
-          </p>
-
-          <dl class="mt-8 grid grid-cols-1 gap-4">
-            {gridTiedFeatured.specs.map((s) => (
-              <div class="flex items-baseline justify-between border-t border-callsun-line pt-3">
-                <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-mute">
-                  {s.label}
-                </dt>
-                <dd class="font-display text-xl md:text-2xl font-extrabold text-callsun-ink">
-                  {s.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <a
-            href={`/solutions/${gridTiedFeatured.slug}/`}
-            class="mt-8 inline-flex items-center gap-2 bg-callsun-ink text-callsun font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors"
-          >
-            VIEW SYSTEM <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="col-span-3">
-          <div class="relative bg-callsun-tint shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
-            <div class="relative" style="aspect-ratio: 4/3;">
-              <img
-                src={gridTiedFeatured.heroImage}
-                alt={gridTiedFeatured.name}
-                loading="lazy"
-                class="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
+      {/* Featured hero: full designed image (keeps designer's title / specs / CTA panel) */}
+      <div
+        class="relative overflow-hidden"
+        style="aspect-ratio: 1947 / 808;"
+      >
+        <img
+          src="/uploads/callsun/solutions/hero-5-4kw-hybrid.jpg"
+          alt={gridTiedFeatured.name}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
 
       {/* Divider + sub-header */}
       <hr class="mt-16 border-t border-callsun-line" />
       <Eyebrow class="mt-10 mb-6">{SOLUTIONS_L1.gridTied.subEyebrow}</Eyebrow>
 
-      {/* Single-kit card (full width) */}
-      <a
-        href={`/solutions/${gridTiedFeatured.slug}/`}
-        class="group grid grid-cols-1 md:grid-cols-3 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
-      >
-        <div class="md:col-span-1 relative bg-callsun-tint" style="aspect-ratio: 4/3;">
-          <img
-            src={gridTiedFeatured.cardImage}
-            alt=""
-            loading="lazy"
-            class="absolute inset-0 w-full h-full object-contain p-3 md:p-4"
-          />
-        </div>
-        <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-between">
-          <div>
-            <h4 class="font-display text-xl md:text-2xl font-extrabold text-callsun-ink">
-              {gridTiedFeatured.short}
-            </h4>
-            <p class="mt-2 text-callsun-mute text-sm md:text-base">
-              {gridTiedFeatured.specsInline}
-            </p>
-          </div>
-          <span class="mt-6 inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
-            VIEW SYSTEM <span aria-hidden="true">→</span>
-          </span>
-        </div>
-      </a>
+      {/* 2-card row (horizontal: square image left, text right) */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {gridTiedKits.map((k) => (
+          <a
+            href={`/solutions/${k.slug}/`}
+            class="group grid grid-cols-1 md:grid-cols-5 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
+          >
+            <div class="md:col-span-3 relative bg-callsun-tint aspect-square">
+              <img
+                src={k.cardImage}
+                alt=""
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-contain p-4 md:p-6"
+              />
+            </div>
+            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3">
+              <h4 class="font-display text-lg md:text-xl font-extrabold text-callsun-ink leading-snug">
+                {k.short}
+              </h4>
+              <p class="text-callsun-mute text-sm">
+                {k.specsInline}
+              </p>
+              <span class="mt-2 inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
+                VIEW SYSTEM <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       Off-Grid block
+       Off-Grid block  (featured split has hero image as bg)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-callsun-tint border-b border-callsun-line">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <Eyebrow class="mb-3">{SOLUTIONS_L1.offGrid.eyebrow}</Eyebrow>
-      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.1] max-w-3xl">
-        {SOLUTIONS_L1.offGrid.title}
-      </h2>
-      <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed max-w-3xl">
-        {SOLUTIONS_L1.offGrid.subtitle}
-      </p>
 
-      {/* Featured split: text left listing 2 kit sizes, image right */}
-      <div class="mt-12 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-center">
-        <div class="col-span-2">
-          <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
-            {SOLUTIONS_L1.offGrid.eyebrow}
-          </p>
-          <h3 class="mt-3 font-display text-2xl md:text-3xl lg:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
-            Off-Grid Solar Systems
-          </h3>
-          <p class="mt-3 text-callsun-mute text-base leading-relaxed">
-            PV, inverter and battery storage kits
-          </p>
-
-          <div class="mt-8 space-y-5">
-            {offGridKits.map((k) => (
-              <div class="border-t border-callsun-line pt-4">
-                <p class="font-display text-2xl md:text-3xl font-extrabold text-callsun-ink leading-none">
-                  {k.specs[0].value} <span class="text-base font-semibold text-callsun-mute">PV</span>
-                </p>
-                <p class="mt-2 text-callsun-mute text-sm">
-                  {k.specs[1].value} inverter · {k.specs[2].value} battery
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <a
-            href="#off-grid-systems"
-            class="mt-8 inline-flex items-center gap-2 bg-callsun-ink text-callsun font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors"
-          >
-            VIEW SYSTEMS <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="col-span-3">
-          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
-            <div class="relative" style="aspect-ratio: 4/3;">
-              <img
-                src={offGridFeatured.heroImage}
-                alt={offGridFeatured.name}
-                loading="lazy"
-                class="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
+      {/* Featured hero: full designed image (keeps designer's title / specs / CTA panel) */}
+      <div
+        class="relative overflow-hidden"
+        style="aspect-ratio: 1942 / 809;"
+      >
+        <img
+          src="/uploads/callsun/solutions/hero-off-grid.jpg"
+          alt="Off-Grid Solar Power Systems"
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
 
       {/* Divider + sub-header */}
       <hr class="mt-16 border-t border-callsun-line" />
       <Eyebrow class="mt-10 mb-6">{SOLUTIONS_L1.offGrid.subEyebrow}</Eyebrow>
 
-      {/* 2-card row */}
+      {/* 2-card row (horizontal: square image left, text right) */}
       <div id="off-grid-systems" class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {offGridKits.map((k) => (
           <a
             href={`/solutions/${k.slug}/`}
-            class="group grid grid-cols-1 md:grid-cols-3 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
+            class="group grid grid-cols-1 md:grid-cols-5 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
           >
-            <div class="md:col-span-1 relative bg-callsun-tint" style="aspect-ratio: 4/3;">
+            <div class="md:col-span-3 relative bg-callsun-tint aspect-square">
               <img
                 src={k.cardImage}
                 alt=""
                 loading="lazy"
-                class="absolute inset-0 w-full h-full object-contain p-3 md:p-4"
+                class="absolute inset-0 w-full h-full object-contain p-4 md:p-6"
               />
             </div>
-            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-between">
-              <div>
-                <h4 class="font-display text-xl md:text-2xl font-extrabold text-callsun-ink">
-                  {k.short}
-                </h4>
-                <p class="mt-2 text-callsun-mute text-sm md:text-base">
-                  {k.specsInline}
-                </p>
-              </div>
-              <span class="mt-6 inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
+            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3">
+              <h4 class="font-display text-lg md:text-xl font-extrabold text-callsun-ink leading-snug">
+                {k.short}
+              </h4>
+              <p class="text-callsun-mute text-sm">
+                {k.specsInline}
+              </p>
+              <span class="mt-2 inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
                 VIEW SYSTEM <span aria-hidden="true">→</span>
               </span>
             </div>

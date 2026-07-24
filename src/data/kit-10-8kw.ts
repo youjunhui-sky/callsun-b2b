@@ -202,11 +202,9 @@ export const KIT_10_8KW: KitDetail = {
   includes: {
     image: '/uploads/callsun/solutions/12kw/10-includes.webp',
     items: [
-      '24 pcs \u00d7 450W N-Type Bifacial Solar Panels',
-      '2 pcs \u00d7 14.34kWh LiFePO4 Battery Modules',
-      '1 pc \u00d7 12kW Hybrid Inverter',
-      'PV cables, battery cables and mounting hardware',
-      'User manual and installation guide',
+      '24 Pcs \u00d7 450W Solar Panels \u2014 Reliable and Durable',
+      '2 Pcs \u00d7 14kWh LiFePO4 Battery \u2014 Reliable and Durable',
+      '1 Pc \u00d7 12kW Hybrid Inverter \u2014 Reliable and Durable',
     ],
   },
   downloads: [

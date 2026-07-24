@@ -1,0 +1,286 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import {
+  STATS,
+  PRINCIPLES,
+  PROCESS_STEPS,
+  PORTFOLIO,
+  QC_TESTS,
+  SUPPLY_COUNTRIES,
+  CUSTOMER_TYPES,
+  APPLICATION_TABS,
+} from '@/data/about';
+
+const pageTitle = 'About Callsun — PV Module Brand & Manufacturer';
+const pageDescription =
+  'Callsun is a photovoltaic module brand and manufacturer serving distributors, installers, EPCs, equipment manufacturers and project buyers with standard and custom PV modules, verified quality and global supply.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  {/* ---------- 1) HERO — bg image + dark overlay for text legibility (client 07-24) */}
+  <section class="relative text-white py-20 md:py-28 lg:py-32 overflow-hidden">
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style="background-image: url('/uploads/callsun/about/v4-hero.jpg'); background-size: cover; background-position: center;"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 pointer-events-none bg-callsun-ink/65"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+        PV Module Brand &amp; Manufacturer
+      </p>
+      <h1 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-[1.02] max-w-4xl">
+        Photovoltaic Module Brand &amp; Manufacturer
+      </h1>
+      <p class="mt-6 text-base md:text-lg text-white/80 max-w-2xl leading-relaxed">
+        Callsun designs, manufactures and tests standard and custom PV modules — serving distributors, installers, EPCs, equipment manufacturers and project buyers across global markets.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href="/products/"
+          class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+        >
+          Explore Our Brand Strengths
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 border border-white text-white font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-white hover:text-callsun-ink transition-colors"
+        >
+          Discuss Partnership Programs
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 2) STATS BAR ---------- */}
+  <section class="bg-callsun-panel text-white py-10 md:py-12 border-t border-white/10">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+        {STATS.map((s) => (
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-callsun-lime text-3xl md:text-4xl lg:text-5xl leading-none">
+              {s.value}
+            </span>
+            <span class="mt-3 text-xs uppercase tracking-eyebrow text-white/60 font-medium">
+              {s.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 3) WHO WE ARE ---------- */}
+  <section class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div class="lg:col-span-5">
+          <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+            Who We Are
+          </p>
+          <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+            Built around real installation spaces and long-term performance
+          </h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-4">
+          <p class="text-base md:text-lg text-callsun-mute leading-relaxed">
+            Callsun is a photovoltaic module brand and manufacturer serving global markets. We focus on standard PV modules, custom PV modules and complete solar-plus-storage packages. Every module and kit is engineered around real installation spaces — target wattage, physical dimensions, electrical layout and installation method — and supported end-to-end, from selection and engineering to certification and volume delivery.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {PRINCIPLES.map((p) => (
+          <div class="bg-white shadow-card p-6 md:p-8 flex flex-col min-h-[220px]">
+            <div class="h-1 w-10 bg-callsun-lime" aria-hidden="true"></div>
+            <span class="mt-6 font-display font-extrabold text-callsun-lime text-sm">
+              {p.step}
+            </span>
+            <h3 class="mt-4 font-display font-extrabold text-callsun-ink text-lg md:text-xl leading-snug flex-1">
+              {p.title}
+            </h3>
+            <p class="mt-5 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
+              {p.eyebrow}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 4) MANUFACTURING — no bg image (client 07-24) ---------- */}
+  <section class="relative text-white py-16 md:py-20 border-t border-white/10 bg-callsun-ink">
+    {/* bg image removed per client request */}
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      {/* Top: title/desc full width */}
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Manufacturing
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+          From product spec to stable delivery
+        </h2>
+        <p class="mt-4 text-base md:text-lg text-white/70 leading-relaxed">
+          A fully automated standard-module line runs alongside a semi-automated flexible custom-module line — with disciplined process control that keeps batch-to-batch consistency from sample validation through volume delivery.
+        </p>
+      </div>
+
+      {/* Bottom row: 4 steps across full width */}
+      <div class="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 border-t border-white/15 pt-10 md:pt-12">
+        {PROCESS_STEPS.map((s) => (
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-callsun-lime text-3xl md:text-4xl leading-none">
+              {s.step}
+            </span>
+            <h3 class="mt-5 font-display font-bold text-white text-base md:text-lg leading-snug">
+              {s.title}
+            </h3>
+            <p class="mt-3 text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+              {s.eyebrow}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 5) PRODUCT PORTFOLIO — dual text cards (no images) ---------- */}
+  <section class="bg-callsun-bg py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Product Portfolio
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Standard modules at scale. Custom modules engineered to fit.
+        </h2>
+        <p class="mt-3 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
+          STANDARD PV MODULES AT SCALE. CUSTOM MODULES ENGINEERED TO FIT.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        {PORTFOLIO.map((c) => (
+          <div class="relative bg-white border border-callsun-line pl-6 md:pl-8 pr-6 md:pr-8 py-8 md:py-10 flex flex-col">
+            {/* left lime rail */}
+            <div class="absolute inset-y-0 left-0 w-1 bg-callsun-lime" aria-hidden="true"></div>
+
+            <h3 class="font-display font-extrabold text-callsun-ink text-2xl md:text-3xl leading-tight">
+              {c.title}
+            </h3>
+            <p class="mt-3 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
+              {c.eyebrow}
+            </p>
+            <p class="mt-5 text-base text-callsun-mute leading-relaxed">
+              {c.body}
+            </p>
+
+            <p class="mt-8 font-display font-extrabold text-callsun-ink text-2xl md:text-3xl leading-none tracking-wide">
+              {c.powers.join(' · ')}
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-2">
+              {c.tags.map((t) => (
+                <span class="inline-flex items-center bg-callsun-tint text-callsun-limeLo text-xs font-display font-extrabold uppercase tracking-wide rounded-full px-3 py-1.5">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 6) VERIFIED QUALITY — dark grid ---------- */}
+  <section class="bg-callsun-ink text-white py-16 md:py-20 border-t border-white/10">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Verified Quality
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+          Verified quality at every stage
+        </h2>
+        <p class="mt-4 text-base md:text-lg text-white/70 max-w-2xl leading-relaxed">
+          Quality control covers incoming materials, in-process semi-finished goods and finished modules. Inspection data is captured and exportable, and modules are IEC-tested against target power ratings before release from the factory.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {QC_TESTS.map((q) => (
+          <div class="bg-callsun-panel shadow-card p-6 md:p-7 border-l-4 border-callsun-lime flex flex-col">
+            <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+              {q.eyebrow}
+            </p>
+            <h3 class="mt-3 font-display font-bold text-white text-lg md:text-xl leading-snug">
+              {q.title}
+            </h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 7) GLOBAL SUPPLY — map image + overlay country labels (client 07-24) ---------- */}
+  <section class="bg-callsun-bg border-t border-callsun-line">
+    <figure class="relative">
+      <img
+        src="/uploads/callsun/about/global-map.jpg"
+        alt="Callsun global manufacturing and logistics network map"
+        class="w-full h-auto block"
+        loading="lazy"
+      />
+      {/* Text overlay on the left side of the map, between center and bottom */}
+      <div class="absolute inset-0">
+        <div class="absolute left-0 max-w-md lg:max-w-lg px-6 md:px-10 lg:px-14" style="top: 8%;">
+          <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">Global Supply</p>
+          <h2 class="mt-3 text-2xl md:text-3xl lg:text-4xl font-display font-extrabold leading-tight text-callsun-ink">
+            Global Supply<br />for Long-Term<br />Channel Partnerships
+          </h2>
+          <p class="mt-5 text-sm md:text-base text-callsun-ink/75 leading-relaxed max-w-sm">
+            Supported by multiple manufacturing regions and established logistics coverage, Callsun helps partners coordinate supply, delivery and long-term market development.
+          </p>
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  {/* ---------- 9) CTA — dark w/ no bg ---------- */}
+  <section class="relative text-white py-20 md:py-24 border-t border-white/10 overflow-hidden bg-callsun-ink">
+    {/* bg image removed per client request */}
+
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Built on Advanced Manufacturing and Verified Quality
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+          More energy value from every limited space
+        </h2>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/contact/"
+            class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            Plan Your Custom Module Program
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -34,10 +34,17 @@ export const SITE = {
 // 顶部一级导航（原型图定死的 7 项）
 export const NAV = [
   { label: 'HOME', href: '/' },
-  { label: 'PRODUCTS', href: '/products/' },
+  {
+    label: 'PRODUCTS',
+    href: '/products/',
+    children: [
+      { label: 'Standard PV Modules', href: '/products/standard-modules/' },
+      { label: 'Custom PV Modules', href: '/products/custom-modules/' },
+    ],
+  },
   { label: 'SOLUTIONS', href: '/solutions/' },
-  { label: 'APPLICATIONS', href: '/applications/' },
+  // { label: 'APPLICATIONS', href: '/applications/' },  // 2026-07-24 東家隐藏，页面代码保留 src/pages/applications/
   { label: 'RESOURCES', href: '/resources/' },
   { label: 'NEWS & CASES', href: '/news/' },
-  { label: 'ABOUT CALLSUN', href: '/about/' },
+  { label: 'ABOUT', href: '/about/' },
 ] as const;

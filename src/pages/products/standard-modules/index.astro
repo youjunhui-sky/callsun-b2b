@@ -20,56 +20,39 @@ import { STANDARD_L2 } from '@/data/standard-l2';
        Section 1: Hero — dark bg + subtle grid overlay + text/CTA left / thumbs right
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="relative overflow-hidden bg-callsun-ink text-white">
-    {/* Subtle grid overlay */}
-    <div
-      class="absolute inset-0 opacity-[0.08]"
-      aria-hidden="true"
-      style="background-image: linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 48px 48px;"
-    ></div>
+    <img
+      src="/uploads/callsun/products/standard-hero.jpg"
+      alt=""
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
 
     <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24">
       <Breadcrumbs items={STANDARD_L2.breadcrumb} theme="dark" />
 
-      <div class="mt-8 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-center">
-        {/* LEFT (col-span-3): title / subtitle / powerRange / tags / CTA */}
-        <div class="col-span-3">
-          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] max-w-3xl">
-            {STANDARD_L2.hero.title}
-          </h1>
-          <p class="mt-6 text-white/85 text-base md:text-lg leading-relaxed max-w-2xl">
-            {STANDARD_L2.hero.subtitle}
-          </p>
-          <p class="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-lime tracking-tight">
-            {STANDARD_L2.hero.powerRange}
-          </p>
-          <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
-            {STANDARD_L2.hero.tags.map((t) => (
-              <li>· {t}</li>
-            ))}
-          </ul>
-          <a
-            href={STANDARD_L2.hero.cta.href}
-            class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-          >
-            {STANDARD_L2.hero.cta.label} <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        {/* RIGHT (col-span-2): 4 module thumbs in a 2x2 grid */}
-        <div class="col-span-2">
-          <div class="grid grid-cols-2 gap-3 md:gap-4">
-            {STANDARD_L2.hero.thumbs.map((src, ti) => (
-              <div class="bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] overflow-hidden" style="aspect-ratio: 1/1;">
-                <img
-                  src={src}
-                  alt=""
-                  loading={ti === 0 ? 'eager' : 'lazy'}
-                  class="w-full h-full object-contain p-3 md:p-4"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+      <div class="mt-8 max-w-3xl">
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+          {STANDARD_L2.hero.title}
+        </h1>
+        <p class="mt-6 text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+          {STANDARD_L2.hero.subtitle}
+        </p>
+        <p class="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-lime tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+          {STANDARD_L2.hero.powerRange}
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+          {STANDARD_L2.hero.tags.map((t) => (
+            <li>· {t}</li>
+          ))}
+        </ul>
+        <a
+          href={STANDARD_L2.hero.cta.href}
+          class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg"
+        >
+          {STANDARD_L2.hero.cta.label} <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>

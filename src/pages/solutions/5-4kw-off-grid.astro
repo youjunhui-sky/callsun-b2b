@@ -3,9 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { SITE } from '@/data/site';
-import { KIT_10_8KW } from '@/data/kit-10-8kw';
+import { KIT_5_4KW } from '@/data/kit-5-4kw';
 
-const kit = KIT_10_8KW;
+const kit = KIT_5_4KW;
 ---
 <BaseLayout
   title={`${kit.short} — ${SITE.name}`}
@@ -27,18 +27,18 @@ const kit = KIT_10_8KW;
         <span class="mx-1">/</span>
         <a href="/solutions/" class="hover:text-callsun-ink">Solutions</a>
         <span class="mx-1">/</span>
-        <span>10.8kW Grid-Tied Solar + Storage System</span>
+        <span>5.4kW Hybrid Solar Power System Kit</span>
       </nav>
 
       <div class="rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
           {/* LEFT: gallery */}
-          <div class="bg-white border-r border-callsun-line" data-gallery="kit-10-8kw">
+          <div class="bg-white border-r border-callsun-line" data-gallery="kit-5-4kw">
             <div class="relative overflow-hidden bg-white" style="aspect-ratio: 1/1;">
               {[1,2,3,4,5,6,7,8,9].map((n, i) => (
                 <img
-                  src={`/uploads/callsun/solutions/10-8kw-gallery/hero-${String(n).padStart(2,'0')}.jpg`}
-                  alt={`10.8kW Solar Generator System - view ${n}`}
+                  src={`/uploads/callsun/solutions/5-4kw-gallery/hero-${String(n).padStart(2,'0')}.jpg`}
+                  alt={`5.4kW Hybrid Solar Power System - view ${n}`}
                   data-slide={i}
                   loading={i === 0 ? 'eager' : 'lazy'}
                   class={`absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
@@ -84,7 +84,7 @@ const kit = KIT_10_8KW;
                   class={`relative aspect-square bg-white border transition-colors ${i === 0 ? 'border-callsun-lime border-2' : 'border-callsun-line hover:border-callsun-ink'}`}
                 >
                   <img
-                    src={`/uploads/callsun/solutions/10-8kw-gallery/hero-${String(n).padStart(2,'0')}.jpg`}
+                    src={`/uploads/callsun/solutions/5-4kw-gallery/hero-${String(n).padStart(2,'0')}.jpg`}
                     alt=""
                     loading="lazy"
                     class="absolute inset-0 w-full h-full object-contain p-1"
@@ -98,10 +98,10 @@ const kit = KIT_10_8KW;
           <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-between bg-white">
             <div>
               <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">
-                10.8kW SOLAR GENERATOR SYSTEM
+                5.4kW HYBRID SOLAR POWER SYSTEM
               </p>
               <h2 class="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.95] text-callsun-ink">
-                Complete<br />System Kit
+                Compact<br />System Kit
               </h2>
               <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed max-w-md">
                 PV array, hybrid inverter and battery storage — everything shipped in one B2B pallet.
@@ -111,15 +111,15 @@ const kit = KIT_10_8KW;
             <dl class="mt-8 border-t border-callsun-line">
               <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
                 <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">PV ARRAY</dt>
-                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">10.8kW</dd>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">5.4kW</dd>
               </div>
               <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
                 <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">HYBRID INVERTER</dt>
-                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">12kW</dd>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">6.5kW</dd>
               </div>
               <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
                 <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">BATTERY STORAGE</dt>
-                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">28kWh</dd>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">10kWh</dd>
               </div>
               <div class="grid grid-cols-2 gap-4 py-3">
                 <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">SYSTEM TYPE</dt>
@@ -153,7 +153,7 @@ const kit = KIT_10_8KW;
   {/* ═══════════════════════════════════════════════════════════════════════
        STICKY TAB BAR — Description / Specs / Includes / Downloads / FAQ / Reviews
        ═══════════════════════════════════════════════════════════════════════ */}
-  <div data-tabs="kit-10-8kw" class="sticky top-16 z-20 bg-callsun-tint border-b border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
+  <div data-tabs="kit-5-4kw" class="sticky top-16 z-20 bg-callsun-tint border-b border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="flex overflow-x-auto no-scrollbar justify-center">
         {['description','specs','includes','downloads','faq'].map((id, i) => (
@@ -193,14 +193,14 @@ const kit = KIT_10_8KW;
       <figure class="mt-12">
         <img
           src={kit.heroImage}
-          alt="Callsun 10.8kW solar generator system with 12kW hybrid inverter and 28kWh LiFePO4 battery storage kit components laid out"
+          alt="Callsun 5.4kW Hybrid Solar Power System Kit with 6.5kW hybrid inverter and 10kWh LiFePO4 battery"
           class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
           loading="eager"
         />
       </figure>
 
       <p class="my-10 text-center text-base md:text-lg font-display font-extrabold text-callsun-ink">
-        24 Pcs 450W Solar Panels &mdash; Reliable and Durable
+        12 Pcs 450W Solar Panels-Reliable and Durable
       </p>
 
       <figure>
@@ -251,7 +251,7 @@ const kit = KIT_10_8KW;
       <figure>
         <img
           src={kit.battery.image}
-          alt="14.34kWh LiFePO4 battery module for Callsun 10.8kW system"
+          alt="14.34kWh LiFePO4 battery module for Callsun 5.4kW Hybrid Solar Power System"
           class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
           loading="lazy"
         />
@@ -272,12 +272,12 @@ const kit = KIT_10_8KW;
 
       {/* Inverter divider */}
       <p class="my-10 text-center text-base md:text-lg font-display font-extrabold text-callsun-ink">
-        10kW Inverter &mdash; Reliable and Durable
+        6.5kW Inverter &mdash; Reliable and Durable
       </p>
       <figure class="mt-6">
         <img
           src={kit.inverter.image}
-          alt="Callsun 12kW hybrid inverter unit"
+          alt="Callsun 6.5kW hybrid inverter"
           class="w-full border border-callsun-line shadow-card bg-white"
           loading="lazy"
         />
@@ -302,14 +302,14 @@ const kit = KIT_10_8KW;
 
       {/* Applications — tabbed switch (radio + CSS, no JS) */}
       <div class="scenarios-tabs mt-10">
-        <input type="radio" name="scenarios-10-8kw" id="scenarios-10-8kw-0" class="scenarios-tab-input" checked />
-        <input type="radio" name="scenarios-10-8kw" id="scenarios-10-8kw-1" class="scenarios-tab-input" />
-        <input type="radio" name="scenarios-10-8kw" id="scenarios-10-8kw-2" class="scenarios-tab-input" />
+        <input type="radio" name="scenarios-5-4kw" id="scenarios-5-4kw-0" class="scenarios-tab-input" checked />
+        <input type="radio" name="scenarios-5-4kw" id="scenarios-5-4kw-1" class="scenarios-tab-input" />
+        <input type="radio" name="scenarios-5-4kw" id="scenarios-5-4kw-2" class="scenarios-tab-input" />
 
         <div class="scenarios-tabs-menu flex flex-wrap gap-2 border-b border-callsun-line">
           {kit.applications.map((a, i) => (
             <label
-              for={`scenarios-10-8kw-${i}`}
+              for={`scenarios-5-4kw-${i}`}
               class="scenarios-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink"
             >{a.label.charAt(0) + a.label.slice(1).toLowerCase()}</label>
           ))}
@@ -320,7 +320,7 @@ const kit = KIT_10_8KW;
             <figure>
               <img
                 src={a.image}
-                alt={`${a.label} solar installation with Callsun 10.8kW system`}
+                alt={`${a.label} solar installation with Callsun 5.4kW system`}
                 class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
                 loading="lazy"
               />
@@ -331,19 +331,19 @@ const kit = KIT_10_8KW;
 
       {/* Wiring — tabbed switch (radio + CSS, no JS) */}
       <div class="wiring-tabs mt-12">
-        <input type="radio" name="wiring-10-8kw" id="wiring-10-8kw-0" class="wiring-tab-input" checked />
-        <input type="radio" name="wiring-10-8kw" id="wiring-10-8kw-1" class="wiring-tab-input" />
+        <input type="radio" name="wiring-5-4kw" id="wiring-5-4kw-0" class="wiring-tab-input" checked />
+        <input type="radio" name="wiring-5-4kw" id="wiring-5-4kw-1" class="wiring-tab-input" />
 
         <div class="wiring-tabs-menu flex flex-wrap gap-2 border-b border-callsun-line">
-          <label for="wiring-10-8kw-0" class="wiring-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink">Wiring Diagram</label>
-          <label for="wiring-10-8kw-1" class="wiring-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink">Wiring Instructions</label>
+          <label for="wiring-5-4kw-0" class="wiring-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink">Wiring Diagram</label>
+          <label for="wiring-5-4kw-1" class="wiring-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink">Wiring Instructions</label>
         </div>
 
         <div class="wiring-tab-panel mt-8" data-idx="0">
           <figure>
             <img
               src={kit.wiring.diagram}
-              alt="Wiring diagram for the Callsun 10.8kW system"
+              alt="Wiring diagram for Callsun 5.4kW Hybrid Solar Power System"
               class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
               loading="lazy"
             />
@@ -353,7 +353,7 @@ const kit = KIT_10_8KW;
           <figure>
             <img
               src={kit.wiring.instructions}
-              alt="Wiring instructions for the Callsun 10.8kW system"
+              alt="Wiring instructions for Callsun 5.4kW Hybrid Solar Power System"
               class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
               loading="lazy"
             />
@@ -373,7 +373,7 @@ const kit = KIT_10_8KW;
       <figure class="mt-8 rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
         <img
           src={kit.includes.image}
-          alt="Kit contents: 24 × 450W panels, 2 × 14kWh batteries, 12kW hybrid inverter, cables, crimper tool kit"
+          alt="Kit contents: 12 × 450W panels, 10kWh battery, 6.5kW hybrid inverter, cables, crimper tool kit"
           class="w-full h-auto block"
           loading="lazy"
         />
@@ -467,7 +467,7 @@ const kit = KIT_10_8KW;
   <script is:inline>
     (function () {
       /* -------- Gallery -------- */
-      const groot = document.querySelector('[data-gallery="kit-10-8kw"]');
+      const groot = document.querySelector('[data-gallery="kit-5-4kw"]');
       if (groot) {
         const slides   = Array.from(groot.querySelectorAll('[data-slide]'));
         const thumbs   = Array.from(groot.querySelectorAll('[data-thumb]'));
@@ -508,7 +508,7 @@ const kit = KIT_10_8KW;
       }
 
       /* -------- Tabs (navigation-only: scroll to section) -------- */
-      const troot = document.querySelector('[data-tabs="kit-10-8kw"]');
+      const troot = document.querySelector('[data-tabs="kit-5-4kw"]');
       if (!troot) return;
       const tabs   = Array.from(troot.querySelectorAll('[data-tab]'));
       const panels = Array.from(document.querySelectorAll('[data-panel]'));

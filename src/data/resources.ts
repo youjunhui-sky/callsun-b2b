@@ -22,7 +22,7 @@ export const DOWNLOAD_CATEGORIES: DownloadCategory[] = [
     title: 'PRODUCT DATASHEETS',
     body: 'Electrical, mechanical and product specifications for every Callsun standard and custom PV module.',
     cta: 'VIEW DATASHEETS',
-    href: '/products/',
+    href: '#datasheets',
   },
   {
     step: '02',
@@ -40,42 +40,57 @@ export const DOWNLOAD_CATEGORIES: DownloadCategory[] = [
   },
 ];
 
+export interface DatasheetItem {
+  model: string;
+  spec: string;
+  category: 'Standard' | 'Custom';
+  file: string;
+  size: string;
+}
+
+export const DATASHEETS: DatasheetItem[] = [
+  { model: 'CN450W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN450W-datasheet.pdf', size: '4.9 MB' },
+  { model: 'CN580W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN580W-datasheet.pdf', size: '3.8 MB' },
+  { model: 'CN620W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN620W-datasheet.pdf', size: '4.1 MB' },
+  { model: 'CN720W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN720W-datasheet.pdf', size: '1.0 MB' },
+];
+
 export const RESOURCE_FAQ = [
   {
     q: 'Is Callsun a PV module manufacturer or a trading company?',
-    a: 'Callsun is a manufacturer of standard and custom solar PV modules with in-house production, R&D and B2B logistics. We ship containers directly to distributors, dealers and EPC installers.',
+    a: 'Callsun is a PV module brand and manufacturer with in-house capabilities in product development, manufacturing and testing. We combine scalable production of standard modules with engineering development for custom modules, supporting distributors, installers, EPCs, equipment manufacturers and project buyers from product selection and sample validation through volume delivery.',
   },
   {
     q: 'What types of PV products does Callsun offer?',
-    a: 'Standard 450W-620W N-Type bifacial modules for C&I and residential rooftop, and compact 180W-215W custom modules for RV, marine and off-grid applications. Complete solar-plus-storage packages (5.4kW / 7.2kW / 10.8kW) are also available.',
+    a: 'Callsun\u2019s portfolio includes standard PV modules for residential, commercial and utility-scale projects, as well as custom modules developed for RVs, marine applications, off-grid equipment, partially shaded environments and space-constrained installations. For selected off-grid projects, we can also recommend evaluated combinations of PV modules and compatible system components based on the customer\u2019s load requirements and equipment specifications.',
   },
   {
     q: 'Does Callsun provide OEM and ODM services?',
-    a: 'Yes. Callsun runs OEM and ODM programs for module partners with customized wattage, cell layout, frame, connector and packaging. Send target specs and monthly volume to the sales team for a project quotation.',
+    a: 'Yes. Callsun provides OEM and ODM services based on project requirements and order conditions. Customization may cover module dimensions, power output, electrical characteristics, material structure, cables and connectors, labeling, packaging and brand presentation. Every custom project is subject to an engineering feasibility review and is manufactured according to the final technical specification approved by both parties.',
   },
   {
-    q: 'What is the minimum order quantity for distributors?',
-    a: 'Standard modules ship by container (594 pcs per 40HQ for CN720W; comparable pallet math for other models). Sample orders and partial pallets can be discussed for new-market pilots.',
+    q: 'How does Callsun ensure product quality and batch-to-batch consistency?',
+    a: 'Callsun maintains product quality and batch consistency through incoming material inspection, controlled production processes and finished-product testing. Key quality procedures include soldering inspection, lamination control, electroluminescence testing, IV performance testing, dimensional and visual inspection, and final pre-shipment inspection. These controls help reduce the risks of microcracks, soldering defects, power deviations and cosmetic issues while ensuring that volume production conforms to the approved technical specifications.',
   },
   {
-    q: 'Which markets does Callsun currently supply?',
-    a: 'North America, Europe, Southeast Asia, Australia, Africa and Latin America. Local certification (UL, TUV, CEC, INMETRO, etc.) supported per market request.',
+    q: 'What certifications are available for Callsun products?',
+    a: 'Certification coverage varies by product series and depends on the module design, bill of materials, electrical specifications, manufacturing location and target market. Based on the intended sales region or project requirements, we can provide the available certificates, test reports and technical documentation for the relevant model. For custom products or market-specific compliance requirements, we can also help assess whether certification extensions or additional testing may be required.',
   },
   {
-    q: 'What is the standard product warranty?',
-    a: '25-year linear power warranty on standard modules with ≥84.5% output guaranteed at year 25. 12-year product warranty on materials and workmanship. LiFePO4 battery kits carry a 10-year cycle warranty.',
+    q: 'Does Callsun support samples and small trial orders?',
+    a: 'Samples and small trial orders may be available for selected standard products, subject to inventory and delivery conditions. This allows customers to evaluate product performance, system compatibility and market demand before committing to volume procurement. For custom modules, we normally complete the engineering review and technical specification approval before proceeding with prototype production, testing and volume-production assessment.',
   },
   {
-    q: 'How does Callsun handle shipping and Incoterms?',
-    a: 'FOB, CIF, DDP and EXW terms available. Callsun works with global forwarders and can arrange US, EU and SEA local warehouses for expedited dealer replenishment.',
+    q: 'What are Callsun\u2019s minimum order quantities and lead times?',
+    a: 'Minimum order quantities and lead times depend on the product model, inventory availability, order volume, packaging requirements, level of customization and certification needs. In-stock standard products can generally be arranged more quickly, while custom products require additional time for engineering approval, material preparation, prototype validation and production setup. Once the project requirements are provided, we will confirm the applicable MOQ, production schedule and estimated delivery timeline.',
   },
   {
-    q: 'Where can I find third-party test videos and reviews?',
-    a: 'See the Video Center section on this page. Independent installers and Callsun\'s own lab publish tests for the 450W bifacial and 215W anti-shading modules.',
+    q: 'How can I receive an accurate quotation for a volume order?',
+    a: 'B2B pricing depends on the product model, order quantity, packaging, certification requirements, delivery destination, logistics method and applicable Incoterms, so Callsun does not apply a single publicly listed wholesale price. To receive an accurate and actionable quotation, please provide the required model or power range, estimated quantity, destination country or port, preferred delivery schedule, and any OEM or certification requirements.',
   },
   {
-    q: 'How do I request a document that is not listed?',
-    a: 'Use the Contact Callsun team CTA at the bottom of this page. Include the exact product model, target market and documentation type.',
+    q: 'What technical and commercial support does Callsun provide?',
+    a: 'Callsun supports customers with product selection, technical specification review, preliminary compatibility assessment between modules and system equipment, sample validation, custom development, technical documentation, certification files, packaging design, and production and delivery coordination. Final decisions involving complete electrical design, structural safety, grid-connection approval and local installation codes should be reviewed by qualified engineers or installers in the project location.',
   },
 ];
 
@@ -91,23 +106,26 @@ export interface VideoCard {
 export const VIDEO_CARDS: VideoCard[] = [
   {
     badge: 'VIDEO',
-    title: 'Callsun 450W Bifacial Solar Panel | MORE for LESS?!',
+    title: 'Callsun 450W Bifacial Solar Panel Review',
     body: 'Independent field review of the Callsun 450W bifacial module.',
-    credit: 'ReelWray Outdoors',
-    thumb: '/uploads/callsun/products/450w/01-front.jpg',
+    credit: 'ReeWay Outdoors',
+    thumb: '/uploads/callsun/videos/ckNe2EctH5w.jpg',
+    href: 'https://www.youtube.com/watch?v=ckNe2EctH5w',
   },
   {
     badge: 'VIDEO',
-    title: 'Callsun 450W Bifacial Solar Panel: Testing and Review',
+    title: 'Callsun 450W N-Type: Testing and Review',
     body: 'Product inspection, testing and performance impressions from a real-world installer.',
     credit: 'Our Black Cat Cottage',
-    thumb: '/uploads/callsun/products/450w/homepage-card.webp',
+    thumb: '/uploads/callsun/videos/zSQSWBTLaL8.jpg',
+    href: 'https://www.youtube.com/watch?v=zSQSWBTLaL8',
   },
   {
     badge: 'VIDEO',
-    title: 'Callsun 215W Anti-Shading Panel: Lab Tested',
+    title: '215W Anti-Shading Lab Test',
     body: 'A lab demonstration of ShadeGuard\u2122 anti-shading response and stable module output under partial shade.',
     credit: 'Callsun',
-    thumb: '/uploads/callsun/products/215w/01-front.jpg',
+    thumb: '/uploads/callsun/videos/Qa-0HqwHgR0.jpg',
+    href: 'https://www.youtube.com/watch?v=Qa-0HqwHgR0',
   },
 ];

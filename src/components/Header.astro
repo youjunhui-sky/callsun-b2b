@@ -14,16 +14,48 @@ function isActive(href: string) {
     </a>
 
     <nav class="hidden lg:flex items-center gap-7 text-[13px] font-medium tracking-wider">
-      {NAV.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            'transition-colors',
-            isActive(item.href) ? 'text-callsun-lime' : 'text-white/85 hover:text-callsun-lime',
-          ]}
-        >
-          {item.label}
-        </a>
+      {NAV.map((item: any) => (
+        item.children && item.children.length ? (
+          <div class="relative group">
+            <a
+              href={item.href}
+              class:list={[
+                'inline-flex items-center gap-1 transition-colors py-4',
+                isActive(item.href) ? 'text-callsun-lime' : 'text-white/85 group-hover:text-callsun-lime',
+              ]}
+              aria-haspopup="true"
+            >
+              {item.label}
+            </a>
+            <div
+              class="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-all absolute left-0 top-full min-w-[220px] bg-callsun-ink border border-callsun-lineDark shadow-xl py-2 z-50"
+              role="menu"
+            >
+              {item.children.map((c: any) => (
+                <a
+                  href={c.href}
+                  role="menuitem"
+                  class:list={[
+                    'block px-4 py-2 text-[13px] font-medium tracking-wide transition-colors',
+                    currentPath === c.href ? 'text-callsun-lime' : 'text-white/85 hover:text-callsun-lime hover:bg-white/5',
+                  ]}
+                >
+                  {c.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class:list={[
+              'transition-colors',
+              isActive(item.href) ? 'text-callsun-lime' : 'text-white/85 hover:text-callsun-lime',
+            ]}
+          >
+            {item.label}
+          </a>
+        )
       ))}
     </nav>
 
@@ -50,16 +82,29 @@ function isActive(href: string) {
 
   <div id="callsun-mobile-nav" hidden class="lg:hidden bg-callsun-ink border-t border-callsun-lineDark">
     <div class="px-4 py-4 flex flex-col gap-3 text-sm font-medium tracking-wider">
-      {NAV.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            'py-1.5',
-            isActive(item.href) ? 'text-callsun-lime' : 'text-white/85',
-          ]}
-        >
-          {item.label}
-        </a>
+      {NAV.map((item: any) => (
+        <>
+          <a
+            href={item.href}
+            class:list={[
+              'py-1.5',
+              isActive(item.href) ? 'text-callsun-lime' : 'text-white/85',
+            ]}
+          >
+            {item.label}
+          </a>
+          {item.children && item.children.map((c: any) => (
+            <a
+              href={c.href}
+              class:list={[
+                'pl-4 py-1.5 text-[13px]',
+                currentPath === c.href ? 'text-callsun-lime' : 'text-white/70',
+              ]}
+            >
+              · {c.label}
+            </a>
+          ))}
+        </>
       ))}
       <a
         href="/contact/"

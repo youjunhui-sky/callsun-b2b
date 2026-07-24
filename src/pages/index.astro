@@ -33,47 +33,38 @@ const homeSchema = {
   <Footer slot="footer" />
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       Section 1: HERO (Dark, Photo BG, 2 CTAs)
+       Section 1: HERO CAROUSEL (5 images, auto-play, dot nav)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="relative overflow-hidden text-white">
-    {HERO.backgroundImage && (
-      <img
-        src={HERO.backgroundImage}
-        alt=""
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-    )}
+  <section id="hero-carousel" class="relative overflow-hidden text-white">
+    {/* Slides: 5 designed hero images (text baked in). Aspect matches original image (~1947:808). */}
+    <div class="relative w-full" style="aspect-ratio: 1947 / 808;">
+      {[1, 2, 3, 4, 5].map((n) => (
+        <img
+          src={`/uploads/callsun/home/hero-carousel/${n}.jpg`}
+          alt=""
+          loading={n === 1 ? 'eager' : 'lazy'}
+          decoding="async"
+          fetchpriority={n === 1 ? 'high' : 'auto'}
+          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${n === 1 ? 'opacity-100' : 'opacity-0'}`}
+          style={n === 2 ? 'object-position: 25% center;' : 'object-position: center;'}
+          data-slide={n}
+        />
+      ))}
 
-    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-36 lg:pb-32">
-      <div class="max-w-3xl">
-        <Eyebrow class="mb-5">{HERO.eyebrow}</Eyebrow>
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold leading-[1.05] drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
-          {HERO.title}
-        </h1>
-        <p class="mt-6 text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
-          {HERO.intro}
-        </p>
-        <div class="mt-10 flex flex-wrap gap-3">
-          <a
-            href={HERO.primaryCta.href}
-            class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg"
-          >
-            {HERO.primaryCta.label} <span aria-hidden="true">→</span>
-          </a>
-          <a
-            href={HERO.secondaryCta.href}
-            class="inline-flex items-center gap-2 border border-white/70 bg-black/25 backdrop-blur-sm text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:border-callsun hover:text-callsun-lime transition-colors"
-          >
-            {HERO.secondaryCta.label} <span aria-hidden="true">→</span>
-          </a>
-        </div>
+      {/* Dot nav (bottom center, over image) */}
+      <div class="absolute bottom-4 md:bottom-6 left-0 right-0 flex justify-center gap-3 z-10">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <button
+            type="button"
+            aria-label={`Slide ${n}`}
+            class={`h-2.5 rounded-full transition-all duration-300 ${n === 1 ? 'bg-callsun w-6' : 'bg-white/60 hover:bg-white/80 w-2.5'}`}
+            data-dot={n}
+          ></button>
+        ))}
       </div>
     </div>
 
-    {/* Section 2: 4-KPI Stats Strip — 独立黑条 + KPI 之间白线 divider + 居中对齐（对齐 v6 原型） */}
+    {/* Section 2: 4-KPI Stats Strip */}
     <div class="relative bg-callsun-ink border-t border-white/10">
       <dl class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-10 md:py-12 grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/15">
         {STATS.map((s, i) => (
@@ -348,4 +339,73 @@ const homeSchema = {
       </div>
     </div>
   </section>
+
+  <script>
+  (() => {
+    const TOTAL = 5;
+    let current = 1;
+    let timer = null;
+
+    const slides = document.querySelectorAll('[data-slide]');
+    const dots = document.querySelectorAll('[data-dot]');
+
+    function goTo(n) {
+      if (n === current) return;
+      slides.forEach((el) => {
+        el.classList.remove('opacity-100');
+        el.classList.add('opacity-0');
+      });
+      const next = document.querySelector(`[data-slide="${n}"]`);
+      if (next) {
+        next.classList.remove('opacity-0');
+        next.classList.add('opacity-100');
+      }
+      dots.forEach((d, i) => {
+        if (i + 1 === n) {
+          d.classList.remove('bg-white/50', 'hover:bg-white/70');
+          d.classList.add('bg-callsun', 'w-6');
+        } else {
+          d.classList.remove('bg-callsun', 'w-6');
+          d.classList.add('bg-white/50', 'hover:bg-white/70');
+          d.classList.remove('w-6');
+        }
+      });
+      current = n;
+    }
+
+    function next() {
+      goTo(current < TOTAL ? current + 1 : 1);
+    }
+
+    function startAuto() {
+      stopAuto();
+      timer = setInterval(next, 4000);
+    }
+
+    function stopAuto() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // Dot clicks
+    dots.forEach((d) => {
+      d.addEventListener('click', () => {
+        const n = parseInt(d.getAttribute('data-dot'), 10);
+        goTo(n);
+        startAuto();
+      });
+    });
+
+    // Pause on hover
+    const section = document.getElementById('hero-carousel');
+    if (section) {
+      section.addEventListener('mouseenter', stopAuto);
+      section.addEventListener('mouseleave', startAuto);
+    }
+
+    startAuto();
+  })();
+</script>
 </BaseLayout>
