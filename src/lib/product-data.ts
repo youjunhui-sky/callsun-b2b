@@ -88,11 +88,25 @@ export const PRODUCTS: ProductSpec[] = [
     datasheet: '/uploads/callsun/products/720w/CN720W-datasheet.pdf',
   },
   {
+    slug: 'cn210w',
+    model: 'CN210W',
+    name: '210W N-Type Bifacial Solar Module',
+    category: 'custom',
+    order: 5,
+    hero: { intro: 'N-Type · Bifacial · Anti-Shading', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING', '24V SYSTEM READY'] },
+    keyStats: { power: '210W', efficiency: '25.6% cell', dimensions: '1377 × 767 × 36 mm', weight: '11.3 kg' },
+    images: {
+      hero: '/uploads/callsun/products/210w/hero-01.png',
+      card: '/uploads/callsun/products/210w/front-back.jpg',
+      frontBack: '/uploads/callsun/products/210w/front-back.jpg',
+    },
+  },
+  {
     slug: 'cn180w',
     model: 'CN180W',
     name: '180W N-Type Anti-Shading Bifacial Solar Module',
     category: 'custom',
-    order: 5,
+    order: 6,
     hero: { intro: 'N-Type · Bifacial · Anti-Shading', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING'] },
     keyStats: { power: '180W', efficiency: '25% cell', dimensions: '1180 × 770 × 35 mm', weight: '9.8 kg' },
     images: {
@@ -106,7 +120,7 @@ export const PRODUCTS: ProductSpec[] = [
     model: 'CN200W',
     name: '200W N-Type 16BB Bifacial Solar Module',
     category: 'custom',
-    order: 6,
+    order: 7,
     hero: { intro: 'N-Type · Bifacial · 16BB', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING'] },
     keyStats: { power: '200W', efficiency: '25% cell', dimensions: '1104 × 770 × 35 mm', weight: '10.8 kg' },
     images: {
@@ -120,7 +134,7 @@ export const PRODUCTS: ProductSpec[] = [
     model: 'CN215W',
     name: '215W N-Type Anti-Shading Bifacial Solar Module',
     category: 'custom',
-    order: 7,
+    order: 8,
     hero: { intro: 'N-Type · Bifacial · 4-Zone Anti-Shading', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING'] },
     keyStats: { power: '215W', efficiency: '25% cell', dimensions: '1422 × 766 × 35 mm', weight: '11.5 kg' },
     images: {

@@ -52,6 +52,13 @@ export const HOME_PRODUCTS = [
     tag: 'STANDARD',
   },
   {
+    model: 'CN210W',
+    name: '210W Custom N-Type Bifacial',
+    href: '/products/cn210w/',
+    image: '/uploads/callsun/products/210w/front-back.jpg',
+    tag: 'CUSTOM',
+  },
+  {
     model: 'CN180W',
     name: '180W Custom N-Type Anti-Shading Bifacial',
     href: '/products/cn180w/',

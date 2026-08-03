@@ -26,9 +26,11 @@ export const CUSTOM_L2 = {
     subtitle:
       'Application-specific modules for RVs, vehicle rooftops, balconies, off-grid equipment, and other special installation conditions.',
     powerRange: '180W – 215W',
-    tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING', 'CONNECTION COMPATIBILITY'],
+    powerRange: '180W – 215W',
+    tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING', 'CONNECTION COMPATIBILITY', '24V SYSTEM READY'],
     cta: { label: 'DISCUSS A PROJECT', href: '#inquiry' },
     thumbs: [
+      '/uploads/callsun/products/210w/front-back.jpg',
       '/uploads/callsun/products/180w/hero-05.jpg',
       '/uploads/callsun/products/200w/front-back.jpg',
       '/uploads/callsun/products/215w/front-back.jpg',
@@ -42,6 +44,24 @@ export const CUSTOM_L2 = {
       'Module selection and custom feasibility assessment can consider available space, target output, module dimensions, product structure and interface requirements.',
   },
   skus: [
+    {
+      key: 'cn210w',
+      title: 'CN210W',
+      subtitle: '210W N-Type Bifacial Solar Module',
+      power: '210W',
+      efficiency: '25.6% CELL EFFICIENCY',
+      description:
+        'Dual-module parallel circuitry with 1/4-cut cells tuned for 24V systems — purpose-built for RV, marine, off-grid cabins and solar generator applications where partial shade is common and reliable 24V output is critical.',
+      specs: [
+        { label: 'DIMENSIONS', value: '1377 × 767 × 36 mm' },
+        { label: 'WEIGHT', value: '11.3 kg' },
+        { label: 'OPERATING POINT', value: 'Vmp 34.2 V · Imp 6.1 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 40.3 V · Isc 6.5 A' },
+        { label: 'DESIGN', value: 'Dual-module parallel circuitry · IP68' },
+      ],
+      image: '/uploads/callsun/products/210w/front-back.jpg',
+      detailHref: '/products/cn210w/',
+    },
     {
       key: 'cn180w',
       title: 'CN180W',
