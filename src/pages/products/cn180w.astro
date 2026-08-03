@@ -38,13 +38,27 @@ const breadcrumb = [
     <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24">
       <Breadcrumbs items={breadcrumb} theme="light" />
 
-      <div class="mt-8 grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
-        {/* LEFT: text + stats + CTAs (col-span-3) */}
-        <div class="col-span-3">
-          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-ink leading-[1.02]">
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+        {/* RIGHT: product image (lg:col-span-2, mobile-first) */}
+        <div class="lg:col-span-2 order-first lg:order-last">
+          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+            <div class="relative aspect-[4/3] sm:aspect-[4/5]">
+              <img
+                src={sku.heroImage}
+                alt={sku.model}
+                loading="eager"
+                class="absolute inset-0 w-full h-full object-contain p-6 md:p-8"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* LEFT: text + stats + CTAs (lg:col-span-3) */}
+        <div class="lg:col-span-3">
+          <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-ink leading-[1.02]">
             {sku.model}
           </h1>
-          <p class="mt-3 font-display text-xl md:text-2xl font-bold text-callsun-ink leading-snug max-w-2xl">
+          <p class="mt-3 font-display text-lg sm:text-xl md:text-2xl font-bold text-callsun-ink leading-snug max-w-2xl">
             {sku.subtitle}
           </p>
           <p class="mt-2 text-callsun-mute text-sm md:text-base">
@@ -89,21 +103,7 @@ const breadcrumb = [
               REQUEST A QUOTE <span aria-hidden="true">→</span>
             </a>
           </div>
-        </div>
-
-        {/* RIGHT: single static product image (col-span-2) */}
-        <div class="col-span-2">
-          <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
-            <div class="relative" style="aspect-ratio: 4/5;">
-              <img
-                src={sku.heroImage}
-                alt={sku.model}
-                loading="eager"
-                class="absolute inset-0 w-full h-full object-contain p-6 md:p-8"
-              />
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
@@ -136,7 +136,7 @@ const breadcrumb = [
   <section class="bg-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
       <Eyebrow class="mb-4">TECHNICAL SPECIFICATIONS</Eyebrow>
-      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
+      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
         {sku.model} datasheet
       </h2>
 
@@ -178,11 +178,11 @@ const breadcrumb = [
       style="background-image: linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 48px 48px;"
     ></div>
     <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid grid-cols-5 gap-10 lg:gap-16 items-start">
-        {/* LEFT: documents (col-span-2) */}
-        <div class="col-span-2">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
+        {/* LEFT: documents (lg:col-span-2) */}
+        <div class="lg:col-span-2">
           <Eyebrow class="mb-4">DOCUMENTS & INQUIRY</Eyebrow>
-          <h2 class="font-display text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
             {sku.model} product resources
           </h2>
 
@@ -214,8 +214,8 @@ const breadcrumb = [
           </div>
         </div>
 
-        {/* RIGHT: inquiry form (col-span-3) */}
-        <div class="col-span-3" id="inquiry-form">
+        {/* RIGHT: inquiry form (lg:col-span-3) */}
+        <div class="lg:col-span-3" id="inquiry-form">
           <InquiryForm
             formSource={`sku-${sku.slug}`}
             formTitle={`${sku.model} PRODUCT INQUIRY`}
