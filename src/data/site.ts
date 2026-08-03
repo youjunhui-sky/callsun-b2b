@@ -42,9 +42,33 @@ export const NAV = [
       { label: 'Custom PV Modules', href: '/products/custom-modules/' },
     ],
   },
-  { label: 'SOLUTIONS', href: '/solutions/' },
+  {
+    label: 'SOLUTIONS',
+    href: '/solutions/',
+    children: [
+      { label: '5.4kW Hybrid Solar Kit', href: '/solutions/5-4kw-off-grid/' },
+      { label: '7.2kW Off-Grid Kit',      href: '/solutions/7-2kw-grid-tied/' },
+      { label: '10.8kW Grid-Tied Kit',     href: '/solutions/10-8kw-grid-tied/' },
+    ],
+  },
   // { label: 'APPLICATIONS', href: '/applications/' },  // 2026-07-24 東家隐藏，页面代码保留 src/pages/applications/
-  { label: 'RESOURCES', href: '/resources/' },
-  { label: 'NEWS & CASES', href: '/news/' },
+  {
+    label: 'RESOURCES',
+    href: '/resources/',
+    children: [
+      { label: 'Downloads',                  href: '/resources/#downloads' },
+      { label: 'Product & Cooperation FAQ',  href: '/resources/#faq' },
+      { label: 'Video Center',               href: '/resources/#video-center' },
+    ],
+  },
+  {
+    label: 'NEWS & CASES',
+    href: '/news/',
+    children: [
+      { label: 'Technical Blog',                    href: '/news/#technical-blog' },
+      { label: 'Commercial Rooftop Installations',  href: '/news/#installations' },
+      { label: 'Project Reference List',            href: '/news/#project-reference' },
+    ],
+  },
   { label: 'ABOUT', href: '/about/' },
 ] as const;

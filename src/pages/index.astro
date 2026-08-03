@@ -86,49 +86,90 @@ const homeSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="max-w-3xl mb-10 md:mb-14">
+      <div class="mb-10 md:mb-14">
         <Eyebrow class="mb-3">PV MODULE PORTFOLIO</Eyebrow>
-        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink">
-          Standard and Custom Modules
-        </h2>
-        <p class="mt-4 text-callsun-mute text-base leading-relaxed max-w-2xl">
-          Four high-power standard classes for volume procurement, and three application-specific
-          custom classes for constrained spaces and specialized installations.
+        <p class="text-callsun-mute text-base leading-relaxed">
+          Four high-power standard classes for volume procurement, and three application-specific custom classes for constrained spaces and specialized installations.
         </p>
       </div>
 
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-        {HOME_PRODUCTS.map((p) => (
-          <li>
-            <a
-              href={p.href}
-              class="group flex flex-col h-full border border-callsun-line bg-white hover:border-callsun-ink hover:shadow-card transition-all"
-            >
-              <div class="relative aspect-square overflow-hidden bg-callsun-surface">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-              </div>
-              <div class="flex-1 p-4 md:p-5 flex flex-col gap-2">
-                <p class="text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
-                  {p.model}
-                </p>
-                <h3 class="font-display font-bold text-[15px] leading-snug flex-1 text-callsun-ink">
-                  {p.name}
-                </h3>
-                <span class="text-xs font-semibold tracking-wider mt-1 inline-flex items-center gap-1 text-callsun-ink group-hover:text-callsun-lime">
-                  PRODUCT DETAILS
-                  <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
-                </span>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div class="mb-10 md:mb-14">
+        <div class="flex items-baseline gap-3 md:gap-4 mb-5 md:mb-6">
+          <h3 class="font-display font-extrabold text-callsun-ink text-base md:text-lg uppercase tracking-eyebrow shrink-0">Standard PV Modules</h3>
+          <div class="flex-1 h-px bg-callsun-line"></div>
+        </div>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {HOME_PRODUCTS.filter((p) => p.tag === 'STANDARD').map((p) => (
+            <li>
+              <a
+                href={p.href}
+                class="group flex flex-col h-full border border-callsun-line bg-white hover:border-callsun-ink hover:shadow-card transition-all"
+              >
+                <div class="relative aspect-square overflow-hidden bg-callsun-surface">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div class="flex-1 p-4 md:p-5 flex flex-col gap-2">
+                  <p class="text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+                    {p.model}
+                  </p>
+                  <h4 class="font-display font-bold text-[15px] leading-snug flex-1 text-callsun-ink">
+                    {p.name}
+                  </h4>
+                  <span class="text-xs font-semibold tracking-wider mt-1 inline-flex items-center gap-1 text-callsun-ink group-hover:text-callsun-lime">
+                    PRODUCT DETAILS
+                    <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <div class="flex items-baseline gap-3 md:gap-4 mb-5 md:mb-6">
+          <h3 class="font-display font-extrabold text-callsun-ink text-base md:text-lg uppercase tracking-eyebrow shrink-0">Custom PV Modules</h3>
+          <div class="flex-1 h-px bg-callsun-line"></div>
+        </div>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+          {HOME_PRODUCTS.filter((p) => p.tag === 'CUSTOM').map((p) => (
+            <li>
+              <a
+                href={p.href}
+                class="group flex flex-col h-full border border-callsun-line bg-white hover:border-callsun-ink hover:shadow-card transition-all"
+              >
+                <div class="relative aspect-square overflow-hidden bg-callsun-surface">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div class="flex-1 p-4 md:p-5 flex flex-col gap-2">
+                  <p class="text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+                    {p.model}
+                  </p>
+                  <h4 class="font-display font-bold text-[15px] leading-snug flex-1 text-callsun-ink">
+                    {p.name}
+                  </h4>
+                  <span class="text-xs font-semibold tracking-wider mt-1 inline-flex items-center gap-1 text-callsun-ink group-hover:text-callsun-lime">
+                    PRODUCT DETAILS
+                    <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 

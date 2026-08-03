@@ -170,6 +170,24 @@ import Footer from '@/components/Footer.astro';
 - "字还可以往下来一些，下面刚好有一块空白" — 可能是 vertical 调整（flex items-center → items-end → 用 top% 自定义）
 - "我说的页面名可能是错的" — 接到指令先 curl 核页面
 
+### 7. pnpm dev 重复 `--port` 坑 (2026-07-31 立)
+
+package.json 的 scripts 写死了 `astro dev --host 0.0.0.0 --port 4323`,如果再用 `pnpm dev --port 4323` 追加一个,会变成:
+
+```
+$ astro dev --host 0.0.0.0 --port 4323 --port 4323
+┃ Local    http://localhost:4321/   ← fallback 到 4321!
+```
+
+**现象**:命令行看着传了 4323,实际 LISTEN 在 4321(默认端口)。
+**根因**:Astro 5.18.2 收到重复 `--port` 后行为变了,没取最后一个也没保留第一个,而是 fallback 到默认。
+**修法**:绕过 pnpm scripts,直接调二进制:
+```bash
+cd ~/.openclaw/workspace/projects/callsun-b2b
+nohup ./node_modules/.bin/astro dev --host 0.0.0.0 --port 4323 > /tmp/dev.log 2>&1 &
+```
+或 `pnpm exec astro dev --host 0.0.0.0 --port 4323`(pnpm exec 跳过 scripts)。**永远不要在 scripts 已写死 --port 的项目上用 `pnpm dev --port N`。**
+
 ## 未提交改动 (running diff)
 
 - 修改列表（git status 2026-07-24 19:00）：

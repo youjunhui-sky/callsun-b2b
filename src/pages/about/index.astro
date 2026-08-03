@@ -120,9 +120,17 @@ const pageDescription =
     </div>
   </section>
 
-  {/* ---------- 4) MANUFACTURING — no bg image (client 07-24) ---------- */}
-  <section class="relative text-white py-16 md:py-20 border-t border-white/10 bg-callsun-ink">
-    {/* bg image removed per client request */}
+  {/* ---------- 4) MANUFACTURING — bg image + dark overlay (restored 07-26) ---------- */}
+  <section class="relative text-white py-16 md:py-20 border-t border-white/10 bg-callsun-ink overflow-hidden">
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style="background-image: url('/uploads/callsun/about/manufacturing-bg.jpg'); background-size: cover; background-position: center;"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 pointer-events-none bg-callsun-ink/70"
+      aria-hidden="true"
+    ></div>
     <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
       {/* Top: title/desc full width */}
       <div class="max-w-3xl">
@@ -234,7 +242,7 @@ const pageDescription =
     </div>
   </section>
 
-  {/* ---------- 7) GLOBAL SUPPLY — map image + overlay country labels (client 07-24) ---------- */}
+  {/* ---------- 7) GLOBAL SUPPLY — text overlay anchored at bottom-left over the open ocean area above Patagonia (07-26) ---------- */}
   <section class="bg-callsun-bg border-t border-callsun-line">
     <figure class="relative">
       <img
@@ -243,17 +251,15 @@ const pageDescription =
         class="w-full h-auto block"
         loading="lazy"
       />
-      {/* Text overlay on the left side of the map, between center and bottom */}
-      <div class="absolute inset-0">
-        <div class="absolute left-0 max-w-md lg:max-w-lg px-6 md:px-10 lg:px-14" style="top: 8%;">
-          <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">Global Supply</p>
-          <h2 class="mt-3 text-2xl md:text-3xl lg:text-4xl font-display font-extrabold leading-tight text-callsun-ink">
-            Global Supply<br />for Long-Term<br />Channel Partnerships
-          </h2>
-          <p class="mt-5 text-sm md:text-base text-callsun-ink/75 leading-relaxed max-w-sm">
-            Supported by multiple manufacturing regions and established logistics coverage, Callsun helps partners coordinate supply, delivery and long-term market development.
-          </p>
-        </div>
+      {/* Text overlay in the bottom-left open-ocean area (above South American Patagonia / Tierra del Fuego). bottom-[10–14%] keeps the block clear of the southern South American landmass. */}
+      <div class="absolute left-0 bottom-[10%] md:bottom-[12%] lg:bottom-[14%] px-6 md:px-10 lg:px-14 max-w-sm md:max-w-md lg:max-w-lg pointer-events-none text-left">
+        <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">Global Supply</p>
+        <h2 class="mt-3 text-2xl md:text-3xl lg:text-4xl font-display font-extrabold leading-tight text-callsun-ink">
+          Global Supply<br />for Long-Term<br />Channel Partnerships
+        </h2>
+        <p class="mt-4 text-sm md:text-base text-callsun-ink/75 leading-relaxed">
+          Supported by multiple manufacturing regions and established logistics coverage, Callsun helps partners coordinate supply, delivery and long-term market development.
+        </p>
       </div>
     </figure>
   </section>
