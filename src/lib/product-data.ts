@@ -90,7 +90,7 @@ export const PRODUCTS: ProductSpec[] = [
   {
     slug: 'cn210w',
     model: 'CN210W',
-    name: '210W N-Type Bifacial Solar Module',
+    name: 'CN210W Custom N-Type Bifacial Module',
     category: 'custom',
     order: 5,
     hero: { intro: 'N-Type · Bifacial · Anti-Shading', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING', '24V SYSTEM READY'] },
@@ -104,7 +104,7 @@ export const PRODUCTS: ProductSpec[] = [
   {
     slug: 'cn180w',
     model: 'CN180W',
-    name: '180W N-Type Anti-Shading Bifacial Solar Module',
+    name: 'CN180W Custom N-Type Bifacial Module',
     category: 'custom',
     order: 6,
     hero: { intro: 'N-Type · Bifacial · Anti-Shading', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING'] },
@@ -118,7 +118,7 @@ export const PRODUCTS: ProductSpec[] = [
   {
     slug: 'cn200w',
     model: 'CN200W',
-    name: '200W N-Type 16BB Bifacial Solar Module',
+    name: 'CN200W Custom N-Type Bifacial Module',
     category: 'custom',
     order: 7,
     hero: { intro: 'N-Type · Bifacial · 16BB', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING'] },
@@ -132,7 +132,7 @@ export const PRODUCTS: ProductSpec[] = [
   {
     slug: 'cn215w',
     model: 'CN215W',
-    name: '215W N-Type Anti-Shading Bifacial Solar Module',
+    name: 'CN215W Custom N-Type Bifacial Module with Anti-Shading',
     category: 'custom',
     order: 8,
     hero: { intro: 'N-Type · Bifacial · 4-Zone Anti-Shading', tags: ['SIZE ADAPTATION', 'STRUCTURAL ENGINEERING'] },

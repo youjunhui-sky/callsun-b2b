@@ -14,8 +14,8 @@ export const SITE = {
     foundingDate: '',
     sameAs: [] as string[],
     contact: {
-      sales: 'sales@callsun.com',
-      support: 'support@callsun.com',
+      sales: 'sales@callsunsolar.com',
+      support: 'support@callsunsolar.com',
       phone: '',
     },
   },

@@ -47,13 +47,13 @@ export const CUSTOM_L2 = {
     {
       key: 'cn210w',
       title: 'CN210W',
-      subtitle: '210W N-Type Bifacial Solar Module',
+      subtitle: 'CN210W Custom N-Type Bifacial Module',
       power: '210W',
       efficiency: '25.6% CELL EFFICIENCY',
       description:
         'Dual-module parallel circuitry with 1/4-cut cells tuned for 24V systems — purpose-built for RV, marine, off-grid cabins and solar generator applications where partial shade is common and reliable 24V output is critical.',
       specs: [
-        { label: 'DIMENSIONS', value: '1377 × 767 × 36 mm' },
+        { label: 'DIMENSIONS', value: '1376 × 766 × 35 mm' },
         { label: 'WEIGHT', value: '11.3 kg' },
         { label: 'OPERATING POINT', value: 'Vmp 34.2 V · Imp 6.1 A' },
         { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 40.3 V · Isc 6.5 A' },
@@ -65,15 +65,15 @@ export const CUSTOM_L2 = {
     {
       key: 'cn180w',
       title: 'CN180W',
-      subtitle: '180W N-Type Anti-Shading Bifacial Solar Module',
+      subtitle: 'CN180W Custom N-Type Bifacial Module',
       power: '180W',
-      efficiency: '25% CELL EFFICIENCY',
+      efficiency: '25.6% CELL EFFICIENCY',
       description:
         'Anti-shading TwinCell design keeps output stable under partial shade from trees, roof racks and uneven sunlight — a good fit for RV rooftops, vans and vehicle-mounted installations.',
       specs: [
         { label: 'DIMENSIONS', value: '1180 × 770 × 35 mm' },
         { label: 'WEIGHT', value: '9.8 kg' },
-        { label: 'OPERATING POINT', value: 'Vmp 21.91 V · Imp 8.21 A' },
+        { label: 'OPERATING POINT', value: 'Vmp 21.93 V · Imp 8.21 A' },
         { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 25.56 V · Isc 8.62 A' },
         { label: 'DESIGN', value: 'TwinCell parallel circuitry · IP68' },
       ],
@@ -83,16 +83,16 @@ export const CUSTOM_L2 = {
     {
       key: 'cn200w',
       title: 'CN200W',
-      subtitle: '200W N-Type 16BB Bifacial Solar Module',
+      subtitle: 'CN200W Custom N-Type Bifacial Module',
       power: '200W',
-      efficiency: '25% CELL EFFICIENCY',
+      efficiency: '25.6% CELL EFFICIENCY',
       description:
         'Ultra-compact 200W with higher watt density per square metre for balcony PV, small off-grid gear and space-constrained rooftop setups where every watt per square metre counts.',
       specs: [
         { label: 'DIMENSIONS', value: '1104 × 770 × 35 mm' },
         { label: 'WEIGHT', value: '10.8 kg' },
         { label: 'OPERATING POINT', value: 'Vmp 23.74 V · Imp 8.43 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 27.11 V · Isc 8.91 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 27.31 V · Isc 8.91 A' },
         { label: 'DESIGN', value: 'N-Type 16BB · Bifacial · IP68' },
       ],
       image: '/uploads/callsun/products/200w/front-back.jpg',
@@ -101,9 +101,9 @@ export const CUSTOM_L2 = {
     {
       key: 'cn215w',
       title: 'CN215W',
-      subtitle: '215W N-Type Anti-Shading Bifacial Solar Module',
+      subtitle: 'CN215W Custom N-Type Bifacial Module with Anti-Shading',
       power: '215W',
-      efficiency: '25% CELL EFFICIENCY',
+      efficiency: '25.6% CELL EFFICIENCY',
       description:
         '4-zone anti-shading design tuned for 12 V systems and off-grid equipment where partial shade would otherwise hit output hard — well suited to vehicle and marine PV.',
       specs: [

@@ -1,0 +1,313 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { SITE } from '@/data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', (n) => !n.data.draft);
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = await getCollection('news', (n) => !n.data.draft && n.slug !== post.slug);
+const related = allPosts
+  .filter((p) => p.data.category === post.data.category || p.data.tags.some((t) => post.data.tags.includes(t)))
+  .slice(0, 3);
+
+const title = post.data.title;
+const description = post.data.description;
+const canonical = `/news/${post.slug}/`;
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: post.data.cover ? new URL(post.data.cover, SITE.domain).href : undefined,
+  datePublished: post.data.publishDate.toISOString(),
+  dateModified: (post.data.updatedDate || post.data.publishDate).toISOString(),
+  author: { '@type': 'Organization', name: post.data.author },
+  publisher: { '@type': 'Organization', name: SITE.name },
+  mainEntityOfPage: new URL(canonical, SITE.domain).href,
+};
+---
+
+<BaseLayout
+  title={`${title} — ${SITE.name}`}
+  description={description}
+  canonical={canonical}
+  ogImage={post.data.cover}
+  ogType="article"
+  schema={articleSchema}
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  <article class="bg-white">
+    <!-- Hero -->
+    <section class="bg-callsun-ink text-white pt-14 md:pt-20 pb-10 md:pb-14 border-b border-white/10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-10">
+        <nav class="text-xs uppercase tracking-eyebrow text-white/50 mb-6">
+          <a href="/" class="hover:text-callsun-lime transition-colors">Home</a>
+          <span class="mx-2 text-white/30">/</span>
+          <a href="/news/" class="hover:text-callsun-lime transition-colors">News &amp; Cases</a>
+          <span class="mx-2 text-white/30">/</span>
+          <span class="text-callsun-lime">{post.data.category}</span>
+        </nav>
+        <Eyebrow class="mb-4">{post.data.category}</Eyebrow>
+        <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1]">
+          {title}
+        </h1>
+        <p class="mt-5 text-base md:text-lg text-white/70 leading-relaxed max-w-3xl">
+          {description}
+        </p>
+        <div class="mt-7 flex items-center gap-3 flex-wrap text-xs uppercase tracking-eyebrow text-white/50">
+          <span class="font-bold text-white/80">{post.data.author}</span>
+          <span class="text-white/25">·</span>
+          <time datetime={post.data.publishDate.toISOString()}>{fmtDate(post.data.publishDate)}</time>
+          {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.publishDate.getTime() && (
+            <>
+              <span class="text-white/25">·</span>
+              <time datetime={post.data.updatedDate.toISOString()}>Updated {fmtDate(post.data.updatedDate)}</time>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cover -->
+    {post.data.cover && (
+      <section class="bg-callsun-ink pb-12 md:pb-16">
+        <div class="max-w-wide mx-auto px-4 sm:px-6 lg:px-10">
+          <div class="aspect-[16/9] overflow-hidden bg-black border border-white/10">
+            <img
+              src={post.data.cover}
+              alt={post.data.coverAlt || title}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Body -->
+    <section class="py-14 md:py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
+        <div class="blog-content">
+          <Content />
+        </div>
+
+        {post.data.tags.length > 0 && (
+          <div class="mt-12 md:mt-16 pt-8 border-t border-callsun-line">
+            <p class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime mb-4">Tagged</p>
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((tag) => (
+                <span class="bg-callsun-tint border border-callsun-line px-3 py-1.5 text-xs font-semibold text-callsun-mute">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    {(post.data.ctaTitle || post.data.ctaDescription) && (
+      <section class="bg-callsun-tint border-t border-callsun-line">
+        <div class="max-w-wide mx-auto px-4 sm:px-6 lg:px-10 py-12 md:py-16">
+          <div class="bg-callsun-ink text-white p-8 md:p-12 lg:p-14 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-callsun-lime/10 blur-3xl pointer-events-none"></div>
+            <div class="relative max-w-2xl">
+              <p class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime mb-3">Next step</p>
+              {post.data.ctaTitle && (
+                <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight">
+                  {post.data.ctaTitle}
+                </h2>
+              )}
+              {post.data.ctaDescription && (
+                <p class="mt-4 text-white/75 leading-relaxed">{post.data.ctaDescription}</p>
+              )}
+              {post.data.ctaHref && (
+                <a
+                  href={post.data.ctaHref}
+                  class="mt-7 inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+                >
+                  {post.data.ctaLabel || 'Contact Callsun'}
+                  <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Related -->
+    {related.length > 0 && (
+      <section class="bg-callsun-bg border-t border-callsun-line py-14 md:py-20">
+        <div class="max-w-wide mx-auto px-4 sm:px-6 lg:px-10">
+          <Eyebrow class="mb-3">Continue Reading</Eyebrow>
+          <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-extrabold text-callsun-ink">
+            Related articles
+          </h2>
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            {related.map((p) => (
+              <a
+                href={`/news/${p.slug}/`}
+                class="group bg-white border border-callsun-line overflow-hidden hover:border-callsun-ink hover:shadow-card transition-all flex flex-col"
+              >
+                {p.data.cover && (
+                  <div class="relative aspect-[16/10] overflow-hidden bg-callsun-ink">
+                    <img
+                      src={p.data.cover}
+                      alt={p.data.coverAlt || p.data.title}
+                      class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-5 md:p-6 flex flex-col flex-1 border-t border-callsun-line">
+                  <span class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime">
+                    {p.data.category}
+                  </span>
+                  <h3 class="mt-3 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug flex-1">
+                    {p.data.title}
+                  </h3>
+                  <span class="mt-4 inline-flex items-center gap-1 text-[11px] font-bold tracking-eyebrow uppercase text-callsun-mute group-hover:text-callsun-lime transition-colors">
+                    Read
+                    <span aria-hidden="true" class="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .blog-content {
+    color: #1f1f1f;
+    font-size: 1.0625rem;
+    line-height: 1.85;
+  }
+  @media (min-width: 768px) {
+    .blog-content { font-size: 1.125rem; line-height: 1.85; }
+  }
+  .blog-content p { margin: 1.35em 0; }
+  .blog-content p:first-child {
+    margin-top: 0;
+    font-size: 1.1875rem;
+    line-height: 1.7;
+    color: #0F0F0E;
+    font-weight: 500;
+  }
+  .blog-content h2 {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    color: #0F0F0E;
+    font-weight: 800;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-top: 2.75rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .blog-content h2::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: #7CBE22;
+    margin-bottom: 0.875rem;
+  }
+  .blog-content h3 {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    color: #0F0F0E;
+    font-weight: 700;
+    font-size: 1.375rem;
+    line-height: 1.3;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .blog-content a {
+    color: #6AA51D;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(124, 190, 34, 0.4);
+  }
+  .blog-content a:hover { color: #0F0F0E; border-bottom-color: #0F0F0E; }
+  .blog-content strong { color: #0F0F0E; font-weight: 700; }
+  .blog-content ul, .blog-content ol { margin: 1.35em 0; padding-left: 1.5rem; }
+  .blog-content ul { list-style: none; padding-left: 0; }
+  .blog-content ul > li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin: 0.55em 0;
+  }
+  .blog-content ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 7px;
+    height: 7px;
+    background: #7CBE22;
+  }
+  .blog-content ol > li { margin: 0.55em 0; padding-left: 0.5rem; }
+  .blog-content blockquote {
+    border-left: 4px solid #7CBE22;
+    background: #F5F5F0;
+    padding: 1.125rem 1.5rem;
+    margin: 1.75em 0;
+    color: #0F0F0E;
+  }
+  .blog-content blockquote p { margin: 0.5em 0; }
+  .blog-content code {
+    background: #F5F5F0;
+    padding: 0.15em 0.4em;
+    font-size: 0.92em;
+    color: #0F0F0E;
+    border: 1px solid #E5E5E5;
+  }
+  .blog-content pre {
+    background: #0F0F0E;
+    color: #F7F7F7;
+    padding: 1.125rem 1.375rem;
+    overflow-x: auto;
+    margin: 1.65em 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .blog-content pre code { background: transparent; padding: 0; border: none; color: inherit; }
+  .blog-content img {
+    width: 100%;
+    height: auto;
+    margin: 1.75em 0;
+    border: 1px solid #E5E5E5;
+  }
+  .blog-content hr { border: none; border-top: 1px solid #E5E5E5; margin: 2.5em 0; }
+  .blog-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.65em 0;
+    font-size: 0.95rem;
+  }
+  .blog-content th, .blog-content td {
+    border: 1px solid #E5E5E5;
+    padding: 0.7rem 1rem;
+    text-align: left;
+  }
+  .blog-content th { background: #F5F5F0; font-weight: 700; color: #0F0F0E; }
+</style>

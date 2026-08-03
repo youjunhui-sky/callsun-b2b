@@ -15,7 +15,7 @@ export interface BlogPost {
   date: string;                // display string, e.g. "JUL 22, 2026"
   title: string;
   thumb: string;               // hero image path (reuse existing product/case images)
-  href: string;                // placeholder '#' for now
+  href: string;                // article URL, e.g. "/news/<slug>/"
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -24,42 +24,42 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'JUL 22, 2026',
     title: '450W vs. 400W Solar Panels: What 50 Extra Watts Mean for the Complete Installation',
     thumb: '/blog/2026-07-22-450w-vs-400w-solar-panels.webp',
-    href: '#',
+    href: '/news/2026-07-22-450w-vs-400w-solar-panels/',
   },
   {
     tag: 'PRODUCT',
     date: 'JUL 22, 2026',
     title: 'Single-Glass vs. Dual-Glass Solar Modules: How B2B Buyers Should Choose',
     thumb: '/blog/2026-07-22-single-glass-vs-dual-glass-solar-modules.webp',
-    href: '#',
+    href: '/news/2026-07-22-single-glass-vs-dual-glass-solar-modules/',
   },
   {
     tag: 'TECHNICAL',
     date: 'JUL 22, 2026',
     title: 'Standard vs. Shade-Tolerant Solar Panels: When Does the Electrical Design Matter?',
     thumb: '/blog/2026-07-22-standard-vs-shade-tolerant-solar-panels.webp',
-    href: '#',
+    href: '/news/2026-07-22-standard-vs-shade-tolerant-solar-panels/',
   },
   {
     tag: 'INDUSTRY',
     date: 'JUL 21, 2026',
     title: 'How to Evaluate a PV Module Manufacturer: A Practical Guide for B2B Buyers',
     thumb: '/blog/2026-07-21-how-to-evaluate-a-pv-module-manufacturer.webp',
-    href: '#',
+    href: '/news/2026-07-21-how-to-evaluate-a-pv-module-manufacturer/',
   },
   {
     tag: 'TECHNICAL',
     date: 'JUL 21, 2026',
     title: 'Solar Design for Limited Installation Space: Why Power Density Matters More Than Panel Wattage',
     thumb: '/blog/2026-07-21-power-density-in-limited-space.webp',
-    href: '#',
+    href: '/news/2026-07-21-power-density-in-limited-space/',
   },
   {
     tag: 'PRODUCT',
     date: 'JUL 21, 2026',
     title: 'From Standard PV Modules to Custom Engineering: How Callsun Supports Diverse Solar Applications',
     thumb: '/blog/2026-07-21-standard-modules-and-custom-engineering.webp',
-    href: '#',
+    href: '/news/2026-07-21-standard-modules-and-custom-engineering/',
   },
 ];
 

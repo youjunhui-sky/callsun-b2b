@@ -89,7 +89,7 @@ const homeSchema = {
       <div class="mb-10 md:mb-14">
         <Eyebrow class="mb-3">PV MODULE PORTFOLIO</Eyebrow>
         <p class="text-callsun-mute text-base leading-relaxed">
-          Four high-power standard classes for volume procurement, and three application-specific custom classes for constrained spaces and specialized installations.
+          Four standard modules for efficient bulk procurement, plus four custom solutions for project-specific needs — all on the same N-type bifacial platform for consistent quality and flexible selection.
         </p>
       </div>
 
@@ -137,7 +137,7 @@ const homeSchema = {
           <h3 class="font-display font-extrabold text-callsun-ink text-base md:text-lg uppercase tracking-eyebrow shrink-0">Custom PV Modules</h3>
           <div class="flex-1 h-px bg-callsun-line"></div>
         </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {HOME_PRODUCTS.filter((p) => p.tag === 'CUSTOM').map((p) => (
             <li>
               <a
@@ -174,89 +174,30 @@ const homeSchema = {
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       Section 4: Quality You Can Verify (Dark)
+       Section 4: Quality You Can Verify
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-gradient-to-b from-callsun-ink via-callsun-panel to-callsun-ink text-white">
+  <section class="bg-callsun-tint">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 items-center">
-        <div>
-          <Eyebrow class="mb-3">{QUALITY.eyebrow}</Eyebrow>
-          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold">
-            {QUALITY.title}
-          </h2>
-          <p class="mt-5 text-white/75 text-base leading-relaxed max-w-xl">
-            {QUALITY.intro}
-          </p>
-          <ul class="mt-8 flex flex-wrap gap-2">
-            {QUALITY.certifications.map((c) => (
-              <li class="border border-white/25 bg-white/5 text-white text-xs font-bold tracking-eyebrow uppercase px-3 py-1.5">
-                {c}
-              </li>
-            ))}
-          </ul>
-          <a
-            href={QUALITY.cta.href}
-            class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-          >
-            {QUALITY.cta.label} <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="relative bg-white p-3 md:p-4 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
-          <img
-            src={QUALITY.certificateImage}
-            alt="Callsun certificate document"
-            loading="lazy"
-            class="block w-full h-auto max-h-[560px] object-contain mx-auto"
-          />
-        </div>
-      </div>
+      <img
+        src={QUALITY.certificateImage}
+        alt="Quality You Can Verify — Callsun product certifications on display"
+        loading="lazy"
+        class="block w-full h-auto object-contain"
+      />
     </div>
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 5: Global Supply
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-bg border-t border-callsun-line">
+  <section>
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] gap-10 lg:gap-14 items-stretch">
-        {/* Left: dark text card */}
-        <div class="bg-callsun-ink text-white p-8 md:p-10 lg:p-12 flex flex-col justify-between shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]">
-          <div>
-            <Eyebrow class="mb-3">{GLOBAL_SUPPLY.eyebrow}</Eyebrow>
-            <h2 class="font-display text-3xl md:text-4xl font-extrabold leading-[1.15]">
-              {GLOBAL_SUPPLY.title}
-            </h2>
-            <p class="mt-5 text-white/75 text-base leading-relaxed">
-              {GLOBAL_SUPPLY.intro}
-            </p>
-            <a
-              href={GLOBAL_SUPPLY.cta.href}
-              class="mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-            >
-              {GLOBAL_SUPPLY.cta.label} <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <ul class="mt-10 pt-8 border-t border-white/10 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/80">
-            {GLOBAL_SUPPLY.markets.map((m) => (
-              <li class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-callsun-lime rounded-full inline-block" aria-hidden="true"></span>
-                {m}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Right: clean map on white, no overlay */}
-        <div class="relative bg-white p-4 md:p-6 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] flex items-center justify-center">
-          <img
-            src={GLOBAL_SUPPLY.mapImage}
-            alt="Callsun global supply and logistics coverage"
-            loading="lazy"
-            class="block w-full h-auto max-h-[480px] object-contain"
-          />
-        </div>
-      </div>
+      <img
+        src="/uploads/callsun/homepage/global-supply.jpg"
+        alt="Global Supply — Callsun manufacturing bases and logistics network"
+        loading="lazy"
+        class="block w-full h-auto object-cover"
+      />
     </div>
   </section>
 
@@ -322,7 +263,7 @@ const homeSchema = {
             VIDEO CENTER →
           </a>
         </div>
-        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
           {VIDEOS.map((v) => (
             <li>
               <a
@@ -347,7 +288,7 @@ const homeSchema = {
                   </div>
                 </div>
                 <div class="p-4 md:p-5">
-                  <h3 class="font-display font-bold text-base leading-snug">{v.title}</h3>
+                  <h3 class="font-display font-bold text-base leading-snug truncate" title={v.title}>{v.title}</h3>
                   <p class="mt-2 text-xs tracking-eyebrow uppercase text-callsun-muteLight">
                     {v.channel} <span aria-hidden="true">↗</span>
                   </p>

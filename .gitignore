@@ -8,3 +8,7 @@ _legacy/
 .DS_Store
 *.log
 /tmp/
+
+# image edit backups
+*.original.jpg
+*.original.png

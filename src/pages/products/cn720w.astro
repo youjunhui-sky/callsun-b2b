@@ -69,12 +69,12 @@ const breadcrumb = [
           <div class="mt-8 grid grid-cols-2 gap-3 md:gap-4 max-w-2xl">
             {[
               { label: 'POWER',       value: sku.keyStats.power },
-              { label: 'EFFICIENCY',  value: sku.keyStats.efficiency },
+              { label: 'Module Efficiency STC (%)',  value: sku.keyStats.efficiency, mixedCase: true },
               { label: 'DIMENSIONS',  value: sku.keyStats.dimensions },
               { label: 'WEIGHT',      value: sku.keyStats.weight },
             ].map((s) => (
               <div class="bg-white border border-callsun-line px-4 py-4 md:px-5 md:py-5">
-                <p class="text-[10px] md:text-[11px] font-bold tracking-eyebrow uppercase text-callsun-mute">
+                <p class={`text-[10px] md:text-[11px] font-bold tracking-eyebrow ${s.mixedCase ? 'normal-case' : 'uppercase'} text-callsun-mute`}>
                   {s.label}
                 </p>
                 <p class="mt-2 font-display text-xl md:text-2xl font-extrabold text-callsun-ink leading-none">
@@ -153,7 +153,7 @@ const breadcrumb = [
             <dl class="grid grid-cols-1 gap-y-3">
               {col.rows.map((r) => (
                 <div class="border-t border-white/10 pt-2">
-                  <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-white/60">{r.label}</dt>
+                  <dt class="text-[10px] font-bold tracking-eyebrow text-white/60">{r.label}</dt>
                   <dd class="mt-1 font-semibold text-sm text-white">{r.value}</dd>
                 </div>
               ))}

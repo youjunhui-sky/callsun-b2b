@@ -83,7 +83,7 @@ export const APPLICATIONS: ApplicationScenario[] = [
     linkedSolutions: [
       { label: '5.4kW Off-Grid Package', href: '/solutions/' },
       { label: '7.2kW Off-Grid Package', href: '/solutions/' },
-      { label: 'CN180W Anti-Shading Module', href: '/products/cn180w/' },
+      { label: 'CN180W Custom N-Type Bifacial Module', href: '/products/cn180w/' },
     ],
   },
 ];

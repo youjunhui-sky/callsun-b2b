@@ -52,29 +52,29 @@ export const HOME_PRODUCTS = [
     tag: 'STANDARD',
   },
   {
-    model: 'CN210W',
-    name: '210W Custom N-Type Bifacial',
-    href: '/products/cn210w/',
-    image: '/uploads/callsun/products/210w/front-back.jpg',
-    tag: 'CUSTOM',
-  },
-  {
     model: 'CN180W',
-    name: '180W Custom N-Type Anti-Shading Bifacial',
+    name: 'CN180W Custom N-Type Bifacial Module',
     href: '/products/cn180w/',
     image: '/uploads/callsun/products/180w/hero-05.jpg',
     tag: 'CUSTOM',
   },
   {
     model: 'CN200W',
-    name: '200W Custom N-Type 16BB Bifacial',
+    name: 'CN200W Custom N-Type Bifacial Module',
     href: '/products/cn200w/',
     image: '/uploads/callsun/products/200w/front-back.jpg',
     tag: 'CUSTOM',
   },
   {
+    model: 'CN210W',
+    name: 'CN210W Custom N-Type Bifacial Module',
+    href: '/products/cn210w/',
+    image: '/uploads/callsun/products/210w/front-back.jpg',
+    tag: 'CUSTOM',
+  },
+  {
     model: 'CN215W',
-    name: '215W Custom N-Type Anti-Shading Bifacial',
+    name: 'CN215W Custom N-Type Bifacial Module with Anti-Shading',
     href: '/products/cn215w/',
     image: '/uploads/callsun/products/215w/front-back.jpg',
     tag: 'CUSTOM',
@@ -87,7 +87,7 @@ export const QUALITY = {
   intro:
     'Quality control spans raw materials, in-line production and finished-product testing. Certification documents and product evaluations are available on request.',
   certifications: ['CE', 'RoHS', 'IEC', 'ISO 9001', 'ISO 14001', 'ISO 45001'],
-  certificateImage: '/uploads/callsun/homepage/certificate.jpg',
+  certificateImage: '/uploads/callsun/homepage/certificates.jpg',
   cta: { label: 'VIEW CERTIFICATES', href: '/resources/' },
 };
 
@@ -138,16 +138,17 @@ export const ARTICLES = [
   },
 ];
 
-// YouTube 视频 — 2026-07-23 客户提供 5 个链接（首页只展 3 个，Video Center 展全部）
+// YouTube 视频 — 2026-07-23 客户提供 5 个链接
+// 2026-08-03 东家要求首页 FEATURED VIDEOS 展示全部 5 个
 export const VIDEO_ITEMS = [
-  { id: 'ckNe2EctH5w', title: 'Callsun 450W Bifacial Solar Panel Review', channel: 'ReeWay Outdoors' },
-  { id: 'zSQSWBTLaL8', title: 'Callsun 450W N-Type: Testing and Review',   channel: 'Our Black Cat Cottage' },
-  { id: 'Qa-0HqwHgR0', title: '215W Anti-Shading Lab Test',                 channel: 'Callsun' },
-  { id: 'JN9tKhtubUM', title: 'Callsun Solar Panel Field Test',              channel: 'Callsun' },
-  { id: 'iMB6SgkuG_w', title: 'Callsun Product Overview',                    channel: 'Callsun' },
+  { id: 'ckNe2EctH5w', title: 'CALLSUN 215W Anti-Shading Lab Tested',                          channel: 'Callsun' },
+  { id: 'zSQSWBTLaL8', title: 'Callsun 200W Bifacial Solar Panel Review: Shade Testing',        channel: 'Cleversolarpower by Nick' },
+  { id: 'Qa-0HqwHgR0', title: 'Callsun 450W Bifacial Solar Panel — MORE for LESS?!',            channel: 'ReeWray Outdoors' },
+  { id: 'JN9tKhtubUM', title: 'Solar Just Took a Huge Leap Forward! — CallSun 215 Anti-Shade',  channel: "JOHNNY'S WEEKENDS" },
+  { id: 'iMB6SgkuG_w', title: 'I Tested CallSun\'s New 450W Bifacial Solar Panel — Real World', channel: "JOHNNY'S WEEKENDS" },
 ];
 
-export const VIDEOS = VIDEO_ITEMS.slice(0, 3).map((v) => ({
+export const VIDEOS = VIDEO_ITEMS.map((v) => ({
   title: v.title,
   channel: v.channel,
   href: `https://www.youtube.com/watch?v=${v.id}`,

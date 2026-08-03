@@ -79,10 +79,10 @@ export const STANDARD_L2 = {
       description:
         'Mid-range 144-cell format for distributed PV plants and small commercial projects that need higher generation per unit area without stepping up to full utility-scale module sizes.',
       specs: [
-        { label: 'DIMENSIONS', value: '2178 × 1134 × 30 mm' },
+        { label: 'DIMENSIONS', value: '2278 × 1134 × 30 mm' },
         { label: 'WEIGHT', value: '30 kg' },
         { label: 'OPERATING POINT', value: 'Vmp 42.60 V · Imp 13.62 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 51.4 V · Isc 14.37 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: '51.47 V · Isc 14.37 A' },
         { label: 'CONSTRUCTION', value: '144 cells · 2.0 mm double glass' },
       ],
       images: [
@@ -131,7 +131,7 @@ export const STANDARD_L2 = {
       specs: [
         { label: 'DIMENSIONS', value: '2384 × 1303 × 33 mm' },
         { label: 'WEIGHT', value: '37.9 kg' },
-        { label: 'OPERATING POINT', value: 'Vmp 41.0 V · Imp 17.55 A' },
+        { label: 'OPERATING POINT', value: '41.03 V · Imp 17.55 A' },
         { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 49.28 V · Isc 18.55 A' },
         { label: 'CONSTRUCTION', value: '132 cells · 2.0 mm dual glass' },
       ],

@@ -91,11 +91,11 @@ const {
           form.reset();
         } else {
           status.className = 'text-[11px] font-semibold text-red-600';
-          status.textContent = json.message || 'Submission failed. Please try again or email sales@callsun.com';
+          status.textContent = json.message || 'Submission failed. Please try again or email sales@callsunsolar.com';
         }
       } catch (err) {
         status.className = 'text-[11px] font-semibold text-red-600';
-        status.textContent = 'Network error. Please try again or email sales@callsun.com';
+        status.textContent = 'Network error. Please try again or email sales@callsunsolar.com';
       } finally {
         btn.disabled = false;
         btn.classList.remove('opacity-60', 'cursor-wait');
