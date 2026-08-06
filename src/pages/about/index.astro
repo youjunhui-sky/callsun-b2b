@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import SocialIcons from '@/components/SocialIcons.astro';
 import {
   STATS,
   PRINCIPLES,
@@ -38,7 +39,7 @@ const pageDescription =
       <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
         PV Module Brand &amp; Manufacturer
       </p>
-      <h1 class="mt-4 text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-[1.02] max-w-4xl">
+      <h1 class="mt-4 whitespace-normal lg:whitespace-nowrap text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-display font-extrabold leading-[1.02]">
         Photovoltaic Module Brand &amp; Manufacturer
       </h1>
       <p class="mt-6 text-base md:text-lg text-white/80 max-w-2xl leading-relaxed">
@@ -167,16 +168,10 @@ const pageDescription =
   {/* ---------- 5) PRODUCT PORTFOLIO — dual text cards (no images) ---------- */}
   <section class="bg-callsun-bg py-16 md:py-20 border-t border-callsun-line">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
-      <div class="max-w-3xl">
-        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+      <div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
           Product Portfolio
-        </p>
-        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
-          Standard modules at scale. Custom modules engineered to fit.
         </h2>
-        <p class="mt-3 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
-          STANDARD PV MODULES AT SCALE. CUSTOM MODULES ENGINEERED TO FIT.
-        </p>
       </div>
 
       <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -185,24 +180,25 @@ const pageDescription =
             {/* left lime rail */}
             <div class="absolute inset-y-0 left-0 w-1 bg-callsun-lime" aria-hidden="true"></div>
 
-            <h3 class="font-display font-extrabold text-callsun-ink text-2xl md:text-3xl leading-tight">
-              {c.title}
-            </h3>
-            <p class="mt-3 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
-              {c.eyebrow}
-            </p>
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="font-display font-extrabold text-callsun-ink text-2xl md:text-3xl leading-tight">
+                {c.title}
+              </h3>
+              <a
+                href={c.href}
+                class="inline-flex items-center gap-2 shrink-0 bg-callsun text-callsun-ink font-bold text-xs tracking-wider px-4 py-2.5 hover:bg-callsun-limeHi transition-colors"
+              >
+                View More <span aria-hidden="true">→</span>
+              </a>
+            </div>
             <p class="mt-5 text-base text-callsun-mute leading-relaxed">
               {c.body}
             </p>
 
-            <p class="mt-8 font-display font-extrabold text-callsun-ink text-2xl md:text-3xl leading-none tracking-wide">
-              {c.powers.join(' · ')}
-            </p>
-
             <div class="mt-6 flex flex-wrap gap-2">
-              {c.tags.map((t) => (
-                <span class="inline-flex items-center bg-callsun-tint text-callsun-limeLo text-xs font-display font-extrabold uppercase tracking-wide rounded-full px-3 py-1.5">
-                  {t}
+              {c.powers.map((p) => (
+                <span class="inline-flex items-center bg-callsun-tint text-callsun-limeLo text-base font-display font-extrabold uppercase tracking-wide rounded-full px-4 py-2">
+                  {p}
                 </span>
               ))}
             </div>
@@ -212,37 +208,7 @@ const pageDescription =
     </div>
   </section>
 
-  {/* ---------- 6) VERIFIED QUALITY — dark grid ---------- */}
-  <section class="bg-callsun-ink text-white py-16 md:py-20 border-t border-white/10">
-    <div class="max-w-wide mx-auto px-4 lg:px-6">
-      <div class="max-w-3xl">
-        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
-          Verified Quality
-        </p>
-        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
-          Verified quality at every stage
-        </h2>
-        <p class="mt-4 text-base md:text-lg text-white/70 max-w-2xl leading-relaxed">
-          Quality control covers incoming materials, in-process semi-finished goods and finished modules. Inspection data is captured and exportable, and modules are IEC-tested against target power ratings before release from the factory.
-        </p>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-        {QC_TESTS.map((q) => (
-          <div class="bg-callsun-panel shadow-card p-6 md:p-7 border-l-4 border-callsun-lime flex flex-col">
-            <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
-              {q.eyebrow}
-            </p>
-            <h3 class="mt-3 font-display font-bold text-white text-lg md:text-xl leading-snug">
-              {q.title}
-            </h3>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* ---------- 7) GLOBAL SUPPLY — text overlay anchored at bottom-left over the open ocean area above Patagonia (07-26) ---------- */}
+  {/* ---------- 6) GLOBAL SUPPLY — map (moved before Verified Quality 08-06) ---------- */}
   <section class="bg-callsun-bg border-t border-callsun-line">
     <figure class="relative">
       <img
@@ -251,17 +217,35 @@ const pageDescription =
         class="w-full h-auto block"
         loading="lazy"
       />
-      {/* Text overlay in the bottom-left open-ocean area (above South American Patagonia / Tierra del Fuego). bottom-[10–14%] keeps the block clear of the southern South American landmass. */}
-      <div class="absolute left-0 bottom-[10%] md:bottom-[12%] lg:bottom-[14%] px-6 md:px-10 lg:px-14 max-w-sm md:max-w-md lg:max-w-lg pointer-events-none text-left">
-        <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">Global Supply</p>
-        <h2 class="mt-3 text-2xl md:text-3xl lg:text-4xl font-display font-extrabold leading-tight text-callsun-ink">
-          Global Supply<br />for Long-Term<br />Channel Partnerships
-        </h2>
-        <p class="mt-4 text-sm md:text-base text-callsun-ink/75 leading-relaxed">
-          Supported by multiple manufacturing regions and established logistics coverage, Callsun helps partners coordinate supply, delivery and long-term market development.
-        </p>
-      </div>
+      {/* Text overlay removed per client request (would cover map text) */}
     </figure>
+  </section>
+
+  {/* ---------- 7) VERIFIED QUALITY — light grid (white bg 08-06) ---------- */}
+  <section class="bg-white py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Verified Quality
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight text-callsun-ink">
+          Verified quality at every stage
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {QC_TESTS.map((q) => (
+          <div class="bg-callsun-surface border border-callsun-line shadow-card p-6 md:p-7 border-l-4 border-l-callsun-lime flex flex-col">
+            <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+              {q.eyebrow}
+            </p>
+            <h3 class="mt-3 font-display font-bold text-callsun-ink text-lg md:text-xl leading-snug">
+              {q.title}
+            </h3>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
   {/* ---------- 9) CTA — dark w/ no bg ---------- */}
@@ -269,22 +253,28 @@ const pageDescription =
     {/* bg image removed per client request */}
 
     <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
-      <div class="max-w-3xl">
-        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
-          Built on Advanced Manufacturing and Verified Quality
-        </p>
-        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
-          More energy value from every limited space
-        </h2>
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
+        <div>
+          <h2 class="whitespace-normal lg:whitespace-nowrap text-2xl md:text-3xl lg:text-[clamp(1.1rem,1.85vw,2.4rem)] font-display font-extrabold leading-tight">
+            More energy value from every limited space
+          </h2>
 
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a
-            href="/contact/"
-            class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-          >
-            Plan Your Custom Module Program
-            <span aria-hidden="true">→</span>
-          </a>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href="/contact/"
+              class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+            >
+              Plan Your Custom Module Program
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:justify-self-end">
+          <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold text-center lg:text-right">
+            Connect with Us
+          </p>
+          <SocialIcons align="end" class="mt-5" />
         </div>
       </div>
     </div>

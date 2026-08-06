@@ -212,3 +212,27 @@ nohup ./node_modules/.bin/astro dev --host 0.0.0.0 --port 4323 > /tmp/dev.log 2>
   - 多个 public/uploads 新增图（gallery, globals, etc）
 
 未等东家 commit（按 2026-06-10/15 规矩：写完代码 + 走 SSH 隧道看效果 → 等东家说 commit）。
+
+## 首页 FEATURED VIDEOS 展示规则 (2026-08-04 东家定)
+
+- **首页只展示 3 个精选**（VIDEO_ITEMS.slice(0, 3)），不要全部 5 个全塞首页
+- "Featured" = 精选 = 筛子后的子集，不是"全部 featured"
+- 其余 2 个（JN9tKhtubUM / iMB6SgkuG_w）走 `VIDEO CENTER →` 链接到 `/resources/#video-center` 看全部 5 个
+- **响应式断点**：3 列布局用 `grid-cols-1 sm:grid-cols-2 md:grid-cols-3`（mobile 1 列 / sm 2 列 / md+ 3 列）
+  - 别再用 `lg:grid-cols-5` (1024px+)，1024px 以下会被卡在 3 列看不到全部
+- 首页 grid 现状：`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5`
+- 数据位置：`src/data/homepage.ts` 的 `VIDEOS = VIDEO_ITEMS.slice(0, 3).map(...)`
+
+## 新闻详情页布局规则 (2026-08-04 东家定)
+
+详情页 `src/pages/news/[...slug].astro` 的视觉层级按以下规则：
+
+1. **Hero 区**（深黑 `bg-callsun-ink`，含标题 + description + meta）：`max-w-4xl` (896px) 容器
+2. **Cover 图** + **Body 正文**——**同一 section**，**同 `max-w-3xl` (768px) 容器**：
+   - 不要拆独立 cover section，会造成 cover pb + body pt 累加成 ~100px 间距
+   - body section 用 `pt-8 md:pt-12 pb-14 md:pb-20 bg-white`
+   - cover div 用 `aspect-[16/9] overflow-hidden bg-black border border-callsun-line mb-10 md:mb-12`
+   - cover 直接放在 `<div class="blog-content">` 上面作为兄弟元素
+3. **正文中 inline 图片**（`.blog-content img`）：`width: 100%`，自然跟 body 容器一致
+4. **背景色**：hero 用 `bg-callsun-ink`（深黑），cover + body 用 `bg-white`（白），CTA 用 `bg-callsun-tint`（浅暖），Related 用 `bg-callsun-bg`（浅灰）
+5. **cover 图边框**：`border border-callsun-line`（浅灰），不能用 `border-white/10`（在白底上不可见）

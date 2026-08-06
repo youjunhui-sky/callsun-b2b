@@ -4,10 +4,10 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import InquiryForm from '@/components/InquiryForm.astro';
+import SocialIcons from '@/components/SocialIcons.astro';
 import { SITE } from '@/data/site';
 import {
   HERO,
-  STATS,
   HOME_PRODUCTS,
   QUALITY,
   GLOBAL_SUPPLY,
@@ -37,7 +37,7 @@ const homeSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section id="hero-carousel" class="relative overflow-hidden text-white">
     {/* Slides: 5 designed hero images (text baked in). Aspect matches original image (~1947:808). */}
-    <div class="relative w-full" style="aspect-ratio: 1947 / 808;">
+    <div class="relative w-full h-[640px] lg:h-[856px]">
       {[1, 2, 3, 4, 5].map((n) => (
         <img
           src={`/uploads/callsun/home/hero-carousel/${n}.jpg`}
@@ -46,39 +46,36 @@ const homeSchema = {
           decoding="async"
           fetchpriority={n === 1 ? 'high' : 'auto'}
           class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${n === 1 ? 'opacity-100' : 'opacity-0'}`}
-          style={n === 2 ? 'object-position: 25% center;' : 'object-position: center;'}
+          style='object-position: center;'
           data-slide={n}
         />
       ))}
 
-      {/* Dot nav (bottom center, over image) */}
-      <div class="absolute bottom-4 md:bottom-6 left-0 right-0 flex justify-center gap-3 z-10">
-        {[1, 2, 3, 4, 5].map((n) => (
-          <button
-            type="button"
-            aria-label={`Slide ${n}`}
-            class={`h-2.5 rounded-full transition-all duration-300 ${n === 1 ? 'bg-callsun w-6' : 'bg-white/60 hover:bg-white/80 w-2.5'}`}
-            data-dot={n}
-          ></button>
-        ))}
-      </div>
+      {/* Prev / Next arrows */}
+      <button
+        type="button"
+        aria-label="Previous slide"
+        data-prev
+        class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        aria-label="Next slide"
+        data-next
+        class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Dot nav removed — arrows only */}
     </div>
 
-    {/* Section 2: 4-KPI Stats Strip */}
-    <div class="relative bg-callsun-ink border-t border-white/10">
-      <dl class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-10 md:py-12 grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/15">
-        {STATS.map((s, i) => (
-          <div class="px-4 md:px-6 py-4 md:py-2 text-center">
-            <dd class="font-display text-3xl md:text-4xl lg:text-[42px] font-extrabold text-white leading-none">
-              {s.value}
-            </dd>
-            <dt class="mt-3 text-[10px] md:text-xs tracking-eyebrow uppercase text-white/70">
-              {s.label}
-            </dt>
-          </div>
-        ))}
-      </dl>
-    </div>
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
@@ -86,16 +83,10 @@ const homeSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="mb-10 md:mb-14">
-        <Eyebrow class="mb-3">PV MODULE PORTFOLIO</Eyebrow>
-        <p class="text-callsun-mute text-base leading-relaxed">
-          Four standard modules for efficient bulk procurement, plus four custom solutions for project-specific needs — all on the same N-type bifacial platform for consistent quality and flexible selection.
-        </p>
-      </div>
 
       <div class="mb-10 md:mb-14">
         <div class="flex items-baseline gap-3 md:gap-4 mb-5 md:mb-6">
-          <h3 class="font-display font-extrabold text-callsun-ink text-base md:text-lg uppercase tracking-eyebrow shrink-0">Standard PV Modules</h3>
+          <h3 class="font-display font-extrabold text-callsun-lime text-base md:text-lg uppercase tracking-eyebrow shrink-0">Standard PV Modules</h3>
           <div class="flex-1 h-px bg-callsun-line"></div>
         </div>
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
@@ -134,7 +125,7 @@ const homeSchema = {
 
       <div>
         <div class="flex items-baseline gap-3 md:gap-4 mb-5 md:mb-6">
-          <h3 class="font-display font-extrabold text-callsun-ink text-base md:text-lg uppercase tracking-eyebrow shrink-0">Custom PV Modules</h3>
+          <h3 class="font-display font-extrabold text-callsun-lime text-base md:text-lg uppercase tracking-eyebrow shrink-0">Custom PV Modules</h3>
           <div class="flex-1 h-px bg-callsun-line"></div>
         </div>
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
@@ -202,12 +193,12 @@ const homeSchema = {
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════
-       Section 6: Technical Content — Latest Articles + Featured Videos
+       Section 6: Technical Content (Articles + Videos)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-bg">
+  <section class="bg-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
       <div class="max-w-3xl mb-10 md:mb-14">
-        <Eyebrow class="mb-3">TECHNICAL CONTENT FROM CALLSUN</Eyebrow>
+        <Eyebrow color="lime" class="mb-3">INSIGHTS &amp; VIDEOS</Eyebrow>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink">
           Technical Content from Callsun
         </h2>
@@ -216,10 +207,10 @@ const homeSchema = {
         </p>
       </div>
 
-      {/* Articles */}
+      {/* Latest Articles */}
       <div class="mb-14">
         <div class="flex items-center justify-between mb-6">
-          <Eyebrow color="ink">LATEST ARTICLES</Eyebrow>
+          <Eyebrow color="lime">LATEST ARTICLES</Eyebrow>
           <a href="/news/" class="text-xs font-bold tracking-eyebrow uppercase text-callsun-mute hover:text-callsun-ink transition-colors">
             VIEW ALL →
           </a>
@@ -255,22 +246,22 @@ const homeSchema = {
         </ul>
       </div>
 
-      {/* Videos */}
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <Eyebrow color="ink">FEATURED VIDEOS</Eyebrow>
+      {/* Featured Videos */}
+      <div id="featured-videos">
+        <div class="flex items-center justify-between mb-8 md:mb-10">
+          <Eyebrow color="lime">FEATURED VIDEOS</Eyebrow>
           <a href="/resources/#video-center" class="text-xs font-bold tracking-eyebrow uppercase text-callsun-mute hover:text-callsun-ink transition-colors">
             VIDEO CENTER →
           </a>
         </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
           {VIDEOS.map((v) => (
             <li>
               <a
                 href={v.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group block bg-callsun-ink text-white overflow-hidden"
+                class="group block bg-white text-callsun-ink overflow-hidden border border-white/20 hover:border-callsun-lime transition-colors"
               >
                 <div class="relative aspect-video overflow-hidden bg-black">
                   <img
@@ -288,8 +279,11 @@ const homeSchema = {
                   </div>
                 </div>
                 <div class="p-4 md:p-5">
-                  <h3 class="font-display font-bold text-base leading-snug truncate" title={v.title}>{v.title}</h3>
-                  <p class="mt-2 text-xs tracking-eyebrow uppercase text-callsun-muteLight">
+                  <p class="text-[10px] font-bold tracking-eyebrow uppercase text-callsun-lime">VIDEO</p>
+                  <h3 class="mt-2 font-display font-bold text-base leading-snug text-callsun-ink truncate">
+                    {v.title}
+                  </h3>
+                  <p class="mt-2 text-xs tracking-eyebrow uppercase text-callsun-mute">
                     {v.channel} <span aria-hidden="true">↗</span>
                   </p>
                 </div>
@@ -315,6 +309,8 @@ const homeSchema = {
           <p class="mt-6 text-white/70 text-base leading-relaxed max-w-lg">
             {INQUIRY.intro}
           </p>
+
+          <SocialIcons class="mt-8" />
         </div>
 
         <InquiryForm formSource="homepage" formTitle={INQUIRY.formTitle} />
@@ -329,7 +325,7 @@ const homeSchema = {
     let timer = null;
 
     const slides = document.querySelectorAll('[data-slide]');
-    const dots = document.querySelectorAll('[data-dot]');
+    const section = document.getElementById('hero-carousel');
 
     function goTo(n) {
       if (n === current) return;
@@ -342,21 +338,15 @@ const homeSchema = {
         next.classList.remove('opacity-0');
         next.classList.add('opacity-100');
       }
-      dots.forEach((d, i) => {
-        if (i + 1 === n) {
-          d.classList.remove('bg-white/50', 'hover:bg-white/70');
-          d.classList.add('bg-callsun', 'w-6');
-        } else {
-          d.classList.remove('bg-callsun', 'w-6');
-          d.classList.add('bg-white/50', 'hover:bg-white/70');
-          d.classList.remove('w-6');
-        }
-      });
       current = n;
     }
 
     function next() {
       goTo(current < TOTAL ? current + 1 : 1);
+    }
+
+    function prev() {
+      goTo(current > 1 ? current - 1 : TOTAL);
     }
 
     function startAuto() {
@@ -371,17 +361,13 @@ const homeSchema = {
       }
     }
 
-    // Dot clicks
-    dots.forEach((d) => {
-      d.addEventListener('click', () => {
-        const n = parseInt(d.getAttribute('data-dot'), 10);
-        goTo(n);
-        startAuto();
-      });
-    });
+    // Arrow clicks
+    const prevBtn = document.querySelector('[data-prev]');
+    const nextBtn = document.querySelector('[data-next]');
+    if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
 
     // Pause on hover
-    const section = document.getElementById('hero-carousel');
     if (section) {
       section.addEventListener('mouseenter', stopAuto);
       section.addEventListener('mouseleave', startAuto);

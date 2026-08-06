@@ -142,7 +142,7 @@ export const KIT_5_4KW: KitDetail = {
           { label: 'RATED AC FREQUENCY',       value: '50 / 60 Hz' },
           { label: 'WAVEFORM',                 value: 'Pure sine wave' },
           { label: 'SWITCH TIME',              value: '10 ms (typical value)' },
-          { label: 'PARALLEL CAPACITY',        value: '1 to 6 units' },
+          { label: 'PARALLEL CAPACITY',        value: '1 - 6 units' },
         ],
       },
       {
@@ -177,7 +177,7 @@ export const KIT_5_4KW: KitDetail = {
           { label: 'DIMENSIONS',           value: '648 \u00d7 410 \u00d7 140 mm' },
           { label: 'WEIGHT',               value: '21.7 kg' },
           { label: 'PROTECTION DEGREE',    value: 'IP20, indoor only' },
-          { label: 'OPERATING TEMP',       value: '-10 to +55\u00b0C (derated > 45\u00b0C)' },
+          { label: 'OPERATING TEMP',       value: '-10°C - +55\u00b0C (derated > 45\u00b0C)' },
           { label: 'NOISE',                value: '< 60 dB' },
           { label: 'BUILT-IN INTERFACE',   value: 'RS485 \u00b7 CAN \u00b7 USB \u00b7 dry contact' },
           { label: 'EXTERNAL MODULE',      value: 'Wi-Fi / GPRS (optional)' },

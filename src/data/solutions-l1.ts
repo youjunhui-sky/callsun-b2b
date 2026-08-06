@@ -19,12 +19,9 @@ export interface SolutionKit {
 }
 
 export const SOLUTIONS_L1 = {
-  breadcrumb: [
-    { label: 'SOLUTIONS', href: '/solutions/' },
-  ],
+  breadcrumb: [],
   hero: {
     title: 'Solar System Solutions',
-    subtitle: 'Grid-tied and off-grid system configurations.',
     eyebrow: 'SOLUTIONS',
   },
   gridTied: {

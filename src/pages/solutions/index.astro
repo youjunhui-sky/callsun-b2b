@@ -52,7 +52,7 @@ const offGridFeatured  = offGridKits[0];
 
       {/* Featured hero: full designed image (keeps designer's title / specs / CTA panel) */}
       <div
-        class="relative overflow-hidden"
+        class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]"
         style="aspect-ratio: 1947 / 808;"
       >
         <img
@@ -75,7 +75,7 @@ const offGridFeatured  = offGridKits[0];
             href={`/solutions/${k.slug}/`}
             class="group grid grid-cols-1 md:grid-cols-5 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
           >
-            <div class="md:col-span-3 relative bg-callsun-tint aspect-square">
+            <div class="md:col-span-3 relative bg-white aspect-square">
               <img
                 src={k.cardImage}
                 alt=""
@@ -83,7 +83,7 @@ const offGridFeatured  = offGridKits[0];
                 class="absolute inset-0 w-full h-full object-contain p-4 md:p-6"
               />
             </div>
-            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3">
+            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3 bg-callsun-tint">
               <h4 class="font-display text-lg md:text-xl font-extrabold text-callsun-ink leading-snug">
                 {k.short}
               </h4>
@@ -103,12 +103,12 @@ const offGridFeatured  = offGridKits[0];
   {/* ═══════════════════════════════════════════════════════════════════════
        Off-Grid block  (featured split has hero image as bg)
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-tint border-b border-callsun-line">
+  <section class="bg-white border-b border-callsun-line">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
 
       {/* Featured hero: full designed image (keeps designer's title / specs / CTA panel) */}
       <div
-        class="relative overflow-hidden"
+        class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]"
         style="aspect-ratio: 1942 / 809;"
       >
         <img
@@ -131,7 +131,7 @@ const offGridFeatured  = offGridKits[0];
             href={`/solutions/${k.slug}/`}
             class="group grid grid-cols-1 md:grid-cols-5 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white"
           >
-            <div class="md:col-span-3 relative bg-callsun-tint aspect-square">
+            <div class="md:col-span-3 relative bg-white aspect-square">
               <img
                 src={k.cardImage}
                 alt=""
@@ -139,7 +139,7 @@ const offGridFeatured  = offGridKits[0];
                 class="absolute inset-0 w-full h-full object-contain p-4 md:p-6"
               />
             </div>
-            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3">
+            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3 bg-callsun-tint">
               <h4 class="font-display text-lg md:text-xl font-extrabold text-callsun-ink leading-snug">
                 {k.short}
               </h4>
@@ -164,7 +164,7 @@ const offGridFeatured  = offGridKits[0];
       <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
         <div class="md:col-span-3">
           <Eyebrow class="mb-3">{SOLUTIONS_L1.inquiry.eyebrow}</Eyebrow>
-          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+          <h2 class="font-display whitespace-normal lg:whitespace-nowrap text-3xl md:text-4xl lg:text-[clamp(1.4rem,2.4vw,3rem)] font-extrabold text-white leading-[1.1]">
             {SOLUTIONS_L1.inquiry.title}
           </h2>
           <p class="mt-4 text-white/70 text-base md:text-lg leading-relaxed max-w-2xl">

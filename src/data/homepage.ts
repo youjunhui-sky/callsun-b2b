@@ -139,7 +139,7 @@ export const ARTICLES = [
 ];
 
 // YouTube 视频 — 2026-07-23 客户提供 5 个链接
-// 2026-08-03 东家要求首页 FEATURED VIDEOS 展示全部 5 个
+// 首页 FEATURED VIDEOS 只展示前 3 个精选，剩余去 VIDEO CENTER 看全部
 export const VIDEO_ITEMS = [
   { id: 'ckNe2EctH5w', title: 'CALLSUN 215W Anti-Shading Lab Tested',                          channel: 'Callsun' },
   { id: 'zSQSWBTLaL8', title: 'Callsun 200W Bifacial Solar Panel Review: Shade Testing',        channel: 'Cleversolarpower by Nick' },
@@ -148,7 +148,7 @@ export const VIDEO_ITEMS = [
   { id: 'iMB6SgkuG_w', title: 'I Tested CallSun\'s New 450W Bifacial Solar Panel — Real World', channel: "JOHNNY'S WEEKENDS" },
 ];
 
-export const VIDEOS = VIDEO_ITEMS.map((v) => ({
+export const VIDEOS = VIDEO_ITEMS.slice(0, 3).map((v) => ({
   title: v.title,
   channel: v.channel,
   href: `https://www.youtube.com/watch?v=${v.id}`,

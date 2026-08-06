@@ -28,6 +28,7 @@ const breadcrumb = [
        Section 1: Hero (light grid bg, 2-col: left text+stats+CTAs / right image)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="relative overflow-hidden bg-callsun-tint">
+    {/* Grid pattern overlay */}
     <div
       class="absolute inset-0 opacity-[0.35]"
       aria-hidden="true"
@@ -38,8 +39,7 @@ const breadcrumb = [
       <Breadcrumbs items={breadcrumb} theme="light" />
 
       <div class="mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
-        {/* MOBILE: image first, then text. DESKTOP: text left, image right. */}
-        {/* Product image (lg:col-span-2, order-first on mobile) */}
+        {/* RIGHT: product image (lg:col-span-2, mobile-first) */}
         <div class="lg:col-span-2 order-first lg:order-last">
           <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
             <div class="relative aspect-[4/3] sm:aspect-[4/5]">
@@ -47,13 +47,13 @@ const breadcrumb = [
                 src={sku.heroImage}
                 alt={sku.model}
                 loading="eager"
-                class="absolute inset-0 w-full h-full object-contain p-4 sm:p-6 md:p-8"
+                class="absolute inset-0 w-full h-full object-contain p-6 md:p-8"
               />
             </div>
           </div>
         </div>
 
-        {/* Text + stats + CTAs (lg:col-span-3) */}
+        {/* LEFT: text + stats + CTAs (lg:col-span-3) */}
         <div class="lg:col-span-3">
           <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-ink leading-[1.02]">
             {sku.model}
@@ -68,10 +68,10 @@ const breadcrumb = [
           {/* 2x2 stat cards */}
           <div class="mt-8 grid grid-cols-2 gap-3 md:gap-4 max-w-2xl">
             {[
-              { label: 'POWER',            value: sku.keyStats.power },
+              { label: 'POWER',       value: sku.keyStats.power },
               { label: 'CELL EFFICIENCY',  value: sku.keyStats.efficiency },
-              { label: 'DIMENSIONS',       value: sku.keyStats.dimensions },
-              { label: 'WEIGHT',           value: sku.keyStats.weight },
+              { label: 'DIMENSIONS',  value: sku.keyStats.dimensions },
+              { label: 'WEIGHT',      value: sku.keyStats.weight },
             ].map((s) => (
               <div class="bg-white border border-callsun-line px-4 py-4 md:px-5 md:py-5">
                 <p class="text-[10px] md:text-[11px] font-bold tracking-eyebrow uppercase text-callsun-mute">
@@ -86,12 +86,16 @@ const breadcrumb = [
 
           {/* CTAs */}
           <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#inquiry"
-              class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
-            >
-              TECHNICAL INFORMATION <span aria-hidden="true">→</span>
-            </a>
+            {sku.datasheet && (
+              <a
+                href={sku.datasheet}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+              >
+                DOWNLOAD DATASHEET <span aria-hidden="true">↓</span>
+              </a>
+            )}
             <a
               href="#inquiry"
               class="inline-flex items-center gap-2 bg-white border-2 border-callsun-line text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun-ink transition-colors"
@@ -99,7 +103,7 @@ const breadcrumb = [
               REQUEST A QUOTE <span aria-hidden="true">→</span>
             </a>
           </div>
-        </div>
+        
       </div>
     </div>
   </section>
@@ -138,9 +142,9 @@ const breadcrumb = [
 
       <div class="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         {[
-          { title: 'ELECTRICAL',             rows: sku.tech.electrical },
-          { title: 'MECHANICAL',             rows: sku.tech.mechanical },
-          { title: 'PERFORMANCE & DESIGN',   rows: sku.tech.thermal },
+          { title: 'ELECTRICAL',              rows: sku.tech.electrical },
+          { title: 'MECHANICAL',              rows: sku.tech.mechanical },
+          { title: 'TEMPERATURE & DELIVERY',  rows: sku.tech.thermal },
         ].map((col) => (
           <div class="bg-white/5 border border-white/10 p-6 md:p-7">
             <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime mb-5">
@@ -159,7 +163,7 @@ const breadcrumb = [
       </div>
 
       <p class="mt-8 text-center text-white/50 text-xs md:text-sm">
-        *Rear-side gain varies with surface reflectivity, mounting height and installation conditions.
+        STC: Irradiance 1000 W/m² · Cell temperature 25°C · Air mass 1.5
       </p>
     </div>
   </section>
@@ -181,17 +185,26 @@ const breadcrumb = [
           <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
             {sku.model} product resources
           </h2>
-          <p class="mt-4 text-callsun-mute text-sm md:text-base leading-relaxed max-w-sm">
-            Product specifications, technical documentation and project inquiry.
-          </p>
+
+          <div class="mt-6 space-y-2">
+            {sku.certifications.map((c) => (
+              <p class="text-sm md:text-base text-callsun-mute font-medium">
+                {c}
+              </p>
+            ))}
+          </div>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#inquiry"
-              class="inline-flex items-center gap-2 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors"
-            >
-              TECHNICAL INFORMATION <span aria-hidden="true">→</span>
-            </a>
+            {sku.datasheet && (
+              <a
+                href={sku.datasheet}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors"
+              >
+                DOWNLOAD DATASHEET <span aria-hidden="true">↓</span>
+              </a>
+            )}
             <a
               href="#inquiry-form"
               class="inline-flex items-center gap-2 bg-white border-2 border-callsun-line text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun-ink transition-colors"

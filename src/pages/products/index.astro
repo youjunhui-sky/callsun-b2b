@@ -65,9 +65,17 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
             ? 'mt-8 inline-flex items-center gap-2 border-2 border-callsun text-callsun-lime font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors'
             : 'mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors';
           const thumbCols = null;
-          const arrowClass = dark
-            ? 'absolute top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border-2 border-callsun text-callsun-lime bg-callsun-ink/70 hover:bg-callsun hover:text-callsun-ink transition-colors rounded-full z-10 shadow-lg'
-            : 'absolute top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border-2 border-callsun text-callsun bg-white/90 hover:bg-callsun hover:text-callsun-ink transition-colors rounded-full z-10 shadow-lg';
+          const arrowClass =
+            'absolute top-1/2 -translate-y-1/2 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors z-10';
+          const arrowIcon = (dir) => (
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              {dir === 'prev' ? (
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              ) : (
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              )}
+            </svg>
+          );
           return (
             <article class={`relative overflow-hidden border-t-4 border-callsun ${bg} shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]`}>
               <div class="grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start py-6 md:py-8 lg:py-12">
@@ -87,12 +95,12 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                       ))}
                     </div>
                     <button type="button" data-gallery-prev aria-label="Previous"
-                      class={`left-4 ${arrowClass}`}>
-                      <span aria-hidden="true" class="text-2xl font-black leading-none">←</span>
+                      class={`left-3 md:left-6 ${arrowClass}`}>
+                      {arrowIcon('prev')}
                     </button>
                     <button type="button" data-gallery-next aria-label="Next"
-                      class={`right-4 ${arrowClass}`}>
-                      <span aria-hidden="true" class="text-2xl font-black leading-none">→</span>
+                      class={`right-3 md:right-6 ${arrowClass}`}>
+                      {arrowIcon('next')}
                     </button>
                   </div>
                 </div>

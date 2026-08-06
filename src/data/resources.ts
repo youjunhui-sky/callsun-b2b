@@ -53,6 +53,29 @@ export const DATASHEETS: DatasheetItem[] = [
   { model: 'CN580W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN580W-datasheet.pdf', size: '3.8 MB' },
   { model: 'CN620W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN620W-datasheet.pdf', size: '4.1 MB' },
   { model: 'CN720W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN720W-datasheet.pdf', size: '1.0 MB' },
+  { model: 'CN210W', spec: 'High-Voltage Mono-Glass · N-Type Bifacial (24V)', category: 'Custom', file: '/uploads/callsun/datasheets/CN210W-datasheet.pdf', size: '8.3 MB' },
+];
+
+export interface CertificateItem {
+  title: string;
+  spec: string;
+  file: string;
+  size: string;
+}
+
+export const CERTIFICATES: CertificateItem[] = [
+  {
+    title: 'CE (EMC) Certificate',
+    spec: 'CN-Series Solar Panel · CstarZYD07C2-2 · 2025',
+    file: '/uploads/callsun/certificates/Callsun_CN-Series_Solar-Panel_CE-EMC_CstarZYD07C2-2_2025.pdf',
+    size: '0.7 MB',
+  },
+  {
+    title: 'RoHS Certificate',
+    spec: 'CN-Series Solar Panel · FTC25219060R2 · 2025',
+    file: '/uploads/callsun/certificates/Callsun_CN-Series_Solar-Panel_RoHS_FTC25219060R2_2025.pdf',
+    size: '0.2 MB',
+  },
 ];
 
 export const RESOURCE_FAQ = [

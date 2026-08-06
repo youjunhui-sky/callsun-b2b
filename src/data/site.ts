@@ -12,7 +12,12 @@ export const SITE = {
   organization: {
     legalName: 'Callsun',
     foundingDate: '',
-    sameAs: [] as string[],
+    sameAs: [
+      'https://www.facebook.com/Callsunsolar/',
+      'https://www.instagram.com/callsunsolar/',
+      'https://www.linkedin.com/company/callsun/',
+      'https://www.youtube.com/@Callsunsolar',
+    ] as string[],
     contact: {
       sales: 'sales@callsunsolar.com',
       support: 'support@callsunsolar.com',

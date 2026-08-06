@@ -183,15 +183,26 @@ const breadcrumb = [
         <div class="lg:col-span-2">
           <Eyebrow class="mb-4">DOCUMENTS & INQUIRY</Eyebrow>
           <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
-            {sku.model} product resources
+            {sku.certTitle || `${sku.model} product resources`}
           </h2>
 
-          <div class="mt-6 space-y-2">
-            {sku.certifications.map((c) => (
-              <p class="text-sm md:text-base text-callsun-mute font-medium">
-                {c}
-              </p>
-            ))}
+          <div class="mt-6 space-y-3">
+            {sku.certifications.map((c) => {
+              const isEmph = c.startsWith('__emph__');
+              const text = isEmph ? c.replace('__emph__', '') : c;
+              return isEmph ? (
+                <p class="inline-flex items-center gap-2 text-base md:text-lg font-extrabold text-callsun-ink">
+                  <svg class="w-5 h-5 text-callsun-lime shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3zm-1.2 14.3-3.5-3.5 1.4-1.4 2.1 2.1 4.9-4.9 1.4 1.4-6.3 6.3z"/>
+                  </svg>
+                  {text}
+                </p>
+              ) : (
+                <p class="text-sm md:text-base text-callsun-mute font-medium pl-7">
+                  {text}
+                </p>
+              );
+            })}
           </div>
 
           <div class="mt-8 flex flex-wrap gap-3">

@@ -141,7 +141,7 @@ export const KIT_10_8KW: KitDetail = {
           { label: 'RATED AC FREQUENCY',       value: '50 / 60 Hz' },
           { label: 'WAVEFORM',                 value: 'Pure sine wave' },
           { label: 'SWITCH TIME',              value: '10 ms typical' },
-          { label: 'PARALLEL CAPACITY',        value: '1 to 6 units' },
+          { label: 'PARALLEL CAPACITY',        value: '1 - 6 units' },
         ],
       },
       {
@@ -179,7 +179,7 @@ export const KIT_10_8KW: KitDetail = {
           { label: 'DIMENSIONS',           value: '840 \u00d7 440 \u00d7 260 mm' },
           { label: 'WEIGHT',               value: '48 kg' },
           { label: 'PROTECTION DEGREE',    value: 'IP65' },
-          { label: 'OPERATING TEMP',       value: '-25 to +60\u00b0C (derated > 45\u00b0C)' },
+          { label: 'OPERATING TEMP',       value: '-25°C - +60\u00b0C (derated > 45\u00b0C)' },
           { label: 'NOISE',                value: '< 60 dB' },
           { label: 'BUILT-IN INTERFACE',   value: 'RS485 \u00b7 CAN \u00b7 USB \u00b7 dry contact' },
           { label: 'EXTERNAL MODULE',      value: 'Wi-Fi / GPRS (optional)' },

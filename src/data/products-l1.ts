@@ -35,14 +35,14 @@ export const PRODUCTS_L1 = {
     {
       key: 'custom',
       title: 'Custom PV Modules',
-      wattTags: ['210W', '180W', '200W', '215W'],
+      wattTags: ['180W', '200W', '210W', '215W'],
       description:
         'Four application-specific module classes for RVs, vehicle rooftops, balconies, off-grid equipment, and other special installation conditions.',
       cta: { label: 'VIEW CUSTOM MODULES', href: '/products/custom-modules/' },
       images: [
-        '/uploads/callsun/products/210w/front-back.jpg',
         '/uploads/callsun/products/180w/tile.jpg',
         '/uploads/callsun/products/200w/tile.jpg',
+        '/uploads/callsun/products/210w/front-back.jpg',
         '/uploads/callsun/products/215w/tile.jpg',
       ],
       theme: 'dark' as const,

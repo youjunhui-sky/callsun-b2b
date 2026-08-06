@@ -45,24 +45,6 @@ export const CUSTOM_L2 = {
   },
   skus: [
     {
-      key: 'cn210w',
-      title: 'CN210W',
-      subtitle: 'CN210W Custom N-Type Bifacial Module',
-      power: '210W',
-      efficiency: '25.6% CELL EFFICIENCY',
-      description:
-        'Dual-module parallel circuitry with 1/4-cut cells tuned for 24V systems — purpose-built for RV, marine, off-grid cabins and solar generator applications where partial shade is common and reliable 24V output is critical.',
-      specs: [
-        { label: 'DIMENSIONS', value: '1376 × 766 × 35 mm' },
-        { label: 'WEIGHT', value: '11.3 kg' },
-        { label: 'OPERATING POINT', value: 'Vmp 34.2 V · Imp 6.1 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 40.3 V · Isc 6.5 A' },
-        { label: 'DESIGN', value: 'Dual-module parallel circuitry · IP68' },
-      ],
-      image: '/uploads/callsun/products/210w/front-back.jpg',
-      detailHref: '/products/cn210w/',
-    },
-    {
       key: 'cn180w',
       title: 'CN180W',
       subtitle: 'CN180W Custom N-Type Bifacial Module',
@@ -97,6 +79,24 @@ export const CUSTOM_L2 = {
       ],
       image: '/uploads/callsun/products/200w/front-back.jpg',
       detailHref: '/products/cn200w/',
+    },
+    {
+      key: 'cn210w',
+      title: 'CN210W',
+      subtitle: 'CN210W Custom N-Type Bifacial Module',
+      power: '210W',
+      efficiency: '25.6% CELL EFFICIENCY',
+      description:
+        'Dual-module parallel circuitry with 1/4-cut cells tuned for 24V systems — purpose-built for RV, marine, off-grid cabins and solar generator applications where partial shade is common and reliable 24V output is critical.',
+      specs: [
+        { label: 'DIMENSIONS', value: '1376 × 766 × 35 mm' },
+        { label: 'WEIGHT', value: '11.3 kg' },
+        { label: 'OPERATING POINT', value: 'Vmp 34.2 V · Imp 6.1 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 40.3 V · Isc 6.5 A' },
+        { label: 'DESIGN', value: 'Dual-module parallel circuitry · IP68' },
+      ],
+      image: '/uploads/callsun/products/210w/front-back.jpg',
+      detailHref: '/products/cn210w/',
     },
     {
       key: 'cn215w',

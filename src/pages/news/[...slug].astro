@@ -83,11 +83,11 @@ const articleSchema = {
       </div>
     </section>
 
-    <!-- Cover -->
-    {post.data.cover && (
-      <section class="bg-callsun-ink pb-12 md:pb-16">
-        <div class="max-w-wide mx-auto px-4 sm:px-6 lg:px-10">
-          <div class="aspect-[16/9] overflow-hidden bg-black border border-white/10">
+    <!-- Body -->
+    <section class="pt-8 md:pt-12 pb-14 md:pb-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
+        {post.data.cover && (
+          <div class="aspect-[16/9] overflow-hidden bg-black border border-callsun-line mb-10 md:mb-12">
             <img
               src={post.data.cover}
               alt={post.data.coverAlt || title}
@@ -95,13 +95,7 @@ const articleSchema = {
               loading="eager"
             />
           </div>
-        </div>
-      </section>
-    )}
-
-    <!-- Body -->
-    <section class="py-14 md:py-20 bg-white">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10">
+        )}
         <div class="blog-content">
           <Content />
         </div>

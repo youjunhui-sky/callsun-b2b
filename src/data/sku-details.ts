@@ -30,6 +30,7 @@ export interface SkuDetail {
     thermal:    Array<{ label: string; value: string }>;
   };
   certifications: string[];        // ['IEC 61215 · IEC 61730', ...]
+  certTitle?: string;              // override for "{model} product resources" heading
 }
 
 export const SKU_DETAILS: Record<string, SkuDetail> = {
@@ -103,7 +104,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CABLE LENGTH',        value: '300 mm' },
       ],
       thermal: [
-        { label: 'OPERATING TEMPERATURE', value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE', value: '-40°C ~ +85°C' },
         { label: 'PMAX COEFFICIENT',      value: '-0.290%/°C' },
         { label: 'VOC COEFFICIENT',       value: '-0.250%/°C' },
         { label: 'ISC COEFFICIENT',       value: '+0.045%/°C' },
@@ -113,9 +114,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'PACKAGING',             value: '36 pcs/pallet · 936 pcs/40HQ' },
       ],
     },
+    certTitle: 'CN450W',
     certifications: [
-      'IEC 61215 · IEC 61730',
-      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+      '__emph__CE (EMC), RoHS',
+      'EN 55014 Series; EN 61000 Series; IEC 62321 Series',
     ],
   },
   cn215w: {
@@ -172,10 +174,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CELL EFFICIENCY',         value: '25.6%' },
         { label: 'Vmp / Imp',               value: '17.37 V / 12.38 A' },
         { label: 'Voc / Isc',               value: '20.41 V / 13.12 A' },
-        { label: 'POWER TOLERANCE',         value: '0 to +5%' },
+        { label: 'POWER TOLERANCE',         value: '0 ~ +5%' },
         { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1000 V DC' },
         { label: 'MAXIMUM SERIES FUSE',     value: '25 A' },
-        { label: 'OPERATING TEMPERATURE',   value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE',   value: '-40°C ~ +85°C' },
       ],
       mechanical: [
         { label: 'CELL TYPE',         value: 'N-type · 16BB · 182 mm mono-crystalline silicon' },
@@ -198,9 +200,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'PRODUCT WARRANTY',        value: '10 years product · 25 years linear power' },
       ],
     },
+    certTitle: 'CN215W',
     certifications: [
-      'IEC 61215 · IEC 61730',
-      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+      '__emph__CE (EMC), RoHS',
+      'EN 55014 Series; EN 61000 Series; IEC 62321 Series',
     ],
   },
   cn200w: {
@@ -218,7 +221,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       weight: '10.8 kg',
     },
     heroImage: '/uploads/callsun/products/200w/front-back.jpg',
-    datasheet: undefined,
+    datasheet: '/uploads/callsun/datasheets/CN180W-CN200W-datasheet.pdf',
     features: [
       {
         num: '01',
@@ -257,10 +260,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CELL EFFICIENCY',         value: '25.6%' },
         { label: 'Vmp / Imp',               value: '23.74 V / 8.43 A' },
         { label: 'Voc / Isc',               value: '27.31 V / 8.91 A' },
-        { label: 'POWER TOLERANCE',         value: '0 to +5%' },
+        { label: 'POWER TOLERANCE',         value: '0 ~ +5%' },
         { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1000 V DC' },
         { label: 'MAXIMUM SERIES FUSE',     value: '25 A' },
-        { label: 'OPERATING TEMPERATURE',   value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE',   value: '-40°C ~ +85°C' },
       ],
       mechanical: [
         { label: 'CELL TYPE',         value: 'N-Type · 16BB · Mono-crystalline Silicon' },
@@ -283,9 +286,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CONNECTOR',               value: 'Solar connector' },
       ],
     },
+    certTitle: 'CN200W',
     certifications: [
-      'IEC 61215 · IEC 61730',
-      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+      '__emph__CE (EMC), RoHS',
+      'EN 55014 Series; EN 61000 Series; IEC 62321 Series',
     ],
   },
   cn210w: {
@@ -303,7 +307,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       weight: '11.3 kg',
     },
     heroImage: '/uploads/callsun/products/210w/front-back.jpg',
-    datasheet: undefined,
+    datasheet: '/uploads/callsun/datasheets/CN210W-datasheet.pdf',
     features: [
       {
         num: '01',
@@ -367,7 +371,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       weight: '9.8 kg',
     },
     heroImage: '/uploads/callsun/products/180w/hero-05.jpg',
-    datasheet: undefined,
+    datasheet: '/uploads/callsun/datasheets/CN180W-CN200W-datasheet.pdf',
     features: [
       {
         num: '01',
@@ -406,10 +410,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CELL EFFICIENCY',         value: '25.6%' },
         { label: 'Vmp / Imp',               value: '21.93 V / 8.21 A' },
         { label: 'Voc / Isc',               value: '25.56 V / 8.62 A' },
-        { label: 'POWER TOLERANCE',         value: '0 to +5%' },
+        { label: 'POWER TOLERANCE',         value: '0 ~ +5%' },
         { label: 'MAXIMUM SYSTEM VOLTAGE',  value: '1000 V DC' },
         { label: 'MAXIMUM SERIES FUSE',     value: '25 A' },
-        { label: 'OPERATING TEMPERATURE',   value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE',   value: '-40°C ~ +85°C' },
       ],
       mechanical: [
         { label: 'CELL TYPE',        value: 'N-Type · 16BB · Mono-crystalline Silicon' },
@@ -482,7 +486,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       {
         num: '06',
         title: 'WIDE OPERATING TEMPERATURE RANGE',
-        body: 'Operates across −40°C to +85°C. N-type cells, dual-glass construction, IP68 junction box and anodized aluminium frame support stable operation from arid desert climates to cold high-altitude installations.',
+        body: 'Operates across −40°C ~ +85°C. N-type cells, dual-glass construction, IP68 junction box and anodized aluminium frame support stable operation from arid desert climates to cold high-altitude installations.',
       },
     ],
     tech: {
@@ -507,7 +511,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CABLE LENGTH',        value: '300 mm' },
       ],
       thermal: [
-        { label: 'OPERATING TEMPERATURE', value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE', value: '-40°C ~ +85°C' },
         { label: 'PMAX COEFFICIENT',      value: '-0.35%/°C' },
         { label: 'VOC COEFFICIENT',       value: '-0.275%/°C' },
         { label: 'ISC COEFFICIENT',       value: '+0.045%/°C' },
@@ -592,7 +596,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CABLE LENGTH',        value: '300 mm' },
       ],
       thermal: [
-        { label: 'OPERATING TEMPERATURE', value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE', value: '-40°C ~ +85°C' },
         { label: 'PMAX COEFFICIENT',      value: '-0.28%/°C' },
         { label: 'VOC COEFFICIENT',       value: '-0.24%/°C' },
         { label: 'ISC COEFFICIENT',       value: '-0.046%/°C' },
@@ -677,7 +681,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'CABLE LENGTH',        value: '300 mm' },
       ],
       thermal: [
-        { label: 'OPERATING TEMPERATURE', value: '-40°C to +85°C' },
+        { label: 'OPERATING TEMPERATURE', value: '-40°C ~ +85°C' },
         { label: 'PMAX COEFFICIENT',      value: '-0.350%/°C' },
         { label: 'VOC COEFFICIENT',       value: '-0.275%/°C' },
         { label: 'ISC COEFFICIENT',       value: '+0.045%/°C' },
@@ -687,9 +691,10 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'PACKAGING',             value: '36 pcs/pallet · 720 pcs/40HQ' },
       ],
     },
+    certTitle: 'CNS580W',
     certifications: [
-      'IEC 61215 · IEC 61730',
-      'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
+      '__emph__CE (EMC), RoHS',
+      'EN 55014 Series; EN 61000 Series; IEC 62321 Series',
     ],
   },
 };
