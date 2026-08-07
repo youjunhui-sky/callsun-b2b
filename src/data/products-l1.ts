@@ -23,7 +23,7 @@ export const PRODUCTS_L1 = {
       wattTags: ['450W', '580W', '620W', '720W'],
       description:
         'Four high-power module classes for residential rooftops, distributed PV, off-grid systems, and small commercial and industrial projects.',
-      cta: { label: 'VIEW STANDARD MODULES', href: '/products/standard-modules/' },
+      cta: { label: 'VIEW MORE', href: '/products/standard-modules/' },
       images: [
         '/uploads/callsun/products/450w/tile.jpg',
         '/uploads/callsun/products/580w/card-square.jpg',
@@ -38,7 +38,7 @@ export const PRODUCTS_L1 = {
       wattTags: ['180W', '200W', '210W', '215W'],
       description:
         'Four application-specific module classes for RVs, vehicle rooftops, balconies, off-grid equipment, and other special installation conditions.',
-      cta: { label: 'VIEW CUSTOM MODULES', href: '/products/custom-modules/' },
+      cta: { label: 'VIEW MORE', href: '/products/custom-modules/' },
       images: [
         '/uploads/callsun/products/180w/tile.jpg',
         '/uploads/callsun/products/200w/tile.jpg',

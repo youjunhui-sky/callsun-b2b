@@ -82,7 +82,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                 {/* LEFT: gallery (col-span-3) — main image + arrows (swipeable) */}
                 <div class="col-span-3" data-gallery>
                   <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
-                    <div class="relative" style="aspect-ratio: 4/3;">
+                    <div class="relative" style="aspect-ratio: 1/1;">
                       {cat.images.map((src, si) => (
                         <img
                           src={src}
@@ -111,9 +111,6 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </h2>
                   <p class="mt-5 font-display text-xl md:text-2xl font-bold text-callsun-lime">
                     {cat.wattTags.join('  ·  ')}
-                  </p>
-                  <p class={`mt-5 text-base leading-relaxed max-w-md ${bodyClr}`}>
-                    {cat.description}
                   </p>
                   <a href={cat.cta.href} class={ctaClass}>
                     {cat.cta.label} <span aria-hidden="true">→</span>

@@ -30,53 +30,20 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
     />
 
     <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24">
-      <Breadcrumbs items={CUSTOM_L2.breadcrumb} theme="dark" />
 
       <div class="mt-8 max-w-3xl">
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
           {CUSTOM_L2.hero.title}
         </h1>
-        <p class="mt-6 text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
-          {CUSTOM_L2.hero.subtitle}
-        </p>
         <p class="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-lime tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
           {CUSTOM_L2.hero.powerRange}
         </p>
-        <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
-          {CUSTOM_L2.hero.tags.map((t) => (
-            <li>· {t}</li>
-          ))}
-        </ul>
         <a
           href={CUSTOM_L2.hero.cta.href}
           class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg"
         >
           {CUSTOM_L2.hero.cta.label} <span aria-hidden="true">→</span>
         </a>
-      </div>
-    </div>
-  </section>
-
-  {/* ═══════════════════════════════════════════════════════════════════════
-       Section 2: SKU Tab Selector (light band, jump-anchors)
-       ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-tint border-b border-callsun-line">
-    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-5 md:py-6">
-      <div class="flex flex-wrap items-center gap-4 md:gap-6">
-        <span class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
-          {CUSTOM_L2.selectorEyebrow}
-        </span>
-        <div class="flex flex-wrap gap-2 md:gap-3">
-          {CUSTOM_L2.skus.map((sku, si) => (
-            <a
-              href={`#${sku.key}`}
-              class={`inline-flex items-center border-2 border-callsun-line hover:border-callsun px-4 py-2 font-bold text-sm tracking-wider transition-colors ${si === 0 ? 'bg-callsun-ink text-white border-callsun-ink' : 'bg-white text-callsun-ink'}`}
-              data-sku-tab={sku.key}
-            >
-              {sku.title}
-            </a>
-          ))}
-        </div>
       </div>
     </div>
   </section>
@@ -90,9 +57,6 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
       <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
         {CUSTOM_L2.overview.title}
       </h2>
-      <p class="mt-6 text-white/75 text-base md:text-lg leading-relaxed max-w-3xl">
-        {CUSTOM_L2.overview.intro}
-      </p>
     </div>
   </section>
 
@@ -125,16 +89,6 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
 
               {/* Text column */}
               <div class={textOrder}>
-                <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime mb-3">
-                  CUSTOM MODULE · {String(i + 1).padStart(2, '0')}
-                </p>
-                <h3 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-callsun-ink leading-[1.05]">
-                  {sku.title}
-                </h3>
-                <p class="mt-3 text-callsun-mute text-base md:text-lg leading-relaxed">
-                  {sku.subtitle}
-                </p>
-
                 <div class="mt-6 flex flex-wrap items-baseline gap-4">
                   <span class="inline-block bg-callsun text-callsun-ink font-display font-extrabold text-3xl md:text-4xl px-4 py-2 leading-none">
                     {sku.power}
@@ -180,31 +134,6 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
         </div>
       );
     })}
-
-    <script is:inline>
-      // Highlight the current tab based on nearest visible SKU
-      const tabs = Array.from(document.querySelectorAll('[data-sku-tab]'));
-      const activeTabCls = 'bg-callsun-ink text-white border-callsun-ink';
-      const idleTabCls   = 'bg-white text-callsun-ink';
-      const setActiveTab = (key) => {
-        tabs.forEach((t) => {
-          const isActive = t.getAttribute('data-sku-tab') === key;
-          t.className = t.className
-            .replace(activeTabCls, '')
-            .replace(idleTabCls, '')
-            .trim() + ' ' + (isActive ? activeTabCls : idleTabCls);
-        });
-      };
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActiveTab(e.target.id);
-        });
-      }, { rootMargin: '-40% 0px -50% 0px' });
-      tabs.forEach((t) => {
-        const el = document.getElementById(t.getAttribute('data-sku-tab'));
-        if (el) io.observe(el);
-      });
-    </script>
   </section>
 
   {/* ═══════════════════════════════════════════════════════════════════════

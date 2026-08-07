@@ -228,10 +228,11 @@ const kit = KIT_5_4KW;
 
       {/* Panel spec table */}
       <div class="mt-10">
-        <div class="bg-callsun-lime/45 px-5 py-3">
+        <div class="relative bg-callsun-lime/45 px-5 py-3 rounded-t-2xl">
+          <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
           <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">Mechanical Characteristics(STC)</h3>
         </div>
-        <dl class="mt-4 rounded-2xl bg-white border border-callsun-line divide-y divide-callsun-line overflow-hidden">
+        <dl class="rounded-2xl bg-white border border-callsun-line divide-y divide-callsun-line overflow-hidden rounded-t-none border-t-0">
           {kit.panel.specs.map((s) => (
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-5 py-3">
               <dt class="text-sm text-callsun-mute sm:col-span-1">{s.label}</dt>
@@ -257,10 +258,11 @@ const kit = KIT_5_4KW;
         />
       </figure>
       <div class="mt-8">
-        <div class="bg-callsun-lime/45 px-5 py-3">
+        <div class="relative bg-callsun-lime/45 px-5 py-3 rounded-t-2xl">
+          <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
           <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">Specifications</h3>
         </div>
-        <dl class="mt-4 rounded-2xl bg-white border border-callsun-line divide-y divide-callsun-line overflow-hidden">
+        <dl class="rounded-2xl bg-white border border-callsun-line divide-y divide-callsun-line overflow-hidden rounded-t-none border-t-0">
           {kit.battery.specs.map((s) => (
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-5 py-3">
               <dt class="text-sm text-callsun-mute sm:col-span-1">{s.label}</dt>
@@ -284,10 +286,11 @@ const kit = KIT_5_4KW;
       </figure>
       {kit.inverter.specGroups.map((g) => (
         <div class="mt-8">
-          <div class="bg-callsun-lime/45 px-5 py-3">
+          <div class="relative bg-callsun-lime/45 px-5 py-3 rounded-t-2xl">
+          <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
             <p class="font-display font-bold text-sm md:text-base text-callsun-ink">{g.name.replace(/^./, (c) => c.toUpperCase()).replace(/(?<=\w)([A-Z])/g, ' $1').split(' ').map((w) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')}</p>
           </div>
-          <table class="mt-4 w-full bg-white border border-callsun-line overflow-hidden text-sm md:text-base">
+          <table class="w-full bg-white border border-callsun-line overflow-hidden text-sm md:text-base rounded-t-none border-t-0">
             <tbody>
               {g.rows.map((r, i) => (
                 <tr class={i % 2 === 0 ? 'bg-callsun-tint/60' : 'bg-white'}>
@@ -391,25 +394,10 @@ const kit = KIT_5_4KW;
       </div>
       <div class="mt-10 grid gap-5 grid-cols-1">
         {kit.downloads.map((d) => (
-          <div class="group rounded-2xl bg-white border border-callsun-line shadow-card p-8 md:p-12 flex items-center justify-center gap-12 md:gap-20 min-h-[280px] md:min-h-[340px] transition-transform duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.25)]">
-            <div class="w-28 h-28 shrink-0 flex items-center justify-center rounded-2xl bg-callsun-lime/10 ring-1 ring-callsun-lime/30">
-              <svg class="w-14 h-14 text-callsun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <path d="M9 13h6M9 17h4"/>
-              </svg>
-            </div>
-            <div class="flex flex-col items-center text-center gap-4">
-              <p class="font-display font-bold text-xl text-callsun-ink">{d.label}</p>
-              <div class="flex flex-col gap-2 w-full max-w-[200px]">
-                <a href={d.href} target="_blank" rel="noopener" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#3498db] text-white font-semibold text-sm hover:bg-[#2e86c1] transition-colors">
-                  View
-                </a>
-                <a href={d.href} class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#2ecc71] text-white font-semibold text-sm hover:bg-[#27ae60] transition-colors">
-                  Download
-                </a>
-              </div>
-            </div>
+          <div class="rounded-2xl bg-white border border-callsun-line shadow-card p-6 md:p-8 flex justify-center">
+            <a href={d.href} class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-callsun text-callsun-ink font-semibold text-sm hover:bg-callsun-limeHi transition-colors">
+              Download
+            </a>
           </div>
         ))}
       </div>
