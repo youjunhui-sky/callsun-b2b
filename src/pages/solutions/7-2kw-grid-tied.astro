@@ -309,7 +309,7 @@ const kit = KIT_7_2KW;
         <input type="radio" name="scenarios-7-2kw" id="scenarios-7-2kw-1" class="scenarios-tab-input" />
         <input type="radio" name="scenarios-7-2kw" id="scenarios-7-2kw-2" class="scenarios-tab-input" />
 
-        <div class="scenarios-tabs-menu flex flex-wrap gap-2 border-b border-callsun-line">
+        <div class="scenarios-tabs-menu flex flex-wrap justify-center gap-2 border-b border-callsun-line">
           {kit.applications.map((a, i) => (
             <label
               for={`scenarios-7-2kw-${i}`}
@@ -337,7 +337,7 @@ const kit = KIT_7_2KW;
         <input type="radio" name="wiring-7-2kw" id="wiring-7-2kw-0" class="wiring-tab-input" checked />
         <input type="radio" name="wiring-7-2kw" id="wiring-7-2kw-1" class="wiring-tab-input" />
 
-        <div class="wiring-tabs-menu flex flex-wrap gap-2 border-b border-callsun-line">
+        <div class="wiring-tabs-menu flex flex-wrap justify-center gap-2 border-b border-callsun-line">
           <label for="wiring-7-2kw-0" class="wiring-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink">Wiring Diagram</label>
           <label for="wiring-7-2kw-1" class="wiring-tab-btn px-5 py-3 font-display font-bold text-sm lg:text-base cursor-pointer text-callsun-mute border-b-2 border-transparent -mb-px hover:text-callsun-ink">Wiring Instructions</label>
         </div>
@@ -390,15 +390,10 @@ const kit = KIT_7_2KW;
   <section id="downloads" data-panel="downloads" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">Downloads</h2>
-      </div>
-      <div class="mt-10 grid gap-5 grid-cols-1">
         {kit.downloads.map((d) => (
-          <div class="rounded-2xl bg-white border border-callsun-line shadow-card p-6 md:p-8 flex justify-center">
-            <a href={d.href} class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-callsun text-callsun-ink font-semibold text-sm hover:bg-callsun-limeHi transition-colors">
-              Download
-            </a>
-          </div>
+          <a href={d.href} class="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-callsun text-callsun-ink font-display font-extrabold text-sm md:text-base uppercase tracking-wide hover:bg-callsun-limeHi transition-colors">
+            Download Manual
+          </a>
         ))}
       </div>
     </div>

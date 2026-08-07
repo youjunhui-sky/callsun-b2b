@@ -51,7 +51,7 @@ export const NAV = [
     label: 'SOLUTIONS',
     href: '/solutions/',
     children: [
-      { label: '5.4kW Hybrid Solar Kit', href: '/solutions/5-4kw-off-grid/' },
+      { label: '5.4kW Off-Grid Kit', href: '/solutions/5-4kw-off-grid/' },
       { label: '7.2kW Off-Grid Kit',      href: '/solutions/7-2kw-grid-tied/' },
       { label: '10.8kW Grid-Tied Kit',     href: '/solutions/10-8kw-grid-tied/' },
     ],

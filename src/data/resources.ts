@@ -53,6 +53,8 @@ export const DATASHEETS: DatasheetItem[] = [
   { model: 'CN580W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN580W-datasheet.pdf', size: '3.8 MB' },
   { model: 'CN620W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN620W-datasheet.pdf', size: '4.1 MB' },
   { model: 'CN720W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN720W-datasheet.pdf', size: '1.0 MB' },
+  { model: 'CN180W', spec: 'Anti-Shading TwinCell · N-Type Bifacial', category: 'Custom', file: '/uploads/callsun/datasheets/CN180W-CN200W-datasheet.pdf', size: '9.9 MB' },
+  { model: 'CN200W', spec: 'N-Type 16BB · Bifacial · IP68', category: 'Custom', file: '/uploads/callsun/datasheets/CN180W-CN200W-datasheet.pdf', size: '9.9 MB' },
   { model: 'CN210W', spec: 'High-Voltage Mono-Glass · N-Type Bifacial (24V)', category: 'Custom', file: '/uploads/callsun/datasheets/CN210W-datasheet.pdf', size: '8.3 MB' },
 ];
 
