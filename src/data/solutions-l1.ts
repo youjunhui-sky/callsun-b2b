@@ -47,8 +47,8 @@ export const SOLUTIONS_L1 = {
       slug: '10-8kw-grid-tied',
       category: 'off-grid',
       categoryLabel: 'OFF-GRID',
-      name: '10.8kW Grid-Tied System',
-      short: '10.8kW Hybrid System',
+      name: '10.8kW Grid-Tied Kit',
+      short: '10.8kW Grid-Tied Kit',
       subtitle: 'For residential and light commercial use',
       specs: [
         { label: 'PV ARRAY',         value: '10.8 kW' },
@@ -63,8 +63,8 @@ export const SOLUTIONS_L1 = {
       slug: '5-4kw-off-grid',
       category: 'grid-tied',
       categoryLabel: 'GRID-TIED / HYBRID',
-      name: '5.4kW Off-Grid System',
-      short: '5.4kW Off-Grid System',
+      name: '5.4kW Off-Grid Kit',
+      short: '5.4kW Off-Grid Kit',
       subtitle: 'Compact off-grid system for independent residential power',
       specs: [
         { label: 'PV ARRAY',         value: '5.4 kW' },
@@ -79,8 +79,8 @@ export const SOLUTIONS_L1 = {
       slug: '7-2kw-grid-tied',
       category: 'grid-tied',
       categoryLabel: 'GRID-TIED / HYBRID',
-      name: '7.2kW Off-Grid System',
-      short: '7.2kW Off-Grid System',
+      name: '7.2kW Off-Grid Kit',
+      short: '7.2kW Off-Grid Kit',
       subtitle: 'Larger off-grid system for extended residential loads',
       specs: [
         { label: 'PV ARRAY',         value: '7.2 kW' },

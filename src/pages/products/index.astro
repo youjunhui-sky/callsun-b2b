@@ -66,9 +66,9 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
             : 'mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors';
           const thumbCols = null;
           const arrowClass =
-            'absolute top-1/2 -translate-y-1/2 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors z-10';
+            'absolute top-1/2 -translate-y-1/2 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors z-10';
           const arrowIcon = (dir) => (
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               {dir === 'prev' ? (
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
               ) : (
@@ -78,9 +78,9 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           );
           return (
             <article class={`relative overflow-hidden border-t-4 border-callsun ${bg} shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]`}>
-              <div class="grid grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-center py-6 md:py-8 lg:py-12">
+              <div class="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-10 lg:gap-14 items-center py-6 md:py-8 lg:py-12">
                 {/* LEFT: gallery — main image + arrows (swipeable) */}
-                <div data-gallery>
+                <div data-gallery class="md:col-span-2">
                   <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
                     <div class="relative" style="aspect-ratio: 4/3;">
                       {cat.images.map((src, si) => (
@@ -105,7 +105,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </div>
                 </div>
                 {/* RIGHT: text */}
-                <div>
+                <div class="md:col-span-5">
                   <h2 class={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold ${headingClr}`}>
                     {cat.title}
                   </h2>

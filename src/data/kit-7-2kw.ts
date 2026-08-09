@@ -54,8 +54,8 @@ export const KIT_7_2KW: KitDetail = {
   slug: '7-2kw-grid-tied',
   category: 'grid-tied',
   categoryLabel: 'GRID-TIED / HYBRID',
-  title: '7.2kW Solar Generator System with 14kWh Battery Storage',
-  short: '7.2kW Off-Grid System',
+  title: '7.2kW Off-Grid Kit | 10kW Inverter & 14kWh Battery',
+  short: '7.2kW Off-Grid Kit',
   tagline: '10 kW Hybrid Inverter \u00b7 14 kWh LiFePO4 Battery Storage Kit',
   intro:
     'A complete solar energy storage solution designed for whole-home backup and off-grid power. The system combines a 10kW hybrid inverter with a 14kWh LiFePO4 battery pack to deliver reliable, clean, and independent energy anytime.',

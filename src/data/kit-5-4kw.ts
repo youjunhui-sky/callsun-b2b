@@ -54,8 +54,8 @@ export const KIT_5_4KW: KitDetail = {
   slug: '5-4kw-off-grid',
   category: 'off-grid',
   categoryLabel: 'GRID-TIED / HYBRID',
-  title: '5.4kW Hybrid Solar Power System Kit | 6.5kW Inverter & 10kWh Battery',
-  short: '5.4kW Hybrid Solar Power System Kit',
+  title: '5.4KW OFF-GRID KIT | 6.5kW Inverter & 10kWh Battery',
+  short: '5.4KW OFF-GRID KIT',
   tagline: '6.5 kW Hybrid Inverter \u00b7 10 kWh LiFePO4 Battery Storage Kit',
   intro:
     'Generate clean energy with this complete 5.4kW hybrid solar power system, including a 6.5kW hybrid inverter and 10kWh LiFePO4 battery. Perfect for home backup, off-grid living, and reducing electricity costs.',

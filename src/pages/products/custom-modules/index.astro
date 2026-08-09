@@ -19,7 +19,7 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 1: Hero — dark bg + subtle grid overlay
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="relative overflow-hidden bg-callsun-ink text-white">
+  <section class="relative overflow-hidden bg-callsun-ink text-white aspect-[2/1]">
     <img
       src="/uploads/callsun/products/custom-hero.jpg"
       alt=""
@@ -35,7 +35,7 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
           {CUSTOM_L2.hero.title}
         </h1>
-        <p class="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-lime tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]">
+        <p class="mt-8 font-display text-5xl md:text-6xl lg:text-7xl font-extrabold text-callsun-lime tracking-tight">
           {CUSTOM_L2.hero.powerRange}
         </p>
         <a
@@ -45,18 +45,6 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
           {CUSTOM_L2.hero.cta.label} <span aria-hidden="true">→</span>
         </a>
       </div>
-    </div>
-  </section>
-
-  {/* ═══════════════════════════════════════════════════════════════════════
-       Section 3: Series Overview banner (dark)
-       ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="bg-callsun-ink text-white">
-    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-14 md:py-16">
-      <Eyebrow class="mb-3">{CUSTOM_L2.overview.eyebrow}</Eyebrow>
-      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
-        {CUSTOM_L2.overview.title}
-      </h2>
     </div>
   </section>
 

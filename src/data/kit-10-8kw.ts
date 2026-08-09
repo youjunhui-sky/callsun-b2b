@@ -54,8 +54,8 @@ export const KIT_10_8KW: KitDetail = {
   slug: '10-8kw-grid-tied',
   category: 'grid-tied',
   categoryLabel: 'GRID-TIED / HYBRID',
-  title: '10.8kW Solar Generator System with 28kWh Battery Storage',
-  short: '10.8kW Grid-Tied System',
+  title: '10.8kW Grid-Tied Kit | 12kW Inverter & 28kWh Battery',
+  short: '10.8kW Grid-Tied Kit',
   tagline: '12kW Hybrid Inverter \u00b7 28kWh LiFePO4 Battery Storage Kit',
   intro:
     'Deliver reliable whole-home backup, off-grid resilience and greater energy independence. The Callsun 10.8kW system pairs a 12kW hybrid inverter with 28kWh of LiFePO4 battery storage — ideal for residential and light commercial deployment.',

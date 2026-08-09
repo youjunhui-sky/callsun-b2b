@@ -27,7 +27,7 @@ const kit = KIT_5_4KW;
         <span class="mx-1">/</span>
         <a href="/solutions/" class="hover:text-callsun-ink">Solutions</a>
         <span class="mx-1">/</span>
-        <span>5.4kW Hybrid Solar Power System Kit</span>
+        <span>5.4KW OFF-GRID KIT</span>
       </nav>
 
       <div class="rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
@@ -45,10 +45,7 @@ const kit = KIT_5_4KW;
                 />
               ))}
 
-              {/* 450W corner ribbon (only on slide 1) */}
-              <span class="absolute top-0 left-0 bg-callsun-tag text-white text-xs font-bold tracking-eyebrow uppercase px-4 py-1.5 z-10" data-ribbon>
-                450W
-              </span>
+              
 
               {/* Prev / Next arrows */}
               <button
@@ -68,11 +65,7 @@ const kit = KIT_5_4KW;
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
               </button>
 
-              {/* Counter */}
-              <span class="absolute bottom-4 right-4 bg-callsun-ink/85 text-white text-xs font-bold tracking-wider px-3 py-1.5 z-10" data-counter>
-                1 / 9
-              </span>
-            </div>
+                          </div>
 
             {/* Thumbnail strip */}
             <div class="grid grid-cols-9 gap-1 p-3 bg-callsun-tint border-t border-callsun-line">
@@ -98,12 +91,12 @@ const kit = KIT_5_4KW;
           <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-between bg-white">
             <div>
               <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">
-                5.4kW HYBRID SOLAR POWER SYSTEM
+                5.4KW OFF-GRID KIT
               </p>
-              <h2 class="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.95] text-callsun-ink">
-                Compact<br />System Kit
+              <h2 class="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[0.95] text-callsun-ink whitespace-nowrap">
+                Compact System Kit
               </h2>
-              <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed max-w-md">
+              <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed">
                 PV array, hybrid inverter and battery storage — everything shipped in one B2B pallet.
               </p>
             </div>
@@ -199,7 +192,7 @@ const kit = KIT_5_4KW;
         />
       </figure>
 
-      <p id="specs-heading" class="my-6 text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+      <p id="specs-heading" data-panel="specs" class="my-6 text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
         12 Pcs 450W Solar Panels
       </p>
 
@@ -221,7 +214,7 @@ const kit = KIT_5_4KW;
     <div class="max-w-wide mx-auto px-4 lg:px-6">
       {/* Panel spec table */}
       <div class="mt-2">
-        <div class="relative bg-callsun-lime/45 px-5 py-3 rounded-t-2xl">
+        <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
           <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
           <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">Mechanical Characteristics(STC)</h3>
         </div>
@@ -251,7 +244,7 @@ const kit = KIT_5_4KW;
         />
       </figure>
       <div class="mt-2">
-        <div class="relative bg-callsun-lime/45 px-5 py-3 rounded-t-2xl">
+        <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
           <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
           <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">Specifications</h3>
         </div>
@@ -279,9 +272,9 @@ const kit = KIT_5_4KW;
       </figure>
       {kit.inverter.specGroups.map((g) => (
         <div class="mt-2">
-          <div class="relative bg-callsun-lime/45 px-5 py-3 rounded-t-2xl">
+          <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
           <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
-            <p class="font-display font-bold text-sm md:text-base text-callsun-ink">{g.name.replace(/^./, (c) => c.toUpperCase()).replace(/(?<=\w)([A-Z])/g, ' $1').split(' ').map((w) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')}</p>
+            <p class="font-display font-bold text-sm md:text-base text-callsun-ink">{g.name.split('/').map((part) => part.trim().split(/\s+/).map((w) => w.split('').join(' ')).join('\u00A0\u00A0\u00A0')).join(' / ')}</p>
           </div>
           <table class="w-full bg-white border border-callsun-line overflow-hidden text-sm md:text-base rounded-t-none border-t-0">
             <tbody>
@@ -306,7 +299,7 @@ const kit = KIT_5_4KW;
           {kit.applications.map((a, i) => (
             <label
               for={`scenarios-5-4kw-${i}`}
-              class="scenarios-tab-btn px-5 py-3 font-display font-bold text-xl md:text-2xl lg:text-3xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime"
+              class="scenarios-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime"
             >{a.label.charAt(0) + a.label.slice(1).toLowerCase()}</label>
           ))}
         </div>
@@ -331,8 +324,8 @@ const kit = KIT_5_4KW;
         <input type="radio" name="wiring-5-4kw" id="wiring-5-4kw-1" class="wiring-tab-input" />
 
         <div class="wiring-tabs-menu flex flex-wrap justify-center gap-2 border-b border-callsun-line">
-          <label for="wiring-5-4kw-0" class="wiring-tab-btn px-5 py-3 font-display font-bold text-xl md:text-2xl lg:text-3xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime">Wiring Diagram</label>
-          <label for="wiring-5-4kw-1" class="wiring-tab-btn px-5 py-3 font-display font-bold text-xl md:text-2xl lg:text-3xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime">Wiring Instructions</label>
+          <label for="wiring-5-4kw-0" class="wiring-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime">Wiring Diagram</label>
+          <label for="wiring-5-4kw-1" class="wiring-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime">Wiring Instructions</label>
         </div>
 
         <div class="wiring-tab-panel mt-8" data-idx="0">
@@ -452,7 +445,6 @@ const kit = KIT_5_4KW;
         const thumbs   = Array.from(groot.querySelectorAll('[data-thumb]'));
         const prevBtn  = groot.querySelector('[data-prev]');
         const nextBtn  = groot.querySelector('[data-next]');
-        const counter  = groot.querySelector('[data-counter]');
         const ribbon   = groot.querySelector('[data-ribbon]');
         const total    = slides.length;
         let current    = 0;
@@ -473,7 +465,6 @@ const kit = KIT_5_4KW;
               t.classList.add('border-callsun-line');
             }
           });
-          if (counter) counter.textContent = (current + 1) + ' / ' + total;
           if (ribbon) ribbon.style.display = current === 0 ? '' : 'none';
         }
 
@@ -526,14 +517,52 @@ const kit = KIT_5_4KW;
         const header = document.querySelector('header');
         const headerH = header ? header.getBoundingClientRect().height : 64;
         const barH = troot.getBoundingClientRect().height;
-        const y = window.scrollY + panel.getBoundingClientRect().top - headerH - barH - 8;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        /* Lazy images above the target can still be loading on first visit, so
+           the layout is unstable and we would compute a wrong scroll position.
+           Force-load them and wait, then scroll. */
+        const targetAbsTop = window.scrollY + panel.getBoundingClientRect().top;
+        const pendingImgs = Array.from(document.querySelectorAll('img[loading="lazy"]')).filter((img) => {
+          const r = img.getBoundingClientRect();
+          return r.top + window.scrollY < targetAbsTop && !img.complete;
+        });
+        const go = () => {
+          const y = window.scrollY + panel.getBoundingClientRect().top - headerH - barH - 8;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        };
+        if (pendingImgs.length === 0) {
+          go();
+          return;
+        }
+        pendingImgs.forEach((img) => { img.loading = 'eager'; });
+        let remaining = pendingImgs.length;
+        const done = () => { remaining -= 1; if (remaining === 0) go(); };
+        pendingImgs.forEach((img) => {
+          img.addEventListener('load', done, { once: true });
+          img.addEventListener('error', done, { once: true });
+        });
+        /* Safety net: scroll anyway if an image never fires */
+        setTimeout(go, 1500);
+      }
+
+      /* Click-lock: stop the scroll-spy from fighting the clicked tab */
+      let spyLocked = false;
+      const lockSpy = () => { spyLocked = true; };
+      const unlockSpy = () => { spyLocked = false; };
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', unlockSpy);
+      } else {
+        let scrollTimer = null;
+        window.addEventListener('scroll', () => {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(unlockSpy, 200);
+        }, { passive: true });
       }
 
       tabs.forEach((t) => t.addEventListener('click', () => {
         const id = t.getAttribute('data-tab');
         setActive(id);
         history.replaceState(null, '', '#' + id);
+        lockSpy();
         scrollTo(id);
       }));
 
@@ -545,12 +574,14 @@ const kit = KIT_5_4KW;
           e.preventDefault();
           setActive(id);
           history.replaceState(null, '', '#' + id);
+          lockSpy();
           scrollTo(id);
         });
       });
 
       /* Update active tab while user scrolls (spy) */
       const io = new IntersectionObserver((entries) => {
+        if (spyLocked) return;
         const header = document.querySelector('header');
         const headerH = header ? header.getBoundingClientRect().height : 64;
         const barH = troot.getBoundingClientRect().height;
@@ -575,6 +606,7 @@ const kit = KIT_5_4KW;
         if (ids.indexOf(initial) !== -1) {
           setActive(initial);
           /* Delay so browser doesn't fight us for the same anchor */
+          lockSpy();
           setTimeout(() => scrollTo(initial), 100);
         }
       } else {
