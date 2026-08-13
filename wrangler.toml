@@ -4,9 +4,10 @@ compatibility_date = "2026-07-23"
 compatibility_flags = ["global_fetch_strictly_public", "nodejs_compat"]
 workers_dev = true
 
-# 正式域名路由（2026-08-11 添加；www 待根域名成功后处理）
+# 正式域名路由（2026-08-11 添加；www 2026-08-13 重新绑定——原绑定+DNS 被删导致打不开）
 routes = [
   { pattern = "callsunenergy.com", custom_domain = true },
+  { pattern = "www.callsunenergy.com", custom_domain = true },
 ]
 
 [assets]
