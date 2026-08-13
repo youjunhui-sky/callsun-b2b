@@ -6,7 +6,11 @@
 
 ## HEAD / 状态
 
-- `main` HEAD: `37d2156` (2026-07-23) — 进入「一个一个页面重建中」阶段
+- `main` HEAD: `77a0e96` (2026-08-13) — 三个 commit：域名切正式域名 / CRM 全套 / 内容更新
+- **2026-08-13 上线完成**：callsunenergy.com + www 正式生效（zone active、custom domain 已绑、全站 17+ 页面 200）
+- **2026-08-13 收尾未提交**：astro.config.mjs TODO 删除、admin/config.yml base_url → `https://oauth.callsunenergy.com`、wrangler.toml `workers_dev = true`、checklist 更新
+- CMS 登录 OAuth：`oauth.callsunenergy.com`（jinko-cms-oauth worker 绑正式域名；GitHub OAuth App callback URL 待东家改成 `https://oauth.callsunenergy.com/callback`）
+- 邮箱 DNS 已实测：MX 网易 / SPF / DKIM / DMARC 全部正确，客户收发测试完成
 - 2026-07-24 重大里程碑：三 kit 详情页系统建齐（10.8kW + 7.2kW + 5.4kW）
 
 ## 路由 / 页面清单
@@ -105,6 +109,13 @@ import Footer from '@/components/Footer.astro';
 - 12kW 逆变器 (10000W–12000W, UL1741) — 10.8kW 用
 - 14kWh 电池 (51.2V, 280Ah, 14.34kWh, 900×675×200mm, 128.5kg, IP20)
 - 10kWh 电池 (51.2V, 200Ah, 10.24kWh, 780×550×200mm, 102.5kg, IP20)
+
+## 上线 / CI/CD（2026-08-13）
+
+- **自动部署已配**：`.github/workflows/deploy.yml` — push main 自动 `pnpm build` + `npx wrangler deploy`（node 22 + pnpm 11.5.2）
+  - GitHub secrets 需要：`CLOUDFLARE_API_TOKEN`（Edit zone DNS token）+ `CLOUDFLARE_ACCOUNT_ID`（90b09e9278970f131690e99f858ac7c6）
+  - 失败日志会以 artifact 形式上传（pnpm-install-log / deploy-log）
+- **CMS 同事接入**：GitHub 仓库 Settings → Collaborators 加 Write 协作者 → `callsunenergy.com/admin/` 登录即可
 
 ## 关键经验教训
 

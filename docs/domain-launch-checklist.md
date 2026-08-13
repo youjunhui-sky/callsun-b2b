@@ -11,7 +11,7 @@
   - TXT: SPF (spf.163.com) + DKIM (default._domainkey) + DMARC
   - CNAME: www → callsun-b2b.youjh120608.workers.dev (proxied)
   - A: @ → 192.0.2.1 (占位, proxied)
-- [x] API token: 见沙箱 ~/.cloudflare-token.env (Edit zone DNS + Workers, 存 ~/.cloudflare-token.env)
+- [x] API token: 见沙箱 ~/.cloudflare-token.env（2026-08-13 历史清洗后不在仓库保留明文） (Edit zone DNS + Workers, 存 ~/.cloudflare-token.env)
 
 ## 1. 检查 NS 是否生效
 
@@ -51,22 +51,17 @@ curl -s https://callsunenergy.com/api/inquiry -X POST -H 'content-type: applicat
 
 ## 4. 验证邮箱（对客户承诺过）
 
-```bash
-# MX 记录解析正确（网易）
-dig +short MX callsunenergy.com
-# 期望 hzmx01/02.mxmail.netease.com
-
-# 实际收发验证：请客户发一封测试邮件到主力邮箱 + 从邮箱发一封到外部
-# 确认收/发/进垃圾箱状态
-```
+- [x] MX 记录解析正确（网易）— 2026-08-13 实测：hzmx01/02.mxmail.netease.com ✅
+- [x] SPF `v=spf1 include:spf.163.com -all` ✅ / DKIM 公钥有效 ✅ / DMARC `p=quarantine` ✅
+- [x] 实际收发验证：客户已配合实测（2026-08-13 东家确认完成）
 
 ## 5. 替换全站 workers.dev 地址 → 正式域名
 
-- [ ] `src/data/site.ts`：domain → `https://callsunenergy.com`
-- [ ] `public/robots.txt`：Sitemap URL
-- [ ] `src/worker.js`：飞书卡片 CRM 链接（2 处：feishuCard + sendDueReminder）→ https://callsunenergy.com/crm/
-- [ ] `public/admin/config.yml`：site_url / display_url
-- [ ] `astro.config.mjs`：site → https://callsunenergy.com
+- [x] `src/data/site.ts`：domain → `https://callsunenergy.com`（已改）
+- [x] `public/robots.txt`：Sitemap URL（已改，callsunenergy.com/sitemap-index.xml）
+- [x] `src/worker.js`：飞书卡片 CRM 链接（4 处）→ https://callsunenergy.com/crm/（已改）
+- [x] `public/admin/config.yml`：site_url / display_url（已改）
+- [x] `astro.config.mjs`：site → https://callsunenergy.com（已改）
 - 搜 workers.dev 全局：`grep -rn "workers.dev" src/ public/ --include="*.astro" --include="*.ts" --include="*.js" --include="*.yml" --include="*.txt"`
 
 ## 6. 重新构建 + 部署
@@ -78,16 +73,19 @@ pnpm build
 nohup npx wrangler deploy > /tmp/deploy-domain.log 2>&1 &
 ```
 
+- [x] **2026-08-13 已执行**：pnpm build (29 pages) + wrangler deploy (Version 4513e579)，线上 / /admin/ /crm/ 全部 200
+
 ## 7. 收尾
 
-- [ ] 验证 https://callsunenergy.com 全站页面 + /crm/ + /contact/ 表单 + 飞书通知
-- [ ] workers.dev 保留（老链接仍可访问，301 可选）
-- [ ] 向客户确认邮箱测试结果
-- [ ] 更新 PROJECT-MEMORY / MEMORY.md
+- [x] 验证 https://callsunenergy.com 全站页面 + /crm/ + /contact/（2026-08-13：17 个页面 + /admin/ + /crm/ 全 200；/api/inquiry Turnstile 拦截正常）
+- [ ] 飞书通知链路：待真实询盘触发验证（避免往 D1 写垃圾测试数据）
+- [x] workers.dev 保留（wrangler 已设 workers_dev=true；沙箱网络直连不通属已知问题，不影响正式域名）
+- [x] 向客户确认邮箱测试结果（2026-08-13 东家确认完成）
+- [x] 更新 PROJECT-MEMORY（2026-08-13）
 
 ## 注意事项
 
 - zone active 前不要改 worker 域名绑定（会失败）
 - 改 site.ts 域名后 sitemap 自动更新（astro sitemap 集成）
-- 域名切换后 Turnstile 白名单要加 callsunenergy.com（Turnstile 后台 → 域名列表）
+- ~~域名切换后 Turnstile 白名单要加 callsunenergy.com（Turnstile 后台 → 域名列表）~~ **2026-08-13 已完成（东家确认）**
 - GTM/GA4 若已接入，正式域名是最终统计域名，等域名稳定后再接

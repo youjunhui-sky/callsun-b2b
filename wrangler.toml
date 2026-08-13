@@ -2,6 +2,7 @@ name = "callsun-b2b"
 main = "src/worker.js"
 compatibility_date = "2026-07-23"
 compatibility_flags = ["global_fetch_strictly_public", "nodejs_compat"]
+workers_dev = true
 
 # 正式域名路由（2026-08-11 添加；www 待根域名成功后处理）
 routes = [

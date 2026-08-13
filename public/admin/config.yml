@@ -4,7 +4,7 @@ backend:
   name: github
   repo: youjunhui-sky/callsun-b2b
   branch: main
-  base_url: https://jinko-cms-oauth.youjh120608.workers.dev
+  base_url: https://oauth.callsunenergy.com
   auth_endpoint: oauth/auth
 
 media_folder: "public/blog"
