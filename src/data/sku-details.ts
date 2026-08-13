@@ -48,7 +48,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '1762 × 1134 × 30 mm',
       weight: '24.5 kg',
     },
-    heroImage: '/uploads/callsun/products/450w/01-front.jpg',
+    heroImage: '/uploads/callsun/products/450w/01-front.webp',
     datasheet: '/uploads/callsun/products/450w/CN450W-double-glass-datasheet.pdf',
     features: [
       {
@@ -134,7 +134,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '1422 × 766 × 35 mm',
       weight: '11.5 kg',
     },
-    heroImage: '/uploads/callsun/products/215w/front-back.jpg',
+    heroImage: '/uploads/callsun/products/215w/front-back.webp',
     datasheet: '/uploads/callsun/products/215w/CN215W-datasheet.pdf',
     features: [
       {
@@ -220,7 +220,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '1304 × 770 × 35 mm',
       weight: '10.8 kg',
     },
-    heroImage: '/uploads/callsun/products/200w/front-back.jpg',
+    heroImage: '/uploads/callsun/products/200w/front-back.webp',
     datasheet: '/uploads/callsun/datasheets/CN180W-CN200W-datasheet.pdf',
     features: [
       {
@@ -306,7 +306,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '1377 × 767 × 36 mm',
       weight: '11.3 kg',
     },
-    heroImage: '/uploads/callsun/products/210w/front-back.jpg',
+    heroImage: '/uploads/callsun/products/210w/front-back.webp',
     datasheet: '/uploads/callsun/datasheets/CN210W-datasheet.pdf',
     features: [
       {
@@ -385,7 +385,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '1180 × 770 × 35 mm',
       weight: '9.8 kg',
     },
-    heroImage: '/uploads/callsun/products/180w/hero-05.jpg',
+    heroImage: '/uploads/callsun/products/180w/hero-05.webp',
     datasheet: '/uploads/callsun/datasheets/CN180W-CN200W-datasheet.pdf',
     features: [
       {
@@ -470,7 +470,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '2384 × 1303 × 33 mm',
       weight: '37.9 kg',
     },
-    heroImage: '/uploads/callsun/products/720w/card-square.jpg',
+    heroImage: '/uploads/callsun/products/720w/card-square.webp',
     datasheet: '/uploads/callsun/products/720w/CN720W-datasheet.pdf',
     features: [
       {
@@ -555,7 +555,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '2382 × 1134 × 30 mm',
       weight: '32.5 kg',
     },
-    heroImage: '/uploads/callsun/products/620w/card-square.jpg',
+    heroImage: '/uploads/callsun/products/620w/card-square.webp',
     datasheet: '/uploads/callsun/products/620w/CN620W-datasheet.pdf',
     features: [
       {
@@ -640,7 +640,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       dimensions: '2278 × 1134 × 30 mm',
       weight: '30 kg',
     },
-    heroImage: '/uploads/callsun/products/580w/card-square.jpg',
+    heroImage: '/uploads/callsun/products/580w/card-square.webp',
     datasheet: '/uploads/callsun/products/580w/CN580W-datasheet.pdf',
     features: [
       {

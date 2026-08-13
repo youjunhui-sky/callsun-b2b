@@ -64,7 +64,7 @@ export const KIT_7_2KW: KitDetail = {
     { label: 'HYBRID INVERTER', value: '10 kW' },
     { label: 'BATTERY STORAGE', value: '14 kWh' },
   ],
-  heroImage: '/uploads/callsun/solutions/10kw/01-system-overview.jpg',
+  heroImage: '/uploads/callsun/solutions/10kw/01-system-overview.webp',
   keyFeatures: [
     {
       title: 'ANTI-SHADING TECHNOLOGY',
@@ -87,7 +87,7 @@ export const KIT_7_2KW: KitDetail = {
     title: '16 pcs \u00b7 450W N-Type Solar Panels',
     intro:
       '16 modules of 450W N-Type bifacial silicon deliver the 7.2kW array. 25.6% cell efficiency, 16BB architecture and IP68 protection make this a durable choice for rooftop and residential off-grid installation.',
-    image: '/uploads/callsun/solutions/10kw/02-panel-closeup.jpg',
+    image: '/uploads/callsun/solutions/10kw/02-panel-closeup.webp',
     highlights: ['450W output', 'N-Type', '25.6% efficiency', 'Bifacial', 'Anti-Shade', '16BB', 'IP68'],
     specs: [
       { label: 'MAXIMUM POWER (Pmax)',             value: '450 W' },
@@ -109,7 +109,7 @@ export const KIT_7_2KW: KitDetail = {
     title: '14 kWh LiFePO4 Battery Module',
     intro:
       'A single 14.34kWh LiFePO4 battery module provides 14kWh of storage. IP20 enclosure, suitable for indoor installation, with a wide 0\u201355\u00b0C charge / -20\u201355\u00b0C discharge window.',
-    image: '/uploads/callsun/solutions/10kw/03-battery.jpg',
+    image: '/uploads/callsun/solutions/10kw/03-battery.webp',
     specs: [
       { label: 'NOMINAL VOLTAGE',                  value: '51.2 V' },
       { label: 'RATED CAPACITY',                   value: '280 Ah' },
@@ -131,7 +131,7 @@ export const KIT_7_2KW: KitDetail = {
     title: '10 kW Hybrid Inverter',
     intro:
       'Single-phase / split-phase capable pure sine wave inverter with 10kW rated output, dual MPPT with up to 11kW combined PV input and 10ms typical switch time. Parallel up to 6 units for larger loads.',
-    image: '/uploads/callsun/solutions/10kw/04-inverter.jpg',
+    image: '/uploads/callsun/solutions/10kw/04-inverter.webp',
     specGroups: [
       {
         name: 'INVERTER OUTPUT',
@@ -191,16 +191,16 @@ export const KIT_7_2KW: KitDetail = {
     ],
   },
   applications: [
-    { label: 'ROOFTOP',  image: '/uploads/callsun/solutions/10kw/05-scenario-rooftop.jpg' },
-    { label: 'FARM',     image: '/uploads/callsun/solutions/10kw/06-scenario-farm.jpg' },
-    { label: 'BACKYARD', image: '/uploads/callsun/solutions/10kw/07-scenario-backyard.jpg' },
+    { label: 'ROOFTOP',  image: '/uploads/callsun/solutions/10kw/05-scenario-rooftop.webp' },
+    { label: 'FARM',     image: '/uploads/callsun/solutions/10kw/06-scenario-farm.webp' },
+    { label: 'BACKYARD', image: '/uploads/callsun/solutions/10kw/07-scenario-backyard.webp' },
   ],
   wiring: {
-    diagram: '/uploads/callsun/solutions/10kw/08-wiring-diagram.jpg',
-    instructions: '/uploads/callsun/solutions/10kw/09-wiring-instructions.jpg',
+    diagram: '/uploads/callsun/solutions/10kw/08-wiring-diagram.webp',
+    instructions: '/uploads/callsun/solutions/10kw/09-wiring-instructions.webp',
   },
   includes: {
-    image: '/uploads/callsun/solutions/10kw/10-includes.jpg',
+    image: '/uploads/callsun/solutions/10kw/10-includes.webp',
     items: [
       '16 Pcs \u00d7 450W Solar Panels \u2014 Reliable and Durable',
       '1 Pc \u00d7 14kWh LiFePO4 Battery \u2014 Reliable and Durable',

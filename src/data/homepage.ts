@@ -10,7 +10,7 @@ export const HERO = {
     'In-House R&D, Manufacturing, and Testing. Callsun focuses on standard and custom PV products, providing partners with full-chain support from product selection to sample validation and volume delivery.',
   primaryCta: { label: 'EXPLORE PRODUCTS', href: '/products/' },
   secondaryCta: { label: 'DISCUSS REQUIREMENTS', href: '/contact/' },
-  backgroundImage: '/uploads/callsun/homepage/hero-desktop.jpg',
+  backgroundImage: '/uploads/callsun/homepage/hero-desktop.webp',
 };
 
 export const STATS = [
@@ -27,56 +27,56 @@ export const HOME_PRODUCTS = [
     model: 'CN450W',
     name: '450W N-Type Bifacial Double-Glass Module',
     href: '/products/cn450w/',
-    image: '/uploads/callsun/products/450w/01-front.jpg',
+    image: '/uploads/callsun/products/450w/01-front.webp',
     tag: 'STANDARD',
   },
   {
     model: 'CN580W',
     name: '580W N-Type Bifacial Double-Glass Module',
     href: '/products/cn580w/',
-    image: '/uploads/callsun/products/580w/card-square.jpg',
+    image: '/uploads/callsun/products/580w/card-square.webp',
     tag: 'STANDARD',
   },
   {
     model: 'CN620W',
     name: '620W N-Type Bifacial Double-Glass Module',
     href: '/products/cn620w/',
-    image: '/uploads/callsun/products/620w/card-square.jpg',
+    image: '/uploads/callsun/products/620w/card-square.webp',
     tag: 'STANDARD',
   },
   {
     model: 'CN720W',
     name: '720W N-Type Bifacial Dual-Glass Module',
     href: '/products/cn720w/',
-    image: '/uploads/callsun/products/720w/card-square.jpg',
+    image: '/uploads/callsun/products/720w/card-square.webp',
     tag: 'STANDARD',
   },
   {
     model: 'CN180W',
     name: 'CN180W Custom N-Type Bifacial Module',
     href: '/products/cn180w/',
-    image: '/uploads/callsun/products/180w/hero-05.jpg',
+    image: '/uploads/callsun/products/180w/hero-05.webp',
     tag: 'CUSTOM',
   },
   {
     model: 'CN200W',
     name: 'CN200W Custom N-Type Bifacial Module',
     href: '/products/cn200w/',
-    image: '/uploads/callsun/products/200w/front-back.jpg',
+    image: '/uploads/callsun/products/200w/front-back.webp',
     tag: 'CUSTOM',
   },
   {
     model: 'CN210W',
     name: 'CN210W Custom N-Type Bifacial Module',
     href: '/products/cn210w/',
-    image: '/uploads/callsun/products/210w/front-back.jpg',
+    image: '/uploads/callsun/products/210w/front-back.webp',
     tag: 'CUSTOM',
   },
   {
     model: 'CN215W',
     name: 'CN215W Custom N-Type Bifacial Module with Anti-Shading',
     href: '/products/cn215w/',
-    image: '/uploads/callsun/products/215w/front-back.jpg',
+    image: '/uploads/callsun/products/215w/front-back.webp',
     tag: 'CUSTOM',
   },
 ];
@@ -87,7 +87,7 @@ export const QUALITY = {
   intro:
     'Quality control spans raw materials, in-line production and finished-product testing. Certification documents and product evaluations are available on request.',
   certifications: ['CE', 'RoHS', 'IEC', 'ISO 9001', 'ISO 14001', 'ISO 45001'],
-  certificateImage: '/uploads/callsun/homepage/certificates.jpg',
+  certificateImage: '/uploads/callsun/homepage/certificates.webp',
   cta: { label: 'VIEW CERTIFICATES', href: '/resources/' },
 };
 
@@ -110,7 +110,7 @@ export const GLOBAL_SUPPLY = {
     'Brazil',
     'Canada',
   ],
-  mapImage: '/uploads/callsun/homepage/global-map.jpg',
+  mapImage: '/uploads/callsun/homepage/global-map.webp',
   cta: { label: 'ABOUT CALLSUN', href: '/about/' },
 };
 
@@ -152,7 +152,7 @@ export const VIDEOS = VIDEO_ITEMS.slice(0, 3).map((v) => ({
   title: v.title,
   channel: v.channel,
   href: `https://www.youtube.com/watch?v=${v.id}`,
-  thumb: `/uploads/callsun/videos/${v.id}.jpg`,
+  thumb: `/uploads/callsun/videos/${v.id}.webp`,
   videoId: v.id,
 }));
 

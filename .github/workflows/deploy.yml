@@ -44,7 +44,9 @@ jobs:
           retention-days: 1
 
       - name: Build site
-        run: pnpm build
+        run: |
+          python3 -m pip install --quiet pillow
+          pnpm build
 
       - name: Deploy Worker + static assets
         id: deploy

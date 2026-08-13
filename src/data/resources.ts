@@ -135,7 +135,7 @@ export const VIDEO_CARDS: VideoCard[] = [
     title: 'CALLSUN 215W Anti-Shading Lab Tested',
     body: 'Official lab demonstration of the 215W anti-shading module maintaining output under partial-shade conditions.',
     credit: 'Callsun',
-    thumb: '/uploads/callsun/videos/ckNe2EctH5w.jpg',
+    thumb: '/uploads/callsun/videos/ckNe2EctH5w.webp',
     href: 'https://www.youtube.com/watch?v=ckNe2EctH5w',
   },
   {
@@ -143,7 +143,7 @@ export const VIDEO_CARDS: VideoCard[] = [
     title: 'Callsun 200W Bifacial Solar Panel Review: Shade Testing',
     body: 'Independent review and shade testing of the Callsun 200W bifacial panel in real-world conditions.',
     credit: 'Cleversolarpower by Nick',
-    thumb: '/uploads/callsun/videos/zSQSWBTLaL8.jpg',
+    thumb: '/uploads/callsun/videos/zSQSWBTLaL8.webp',
     href: 'https://www.youtube.com/watch?v=zSQSWBTLaL8',
   },
   {
@@ -151,7 +151,7 @@ export const VIDEO_CARDS: VideoCard[] = [
     title: 'Callsun 450W Bifacial Solar Panel — MORE for LESS?!',
     body: 'Field review putting the Callsun 450W bifacial module through its paces, including output and value.',
     credit: 'ReeWray Outdoors',
-    thumb: '/uploads/callsun/videos/Qa-0HqwHgR0.jpg',
+    thumb: '/uploads/callsun/videos/Qa-0HqwHgR0.webp',
     href: 'https://www.youtube.com/watch?v=Qa-0HqwHgR0',
   },
   {
@@ -159,7 +159,7 @@ export const VIDEO_CARDS: VideoCard[] = [
     title: 'Solar Just Took a Huge Leap Forward! — CallSun 215 Anti-Shade',
     body: 'A first look at the CallSun 215W anti-shade panel and what its shade tolerance means for real installs.',
     credit: "JOHNNY'S WEEKENDS",
-    thumb: '/uploads/callsun/videos/JN9tKhtubUM.jpg',
+    thumb: '/uploads/callsun/videos/JN9tKhtubUM.webp',
     href: 'https://www.youtube.com/watch?v=JN9tKhtubUM',
   },
   {
@@ -167,7 +167,7 @@ export const VIDEO_CARDS: VideoCard[] = [
     title: "I Tested CallSun's New 450W Bifacial Solar Panel — Real World",
     body: 'Real-world testing and impressions of the new CallSun 450W bifacial panel after hands-on use.',
     credit: "JOHNNY'S WEEKENDS",
-    thumb: '/uploads/callsun/videos/iMB6SgkuG_w.jpg',
+    thumb: '/uploads/callsun/videos/iMB6SgkuG_w.webp',
     href: 'https://www.youtube.com/watch?v=iMB6SgkuG_w',
   },
 ];

@@ -70,12 +70,12 @@ export interface GalleryItem {
 
 // 6 compressed rooftop aerials from inbox/案例界面图/ — see PROJECT-MEMORY for provenance.
 export const INSTALLATION_GALLERY: GalleryItem[] = [
-  { src: '/uploads/callsun/cases/rooftop-01.jpg', alt: 'C&I rooftop installation — multi-building factory array' },
-  { src: '/uploads/callsun/cases/rooftop-02.jpg', alt: 'Commercial rooftop with partial-array retrofit layout' },
-  { src: '/uploads/callsun/cases/rooftop-03.jpg', alt: 'High-density rooftop aerial with dual-glass modules' },
-  { src: '/uploads/callsun/cases/rooftop-04.jpg', alt: 'Twin-building industrial rooftop connected walkway' },
-  { src: '/uploads/callsun/cases/rooftop-05.jpg', alt: 'Large-scale industrial rooftop with symmetric skylight bands' },
-  { src: '/uploads/callsun/cases/rooftop-06.jpg', alt: 'Industrial rooftop with routed layout around equipment' },
+  { src: '/uploads/callsun/cases/rooftop-01.webp', alt: 'C&I rooftop installation — multi-building factory array' },
+  { src: '/uploads/callsun/cases/rooftop-02.webp', alt: 'Commercial rooftop with partial-array retrofit layout' },
+  { src: '/uploads/callsun/cases/rooftop-03.webp', alt: 'High-density rooftop aerial with dual-glass modules' },
+  { src: '/uploads/callsun/cases/rooftop-04.webp', alt: 'Twin-building industrial rooftop connected walkway' },
+  { src: '/uploads/callsun/cases/rooftop-05.webp', alt: 'Large-scale industrial rooftop with symmetric skylight bands' },
+  { src: '/uploads/callsun/cases/rooftop-06.webp', alt: 'Industrial rooftop with routed layout around equipment' },
 ];
 
 export interface ProjectReferenceRow {

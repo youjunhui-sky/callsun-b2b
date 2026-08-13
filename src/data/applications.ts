@@ -51,7 +51,7 @@ export const APPLICATIONS: ApplicationScenario[] = [
     bestFor:
       'Best for dealers and installers building residential solar-plus-storage offers for backup power and self-consumption.',
     solutionCount: '3 modules · 1 package',
-    image: '/uploads/callsun/solutions/5-4kw/01-solar-panels.jpg',
+    image: '/uploads/callsun/solutions/5-4kw/01-solar-panels.webp',
     highlights: [
       'Whole-home LiFePO4 battery kits (14–28 kWh)',
       'Hybrid inverter with grid pass-through',
@@ -73,7 +73,7 @@ export const APPLICATIONS: ApplicationScenario[] = [
     bestFor:
       'Best for cabins, farms, remote homes and small commercial sites where grid access is limited or unstable.',
     solutionCount: '2 packages · anti-shading modules',
-    image: '/uploads/callsun/solutions/10kw/01-system-overview.jpg',
+    image: '/uploads/callsun/solutions/10kw/01-system-overview.webp',
     highlights: [
       'ShadeGuard™ anti-shading module option',
       'Standalone battery packages up to 14 kWh',

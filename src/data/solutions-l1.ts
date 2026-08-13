@@ -73,7 +73,7 @@ export const SOLUTIONS_L1 = {
       ],
       specsInline: '6.5 kW hybrid inverter \u00b7 10 kWh battery storage',
       heroImage: '/uploads/callsun/solutions/5-4kw/01-system-overview.webp',
-      cardImage: '/uploads/callsun/solutions/5-4kw/01-solar-panels.jpg',
+      cardImage: '/uploads/callsun/solutions/5-4kw/01-solar-panels.webp',
     },
     {
       slug: '7-2kw-grid-tied',
@@ -88,8 +88,8 @@ export const SOLUTIONS_L1 = {
         { label: 'BATTERY STORAGE',  value: '14 kWh' },
       ],
       specsInline: '10 kW hybrid inverter \u00b7 14 kWh battery storage',
-      heroImage: '/uploads/callsun/solutions/10kw/01-system-overview.jpg',
-      cardImage: '/uploads/callsun/solutions/10kw/homepage-card.jpg',
+      heroImage: '/uploads/callsun/solutions/10kw/01-system-overview.webp',
+      cardImage: '/uploads/callsun/solutions/10kw/homepage-card.webp',
     },
   ] as SolutionKit[],
 } as const;
