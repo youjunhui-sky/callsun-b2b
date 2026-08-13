@@ -3,7 +3,7 @@ export const SITE = {
   name: 'Callsun',
   brand: 'Callsun',
   tagline: 'PV Module Brand & Manufacturer',
-  domain: 'https://callsun-b2b.youjh120608.workers.dev', // TODO: 官方域名确认后替换
+  domain: 'https://callsunenergy.com',
   defaultTitle: 'Callsun — PV Module Brand & Manufacturer',
   defaultDescription:
     'Callsun designs, manufactures and tests standard and custom PV modules for distributors, installers, EPCs, equipment manufacturers and project buyers.',
@@ -28,6 +28,7 @@ export const SITE = {
     gtmId: '',
     cloudflareToken: '',
     plausibleDomain: '',
+    turnstileSiteKey: '0x4AAAAAAEMnseRAL5fduk7t', // Cloudflare Turnstile 公开 Site Key（防垃圾验证）
   },
   cta: {
     quote: 'REQUEST A QUOTE',
@@ -71,8 +72,7 @@ export const NAV = [
     href: '/news/',
     children: [
       { label: 'Technical Blog',                    href: '/news/#technical-blog' },
-      { label: 'Commercial Rooftop Installations',  href: '/news/#installations' },
-      { label: 'Project Reference List',            href: '/news/#project-reference' },
+      { label: 'Project List',                      href: '/news/#project-reference' },
     ],
   },
   { label: 'ABOUT', href: '/about/' },

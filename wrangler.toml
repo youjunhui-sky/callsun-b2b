@@ -3,9 +3,26 @@ main = "src/worker.js"
 compatibility_date = "2026-07-23"
 compatibility_flags = ["global_fetch_strictly_public", "nodejs_compat"]
 
+# 正式域名路由（2026-08-11 添加；www 待根域名成功后处理）
+routes = [
+  { pattern = "callsunenergy.com", custom_domain = true },
+]
+
 [assets]
 directory = "./dist"
 not_found_handling = "404-page"
 
+# 询盘 + CRM 数据库（部署前需创建：wrangler d1 create callsun-b2b-db）
+# 本地模拟：wrangler dev --local 自动用本地 sqlite
+[[d1_databases]]
+binding = "DB"
+database_name = "callsun-b2b-db"
+database_id = "a5f83f6d-e3f9-4d2c-8945-b7f7188ac805"
+migrations_dir = "migrations"
+
 [observability]
 enabled = true
+
+# 定时任务：每天 01:00 UTC = 09:00 北京时间，推送待跟进清单到飞书群
+[triggers]
+crons = ["0 1 * * *"]
