@@ -1,11 +1,16 @@
 ---
 // 询盘表单 (原型下方版本 + worker.js /api/inquiry 对接)
+// 2026-08-11 升级：UTM 来源采集 + 感兴趣产品下拉 + 附件上传 + Turnstile 防垃圾
+import { SITE } from '@/data/site';
+const turnstileSiteKey = SITE.analytics.turnstileSiteKey;
+
 interface Props {
   formSource?: string;
   formTitle?: string;
   submitLabel?: string;
   compact?: boolean; // 用于产品详情页 (更紧凑)
   productModel?: string;
+  productOptions?: { value: string; label: string }[];
 }
 const {
   formSource = 'homepage',
@@ -13,6 +18,17 @@ const {
   submitLabel = 'SUBMIT INQUIRY',
   compact = false,
   productModel = '',
+  productOptions = [
+    { value: 'CN180W', label: 'CN180W — 180W Shade-Resistant Module' },
+    { value: 'CN200W', label: 'CN200W — 200W TwinCell Module' },
+    { value: 'CN215W', label: 'CN215W — 215W 4-Zone Shade-Resistant' },
+    { value: 'CN450W', label: 'CN450W — 450W N-Type Module' },
+    { value: 'CN580W', label: 'CN580W — 580W N-Type Module' },
+    { value: 'CN620W', label: 'CN620W — 620W N-Type Module' },
+    { value: 'solutions', label: 'System Kit / Solution' },
+    { value: 'custom', label: 'Custom / ODM Module' },
+    { value: 'other', label: 'Other / Not sure yet' },
+  ],
 } = Astro.props;
 ---
 <form
@@ -34,6 +50,15 @@ const {
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="sr-only" aria-hidden="true" />
   {/* required by worker.js — hardcode 到当前场景 */}
   <input type="hidden" name="inquiry_type" value={productModel ? `product-${productModel}` : formSource} />
+  {/* 来源追踪 (UTM / 落地页 / 推荐来源) — 由底部脚本注入 */}
+  <input type="hidden" name="utm_source" />
+  <input type="hidden" name="utm_medium" />
+  <input type="hidden" name="utm_campaign" />
+  <input type="hidden" name="utm_term" />
+  <input type="hidden" name="utm_content" />
+  <input type="hidden" name="referrer" />
+  <input type="hidden" name="landing_page" />
+  <input type="hidden" name="landing_page_slug" />
 
   <div class="grid md:grid-cols-2 gap-4">
     <label class="grid gap-1.5">
@@ -53,12 +78,30 @@ const {
       <input required name="market" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
   </div>
+  {!productModel && (
+    <label class="grid gap-1.5">
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Product of Interest</span>
+      <select name="product_model" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime">
+        <option value="">Select a product (optional)</option>
+        {productOptions.map((opt) => <option value={opt.value}>{opt.label}</option>)}
+      </select>
+    </label>
+  )}
   <label class="grid gap-1.5">
     <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">
       {productModel ? 'Product or project requirements *' : 'Product specification or project requirements *'}
     </span>
     <textarea required name="message" rows="4" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime resize-y"></textarea>
   </label>
+  <label class="grid gap-1.5">
+    <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Attachment (datasheet / project file, max 5MB)</span>
+    <input name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.jpg,.jpeg,.png" class="text-sm text-callsun-mute file:mr-3 file:border-0 file:bg-callsun-tint file:px-4 file:py-2.5 file:text-xs file:font-bold file:tracking-wider file:text-callsun-ink hover:file:bg-callsun-lime" />
+  </label>
+
+  {/* Cloudflare Turnstile 防垃圾验证 — Site Key 公开，Secret 在 worker 端校验 */}
+  {turnstileSiteKey && (
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-size="normal" data-error-callback="__callsunTsError"></div>
+  )}
 
   <button
     type="submit"
@@ -71,11 +114,98 @@ const {
 </form>
 
 <script is:inline>
+  // ---- 来源追踪：UTM 参数 + 首访落地页 (sessionStorage 持久，跨页面保留) ----
+  (function () {
+    try {
+      var SKEY = 'callsun_tracking';
+      var saved = null;
+      try { saved = JSON.parse(sessionStorage.getItem(SKEY) || 'null'); } catch (e) { saved = null; }
+      if (!saved) {
+        saved = {
+          utm_source: '', utm_medium: '', utm_campaign: '', utm_term: '', utm_content: '',
+          referrer: document.referrer || '',
+          landing_page: location.pathname + location.search,
+        };
+      }
+      var q = new URLSearchParams(location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) {
+        var v = q.get(k);
+        if (v) saved[k] = v;
+      });
+      sessionStorage.setItem(SKEY, JSON.stringify(saved));
+      window.__callsunTracking = saved;
+    } catch (e) { /* sessionStorage 不可用时静默降级 */ }
+  })();
+
+  // ---- Turnstile 优雅降级：验证服务不可达时不卡死表单（honeypot + 服务端频率限制兜底）----
+  function degradeTurnstile(form) {
+    if (form.__tsDegraded) return;
+    form.__tsDegraded = true;
+    var w = form.querySelector('.cf-turnstile');
+    if (w) w.style.display = 'none';
+    var h = form.querySelector('[name=ts_offline]');
+    if (!h) {
+      h = document.createElement('input');
+      h.type = 'hidden';
+      h.name = 'ts_offline';
+      h.value = '1';
+      form.appendChild(h);
+    } else {
+      h.value = '1';
+    }
+    if (!form.querySelector('[data-ts-note]')) {
+      var n = document.createElement('p');
+      n.setAttribute('data-ts-note', '');
+      n.className = 'text-[11px] text-callsun-mute';
+      n.textContent = 'Security check temporarily unavailable — your inquiry will still be submitted.';
+      var btn = form.querySelector('button[type=submit]');
+      form.insertBefore(n, btn);
+    }
+  }
+  window.__callsunTsError = function () {
+    document.querySelectorAll('form[action="/api/inquiry"]').forEach(function (f) {
+      if (f.querySelector('.cf-turnstile')) degradeTurnstile(f);
+    });
+  };
+
   document.querySelectorAll('form[action="/api/inquiry"]').forEach((form) => {
+    // Turnstile 降级触发器：脚本加载失败 / 8s 超时未就绪
+    form.__tsDegraded = false;
+    var tsScript = document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]');
+    if (tsScript) tsScript.addEventListener('error', function () { degradeTurnstile(form); });
+    setTimeout(function () { if (!window.turnstile) degradeTurnstile(form); }, 8000);
+
+    // 提交前注入追踪字段
+    form.addEventListener('submit', function () {
+      try {
+        var t = window.__callsunTracking || {};
+        var slug = (location.pathname || '').replace(/^\/+|\/+$/g, '') || 'home';
+        form.querySelector('[name=utm_source]').value = t.utm_source || '';
+        form.querySelector('[name=utm_medium]').value = t.utm_medium || '';
+        form.querySelector('[name=utm_campaign]').value = t.utm_campaign || '';
+        form.querySelector('[name=utm_term]').value = t.utm_term || '';
+        form.querySelector('[name=utm_content]').value = t.utm_content || '';
+        form.querySelector('[name=referrer]').value = t.referrer || '';
+        form.querySelector('[name=landing_page]').value = t.landing_page || '';
+        form.querySelector('[name=landing_page_slug]').value = slug;
+      } catch (e) { /* 注入失败不影响提交 */ }
+    });
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const status = form.querySelector('[data-inquiry-status]');
       const btn = form.querySelector('button[type=submit]');
+      // Turnstile 校验：正常渲染时必须先通过；降级（CDN 不可达）时放行
+      const widget = form.querySelector('.cf-turnstile');
+      if (widget && window.turnstile && !form.__tsDegraded) {
+        const token = window.turnstile.getResponse(widget);
+        if (!token) {
+          status.removeAttribute('hidden');
+          status.className = 'text-[11px] font-semibold text-red-600';
+          status.textContent = 'Please complete the security verification first.';
+          return;
+        }
+      }
+
       btn.disabled = true;
       btn.classList.add('opacity-60', 'cursor-wait');
       status.removeAttribute('hidden');
@@ -89,6 +219,10 @@ const {
           status.className = 'text-[11px] font-semibold text-callsun-limeLo';
           status.textContent = 'Thanks — your inquiry has been received. We will reply shortly.';
           form.reset();
+          // 询盘转化追踪：GTM dataLayer 事件（可在 GTM 后台映射到 GA4 转化 / Google Ads / Meta）
+          if (window.dataLayer) {
+            window.dataLayer.push({ event: 'inquiry_submit', inquiry_id: json.id || '', form_source: form.getAttribute('data-form-source') || '' });
+          }
         } else {
           status.className = 'text-[11px] font-semibold text-red-600';
           status.textContent = json.message || 'Submission failed. Please try again or email sales@callsunsolar.com';
@@ -103,3 +237,5 @@ const {
     });
   });
 </script>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

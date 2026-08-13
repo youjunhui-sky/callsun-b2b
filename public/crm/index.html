@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Callsun CRM — Inquiry Management</title>
+<style>
+  :root { --lime:#C6F600; --ink:#0F0F0E; --mute:#6b6b66; --line:#e5e5e0; --tint:#f6f6f2; --red:#dc2626; --green:#16a34a; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Inter',system-ui,sans-serif; background:var(--tint); color:var(--ink); font-size:14px; line-height:1.5; }
+  header { background:var(--ink); color:#fff; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; }
+  header h1 { font-size:16px; font-weight:800; letter-spacing:.04em; }
+  header h1 span { color:var(--lime); }
+  header .user { font-size:12px; color:#aaa; }
+  .wrap { max-width:1200px; margin:0 auto; padding:24px 24px 60px; }
+  .hidden { display:none !important; }
+  button { cursor:pointer; border:0; font:inherit; }
+  .btn { background:var(--ink); color:#fff; padding:8px 14px; font-size:12px; font-weight:700; letter-spacing:.05em; }
+  .btn:hover { background:#2a2a28; }
+  .btn.lime { background:var(--lime); color:var(--ink); }
+  .btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .btn.sm { padding:4px 10px; font-size:11px; }
+  input, select, textarea { font:inherit; padding:8px 10px; border:1px solid var(--line); background:#fff; width:100%; }
+  .grid { display:grid; gap:10px; }
+  .filters { background:#fff; border:1px solid var(--line); padding:14px; margin-bottom:16px; }
+  .filters .row { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+  .card { background:#fff; border:1px solid var(--line); padding:14px; margin-bottom:12px; }
+  .card .top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap; }
+  .card .name { font-size:15px; font-weight:800; }
+  .card .meta { color:var(--mute); font-size:12px; margin-top:2px; }
+  .card .msg { margin-top:8px; color:#333; font-size:13px; white-space:pre-wrap; }
+  .card .tags { margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .tag { font-size:10px; font-weight:700; letter-spacing:.04em; padding:2px 8px; text-transform:uppercase; }
+  .tag.status-new { background:#eef2ff; color:#4338ca; }
+  .tag.status-contacting { background:#fff7ed; color:#c2410c; }
+  .tag.status-qualified { background:#ecfdf5; color:#047857; }
+  .tag.status-quote { background:#fdf4ff; color:#a21caf; }
+  .tag.status-won { background:#f0fdf4; color:#15803d; }
+  .tag.status-lost { background:#fef2f2; color:#b91c1c; }
+  .tag.src { background:var(--tint); color:var(--mute); }
+  .tag.dup { background:#fef2f2; color:#b91c1c; }
+  .pager { display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top:14px; font-size:12px; color:var(--mute); }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:16px; }
+  .stat { background:#fff; border:1px solid var(--line); padding:14px; }
+  .stat .num { font-size:26px; font-weight:900; }
+  .stat .lbl { font-size:11px; color:var(--mute); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+  .detail-label { font-size:10px; font-weight:700; color:var(--mute); text-transform:uppercase; letter-spacing:.06em; margin-top:12px; }
+  .detail-val { font-size:13px; margin-top:2px; }
+  .fu { border-left:3px solid var(--lime); background:var(--tint); padding:10px 12px; margin-top:8px; }
+  .fu .t { font-size:11px; color:var(--mute); }
+  .toast { position:fixed; bottom:20px; right:20px; background:var(--ink); color:#fff; padding:10px 18px; font-size:13px; z-index:100; display:none; }
+  .toast.show { display:block; }
+  a { color:inherit; }
+  .empty { text-align:center; color:var(--mute); padding:40px 0; }
+  .login-box { max-width:360px; margin:80px auto; background:#fff; border:1px solid var(--line); padding:28px; }
+  .login-box h2 { font-size:18px; margin-bottom:16px; }
+  .login-box p { font-size:12px; color:var(--mute); margin-bottom:14px; }
+  .status-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+  .status-row select { width:auto; padding:4px 8px; font-size:12px; }
+  table.export-hint { display:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ CALLSUN <span>CRM</span></h1>
+  <div class="user" id="userBox"></div>
+</header>
+
+<!-- 登录 -->
+<div class="wrap" id="loginView">
+  <div class="login-box">
+    <h2>Sign in</h2>
+    <p>Enter your CRM access token (provided by the site administrator).</p>
+    <div class="grid" style="gap:10px">
+      <input id="tokenInput" type="password" placeholder="Access token" />
+      <button class="btn lime" onclick="login()">SIGN IN</button>
+    </div>
+    <p id="loginErr" style="color:var(--red);margin-top:10px;display:none">Invalid token.</p>
+  </div>
+</div>
+
+<!-- 主界面 -->
+<div class="wrap hidden" id="mainView">
+  <div class="stats" id="statsBox"></div>
+
+  <!-- 视图切换 Tab -->
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+    <button class="btn lime" id="tabInquiries" onclick="switchTab('inquiries')">📥 INQUIRIES</button>
+    <button class="btn ghost" id="tabDue" onclick="switchTab('due')">⏰ FOLLOW-UPS DUE <span id="dueBadge" style="background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;margin-left:2px;display:none"></span></button>
+  </div>
+
+  <div class="filters" id="filtersBox">
+    <div class="row">
+      <input id="fSearch" placeholder="Search name / company / email" />
+      <input id="fCountry" placeholder="Country" />
+      <input id="fProduct" placeholder="Product" />
+      <input id="fSource" placeholder="Source (utm/google/facebook)" />
+      <select id="fOwner"><option value="">All owners</option></select>
+      <select id="fStatus">
+        <option value="">All statuses</option>
+        <option value="new">New</option>
+        <option value="contacting">Contacting</option>
+        <option value="qualified">Qualified</option>
+        <option value="quote">Quote / Sample</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+      </select>
+      <input id="fFrom" type="date" />
+      <input id="fTo" type="date" />
+      <button class="btn ghost" onclick="loadInquiries(1)">FILTER</button>
+      <button class="btn ghost" onclick="resetFilters()">RESET</button>
+      <button class="btn" onclick="exportCsv()">⬇ EXPORT EXCEL</button>
+    </div>
+  </div>
+
+  <div class="filters hidden" id="dueFiltersBox">
+    <div class="row" style="align-items:center">
+      <span style="font-size:12px;color:var(--mute)">Show due within:</span>
+      <select id="dueDays" style="width:auto" onchange="loadDue()">
+        <option value="7">Next 7 days</option>
+        <option value="14">Next 14 days</option>
+        <option value="30">Next 30 days</option>
+      </select>
+      <button class="btn ghost" onclick="loadDue()">REFRESH</button>
+      <span id="dueSummary" style="font-size:12px;color:var(--mute)"></span>
+    </div>
+  </div>
+
+  <div id="listBox"></div>
+  <div class="pager" id="pagerBox"></div>
+</div>
+
+<!-- 详情抽屉 -->
+<div class="wrap hidden" id="detailView">
+  <button class="btn ghost" onclick="backToList()">← BACK TO LIST</button>
+  <div id="detailBox" style="margin-top:16px"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '/api/admin';
+let TOKEN = localStorage.getItem('callsun_crm_token') || '';
+let ROLE = localStorage.getItem('callsun_crm_role') || '';
+let USER_ID = localStorage.getItem('callsun_crm_user') || '';
+let ALL_USERS = [];
+let PAGE = 1;
+
+async function api(path, opts = {}) {
+  const headers = { ...(opts.headers || {}) };
+  if (TOKEN) headers['authorization'] = 'Bearer ' + TOKEN;
+  if (opts.body && typeof opts.body !== 'string') {
+    headers['content-type'] = 'application/json';
+    opts.body = JSON.stringify(opts.body);
+  }
+  const res = await fetch(API + path, { ...opts, headers });
+  if (res.status === 401) { logout(); throw new Error('Unauthorized'); }
+  const ct = res.headers.get('content-type') || '';
+  if (ct.includes('json')) return res.json();
+  return res.text();
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._h);
+  t._h = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+
+const STATUS_LABEL = { new:'New', contacting:'Contacting', qualified:'Qualified', quote:'Quote / Sample', won:'Won', lost:'Lost' };
+
+// ---------- 登录 ----------
+async function login() {
+  const token = document.getElementById('tokenInput').value.trim();
+  const r = await api('/login', { method:'POST', body: { token } }).catch(() => null);
+  if (!r || !r.ok) {
+    document.getElementById('loginErr').style.display = 'block';
+    return;
+  }
+  TOKEN = token; ROLE = r.role; USER_ID = r.id;
+  localStorage.setItem('callsun_crm_token', TOKEN);
+  localStorage.setItem('callsun_crm_role', ROLE);
+  localStorage.setItem('callsun_crm_user', USER_ID || '');
+  showMain();
+}
+
+function logout() {
+  TOKEN = ''; ROLE = ''; USER_ID = '';
+  localStorage.removeItem('callsun_crm_token');
+  localStorage.removeItem('callsun_crm_role');
+  localStorage.removeItem('callsun_crm_user');
+  document.getElementById('mainView').classList.add('hidden');
+  document.getElementById('detailView').classList.add('hidden');
+  document.getElementById('loginView').classList.remove('hidden');
+  document.getElementById('userBox').textContent = '';
+}
+
+function showMain() {
+  document.getElementById('loginView').classList.add('hidden');
+  document.getElementById('detailView').classList.add('hidden');
+  document.getElementById('mainView').classList.remove('hidden');
+  document.getElementById('userBox').textContent = (ROLE === 'admin' ? 'Admin' : 'Sales') + ' · ' + (USER_ID || '');
+  loadStats();
+  loadUsers();
+  loadDue(); // 加载待跟进 badge（不切换视图）
+  loadInquiries(1);
+}
+
+function backToList() {
+  document.getElementById('detailView').classList.add('hidden');
+  document.getElementById('mainView').classList.remove('hidden');
+  if (ACTIVE_TAB === 'due') { loadDue(); } else { loadInquiries(PAGE); }
+}
+
+// ---------- 统计 ----------
+async function loadStats() {
+  const r = await api('/stats');
+  if (!r || !r.ok) return;
+  const s = r.stats;
+  const byStatus = (s.byStatus || []).map(x => `${STATUS_LABEL[x.status] || x.status}: ${x.n}`).join(' · ');
+  document.getElementById('statsBox').innerHTML =
+    `<div class="stat"><div class="num">${s.total}</div><div class="lbl">Total Inquiries</div></div>
+     <div class="stat"><div class="num">${s.today}</div><div class="lbl">Today</div></div>
+     <div class="stat"><div class="num" style="font-size:14px;font-weight:700;padding-top:6px">${byStatus || '—'}</div><div class="lbl">By Status</div></div>
+     <div class="stat"><div class="num" style="font-size:14px;font-weight:700;padding-top:6px">${(s.bySource || []).slice(0,3).map(x => `${esc(x.source)}: ${x.n}`).join(' · ') || '—'}</div><div class="lbl">Top Sources</div></div>`;
+}
+
+// ---------- 用户 ----------
+async function loadUsers() {
+  if (ROLE !== 'admin') return;
+  const r = await api('/users');
+  if (!r || !r.ok) return;
+  ALL_USERS = r.users || [];
+  const sel = document.getElementById('fOwner');
+  sel.innerHTML = '<option value="">All owners</option>' + ALL_USERS.map(u => `<option value="${esc(u.id)}">${esc(u.name)}</option>`).join('');
+}
+
+function ownerName(id) {
+  const u = ALL_USERS.find(x => x.id === id);
+  return u ? u.name : (id || 'Unassigned');
+}
+
+// ---------- 视图切换 ----------
+let ACTIVE_TAB = 'inquiries';
+
+function switchTab(tab) {
+  ACTIVE_TAB = tab;
+  const isDue = tab === 'due';
+  document.getElementById('tabInquiries').className = isDue ? 'btn ghost' : 'btn lime';
+  document.getElementById('tabDue').className = isDue ? 'btn lime' : 'btn ghost';
+  document.getElementById('filtersBox').classList.toggle('hidden', isDue);
+  document.getElementById('dueFiltersBox').classList.toggle('hidden', !isDue);
+  if (isDue) { loadDue(); } else { loadInquiries(PAGE); }
+}
+
+// ---------- 待跟进清单 ----------
+async function loadDue() {
+  const days = document.getElementById('dueDays').value;
+  const r = await api('/followups/due?days=' + days);
+  if (!r || !r.ok) return;
+  const badge = document.getElementById('dueBadge');
+  if (r.overdueCount > 0) {
+    badge.textContent = r.overdueCount;
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+  document.getElementById('dueSummary').textContent = `${r.total} follow-up${r.total === 1 ? '' : 's'} due (next ${r.days} days) · ${r.overdueCount} overdue`;
+  renderDue(r.data || []);
+}
+
+function fmtDue(iso, overdue) {
+  const d = new Date(iso);
+  const s = d.toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  return overdue ? `<span style="color:var(--red);font-weight:800">⚠ ${s} (OVERDUE)</span>` : s;
+}
+
+function renderDue(items) {
+  const box = document.getElementById('listBox');
+  document.getElementById('pagerBox').innerHTML = '';
+  if (!items.length) { box.innerHTML = '<div class="empty">🎉 No follow-ups due — you are all caught up!</div>'; return; }
+  box.innerHTML = items.map(it => {
+    const src = it.utm_source || it.form_source || (it.referrer ? 'referrer' : 'direct');
+    return `<div class="card" style="${it.overdue ? 'border-left:3px solid var(--red)' : 'border-left:3px solid var(--lime)'};cursor:pointer" onclick="openDetail('${it.id}')">
+      <div class="top">
+        <div>
+          <div class="name">${esc(it.name)} ${it.company ? '<span style="color:var(--mute);font-weight:500">· ' + esc(it.company) + '</span>' : ''}</div>
+          <div class="meta">${esc(it.email)}${it.country ? ' · ' + esc(it.country) : ''} · Due ${fmtDue(it.next_followup_at, it.overdue)}</div>
+          ${it.content ? `<div class="msg">${esc((it.content || '').slice(0, 120))}${(it.content || '').length > 120 ? '…' : ''}</div>` : ''}
+        </div>
+        <div class="tags">
+          <span class="tag status-${it.status}">${STATUS_LABEL[it.status] || it.status}</span>
+          <span class="tag src">${esc(src)}</span>
+          ${it.product_model ? `<span class="tag src">${esc(it.product_model)}</span>` : ''}
+        </div>
+      </div>
+      <div class="meta" style="margin-top:8px">Owner: <b>${esc(ownerName(it.owner))}</b></div>
+    </div>`;
+  }).join('');
+}
+
+// ---------- 列表 ----------
+function filterParams(page) {
+  const p = new URLSearchParams();
+  const s = document.getElementById('fSearch').value.trim();
+  if (s) p.set('search', s);
+  const c = document.getElementById('fCountry').value.trim();
+  if (c) p.set('country', c);
+  const pr = document.getElementById('fProduct').value.trim();
+  if (pr) p.set('product', pr);
+  const so = document.getElementById('fSource').value.trim();
+  if (so) p.set('source', so);
+  const o = document.getElementById('fOwner').value;
+  if (o) p.set('owner', o);
+  const st = document.getElementById('fStatus').value;
+  if (st) p.set('status', st);
+  const f = document.getElementById('fFrom').value;
+  if (f) p.set('from', f + 'T00:00:00Z');
+  const t = document.getElementById('fTo').value;
+  if (t) p.set('to', t + 'T23:59:59Z');
+  p.set('page', page);
+  return p.toString();
+}
+
+async function loadInquiries(page) {
+  PAGE = page;
+  const r = await api('/inquiries?' + filterParams(page));
+  if (!r || !r.ok) return;
+  renderList(r.data || [], r.pagination);
+}
+
+function renderList(items, pag) {
+  const box = document.getElementById('listBox');
+  if (!items.length) { box.innerHTML = '<div class="empty">No inquiries found.</div>'; renderPager(pag); return; }
+  box.innerHTML = items.map(it => {
+    const dup = it.duplicate_of ? `<span class="tag dup" title="Duplicate of ${esc(it.duplicate_of)}">⚠ DUP</span>` : '';
+    const src = it.utm_source || it.form_source || (it.referrer ? 'referrer' : 'direct');
+    return `<div class="card" onclick="openDetail('${it.id}')" style="cursor:pointer">
+      <div class="top">
+        <div>
+          <div class="name">${esc(it.name)} ${it.company ? '<span style="color:var(--mute);font-weight:500">· ' + esc(it.company) + '</span>' : ''}</div>
+          <div class="meta">${esc(it.email)}${it.country ? ' · ' + esc(it.country) : ''} · ${fmtDate(it.received_at)}</div>
+          <div class="msg">${esc((it.message || '').slice(0, 160))}${(it.message||'').length > 160 ? '…' : ''}</div>
+        </div>
+        <div class="tags">
+          <span class="tag status-${it.status}">${STATUS_LABEL[it.status] || it.status}</span>
+          <span class="tag src">${esc(src)}</span>
+          ${it.product_model ? `<span class="tag src">${esc(it.product_model)}</span>` : ''}
+          ${it.attachment_name ? '<span class="tag src">📎 file</span>' : ''}
+          ${dup}
+        </div>
+      </div>
+      <div class="meta" style="margin-top:8px">Owner: <b>${esc(ownerName(it.owner))}</b></div>
+    </div>`;
+  }).join('');
+  renderPager(pag);
+}
+
+function renderPager(pag) {
+  const box = document.getElementById('pagerBox');
+  if (!pag || pag.pages <= 1) { box.innerHTML = ''; return; }
+  box.innerHTML = `<button class="btn ghost sm" ${pag.page <= 1 ? 'disabled' : ''} onclick="loadInquiries(${pag.page - 1})">←</button>
+    <span>Page ${pag.page} / ${pag.pages} · ${pag.total} total</span>
+    <button class="btn ghost sm" ${pag.page >= pag.pages ? 'disabled' : ''} onclick="loadInquiries(${pag.page + 1})">→</button>`;
+}
+
+function resetFilters() {
+  ['fSearch','fCountry','fProduct','fSource','fOwner','fStatus','fFrom','fTo'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+  });
+  loadInquiries(1);
+}
+
+// ---------- 导出 ----------
+async function exportCsv() {
+  const qs = filterParams(1).replace(/page=\d+/, '');
+  const blob = await api('/export?' + qs, { headers: {} }).then(text => new Blob([text], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'inquiries-' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  toast('Export ready (open in Excel)');
+}
+
+// ---------- 详情 ----------
+async function openDetail(id) {
+  document.getElementById('mainView').classList.add('hidden');
+  const box = document.getElementById('detailView');
+  box.classList.remove('hidden');
+  document.getElementById('detailBox').innerHTML = '<div class="empty">Loading…</div>';
+  const r = await api('/inquiries/' + id);
+  if (!r || !r.ok) { document.getElementById('detailBox').innerHTML = '<div class="empty">Not found.</div>'; return; }
+  renderDetail(r.inquiry, r.followups || [], r.nextFollowup);
+}
+
+function renderDetail(it, followups, nextFollowup) {
+  const box = document.getElementById('detailBox');
+  const isAdmin = ROLE === 'admin';
+  const ownerOpts = '<option value="">Unassigned</option>' + ALL_USERS.map(u => `<option value="${esc(u.id)}" ${u.id === it.owner ? 'selected' : ''}>${esc(u.name)}</option>`).join('');
+  box.innerHTML = `
+  <div class="card">
+    <div class="top">
+      <div>
+        <div class="name">${esc(it.name)} ${it.company ? '<span style="color:var(--mute);font-weight:500">· ' + esc(it.company) + '</span>' : ''}</div>
+        <div class="meta">Received ${fmtDate(it.received_at)}</div>
+      </div>
+      <div class="status-row">
+        <select id="stSel">
+          ${Object.entries(STATUS_LABEL).map(([k, v]) => `<option value="${k}" ${k === it.status ? 'selected' : ''}>${v}</option>`).join('')}
+        </select>
+        <button class="btn lime sm" onclick="setStatus('${it.id}')">SAVE</button>
+      </div>
+    </div>
+    ${isAdmin ? `
+    <div class="status-row" style="margin-top:12px">
+      <span style="font-size:11px;color:var(--mute);font-weight:700;text-transform:uppercase">Owner:</span>
+      <select id="ownerSel" style="width:auto">${ownerOpts}</select>
+      <button class="btn sm" onclick="assign('${it.id}')">ASSIGN</button>
+    </div>` : `<div class="detail-label">Owner</div><div class="detail-val">${esc(ownerName(it.owner))}</div>`}
+
+    <div class="detail-label">Contact</div>
+    <div class="detail-val">${esc(it.email)}${it.phone ? ' · ' + esc(it.phone) : ''}${it.country ? ' · ' + esc(it.country) : ''}</div>
+
+    <div class="detail-label">Product / Inquiry Type</div>
+    <div class="detail-val">${esc(it.product_model || '—')}${it.inquiry_type ? ' · ' + esc(it.inquiry_type) : ''}</div>
+
+    <div class="detail-label">Message</div>
+    <div class="detail-val" style="white-space:pre-wrap">${esc(it.message || '—')}</div>
+
+    ${it.attachment_name ? `<div class="detail-label">Attachment</div><div class="detail-val">📎 ${esc(it.attachment_name)} (${Math.round((it.attachment_size||0)/1024)} KB) — stored in DB</div>` : ''}
+
+    <div class="detail-label">Source</div>
+    <div class="detail-val">utm: ${esc(it.utm_source || '—')} / ${esc(it.utm_medium || '—')} / ${esc(it.utm_campaign || '—')} · Landing: ${esc(it.landing_page || '—')} · Form: ${esc(it.form_source || '—')}${it.referrer ? ' · Referrer: ' + esc(it.referrer) : ''}</div>
+
+    ${it.duplicate_of ? `<div class="detail-label" style="color:var(--red)">Duplicate</div><div class="detail-val">Likely duplicate of <a href="#" onclick="openDetail('${esc(it.duplicate_of)}');return false" style="text-decoration:underline">${esc(it.duplicate_of)}</a></div>` : ''}
+  </div>
+
+  <div class="card">
+    <div class="name" style="font-size:14px">➕ ADD FOLLOW-UP</div>
+    <div class="grid" style="margin-top:10px;grid-template-columns:1fr 1fr">
+      <div><label class="detail-label">Contact Time</label><input id="fuTime" type="datetime-local" /></div>
+      <div><label class="detail-label">Next Follow-up (reminder)</label><input id="fuNext" type="date" /></div>
+    </div>
+    <label class="detail-label">Communication Content</label><textarea id="fuContent" rows="2" placeholder="What was discussed…"></textarea>
+    <label class="detail-label">Quotation</label><textarea id="fuQuote" rows="2" placeholder="Quote details / price / terms…"></textarea>
+    <label class="detail-label">Remark</label><textarea id="fuRemark" rows="2" placeholder="Internal notes…"></textarea>
+    <button class="btn lime" style="margin-top:10px" onclick="addFollowup('${it.id}')">SAVE FOLLOW-UP</button>
+  </div>
+
+  <div class="card">
+    <div class="name" style="font-size:14px">📋 FOLLOW-UP HISTORY${nextFollowup ? ` <span style="color:var(--green);font-size:12px">· Next: ${esc(nextFollowup.slice(0,10))}</span>` : ''}</div>
+    ${followups.length ? followups.map(f => `<div class="fu">
+      <div class="t">${fmtDate(f.created_at)}${f.contact_time ? ' · Contact: ' + esc(f.contact_time) : ''}${f.next_followup_at ? ' · Next: ' + esc(f.next_followup_at.slice(0,10)) : ''}</div>
+      ${f.content ? `<div style="margin-top:4px">${esc(f.content)}</div>` : ''}
+      ${f.quotation ? `<div style="margin-top:4px"><b>Quote:</b> ${esc(f.quotation)}</div>` : ''}
+      ${f.remark ? `<div style="margin-top:4px;color:var(--mute)">Remark: ${esc(f.remark)}</div>` : ''}
+    </div>`).join('') : '<div class="empty" style="padding:20px">No follow-ups yet.</div>'}
+  </div>`;
+}
+
+async function assign(id) {
+  const owner = document.getElementById('ownerSel').value;
+  const r = await api('/inquiries/' + id + '/assign', { method: 'POST', body: { owner } });
+  if (r.ok) { toast('Assigned to ' + ownerName(owner)); loadUsers(); }
+}
+
+async function setStatus(id) {
+  const status = document.getElementById('stSel').value;
+  const r = await api('/inquiries/' + id + '/status', { method: 'POST', body: { status } });
+  if (r.ok) { toast('Status → ' + STATUS_LABEL[status]); loadStats(); }
+}
+
+async function addFollowup(id) {
+  const body = {
+    contact_time: document.getElementById('fuTime').value,
+    content: document.getElementById('fuContent').value,
+    quotation: document.getElementById('fuQuote').value,
+    remark: document.getElementById('fuRemark').value,
+    next_followup_at: document.getElementById('fuNext').value ? document.getElementById('fuNext').value + 'T00:00:00Z' : '',
+  };
+  const r = await api('/inquiries/' + id + '/followups', { method: 'POST', body });
+  if (r.ok) { toast('Follow-up saved'); openDetail(id); }
+}
+
+// ---------- 启动 ----------
+if (TOKEN && ROLE) showMain(); else { document.getElementById('loginView').classList.remove('hidden'); }
+</script>
+</body>
+</html>
