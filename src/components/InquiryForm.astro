@@ -93,10 +93,16 @@ const {
     </span>
     <textarea required name="message" rows="4" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime resize-y"></textarea>
   </label>
-  <label class="grid gap-1.5">
+  <div class="grid gap-1.5">
     <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Attachment (datasheet / project file, max 5MB)</span>
-    <input name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.jpg,.jpeg,.png" class="text-sm text-callsun-mute file:mr-3 file:border-0 file:bg-callsun-tint file:px-4 file:py-2.5 file:text-xs file:font-bold file:tracking-wider file:text-callsun-ink hover:file:bg-callsun-lime" />
-  </label>
+    <span class="inline-flex flex-wrap items-center gap-3">
+      <input id="attachment-file" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.jpg,.jpeg,.png" class="sr-only" data-attachment-input />
+      <label for="attachment-file" class="cursor-pointer inline-flex items-center gap-2 border border-callsun-line bg-callsun-tint px-4 py-2.5 text-xs font-bold tracking-wider text-callsun-ink hover:bg-callsun-lime transition-colors">
+        Choose file
+      </label>
+      <span class="text-sm text-callsun-mute" data-attachment-name>No file selected</span>
+    </span>
+  </div>
 
   {/* Cloudflare Turnstile 防垃圾验证 — Site Key 公开，Secret 在 worker 端校验 */}
   {turnstileSiteKey && (
@@ -167,6 +173,15 @@ const {
       if (f.querySelector('.cf-turnstile')) degradeTurnstile(f);
     });
   };
+
+  // ---- 附件选择：自定义英文按钮，选中后显示文件名 ----
+  document.querySelectorAll('[data-attachment-input]').forEach(function (input) {
+    input.addEventListener('change', function () {
+      var file = input.files && input.files[0] ? input.files[0] : null;
+      var el = input.parentElement ? input.parentElement.querySelector('[data-attachment-name]') : null;
+      if (el) el.textContent = file ? file.name : 'No file selected';
+    });
+  });
 
   document.querySelectorAll('form[action="/api/inquiry"]').forEach((form) => {
     // Turnstile 降级触发器：脚本加载失败 / 8s 超时未就绪
