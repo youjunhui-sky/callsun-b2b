@@ -311,18 +311,33 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     features: [
       {
         num: '01',
-        title: 'N-TYPE 16BB CELLS',
-        body: '25.6% cell efficiency with improved low-light and temperature performance.',
+        title: 'N-TYPE 16BB HIGH-EFFICIENCY CELLS',
+        body: 'Advanced N-type cells with a 16-busbar design deliver 25.6% cell efficiency, improved low-light response and stable power generation throughout the day.',
       },
       {
         num: '02',
-        title: 'DUAL-MODULE ANTI-SHADING',
-        body: 'Parallel circuitry divides the module into two independent sections.',
+        title: 'HIGH-VOLTAGE OUTPUT FOR 24V SYSTEMS',
+        body: 'With a 34.2V operating voltage, the module is designed for efficient charging in 24V off-grid systems, reducing the need for complex series connections.',
       },
       {
         num: '03',
-        title: 'BIFACIAL OUTDOOR DESIGN',
-        body: 'Rear-side light capture, 3.2 mm tempered glass and IP68 protection.',
+        title: 'LOWER CURRENT, LOWER SYSTEM LOSS',
+        body: 'The 6.1A operating current helps reduce cable transmission loss and voltage drop, supporting more efficient system design over longer cable runs.',
+      },
+      {
+        num: '04',
+        title: 'STABLE OUTPUT IN HIGH TEMPERATURES',
+        body: 'A low −0.30%/K power temperature coefficient limits output loss in hot conditions, supporting reliable operation in rooftop, RV, marine and off-grid applications.',
+      },
+      {
+        num: '05',
+        title: 'BUILT FOR DEMANDING ENVIRONMENTS',
+        body: 'IP68 protection, 3.2 mm tempered glass and a durable aluminium frame withstand rain, dust, wind and snow, with load ratings of 2400 Pa wind and 5400 Pa snow.',
+      },
+      {
+        num: '06',
+        title: 'LONG-TERM POWER RELIABILITY',
+        body: 'Backed by a 10-year product warranty and 25-year linear power warranty, with 84.5% guaranteed output at year 25 for predictable long-term energy returns.',
       },
     ],
     tech: {

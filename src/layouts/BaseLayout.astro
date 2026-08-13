@@ -81,6 +81,32 @@ const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [sche
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    {SITE.analytics.gtmId && (
+      <>
+        {/* Google Tag Manager — 按 Cookie 同意状态加载 */}
+        <script is:inline>
+          (function () {
+            var gtmId = {JSON.stringify(SITE.analytics.gtmId)};
+            var consent = null;
+            try { consent = localStorage.getItem('callsun_consent'); } catch (e) {}
+            if (consent === 'denied') return; // 用户拒绝 → 不加载任何统计/广告脚本
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { window.dataLayer.push(arguments); }
+            window.gtag = gtag;
+            gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
+            if (consent === 'granted') {
+              gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
+            }
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+            document.head.appendChild(s);
+            window.__gtmLoaded = true;
+          })();
+        </script>
+      </>
+    )}
+
     {schemas.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
@@ -97,6 +123,40 @@ const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [sche
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-callsun focus:text-callsun-ink focus:px-4 focus:py-2">
       Skip to content
     </a>
+
+    {SITE.analytics.gtmId && (
+      <div id="callsun-cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-sm z-[60] bg-callsun-ink text-white border border-white/15 p-5 shadow-2xl" style="display:none">
+        <p class="text-xs leading-relaxed text-white/80">
+          We use cookies to analyse site traffic and improve your experience. Marketing and analytics
+          tags only run after you accept.
+        </p>
+        <div class="mt-4 flex gap-3">
+          <button type="button" class="bg-callsun text-callsun-ink text-xs font-bold px-4 py-2" data-consent="granted">ACCEPT</button>
+          <button type="button" class="border border-white/30 text-xs font-bold px-4 py-2 text-white/80" data-consent="denied">DECLINE</button>
+        </div>
+        <a href="/privacy/" class="mt-3 inline-block text-[11px] text-white/50 underline">Privacy Policy</a>
+      </div>
+    )}
+    <script is:inline>
+      (function () {
+        var banner = document.getElementById('callsun-cookie-banner');
+        if (!banner) return;
+        var consent = null;
+        try { consent = localStorage.getItem('callsun_consent'); } catch (e) {}
+        if (consent === 'granted' || consent === 'denied') return;
+        banner.style.display = 'block';
+        banner.querySelectorAll('[data-consent]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var v = btn.getAttribute('data-consent');
+            try { localStorage.setItem('callsun_consent', v); } catch (e) {}
+            banner.style.display = 'none';
+            if (v === 'granted' && window.gtag) {
+              window.gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
+            }
+          });
+        });
+      })();
+    </script>
 
     <slot name="header" />
     <main id="main">

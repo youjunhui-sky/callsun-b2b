@@ -61,6 +61,7 @@ export const CUSTOM_L2 = {
       ],
       image: '/uploads/callsun/products/180w/hero-05.jpg',
       detailHref: '/products/cn180w/',
+      datasheetHref: '/uploads/callsun/datasheets/CN180W_Solar_Module_Datasheet.pdf',
     },
     {
       key: 'cn200w',
@@ -79,6 +80,7 @@ export const CUSTOM_L2 = {
       ],
       image: '/uploads/callsun/products/200w/front-back.jpg',
       detailHref: '/products/cn200w/',
+      datasheetHref: '/uploads/callsun/datasheets/CN200W_Solar_Module_Datasheet.pdf',
     },
     {
       key: 'cn210w',
@@ -97,6 +99,7 @@ export const CUSTOM_L2 = {
       ],
       image: '/uploads/callsun/products/210w/front-back.jpg',
       detailHref: '/products/cn210w/',
+      datasheetHref: '/uploads/callsun/datasheets/CN210W_Solar_Module_Datasheet.pdf',
     },
     {
       key: 'cn215w',
@@ -115,7 +118,7 @@ export const CUSTOM_L2 = {
       ],
       image: '/uploads/callsun/products/215w/front-back.jpg',
       detailHref: '/products/cn215w/',
-      datasheetHref: '/uploads/callsun/products/215w/CN215W-datasheet.pdf',
+      datasheetHref: '/uploads/callsun/datasheets/CN215W_Solar_Module_Datasheet.pdf',
     },
   ] as CustomSku[],
   inquiry: {

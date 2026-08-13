@@ -66,7 +66,7 @@ export interface PortfolioCard {
   eyebrow: string;
   title: string;
   body: string;
-  powers: string[];
+  powers: { label: string; href: string }[];
   tags: string[];
   href: string;
 }
@@ -76,7 +76,12 @@ export const PORTFOLIO: PortfolioCard[] = [
     eyebrow: 'STANDARD PV MODULES',
     title: 'Standard PV Modules',
     body: 'Suitable for residential rooftop, distributed PV, off-grid systems and small C&I projects. Higher watt-per-square-meter reduces system weight and installation labor.',
-    powers: ['450W', '580W', '620W', '720W'],
+    powers: [
+      { label: '450W', href: '/products/cn450w/' },
+      { label: '580W', href: '/products/cn580w/' },
+      { label: '620W', href: '/products/cn620w/' },
+      { label: '720W', href: '/products/cn720w/' },
+    ],
     tags: ['High-Efficiency Compatibility', 'PV Integration'],
     href: '/products/standard-modules/',
   },
@@ -84,7 +89,12 @@ export const PORTFOLIO: PortfolioCard[] = [
     eyebrow: 'CUSTOM PV MODULES',
     title: 'Custom PV Modules',
     body: 'For RV, rooftop, balcony, marine and OEM equipment scenarios — engineered by space, wattage, dimensions, structure and interface requirements with prototype-to-batch validation.',
-    powers: ['180W', '200W', '215W'],
+    powers: [
+      { label: '180W', href: '/products/cn180w/' },
+      { label: '200W', href: '/products/cn200w/' },
+      { label: '210W', href: '/products/cn210w/' },
+      { label: '215W', href: '/products/cn215w/' },
+    ],
     tags: ['Custom Sizing', 'Structural Development'],
     href: '/products/custom-modules/',
   },

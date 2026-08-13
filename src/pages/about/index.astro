@@ -138,7 +138,7 @@ const pageDescription =
         <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
           Manufacturing
         </p>
-        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight whitespace-normal lg:whitespace-nowrap">
           From product spec to stable delivery
         </h2>
         <p class="mt-4 text-base md:text-lg text-white/70 leading-relaxed">
@@ -197,9 +197,12 @@ const pageDescription =
 
             <div class="mt-6 flex flex-wrap gap-2">
               {c.powers.map((p) => (
-                <span class="inline-flex items-center bg-callsun-tint text-callsun-limeLo text-base font-display font-extrabold uppercase tracking-wide rounded-full px-4 py-2">
-                  {p}
-                </span>
+                <a
+                  href={p.href}
+                  class="inline-flex items-center bg-callsun-tint text-callsun-limeLo text-base font-display font-extrabold uppercase tracking-wide rounded-full px-4 py-2 hover:bg-callsun hover:text-callsun-ink transition-colors"
+                >
+                  {p.label}
+                </a>
               ))}
             </div>
           </div>

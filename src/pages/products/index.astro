@@ -78,9 +78,9 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
           );
           return (
             <article class={`relative overflow-hidden border-t-4 border-callsun ${bg} shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]`}>
-              <div class="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-10 lg:gap-14 items-center py-6 md:py-8 lg:py-12">
+              <div class="grid grid-cols-1 md:grid-cols-8 gap-8 md:gap-10 lg:gap-14 items-center py-8 md:py-10 lg:py-14">
                 {/* LEFT: gallery — main image + arrows (swipeable) */}
-                <div data-gallery class="md:col-span-2">
+                <div data-gallery class="md:col-span-3 pl-4 md:pl-6 lg:pl-10">
                   <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
                     <div class="relative" style="aspect-ratio: 4/3;">
                       {cat.images.map((src, si) => (
@@ -105,7 +105,7 @@ import { PRODUCTS_L1 } from '@/data/products-l1';
                   </div>
                 </div>
                 {/* RIGHT: text */}
-                <div class="md:col-span-5">
+                <div class="md:col-span-5 pr-4 md:pr-6 lg:pr-10">
                   <h2 class={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold ${headingClr}`}>
                     {cat.title}
                   </h2>
