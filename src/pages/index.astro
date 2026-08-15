@@ -36,9 +36,9 @@ const homeSchema = {
        Section 1: HERO CAROUSEL (5 images, auto-play, dot nav)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section id="hero-carousel" class="relative overflow-hidden text-white">
-    {/* Slides: 8 designed hero images (text baked in). Container is fixed 2.2:1 (11/5) so images are cropped consistently on every screen; keep text within the central safe area. */}
+    {/* Slides: 7 designed hero images (text baked in). Container is fixed 2.2:1 (11/5) so images are cropped consistently on every screen; keep text within the central safe area. */}
     <div class="relative w-full aspect-[11/5] min-h-[380px]">
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+      {[1, 2, 3, 4, 5, 6, 7].map((n) => (
         <img
           src={`/uploads/callsun/home/hero-carousel/${n}.webp`}
           alt=""
@@ -317,7 +317,7 @@ const homeSchema = {
 
   <script>
   (() => {
-    const TOTAL = 8;
+    const TOTAL = 7;
     let current = 1;
     let timer = null;
 

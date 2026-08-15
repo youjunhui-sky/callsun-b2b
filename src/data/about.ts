@@ -14,10 +14,10 @@ export interface StatItem {
 }
 
 export const STATS: StatItem[] = [
-  { value: '55,000 m²', label: 'Manufacturing base' },
-  { value: '4',          label: 'Manufacturing regions' },
-  { value: '6+',         label: 'Global logistics markets' },
-  { value: '180–720W',   label: 'Module power classes' },
+  { value: 'Approx. 55,000 m²', label: 'Manufacturing base' },
+  { value: '4',                 label: 'Manufacturing regions' },
+  { value: '7',                 label: 'Warehousing & logistics markets' },
+  { value: '180W–720W',         label: 'Standard & custom modules' },
 ];
 
 export interface Principle {

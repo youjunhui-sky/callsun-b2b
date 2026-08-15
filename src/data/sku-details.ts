@@ -706,7 +706,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
         { label: 'PACKAGING',             value: '36 pcs/pallet · 720 pcs/40HQ' },
       ],
     },
-    certTitle: 'CNS580W',
+    certTitle: 'CN580W',
     certifications: [
       '__emph__CE (EMC), RoHS',
       'EN 55014 Series; EN 61000 Series; IEC 62321 Series',

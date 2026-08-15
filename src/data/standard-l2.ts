@@ -30,10 +30,10 @@ export const STANDARD_L2 = {
     tags: ['HIGH POWER DENSITY', 'BATCH CONSISTENCY', 'VOLUME DELIVERY'],
     cta: { label: 'REQUEST A QUOTE', href: '#inquiry' },
     thumbs: [
-      '/uploads/callsun/products/450w/01-front.webp',
-      '/uploads/callsun/products/580w/card-square.webp',
-      '/uploads/callsun/products/620w/card-square.webp',
-      '/uploads/callsun/products/720w/card-square.webp',
+      '/uploads/callsun/products/450w/card-logo.webp',
+      '/uploads/callsun/products/580w/card-logo.webp',
+      '/uploads/callsun/products/620w/card-logo.webp',
+      '/uploads/callsun/products/720w/card-logo.webp',
     ],
   },
   selectorEyebrow: 'SELECT A MODULE',
@@ -61,7 +61,7 @@ export const STANDARD_L2 = {
         { label: 'CONSTRUCTION', value: '96 cells · 2.0 mm double glass' },
       ],
       images: [
-        '/uploads/callsun/products/450w/01-front.webp',
+        '/uploads/callsun/products/450w/card-logo.webp',
         '/uploads/callsun/products/450w/hero-01.webp',
         '/uploads/callsun/products/450w/hero-02.webp',
         '/uploads/callsun/products/450w/hero-03.webp',
@@ -86,7 +86,7 @@ export const STANDARD_L2 = {
         { label: 'CONSTRUCTION', value: '144 cells · 2.0 mm double glass' },
       ],
       images: [
-        '/uploads/callsun/products/580w/card-square.webp',
+        '/uploads/callsun/products/580w/card-logo.webp',
         '/uploads/callsun/products/580w/hero-01.webp',
         '/uploads/callsun/products/580w/hero-02.webp',
         '/uploads/callsun/products/580w/hero-03.webp',
@@ -111,7 +111,7 @@ export const STANDARD_L2 = {
         { label: 'CONSTRUCTION', value: '132 cells · 2.0 mm double glass' },
       ],
       images: [
-        '/uploads/callsun/products/620w/card-square.webp',
+        '/uploads/callsun/products/620w/card-logo.webp',
         '/uploads/callsun/products/620w/hero-01.webp',
         '/uploads/callsun/products/620w/hero-02.webp',
         '/uploads/callsun/products/620w/hero-03.webp',
@@ -136,7 +136,7 @@ export const STANDARD_L2 = {
         { label: 'CONSTRUCTION', value: '132 cells · 2.0 mm dual glass' },
       ],
       images: [
-        '/uploads/callsun/products/720w/card-square.webp',
+        '/uploads/callsun/products/720w/card-logo.webp',
         '/uploads/callsun/products/720w/hero-01.webp',
         '/uploads/callsun/products/720w/hero-02.webp',
         '/uploads/callsun/products/720w/hero-03.webp',
