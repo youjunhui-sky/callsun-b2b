@@ -50,14 +50,13 @@ export const STANDARD_L2 = {
       subtitle: '450W N-Type Bifacial Double-Glass Solar Module',
       power: '450W',
       powerNum: 450,
-      efficiency: '22.53% MODULE EFFICIENCY',
-      description:
-        'Compact 96-cell module with balanced weight and dimensions, suited to residential rooftops, small distributed PV plants and off-grid deployments where module footprint matters.',
+      efficiency: '22.52% MODULE EFFICIENCY',
+      description: '',
       specs: [
         { label: 'DIMENSIONS', value: '1762 × 1134 × 30 mm' },
-        { label: 'WEIGHT', value: '24.5 kg' },
-        { label: 'OPERATING POINT', value: 'Vmp 30.9 V · Imp 14.55 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 35.01 V · Isc 15.47 A' },
+        { label: 'WEIGHT', value: '23.97 kg' },
+        { label: 'OPERATING POINT', value: 'Vmp 29.73 V · Imp 15.14 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 35.84 V · Isc 15.98 A' },
         { label: 'CONSTRUCTION', value: '96 cells · 2.0 mm double glass' },
       ],
       images: [
@@ -67,7 +66,7 @@ export const STANDARD_L2 = {
         '/uploads/callsun/products/450w/hero-03.webp',
       ],
       detailHref: '/products/cn450w/',
-      datasheetHref: '/uploads/callsun/products/450w/CN450W-double-glass-datasheet.pdf',
+      datasheetHref: '/uploads/callsun/products/450w/Callsun-CN450W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     },
     {
       key: 'cn580w',
@@ -76,13 +75,12 @@ export const STANDARD_L2 = {
       power: '580W',
       powerNum: 580,
       efficiency: '22.45% MODULE EFFICIENCY',
-      description:
-        'Mid-range 144-cell format for distributed PV plants and small commercial projects that need higher generation per unit area without stepping up to full utility-scale module sizes.',
+      description: '',
       specs: [
         { label: 'DIMENSIONS', value: '2278 × 1134 × 30 mm' },
-        { label: 'WEIGHT', value: '30 kg' },
-        { label: 'OPERATING POINT', value: 'Vmp 42.60 V · Imp 13.62 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: '51.47 V · Isc 14.37 A' },
+        { label: 'WEIGHT', value: '31.42 kg' },
+        { label: 'OPERATING POINT', value: 'Vmp 43.88 V · Imp 13.22 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 52.50 V · Isc 13.95 A' },
         { label: 'CONSTRUCTION', value: '144 cells · 2.0 mm double glass' },
       ],
       images: [
@@ -92,7 +90,7 @@ export const STANDARD_L2 = {
         '/uploads/callsun/products/580w/hero-03.webp',
       ],
       detailHref: '/products/cn580w/',
-      datasheetHref: '/uploads/callsun/products/580w/CN580W-datasheet.pdf',
+      datasheetHref: '/uploads/callsun/products/580w/Callsun-CN580W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     },
     {
       key: 'cn620w',
@@ -101,13 +99,12 @@ export const STANDARD_L2 = {
       power: '620W',
       powerNum: 620,
       efficiency: '22.95% MODULE EFFICIENCY',
-      description:
-        'High-power 132-cell class for distributed C&I and utility-adjacent projects that push installed capacity per string while keeping module handling manageable on-site.',
+      description: '',
       specs: [
         { label: 'DIMENSIONS', value: '2382 × 1134 × 30 mm' },
-        { label: 'WEIGHT', value: '32.5 kg' },
-        { label: 'OPERATING POINT', value: 'Vmp 40.82 V · Imp 15.19 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 48.10 V · Isc 16.06 A' },
+        { label: 'WEIGHT', value: '32.4 kg' },
+        { label: 'OPERATING POINT', value: 'Vmp 40.74 V · Imp 15.22 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 49.08 V · Isc 16.08 A' },
         { label: 'CONSTRUCTION', value: '132 cells · 2.0 mm double glass' },
       ],
       images: [
@@ -117,7 +114,7 @@ export const STANDARD_L2 = {
         '/uploads/callsun/products/620w/hero-03.webp',
       ],
       detailHref: '/products/cn620w/',
-      datasheetHref: '/uploads/callsun/products/620w/CN620W-datasheet.pdf',
+      datasheetHref: '/uploads/callsun/products/620w/Callsun-CN620W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     },
     {
       key: 'cn720w',
@@ -126,13 +123,12 @@ export const STANDARD_L2 = {
       power: '720W',
       powerNum: 720,
       efficiency: '23.18% MODULE EFFICIENCY',
-      description:
-        'Flagship 132-cell high-current module built for volume utility-scale procurement — maximum watts per rack, per truck (594 pcs / 40′HQ) and per BOS dollar.',
+      description: '',
       specs: [
         { label: 'DIMENSIONS', value: '2384 × 1303 × 33 mm' },
-        { label: 'WEIGHT', value: '37.9 kg' },
-        { label: 'OPERATING POINT', value: '41.03 V · Imp 17.55 A' },
-        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 49.28 V · Isc 18.55 A' },
+        { label: 'WEIGHT', value: '38.3 kg' },
+        { label: 'OPERATING POINT', value: 'Vmp 41.30 V · Imp 17.44 A' },
+        { label: 'OPEN / SHORT CIRCUIT', value: 'Voc 49.40 V · Isc 18.49 A' },
         { label: 'CONSTRUCTION', value: '132 cells · 2.0 mm dual glass' },
       ],
       images: [
@@ -142,7 +138,7 @@ export const STANDARD_L2 = {
         '/uploads/callsun/products/720w/hero-03.webp',
       ],
       detailHref: '/products/cn720w/',
-      datasheetHref: '/uploads/callsun/products/720w/CN720W-datasheet.pdf',
+      datasheetHref: '/uploads/callsun/products/720w/Callsun-CN720W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     },
   ] as StandardSku[],
   inquiry: {

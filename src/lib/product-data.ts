@@ -34,7 +34,7 @@ export const PRODUCTS: ProductSpec[] = [
     category: 'standard',
     order: 1,
     hero: { intro: 'N-Type · Bifacial · Double Glass', tags: ['HIGH POWER DENSITY', 'BATCH CONSISTENCY'] },
-    keyStats: { power: '450W', efficiency: '22.52%', dimensions: '1762 × 1134 × 30 mm', weight: '24.5 kg' },
+    keyStats: { power: '450W', efficiency: '22.52%', dimensions: '1762 × 1134 × 30 mm', weight: '23.97 kg' },
     images: {
       hero: '/uploads/callsun/products/450w/hero-01.webp',
       card: '/uploads/callsun/products/450w/hero-01.webp',

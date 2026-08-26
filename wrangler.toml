@@ -14,6 +14,9 @@ routes = [
 directory = "./dist"
 not_found_handling = "404-page"
 
+# 缓存策略（2026-08-16 加）：静态资源长缓存走 public/_headers（Workers Static Assets 支持）
+# HTML 不缓存（即时更新）；图片 1 天；带 hash 的 css/js/字体 immutable 1 年
+
 # 询盘 + CRM 数据库（部署前需创建：wrangler d1 create callsun-b2b-db）
 # 本地模拟：wrangler dev --local 自动用本地 sqlite
 [[d1_databases]]

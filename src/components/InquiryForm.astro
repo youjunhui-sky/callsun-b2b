@@ -106,7 +106,7 @@ const {
 
   {/* Cloudflare Turnstile 防垃圾验证 — Site Key 公开，Secret 在 worker 端校验 */}
   {turnstileSiteKey && (
-    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-size="normal" data-error-callback="__callsunTsError"></div>
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-size="normal" data-language="en" data-error-callback="__callsunTsError"></div>
   )}
 
   <button
