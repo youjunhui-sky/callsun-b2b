@@ -342,11 +342,32 @@ async function handleInquiry(request, env) {
 
 // ---------- CRM 鉴权 ----------
 
+// 员工名册（env secret CRM_USERS = JSON 数组）：[{id, name, email, role, token}]
+// 支持多名独立业务员/管理员各自持有独立 token，替代旧的单一 SALES_TOKEN 共享模式
+function parseCrmUsers(env) {
+  try {
+    const arr = JSON.parse(env.CRM_USERS || '[]');
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function findCrmUser(env, token) {
+  return parseCrmUsers(env).find(x => x.token && token && x.token === token) || null;
+}
+
+function crmUserToPublic(u) {
+  return { id: u.id, name: u.name, email: u.email || '', role: u.role === 'admin' ? 'admin' : 'sales' };
+}
+
 function authUser(request, env) {
   const header = request.headers.get('authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
   if (!token) return null;
-  if (env.ADMIN_TOKEN && token === env.ADMIN_TOKEN) return { role: 'admin', id: 'admin' };
+  if (env.ADMIN_TOKEN && token === env.ADMIN_TOKEN) return { role: 'admin', id: 'admin', name: 'Admin' };
+  const ru = findCrmUser(env, token);
+  if (ru) return { role: ru.role === 'admin' ? 'admin' : 'sales', id: ru.id, name: ru.name || ru.id };
   if (env.SALES_TOKEN && token === env.SALES_TOKEN) {
     return { role: 'sales', id: env.SALES_USER_ID || 'sales' };
   }
@@ -406,10 +427,14 @@ async function handleAdmin(request, env) {
     try { body = await request.json(); } catch (e) { /* ignore */ }
     const token = clean(body.token, 200);
     if (env.ADMIN_TOKEN && token === env.ADMIN_TOKEN) {
-      return jsonResponse({ ok: true, role: 'admin', id: 'admin' });
+      return jsonResponse({ ok: true, role: 'admin', id: 'admin', name: 'Admin' });
+    }
+    const ru = findCrmUser(env, token);
+    if (ru) {
+      return jsonResponse({ ok: true, role: ru.role === 'admin' ? 'admin' : 'sales', id: ru.id, name: ru.name || ru.id });
     }
     if (env.SALES_TOKEN && token === env.SALES_TOKEN) {
-      return jsonResponse({ ok: true, role: 'sales', id: env.SALES_USER_ID || 'sales' });
+      return jsonResponse({ ok: true, role: 'sales', id: env.SALES_USER_ID || 'sales', name: 'Sales' });
     }
     return jsonResponse({ ok: false, message: 'Invalid token.' }, { status: 401 });
   }
@@ -467,11 +492,19 @@ async function handleAdmin(request, env) {
     });
   }
 
-  // 业务员列表
+  // 业务员/员工列表（admin 专属）—— D1 users 表（遗留/分配用）∪ CRM_USERS 名册（去 token）
   if (path === '/api/admin/users' && request.method === 'GET') {
     if (user.role !== 'admin') return jsonResponse({ ok: false, message: 'Admin only.' }, { status: 403 });
     const { results } = await env.DB.prepare('SELECT id, name, email, role FROM users ORDER BY name').all().catch(() => ({ results: [] }));
-    return jsonResponse({ ok: true, users: results || [] });
+    const roster = parseCrmUsers(env).map(crmUserToPublic);
+    const seen = new Set();
+    const merged = [];
+    for (const u of [...roster, ...(results || [])]) {
+      if (seen.has(u.id)) continue;  // 名册优先，跳过 D1 重复 id
+      seen.add(u.id);
+      merged.push(u);
+    }
+    return jsonResponse({ ok: true, users: merged });
   }
 
   // 待跟进清单：最新跟进记录设置了 next_followup_at 且到期/即将到期（默认未来 7 天）

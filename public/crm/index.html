@@ -145,6 +145,7 @@ const API = '/api/admin';
 let TOKEN = localStorage.getItem('callsun_crm_token') || '';
 let ROLE = localStorage.getItem('callsun_crm_role') || '';
 let USER_ID = localStorage.getItem('callsun_crm_user') || '';
+let USER_NAME = localStorage.getItem('callsun_crm_user_name') || '';
 let ALL_USERS = [];
 let PAGE = 1;
 
@@ -192,18 +193,20 @@ async function login() {
     document.getElementById('loginErr').style.display = 'block';
     return;
   }
-  TOKEN = token; ROLE = r.role; USER_ID = r.id;
+  TOKEN = token; ROLE = r.role; USER_ID = r.id; USER_NAME = r.name || '';
   localStorage.setItem('callsun_crm_token', TOKEN);
   localStorage.setItem('callsun_crm_role', ROLE);
   localStorage.setItem('callsun_crm_user', USER_ID || '');
+  localStorage.setItem('callsun_crm_user_name', USER_NAME || '');
   showMain();
 }
 
 function logout() {
-  TOKEN = ''; ROLE = ''; USER_ID = '';
+  TOKEN = ''; ROLE = ''; USER_ID = ''; USER_NAME = '';
   localStorage.removeItem('callsun_crm_token');
   localStorage.removeItem('callsun_crm_role');
   localStorage.removeItem('callsun_crm_user');
+  localStorage.removeItem('callsun_crm_user_name');
   document.getElementById('mainView').classList.add('hidden');
   document.getElementById('detailView').classList.add('hidden');
   document.getElementById('loginView').classList.remove('hidden');
@@ -214,7 +217,7 @@ function showMain() {
   document.getElementById('loginView').classList.add('hidden');
   document.getElementById('detailView').classList.add('hidden');
   document.getElementById('mainView').classList.remove('hidden');
-  document.getElementById('userBox').textContent = (ROLE === 'admin' ? 'Admin' : 'Sales') + ' · ' + (USER_ID || '');
+  document.getElementById('userBox').textContent = (ROLE === 'admin' ? 'Admin' : 'Sales') + ' · ' + (USER_NAME || USER_ID || '');
   loadStats();
   loadUsers();
   loadDue(); // 加载待跟进 badge（不切换视图）
