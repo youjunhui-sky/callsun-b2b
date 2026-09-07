@@ -248,6 +248,14 @@ nohup ./node_modules/.bin/astro dev --host 0.0.0.0 --port 4323 > /tmp/dev.log 2>
 4. **背景色**：hero 用 `bg-callsun-ink`（深黑），cover + body 用 `bg-white`（白），CTA 用 `bg-callsun-tint`（浅暖），Related 用 `bg-callsun-bg`（浅灰）
 5. **cover 图边框**：`border border-callsun-line`（浅灰），不能用 `border-white/10`（在白底上不可见）
 
+## 内容红线：OEM/ODM 字样禁用（2026-09-07 张晓晗定，长期有效）
+
+- 站内任何客户可见内容（正文/tag/description/FAQ/About/SEO/下载物料）不得出现 OEM、ODM 字样；替代词：custom engineering / customized module services / custom equipment / equipment manufacturers
+- 已全站清除（commit 8d66561）：3 篇 blog 的 tags/description、resources.ts FAQ×2（含 Q 标题）、about.ts，线上 5 页验证 0 残留
+- 每次内容上线前 `grep -ri "oem"` 所有改动文件，非零即改
+- 二进制误报说明：public/blog/original/*.png 与 datasheet PDF 的 grep 命中为压缩流巧合字节，pdftotext/PIL 元数据均无 OEM；`_legacy/` 是旧源码不参与部署，无需处理
+- 本次教训：第三篇 blog 的 #OEM tag 是我自己拟的（docx 原文没有），拟 tag/关键词时避开行业黑话，拿不准先看内容红线
+
 ## 诊断提速铁律（2026-09-07 立，立即生效）
 
 **「为什么提醒/为什么没提醒」类 CRM 数据问题，第一动作直接查 D1 生产库，不走 API 全链路。**
