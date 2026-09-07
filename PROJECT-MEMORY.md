@@ -247,3 +247,20 @@ nohup ./node_modules/.bin/astro dev --host 0.0.0.0 --port 4323 > /tmp/dev.log 2>
 3. **正文中 inline 图片**（`.blog-content img`）：`width: 100%`，自然跟 body 容器一致
 4. **背景色**：hero 用 `bg-callsun-ink`（深黑），cover + body 用 `bg-white`（白），CTA 用 `bg-callsun-tint`（浅暖），Related 用 `bg-callsun-bg`（浅灰）
 5. **cover 图边框**：`border border-callsun-line`（浅灰），不能用 `border-white/10`（在白底上不可见）
+
+## 诊断提速铁律（2026-09-07 立，立即生效）
+
+**「为什么提醒/为什么没提醒」类 CRM 数据问题，第一动作直接查 D1 生产库，不走 API 全链路。**
+
+- 背景：2026-09-07 排查「询盘已回复但仍提醒」时绕了线上 API 全链路（鉴权+逐条拉详情），被东家指出慢。真相一条 SQL 就能定位（ Jeff Doolan 那条：洪宁哲 9/5 保存跟进时设了 next_followup_at=9/7，到点就提醒，行为符合设计）。
+- 正确姿势：
+  1. 先 `npx wrangler d1 execute callsun-b2b-db --remote --command "<SQL>"` 查生产数据（10 秒出结果）
+  2. API 调用只做最后抽检/验证写操作
+- 已知坑：本地 `/root/.cloudflare-token.env` 的 token **无 D1 权限**（7403），d1 execute 会失败 → 备份脚本 scripts/backup-d1.sh 因此连日失败（已在 2026-09-05 立过修复卡）。**绕行方案**：用 admin token（/root/crm-accounts-2026-09-05.txt）调线上 API；或东家给 token 补 D1 权限后恢复直查。
+- ✅ 已修复（2026-09-07 10:34）：东家在 CF Dashboard 给 token 补了 D1 Edit 权限。实测：`wrangler d1 execute --remote` 直查成功（1ms）、`bash scripts/backup-d1.sh` 手动跑通（导出 8K SQL，30 天滚动保留）。每日备份自此恢复，直查路径畅通。
+
+### D1 备份修复·收尾确认（2026-09-07 10:36 cron 复核）
+
+- 复核：D1 list API → HTTP 200 / success:true（callsun-b2b-db 在列），token 已具备 D1 读权限
+- 今日成功备份：`backups/callsun-b2b-db_20260907_103451.sql`（10:34 导出，8K，schema+数据完整）—— 已存在，未重复执行备份脚本
+- 结论：2026-08-12 起连续 25 天的备份失败（wrangler 报 Authentication error code 10000，根因 = token 缺 D1 Edit/Read 权限）已闭环，每日 03:30 定时备份恢复正常轨道
