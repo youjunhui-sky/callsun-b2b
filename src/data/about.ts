@@ -88,7 +88,7 @@ export const PORTFOLIO: PortfolioCard[] = [
   {
     eyebrow: 'CUSTOM PV MODULES',
     title: 'Custom PV Modules',
-    body: 'For RV, rooftop, balcony, marine and OEM equipment scenarios — engineered by space, wattage, dimensions, structure and interface requirements with prototype-to-batch validation.',
+    body: 'For RV, rooftop, balcony, marine and custom equipment scenarios — engineered by space, wattage, dimensions, structure and interface requirements with prototype-to-batch validation.',
     powers: [
       { label: '180W', href: '/products/cn180w/' },
       { label: '200W', href: '/products/cn200w/' },

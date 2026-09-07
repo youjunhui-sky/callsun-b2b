@@ -6,7 +6,7 @@ author: "Callsun"
 cover: "/blog/2026-09-05-standard-vs-custom-solar-panels.webp"
 coverAlt: "Two technicians inspecting a solar module beside the automated production line at the Callsun factory"
 category: "Product"
-tags: ["Custom PV Modules", "Standard Modules", "OEM"]
+tags: ["Custom PV Modules", "Standard Modules", "Custom Engineering"]
 featured: true
 draft: false
 ctaTitle: "Not sure whether your project needs a custom module?"

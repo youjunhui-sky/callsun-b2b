@@ -1,13 +1,13 @@
 ---
 title: "From Standard PV Modules to Custom Engineering: How Callsun Supports Diverse Solar Applications"
-description: "How Callsun combines high-power standard modules with non-standard engineering to serve utility-scale, C&I, off-grid, RV, marine and OEM applications."
+description: "How Callsun combines high-power standard modules with non-standard engineering to serve utility-scale, C&I, off-grid, RV, marine and custom equipment applications."
 publishDate: 2026-07-21
 updatedDate: 2026-07-21
 author: "Callsun"
 cover: "/blog/2026-07-21-standard-modules-and-custom-engineering.webp"
 coverAlt: "Two Callsun PV modules on the factory floor with automated production line in the background"
 category: "Product"
-tags: ["OEM", "Custom Modules", "Manufacturing"]
+tags: ["Custom Engineering", "Custom Modules", "Manufacturing"]
 featured: true
 draft: false
 ctaTitle: "Have a non-standard module requirement?"

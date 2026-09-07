@@ -91,8 +91,8 @@ export const RESOURCE_FAQ = [
     a: 'Callsun\u2019s portfolio includes standard PV modules for residential, commercial and utility-scale projects, as well as custom modules developed for RVs, marine applications, off-grid equipment, partially shaded environments and space-constrained installations. For selected off-grid projects, we can also recommend evaluated combinations of PV modules and compatible system components based on the customer\u2019s load requirements and equipment specifications.',
   },
   {
-    q: 'Does Callsun provide OEM and ODM services?',
-    a: 'Yes. Callsun provides OEM and ODM services based on project requirements and order conditions. Customization may cover module dimensions, power output, electrical characteristics, material structure, cables and connectors, labeling, packaging and brand presentation. Every custom project is subject to an engineering feasibility review and is manufactured according to the final technical specification approved by both parties.',
+    q: 'Does Callsun provide customized module services?',
+    a: 'Yes. Callsun provides customized module services based on project requirements and order conditions. Customization may cover module dimensions, power output, electrical characteristics, material structure, cables and connectors, labeling, packaging and brand presentation. Every custom project is subject to an engineering feasibility review and is manufactured according to the final technical specification approved by both parties.',
   },
   {
     q: 'How does Callsun ensure product quality and batch-to-batch consistency?',
@@ -112,7 +112,7 @@ export const RESOURCE_FAQ = [
   },
   {
     q: 'How can I receive an accurate quotation for a volume order?',
-    a: 'B2B pricing depends on the product model, order quantity, packaging, certification requirements, delivery destination, logistics method and applicable Incoterms, so Callsun does not apply a single publicly listed wholesale price. To receive an accurate and actionable quotation, please provide the required model or power range, estimated quantity, destination country or port, preferred delivery schedule, and any OEM or certification requirements.',
+    a: 'B2B pricing depends on the product model, order quantity, packaging, certification requirements, delivery destination, logistics method and applicable Incoterms, so Callsun does not apply a single publicly listed wholesale price. To receive an accurate and actionable quotation, please provide the required model or power range, estimated quantity, destination country or port, preferred delivery schedule, and any customization or certification requirements.',
   },
   {
     q: 'What technical and commercial support does Callsun provide?',

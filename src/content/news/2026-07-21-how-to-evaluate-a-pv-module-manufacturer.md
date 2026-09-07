@@ -1,6 +1,6 @@
 ---
 title: "How to Evaluate a PV Module Manufacturer: A Practical Guide for B2B Buyers"
-description: "Eight questions distributors, EPCs, OEMs and project buyers should ask to distinguish a product source from a long-term PV module manufacturing partner."
+description: "Eight questions distributors, EPCs, equipment manufacturers and project buyers should ask to distinguish a product source from a long-term PV module manufacturing partner."
 publishDate: 2026-07-21
 updatedDate: 2026-07-21
 author: "Callsun"
@@ -37,7 +37,7 @@ The important question is not whether each machine exists. It is whether the pro
 
 ## 3. Does Customization Follow an Engineering Process?
 
-For an OEM or application-specific project, “customization” should be examined carefully. Changing a frame color is different from developing a new module size, electrical layout or material structure. Buyers should ask how the supplier evaluates feasibility, confirms electrical parameters, selects materials, builds samples, tests the design and approves it for volume production.
+For an application-specific or equipment-integration project, “customization” should be examined carefully. Changing a frame color is different from developing a new module size, electrical layout or material structure. Buyers should ask how the supplier evaluates feasibility, confirms electrical parameters, selects materials, builds samples, tests the design and approves it for volume production.
 
 A sound process begins with the use case: available dimensions, target output, system voltage, shading pattern, environmental exposure, structural requirements, certification needs and order volume. The design should then move through sample production, performance testing and process validation. This prevents an attractive prototype from becoming an unstable production product.
 
