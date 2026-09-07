@@ -20,6 +20,20 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    tag: 'PRODUCT',
+    date: 'SEP 05, 2026',
+    title: 'Standard vs. Custom Solar Panels: When Does a Project Need Custom Module Engineering?',
+    thumb: '/blog/2026-09-05-standard-vs-custom-solar-panels.webp',
+    href: '/news/2026-09-05-standard-vs-custom-solar-panels/',
+  },
+  {
+    tag: 'TECHNICAL',
+    date: 'SEP 04, 2026',
+    title: 'Solar Panel Quality Control: What EL and I-V Testing Tell Buyers',
+    thumb: '/blog/2026-09-04-solar-panel-quality-control-el-iv-testing.webp',
+    href: '/news/2026-09-04-solar-panel-quality-control-el-iv-testing/',
+  },
+  {
     tag: 'INDUSTRY',
     date: 'SEP 04, 2026',
     title: 'How to Choose a Solar Panel Manufacturer for Wholesale and Project Supply',
