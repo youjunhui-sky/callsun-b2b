@@ -20,6 +20,13 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    tag: 'INDUSTRY',
+    date: 'SEP 04, 2026',
+    title: 'How to Choose a Solar Panel Manufacturer for Wholesale and Project Supply',
+    thumb: '/blog/2026-09-04-how-to-choose-solar-panel-manufacturer.webp',
+    href: '/news/2026-09-04-how-to-choose-solar-panel-manufacturer/',
+  },
+  {
     tag: 'TECHNICAL',
     date: 'JUL 22, 2026',
     title: '450W vs. 400W Solar Panels: What 50 Extra Watts Mean for the Complete Installation',
