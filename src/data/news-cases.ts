@@ -105,9 +105,9 @@ export interface ProjectReferenceRow {
 }
 
 export const PROJECT_REFERENCES: ProjectReferenceRow[] = [
-  { asset: 'CHENG DA IB COMPANY LIMITED',       capacity: '3.50 MW' },
+  { asset: 'CHENG DA III COMPANY LIMITED',      capacity: '3.50 MW' },
   { asset: 'YIDA TOYS COMPANY LIMITED',         capacity: '2.50 MW' },
-  { asset: 'EURO FILM CORPORATION',             capacity: '3.10 MW' },
+  { asset: 'EURO FILM CORPORATION',             capacity: '3.30 MW' },
   { asset: 'Delta Cropsate Joint Stock Company', capacity: '3.40 MW' },
   { asset: 'Gen Bright Lighting CO., Ltd',      capacity: '2.30 MW' },
   { asset: 'THIENY PACKAGING',                  capacity: '2.27 MW' },
