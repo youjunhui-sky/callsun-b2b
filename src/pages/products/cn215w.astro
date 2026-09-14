@@ -4,10 +4,24 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import InquiryForm from '@/components/InquiryForm.astro';
+import FaqAccordion from '@/components/FaqAccordion.astro';
 import { SITE } from '@/data/site';
 import { SKU_DETAILS } from '@/data/sku-details';
+import { PRODUCT_FAQ } from '@/data/faq';
 
 const sku = SKU_DETAILS.cn215w;
+
+const faqs = PRODUCT_FAQ.cn215w || [];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 
 ---
 <BaseLayout
@@ -83,6 +97,8 @@ const sku = SKU_DETAILS.cn215w;
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 4: Documents & Inquiry
        ═══════════════════════════════════════════════════════════════════════ */}
+  <FaqAccordion items={faqs} model={sku.model} />
+
   <section id="inquiry" class="relative bg-callsun-tint overflow-hidden">
     <div
       class="absolute inset-0 opacity-[0.35]"

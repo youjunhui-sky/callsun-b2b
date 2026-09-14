@@ -1,0 +1,32 @@
+---
+// 产品 FAQ 折叠块（2026-09-14 方案①：详情页 FAQ 区 + FAQPage schema）
+import Eyebrow from '@/components/Eyebrow.astro';
+import type { FaqItem } from '@/data/faq';
+
+interface Props {
+  items: FaqItem[];
+  model: string;
+}
+const { items, model } = Astro.props;
+---
+<section class="bg-white border-t border-callsun-line">
+  <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+    <div class="max-w-3xl">
+      <Eyebrow class="mb-3">FAQ</Eyebrow>
+      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-callsun-ink leading-tight">
+        {model} — frequently asked questions
+      </h2>
+    </div>
+    <div class="mt-8 max-w-3xl divide-y divide-callsun-line border border-callsun-line bg-white">
+      {items.map((f) => (
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 md:px-6 py-4 font-semibold text-sm md:text-base text-callsun-ink">
+            {f.q}
+            <span class="text-callsun-lime group-open:rotate-45 transition-transform text-xl leading-none shrink-0" aria-hidden="true">+</span>
+          </summary>
+          <p class="px-5 md:px-6 pb-5 text-sm md:text-base text-callsun-mute leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
