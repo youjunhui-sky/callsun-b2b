@@ -525,7 +525,7 @@ async function handleAdmin(request, env) {
        FROM inquiries i
        JOIN followups f ON f.id = (
          SELECT f2.id FROM followups f2
-         WHERE f2.inquiry_id = i.id AND f2.next_followup_at IS NOT NULL
+         WHERE f2.inquiry_id = i.id
          ORDER BY f2.created_at DESC LIMIT 1
        )
        ${whereSql}
@@ -618,68 +618,56 @@ async function handleAdmin(request, env) {
 
 // ---------- 路由 ----------
 
-// 定时任务：每天 09:00 (北京时间, cron 用 UTC) 推送待跟进清单到飞书群
-// 逻辑：查所有设置了 next_followup_at 且到期/未来 2 天内的询盘，按到期时间分组推卡片
+// 定时任务：每天 09:00 (北京时间, cron 用 UTC) 推送「还没人跟进的询盘」到飞书群
+// 规则（2026-09-09 游军辉拍板）：只要 followups 表里有任意记录，就认为已有人跟进，不再推送。
+// 后续状态如何都不再推；后续规则变更由东家追加。
 async function sendDueReminder(env) {
   if (!env.INQUIRY_WEBHOOK_URL) return { ok: false, reason: 'no_webhook' };
   if (!env.DB) return { ok: false, reason: 'no_db' };
 
-  const now = Date.now();
-  const threshold = new Date(now + 2 * 86400000).toISOString(); // 未来 2 天
   const { results } = await env.DB.prepare(
-    `SELECT i.id, i.name, i.company, i.email, i.country, i.status, i.owner, i.product_model,
-            f.next_followup_at, f.content
+    `SELECT i.id, i.name, i.company, i.email, i.country, i.status, i.owner, i.product_model, i.created_at
      FROM inquiries i
-     JOIN followups f ON f.id = (
-       SELECT f2.id FROM followups f2
-       WHERE f2.inquiry_id = i.id AND f2.next_followup_at IS NOT NULL
-       ORDER BY f2.created_at DESC LIMIT 1
+     WHERE NOT EXISTS (
+       SELECT 1 FROM followups f WHERE f.inquiry_id = i.id
      )
-     WHERE f.next_followup_at IS NOT NULL AND f.next_followup_at <= ?
-     ORDER BY f.next_followup_at ASC`
-  ).bind(threshold).all().catch(() => ({ results: [] }));
+     ORDER BY i.created_at ASC`
+  ).all().catch(() => ({ results: [] }));
 
   const items = results || [];
   if (items.length === 0) {
-    // 没有待跟进 → 不推（避免每天无意义刷屏）；返回 skipped
-    return { ok: true, skipped: 'no_due', count: 0 };
+    // 所有询盘都有人跟进了 → 不推，避免每天无意义刷屏
+    return { ok: true, skipped: 'all_have_followup', count: 0 };
   }
-
-  const overdue = items.filter((r) => new Date(r.next_followup_at).getTime() < now);
-  const upcoming = items.filter((r) => new Date(r.next_followup_at).getTime() >= now);
 
   const fmtDate = (iso) => {
     const d = new Date(iso);
     return d.toLocaleString('en-GB', { day: '2-digit', month: 'short' });
   };
+  const daysSince = (iso) => {
+    const ms = Date.now() - new Date(iso).getTime();
+    return Math.max(0, Math.floor(ms / 86400000));
+  };
 
-  let md = '';
-  if (overdue.length > 0) {
-    md += `**⏰ 已过期 ${overdue.length} 条**\n`;
-    for (const r of overdue.slice(0, 8)) {
-      md += `- ⚠️ ${r.name}${r.company ? '（' + r.company + '）' : ''} · 应跟 ${fmtDate(r.next_followup_at)} · [查看](https://callsunenergy.com/crm/)\n`;
-    }
-    md += '\n';
+  let md = `**📋 首次跟进提醒 ${items.length} 条**（还没人跟进的询盘）\n`;
+  for (const r of items.slice(0, 12)) {
+    const days = daysSince(r.created_at);
+    const age = days === 0 ? '今日新到' : `${days} 天前到`;
+    md += `- ${r.name}${r.company ? '（' + r.company + '）' : ''} · 询盘 ${age} · 还无人跟进 · [查看](https://callsunenergy.com/crm/)\n`;
   }
-  if (upcoming.length > 0) {
-    md += `**📅 未来 2 天 ${upcoming.length} 条**\n`;
-    for (const r of upcoming.slice(0, 8)) {
-      md += `- ${r.name}${r.company ? '（' + r.company + '）' : ''} · 跟 ${fmtDate(r.next_followup_at)} · [查看](https://callsunenergy.com/crm/)\n`;
-    }
-  }
-  if (items.length > 8) md += `\n… 共 ${items.length} 条，[打开 CRM](https://callsunenergy.com/crm/) 查看全部\n`;
+  if (items.length > 12) md += `\n… 共 ${items.length} 条，[打开 CRM](https://callsunenergy.com/crm/) 查看全部\n`;
 
   const body = {
     msg_type: 'interactive',
     card: {
       header: {
-        title: { tag: 'plain_text', content: `📋 询盘待跟进提醒（${new Date().toISOString().slice(0, 10)}）` },
-        template: overdue.length > 0 ? 'orange' : 'blue',
+        title: { tag: 'plain_text', content: `📋 待首次跟进（${new Date().toISOString().slice(0, 10)}）` },
+        template: 'orange',
       },
       elements: [
         { tag: 'div', text: { tag: 'lark_md', content: md } },
         { tag: 'hr' },
-        { tag: 'note', elements: [{ tag: 'plain_text', content: 'Callsun CRM 每日自动提醒 · 处理完请到 CRM 更新跟进日期' }] },
+        { tag: 'note', elements: [{ tag: 'plain_text', content: 'Callsun CRM 每日自动提醒 · 只要有人跟进过就不会再推' }] },
       ],
     },
   };
