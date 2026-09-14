@@ -40,7 +40,7 @@ export const PRODUCTS: ProductSpec[] = [
       card: '/uploads/callsun/products/450w/hero-01.webp',
       frontBack: '/uploads/callsun/products/450w/01-front.webp',
     },
-    datasheet: '/uploads/callsun/products/450w/CN450W-double-glass-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/450w/Callsun-CN450W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
   },
   {
     slug: 'cn580w',
@@ -55,7 +55,7 @@ export const PRODUCTS: ProductSpec[] = [
       card: '/uploads/callsun/products/580w/card-square.webp',
       frontBack: '/uploads/callsun/products/580w/front-back.webp',
     },
-    datasheet: '/uploads/callsun/products/580w/CN580W-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/580w/Callsun-CN580W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
   },
   {
     slug: 'cn620w',
@@ -70,7 +70,7 @@ export const PRODUCTS: ProductSpec[] = [
       card: '/uploads/callsun/products/620w/card-square.webp',
       frontBack: '/uploads/callsun/products/620w/front-back.webp',
     },
-    datasheet: '/uploads/callsun/products/620w/CN620W-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/620w/Callsun-CN620W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
   },
   {
     slug: 'cn720w',
@@ -85,7 +85,7 @@ export const PRODUCTS: ProductSpec[] = [
       card: '/uploads/callsun/products/720w/card-square.webp',
       frontBack: '/uploads/callsun/products/720w/front-back.webp',
     },
-    datasheet: '/uploads/callsun/products/720w/CN720W-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/720w/Callsun-CN720W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
   },
   {
     slug: 'cn210w',

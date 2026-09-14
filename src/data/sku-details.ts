@@ -482,7 +482,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       weight: '37.9 kg',
     },
     heroImage: '/uploads/callsun/products/720w/card-square.webp',
-    datasheet: '/uploads/callsun/products/720w/CN720W-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/720w/Callsun-CN720W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     features: [
       {
         num: '01',
@@ -569,7 +569,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       weight: '32.5 kg',
     },
     heroImage: '/uploads/callsun/products/620w/card-square.webp',
-    datasheet: '/uploads/callsun/products/620w/CN620W-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/620w/Callsun-CN620W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     features: [
       {
         num: '01',
@@ -656,7 +656,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
       weight: '30 kg',
     },
     heroImage: '/uploads/callsun/products/580w/card-square.webp',
-    datasheet: '/uploads/callsun/products/580w/CN580W-datasheet.pdf',
+    datasheet: '/uploads/callsun/products/580w/Callsun-CN580W-N-Type-Bifacial-Dual-Glass-Solar-Module-Datasheet.pdf',
     features: [
       {
         num: '01',
