@@ -681,10 +681,82 @@ async function sendDueReminder(env) {
   return { ok: resp.ok, status: resp.status, resp: String(text).slice(0, 200), count: items.length };
 }
 
+// ---------- 访客浏览留痕（2026-09-14 方案②）----------
+
+async function handlePageview(request, env) {
+  if (request.method !== 'POST') {
+    return jsonResponse({ ok: false, code: 'method_not_allowed', message: 'Use POST.' }, { status: 405 });
+  }
+  if (!env.DB) return jsonResponse({ ok: false, code: 'no_db' }, { status: 503 });
+  let raw = {};
+  try { raw = await request.json(); } catch { return jsonResponse({ ok: false, code: 'invalid_json' }, { status: 400 }); }
+  if (typeof raw.path !== 'string' || !raw.path.startsWith('/')) {
+    return jsonResponse({ ok: false, code: 'invalid_path' }, { status: 400 });
+  }
+  // 过滤 admin/crm 内部路径，不采自己人
+  if (raw.path.startsWith('/crm') || raw.path.startsWith('/admin')) {
+    return jsonResponse({ ok: true, skipped: 'internal' });
+  }
+  const id = `pv_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+  const now = new Date().toISOString();
+  try {
+    await env.DB.prepare(
+      `INSERT INTO pageviews (id, ts, path, title, referrer, country, region, city, device, user_agent, lang, screen, session_id, utm_source, utm_medium, utm_campaign)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+    ).bind(
+      id, now,
+      clean(raw.path, 300),
+      clean(raw.title, 300) || null,
+      clean(raw.referrer, 500) || null,
+      clean(request.headers.get('cf-ipcountry'), 10) || null,
+      clean(request.headers.get('cf-region'), 20) || null,
+      clean(request.headers.get('cf-city'), 50) || null,
+      clean(request.headers.get('cf-device-type'), 10) || null,
+      clean(request.headers.get('user-agent'), 500) || null,
+      clean(raw.lang, 20) || null,
+      clean(raw.screen, 20) || null,
+      clean(raw.sid, 64) || null,
+      clean(raw.utm_source, 100) || null,
+      clean(raw.utm_medium, 100) || null,
+      clean(raw.utm_campaign, 100) || null
+    ).run();
+    return jsonResponse({ ok: true });
+  } catch (error) {
+    return jsonResponse({ ok: false, code: 'db_error' }, { status: 500 });
+  }
+}
+
+// 浏览统计查询（CRM 登录态）：支持 date 范围 + 按路径/国家聚合
+async function handlePageviewStats(request, env, url) {
+  const user = authUser(request, env);
+  if (!user) return jsonResponse({ ok: false, message: 'Unauthorized.' }, { status: 401 });
+  const from = url.searchParams.get('from') || new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+  const to = url.searchParams.get('to') || new Date().toISOString().slice(0, 10) + 'T23:59:59Z';
+  const base = await env.DB.prepare(
+    `SELECT COUNT(*) total, COUNT(DISTINCT session_id) sessions FROM pageviews WHERE ts >= ? AND ts <= ?`
+  ).bind(from, to).first();
+  const byCountry = await env.DB.prepare(
+    `SELECT COALESCE(country,'(unknown)') c, COUNT(*) n, COUNT(DISTINCT session_id) s
+     FROM pageviews WHERE ts >= ? AND ts <= ? GROUP BY country ORDER BY n DESC LIMIT 30`
+  ).bind(from, to).all();
+  const byPath = await env.DB.prepare(
+    `SELECT path, COUNT(*) n, COUNT(DISTINCT session_id) s
+     FROM pageviews WHERE ts >= ? AND ts <= ? GROUP BY path ORDER BY n DESC LIMIT 30`
+  ).bind(from, to).all();
+  const byDay = await env.DB.prepare(
+    `SELECT substr(ts,1,10) d, COUNT(*) n, COUNT(DISTINCT session_id) s
+     FROM pageviews WHERE ts >= ? AND ts <= ? GROUP BY d ORDER BY d ASC`
+  ).bind(from, to).all();
+  return jsonResponse({ ok: true, from, to, total: base.total, sessions: base.sessions,
+    byCountry: byCountry.results, byPath: byPath.results, byDay: byDay.results });
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === '/api/inquiry') return handleInquiry(request, env || {});
+    if (url.pathname === '/api/pageview') return handlePageview(request, env || {});
+    if (url.pathname === '/api/admin/pageviews' && request.method === 'GET') return handlePageviewStats(request, env || {}, url);
     if (url.pathname.startsWith('/api/admin/')) return handleAdmin(request, env || {});
     return env.ASSETS.fetch(request);
   },

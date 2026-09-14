@@ -75,6 +75,12 @@ const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [sche
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    {/* 访客浏览留痕（无 Cookie、不采个人数据，privacy 页口径兼容） */}
+    <script is:inline defer src="/js/pageview.js"></script>
+    {SITE.analytics.cloudflareToken && (
+      <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${SITE.analytics.cloudflareToken}"}`}></script>
+    )}
+
     {SITE.analytics.gtmId && (
       <>
         {/* Google Tag Manager — 按 Cookie 同意状态加载 */}

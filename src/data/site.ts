@@ -26,7 +26,7 @@ export const SITE = {
   },
   analytics: {
     gtmId: '',
-    cloudflareToken: '',
+    cloudflareToken: '', // Cloudflare Web Analytics beacon token；填入后自动启用（方案①）
     plausibleDomain: '',
     turnstileSiteKey: '0x4AAAAAAEMnseRAL5fduk7t', // Cloudflare Turnstile 公开 Site Key（防垃圾验证）
   },
