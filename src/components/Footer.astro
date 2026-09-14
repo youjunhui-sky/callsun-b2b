@@ -1,6 +1,13 @@
 ---
 import { SITE } from '@/data/site';
+import { UI } from '@/i18n/ui';
+import type { Locale } from '@/i18n/config';
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const t = UI[locale];
 const year = new Date().getFullYear();
 ---
 <footer class="bg-callsun-ink text-white/70">
@@ -8,7 +15,7 @@ const year = new Date().getFullYear();
     <div class="flex items-center gap-3">
       <img src="/logo.png" alt="Callsun" class="h-6 w-auto" />
       <span class="hidden md:inline-block text-white/50 text-xs tracking-eyebrow uppercase">
-        {SITE.tagline}
+        {t.footer.tagline}
       </span>
     </div>
     <p class="text-xs tracking-wider text-white/50 uppercase">

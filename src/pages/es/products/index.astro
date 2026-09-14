@@ -1,0 +1,124 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { PRODUCTS_L1_ES } from '@/i18n/data/products-l1-es';
+
+const es = PRODUCTS_L1_ES;
+---
+<BaseLayout
+  title={`Portafolio de módulos FV — Callsun`}
+  description={es.hero.intro}
+  canonical="/es/products/"
+  locale="es"
+>
+  <Header slot="header" locale="es" />
+  <Footer slot="footer" locale="es" />
+
+  <section class="relative overflow-hidden text-white">
+    <img src={es.hero.background} alt="" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
+      <Breadcrumbs items={es.breadcrumb} theme="dark" />
+      <h1 class="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] max-w-4xl">
+        {es.hero.title}
+      </h1>
+      <p class="mt-6 text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+        {es.hero.intro}
+      </p>
+      <a href={es.hero.cta.href} class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg">
+        {es.hero.cta.label} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-callsun-bg">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="max-w-3xl mb-10 md:mb-14">
+        <Eyebrow>{es.categoriesEyebrow}</Eyebrow>
+      </div>
+
+      <div class="grid gap-8 md:gap-10">
+        {es.categories.map((cat) => {
+          const dark = cat.theme === 'dark';
+          const bg = dark ? 'bg-callsun-ink text-white' : 'bg-white';
+          const headingClr = dark ? 'text-white' : 'text-callsun-ink';
+          const bodyClr = dark ? 'text-white/75' : 'text-callsun-mute';
+          const ctaClass = dark
+            ? 'mt-8 inline-flex items-center gap-2 border-2 border-callsun text-callsun-lime font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors'
+            : 'mt-8 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors';
+          return (
+            <article class={`relative overflow-hidden border-t-4 border-callsun ${bg} shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)]`}>
+              <div class="grid grid-cols-1 md:grid-cols-8 gap-8 md:gap-10 lg:gap-14 items-center py-8 md:py-10 lg:py-14">
+                <div class="md:col-span-3 pl-4 md:pl-6 lg:pl-10">
+                  <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden">
+                    <div class="relative" style="aspect-ratio: 4/3;">
+                      {cat.images.map((src, si) => (
+                        <img
+                          src={src}
+                          alt=""
+                          loading={si === 0 ? 'eager' : 'lazy'}
+                          class="absolute inset-0 w-full h-full object-contain p-2 md:p-3 transition-opacity duration-300"
+                          style={`opacity: ${si === 0 ? 1 : 0};`}
+                          data-gallery-slide={si}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div class="md:col-span-5 pr-4 md:pr-6 lg:pr-10">
+                  <h2 class={`font-display text-3xl md:text-4xl lg:text-5xl font-extrabold ${headingClr}`}>
+                    {cat.title}
+                  </h2>
+                  <p class="mt-5 font-display text-xl md:text-2xl font-bold text-callsun-lime">
+                    {cat.wattTags.join('  ·  ')}
+                  </p>
+                  <p class={`mt-5 text-base md:text-lg leading-relaxed ${bodyClr}`}>
+                    {cat.description}
+                  </p>
+                  <a href={cat.cta.href} class={ctaClass}>
+                    {cat.cta.label} <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+
+    <script is:inline>
+      document.querySelectorAll('[data-gallery]').forEach((g) => {
+        const slides = g.querySelectorAll('[data-gallery-slide]');
+        const prev   = g.querySelector('[data-gallery-prev]');
+        const next   = g.querySelector('[data-gallery-next]');
+        let idx = 0;
+        const show = (i) => {
+          idx = (i + slides.length) % slides.length;
+          slides.forEach((s, si) => { s.style.opacity = si === idx ? 1 : 0; });
+        };
+        prev && prev.addEventListener('click', () => show(idx - 1));
+        next && next.addEventListener('click', () => show(idx + 1));
+      });
+    </script>
+  </section>
+
+  <section id="inquiry" class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
+        <div>
+          <Eyebrow class="mb-3">{es.inquiry.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+            {es.inquiry.title}
+          </h2>
+          <p class="mt-6 text-white/70 text-base leading-relaxed max-w-lg">
+            {es.inquiry.intro}
+          </p>
+        </div>
+        <InquiryForm locale="es" formSource="products-l1-es" formTitle={es.inquiry.formTitle} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { CUSTOM_L2 } from '@/data/custom-l2';
+import { CUSTOM_L2_ES } from '@/i18n/data/custom-l2-es';
+import { UI } from '@/i18n/ui';
+
+const t = UI.es;
+const es = CUSTOM_L2_ES;
+// 规格标签按位置映射（顺序固定：DIMENSIONS/WEIGHT/OPERATING POINT/OC-SC/DESIGN）
+const specLabels = [es.specLabels.dimensions, es.specLabels.weight, es.specLabels.operatingPoint, es.specLabels.ocsc, es.specLabels.design];
+const effEs = '25,6 % DE EFICIENCIA CELULAR';
+// 详情页一期未本地化 → 保持英文详情页链接
+const skus = CUSTOM_L2.skus.map((s) => ({
+  key: s.key,
+  title: s.title,
+  power: s.power,
+  image: s.image,
+  detailHref: s.detailHref,
+  datasheetHref: s.datasheetHref,
+}));
+---
+<BaseLayout
+  title={`Módulos FV personalizados — Callsun`}
+  description={es.hero.subtitle}
+  canonical="/es/products/custom-modules/"
+  locale="es"
+>
+  <Header slot="header" locale="es" />
+  <Footer slot="footer" locale="es" />
+
+  <section class="relative overflow-hidden bg-callsun-ink text-white aspect-[11/5] min-h-[380px]">
+    <img src="/uploads/callsun/products/custom-hero.webp" alt="" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24">
+      <div class="mt-8 max-w-3xl">
+        <Breadcrumbs items={es.breadcrumb} theme="dark" />
+        <h1 class="mt-6 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
+          {es.hero.title}
+        </h1>
+        <p class="mt-8 font-display text-3xl md:text-4xl lg:text-5xl font-medium text-callsun-lime tracking-tight">
+          {es.hero.powerRange}
+        </p>
+        <a href={es.hero.cta.href} class="mt-10 inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors shadow-lg">
+          {es.hero.cta.label} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    {es.skus.map((sku, i) => {
+      const enSku = skus[i];
+      const alt = i % 2 === 1;
+      const bandBg = i % 2 === 0 ? 'bg-white' : 'bg-callsun-tint';
+      const galleryOrder = alt ? 'order-2 col-span-3' : 'order-1 col-span-3';
+      const textOrder = alt ? 'order-1 col-span-2' : 'order-2 col-span-2';
+      return (
+        <div id={sku.key} class={`${bandBg} border-b border-callsun-line`}>
+          <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-14 md:py-20 lg:py-24">
+            <div class="grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+              <div class={galleryOrder}>
+                <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
+                  <div class="relative" style="aspect-ratio: 4/3;">
+                    <img src={enSku.image} alt={sku.title} loading="lazy" class="absolute inset-0 w-full h-full object-contain p-4 md:p-8 lg:p-10" />
+                  </div>
+                </div>
+              </div>
+              <div class={textOrder}>
+                <div class="mt-6 flex flex-wrap items-baseline gap-4">
+                  <span class="inline-block bg-callsun text-callsun-ink font-display font-extrabold text-3xl md:text-4xl px-4 py-2 leading-none">
+                    {sku.power}
+                  </span>
+                  <span class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+                    {effEs}
+                  </span>
+                </div>
+                <p class="mt-5 text-callsun-mute text-base leading-relaxed max-w-xl">
+                  {sku.description}
+                </p>
+                <dl class="mt-7 grid grid-cols-2 gap-x-8 gap-y-3">
+                  {CUSTOM_L2.skus[i].specs.map((sp, si) => (
+                    <div class="border-t border-callsun-line pt-2">
+                      <dt class="text-[10px] font-bold tracking-eyebrow uppercase text-callsun-mute">{specLabels[si] || sp.label}</dt>
+                      <dd class="mt-1 font-semibold text-sm text-callsun-ink">{sp.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div class="mt-8 flex flex-wrap items-center gap-6">
+                  <a href={enSku.detailHref} class="inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-ink hover:text-callsun-lime border-b-2 border-callsun-ink hover:border-callsun-lime pb-1 transition-colors">
+                    {t.productsL2.viewDetails} <span aria-hidden="true">→</span>
+                  </a>
+                  {enSku.datasheetHref && (
+                    <a href={enSku.datasheetHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-bold text-sm tracking-wider uppercase text-callsun-mute hover:text-callsun-ink transition-colors">
+                      {t.productsL2.downloadDatasheet} <span aria-hidden="true">↓</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </section>
+
+  <section id="inquiry" class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="grid grid-cols-5 gap-10 lg:gap-16 items-start">
+        <div class="col-span-2">
+          <Eyebrow class="mb-3">{es.inquiry.eyebrow}</Eyebrow>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+            {es.inquiry.title}
+          </h2>
+          <p class="mt-6 text-white/70 text-base leading-relaxed max-w-lg">
+            {es.inquiry.intro}
+          </p>
+        </div>
+        <div class="col-span-3">
+          <InquiryForm locale="es" formSource="custom-l2-es" formTitle={es.inquiry.formTitle} />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

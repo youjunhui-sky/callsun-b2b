@@ -1,5 +1,6 @@
 ---
 import { SITE } from '@/data/site';
+import { htmlLang, ogLocale, alternatesFor, basePathOf, type Locale } from '@/i18n/config';
 import '@/styles/fonts.css';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
   keywords?: string[];
   schema?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
+  locale?: Locale;
 }
 
 const {
@@ -24,10 +26,13 @@ const {
   keywords = [],
   schema,
   bodyClass = '',
+  locale = 'en',
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, SITE.domain).href;
 const ogImageUrl = new URL(ogImage, SITE.domain).href;
+const alternates = alternatesFor(basePathOf(canonical));
+const otherOgLocales = (['en', 'de', 'es'] as const).filter((l) => l !== locale);
 
 const defaultOrg = {
   '@context': 'https://schema.org',
@@ -47,7 +52,7 @@ const defaultOrg = {
 const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 <!doctype html>
-<html lang="en-US" class="scroll-smooth">
+<html lang={htmlLang[locale]} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -65,7 +70,13 @@ const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [sche
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale[locale]} />
+    {otherOgLocales.map((l) => (
+      <meta property="og:locale:alternate" content={ogLocale[l]} />
+    ))}
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={new URL(alt.href, SITE.domain).href} />
+    ))}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />

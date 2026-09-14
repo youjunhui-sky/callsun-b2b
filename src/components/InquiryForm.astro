@@ -1,7 +1,10 @@
 ---
 // 询盘表单 (原型下方版本 + worker.js /api/inquiry 对接)
 // 2026-08-11 升级：UTM 来源采集 + 感兴趣产品下拉 + 附件上传 + Turnstile 防垃圾
+// 2026-09-14 升级：i18n（de/es 表单标签）
 import { SITE } from '@/data/site';
+import { UI } from '@/i18n/ui';
+import type { Locale } from '@/i18n/config';
 const turnstileSiteKey = SITE.analytics.turnstileSiteKey;
 
 interface Props {
@@ -11,25 +14,30 @@ interface Props {
   compact?: boolean; // 用于产品详情页 (更紧凑)
   productModel?: string;
   productOptions?: { value: string; label: string }[];
+  locale?: Locale;
 }
 const {
   formSource = 'homepage',
   formTitle = 'Discuss Your Requirements',
-  submitLabel = 'SUBMIT INQUIRY',
+  submitLabel = '',
   compact = false,
   productModel = '',
-  productOptions = [
-    { value: 'CN180W', label: 'CN180W — 180W Shade-Resistant Module' },
-    { value: 'CN200W', label: 'CN200W — 200W TwinCell Module' },
-    { value: 'CN215W', label: 'CN215W — 215W 4-Zone Shade-Resistant' },
-    { value: 'CN450W', label: 'CN450W — 450W N-Type Module' },
-    { value: 'CN580W', label: 'CN580W — 580W N-Type Module' },
-    { value: 'CN620W', label: 'CN620W — 620W N-Type Module' },
-    { value: 'solutions', label: 'System Kit / Solution' },
-    { value: 'custom', label: 'Custom Module' },
-    { value: 'other', label: 'Other / Not sure yet' },
-  ],
+  productOptions = [],
+  locale = 'en',
 } = Astro.props;
+const t = UI[locale];
+const submit = submitLabel || t.cta.submit;
+const options = productOptions.length ? productOptions : [
+  { value: 'CN180W', label: 'CN180W — 180W Shade-Resistant Module' },
+  { value: 'CN200W', label: 'CN200W — 200W TwinCell Module' },
+  { value: 'CN215W', label: 'CN215W — 215W 4-Zone Shade-Resistant' },
+  { value: 'CN450W', label: 'CN450W — 450W N-Type Module' },
+  { value: 'CN580W', label: 'CN580W — 580W N-Type Module' },
+  { value: 'CN620W', label: 'CN620W — 620W N-Type Module' },
+  { value: 'solutions', label: t.form.kitSolution },
+  { value: 'custom', label: t.form.customModule },
+  { value: 'other', label: t.form.other },
+];
 ---
 <form
   method="POST"
@@ -62,45 +70,45 @@ const {
 
   <div class="grid md:grid-cols-2 gap-4">
     <label class="grid gap-1.5">
-      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Name *</span>
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.name}</span>
       <input required name="name" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
     <label class="grid gap-1.5">
-      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Business Email *</span>
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.email}</span>
       <input required name="email" type="email" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
     <label class="grid gap-1.5">
-      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Company *</span>
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.company}</span>
       <input required name="company" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
     <label class="grid gap-1.5">
-      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Country / Region *</span>
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.country}</span>
       <input required name="market" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
   </div>
   {!productModel && (
     <label class="grid gap-1.5">
-      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Product of Interest</span>
+      <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.productInterest}</span>
       <select name="product_model" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime">
-        <option value="">Select a product (optional)</option>
-        {productOptions.map((opt) => <option value={opt.value}>{opt.label}</option>)}
+        <option value="">{t.form.selectProduct}</option>
+        {options.map((opt) => <option value={opt.value}>{opt.label}</option>)}
       </select>
     </label>
   )}
   <label class="grid gap-1.5">
     <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">
-      {productModel ? 'Product or project requirements *' : 'Product specification or project requirements *'}
+      {productModel ? t.form.requirementsProduct : t.form.requirements}
     </span>
     <textarea required name="message" rows="4" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime resize-y"></textarea>
   </label>
   <div class="grid gap-1.5">
-    <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">Attachment (datasheet / project file, max 5MB)</span>
+    <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.attachment}</span>
     <span class="inline-flex flex-wrap items-center gap-3">
       <input id="attachment-file" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.zip,.jpg,.jpeg,.png" class="sr-only" data-attachment-input />
       <label for="attachment-file" class="cursor-pointer inline-flex items-center gap-2 border border-callsun-line bg-callsun-tint px-4 py-2.5 text-xs font-bold tracking-wider text-callsun-ink hover:bg-callsun-lime transition-colors">
-        Choose file
+        {t.form.chooseFile}
       </label>
-      <span class="text-sm text-callsun-mute" data-attachment-name>No file selected</span>
+      <span class="text-sm text-callsun-mute" data-attachment-name>{t.form.noFile}</span>
     </span>
   </div>
 
@@ -113,7 +121,7 @@ const {
     type="submit"
     class="mt-1 inline-flex items-center justify-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
   >
-    {submitLabel} <span aria-hidden="true">→</span>
+    {submit} <span aria-hidden="true">→</span>
   </button>
 
   <p class="text-[11px] text-callsun-mute" data-inquiry-status hidden></p>
