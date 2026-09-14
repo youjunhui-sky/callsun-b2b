@@ -38,6 +38,12 @@ export const LOCALIZED_PATHS = [
   '/products/standard-modules/',
   '/products/custom-modules/',
   '/about/',
+  '/solutions/',
+  '/resources/',
+  '/news/',
+  '/solutions/5-4kw-off-grid/',
+  '/solutions/7-2kw-grid-tied/',
+  '/solutions/10-8kw-grid-tied/',
   '/contact/',
 ];
 

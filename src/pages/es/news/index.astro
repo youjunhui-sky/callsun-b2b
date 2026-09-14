@@ -1,0 +1,190 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { BLOG_POSTS, INSTALLATION_GALLERY, PROJECT_REFERENCES } from '@/data/news-cases';
+
+const pageTitle = 'Noticias y casos — Callsun';
+const pageDescription =
+  'Noticias y casos de Callsun: blog técnico, galería de instalaciones en tejados comerciales y lista de referencias de proyectos para distribuidores B2B, EPCs y compradores.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonical="/es/news/" locale="es">
+  <Header slot="header" locale="es" />
+  <Footer slot="footer" locale="es" />
+
+  {/* ---------- 1) DARK HERO ---------- */}
+  <section class="bg-callsun-ink text-white py-14 md:py-16">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+        Noticias y casos
+      </p>
+      <h1 class="mt-3 text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-[0.95]">
+        Perspectivas y referencias de proyectos
+      </h1>
+    </div>
+  </section>
+
+  {/* ---------- 2) LATEST INSIGHTS — TECHNICAL BLOG ---------- */}
+  <section id="technical-blog" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Últimas perspectivas
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Blog técnico
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        {BLOG_POSTS.map((p) => (
+          <a
+            href={p.href}
+            class="group bg-white shadow-card flex flex-col overflow-hidden transition-all hover:shadow-lg"
+          >
+            <div class="relative bg-callsun-ink" style="aspect-ratio: 16/10;">
+              <img
+                src={p.thumb}
+                alt={p.title}
+                class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5 md:p-6 flex flex-col flex-1 border-t border-callsun-line">
+              <div class="flex items-center justify-between gap-4">
+                <span class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+                  {p.tag}
+                </span>
+                <span class="text-xs uppercase tracking-eyebrow text-callsun-muteLight font-medium">
+                  {p.date}
+                </span>
+              </div>
+              <h3 class="mt-4 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug flex-1">
+                {p.title}
+              </h3>
+              <div class="mt-5 flex items-center justify-between pt-4 border-t border-callsun-line">
+                <span class="text-xs uppercase tracking-eyebrow text-callsun-muteLight font-medium">
+                  Callsun
+                </span>
+                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold group-hover:gap-2 transition-all">
+                  Leer
+                  <span aria-hidden="true">→</span>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 3) INSTALLATION GALLERY ---------- */}
+  <section id="installations" class="bg-callsun-bg py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div>
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Galería de instalaciones
+        </p>
+        <h2 class="mt-3 whitespace-normal lg:whitespace-nowrap text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Instalaciones en tejados comerciales
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {INSTALLATION_GALLERY.map((g) => (
+          <div class="relative bg-callsun-ink shadow-card overflow-hidden" style="aspect-ratio: 16/10;">
+            <img
+              src={g.src}
+              alt={g.alt}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ---------- 4) PROJECT REFERENCE TABLE ---------- */}
+  <section id="project-reference" class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Referencias de proyectos seleccionados
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Lista de referencias de proyectos
+        </h2>
+      </div>
+
+      <div class="mt-10 bg-white shadow-card overflow-hidden">
+        {/* header row */}
+        <div class="flex items-baseline gap-4 md:gap-6 bg-callsun-ink text-white px-5 md:px-8 py-4 md:py-5">
+          <span class="flex-1 text-xs md:text-sm uppercase tracking-eyebrow font-display font-extrabold">
+            Activo del proyecto
+          </span>
+          <span class="w-32 md:w-56 text-xs md:text-sm uppercase tracking-eyebrow font-display font-extrabold text-right md:text-left">
+            Capacidad instalada
+          </span>
+        </div>
+        {/* body rows */}
+        {PROJECT_REFERENCES.map((r, i) => (
+          <div
+            class:list={[
+              'flex items-baseline gap-4 md:gap-6 px-5 md:px-8 py-4 md:py-5 border-b border-callsun-line last:border-b-0',
+              i % 2 === 1 ? 'bg-callsun-surface' : 'bg-white',
+            ]}
+          >
+            <span class="flex-1 text-sm md:text-base font-display font-bold text-callsun-ink uppercase tracking-wide">
+              {r.asset}
+            </span>
+            <span class="w-32 md:w-56 text-sm md:text-base font-display font-bold text-callsun-ink text-right md:text-left">
+              {r.capacity}
+            </span>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* ---------- 5) CTA WITH CASES FOOTER BG ---------- */}
+  <section class="relative bg-callsun-ink text-white py-20 md:py-24 border-t border-white/10 overflow-hidden">
+    <img
+      src="/uploads/callsun/cases/footer-cta.webp"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-callsun-ink/65 pointer-events-none"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-2xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          Consulta de proyecto
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+          Comente su proyecto solar
+        </h2>
+        <p class="mt-4 text-base md:text-lg text-white/80 max-w-xl">
+          Comparta la capacidad objetivo, los requisitos del módulo, el destino de entrega y el cronograma esperado para la revisión del proyecto.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/es/contact/"
+            class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+          >
+            ENVIAR CONSULTA
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

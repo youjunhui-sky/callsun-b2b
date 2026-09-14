@@ -1,0 +1,651 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { SITE } from '@/data/site';
+import { KIT_5_4KW } from '@/data/kit-5-4kw';
+
+const kit = KIT_5_4KW;
+---
+<BaseLayout
+  title={`${kit.short} — ${SITE.name}`}
+  description={kit.intro}
+  canonical={`/solutions/${kit.slug}/`}
+  locale="de"
+>
+  <Header slot="header" locale="de" />
+  <Footer slot="footer" locale="de" />
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       0) COMPLETE SYSTEM KIT — hero showcase block (added 22:42)
+       Left: 2 stacked images (panel array + component flat-lay)
+       Right: eyebrow + title + specs list + dual CTA
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white pt-10 md:pt-14">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <nav class="text-sm text-callsun-mute mb-8">
+        <a href="/" class="hover:text-callsun-ink">Startseite</a>
+        <span class="mx-1">/</span>
+        <a href="/solutions/" class="hover:text-callsun-ink">Lösungen</a>
+        <span class="mx-1">/</span>
+        <span>5,4-kW-INSELSET</span>
+      </nav>
+
+      <div class="rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          {/* LEFT: gallery */}
+          <div class="bg-white border-r border-callsun-line" data-gallery="kit-5-4kw">
+            <div class="relative overflow-hidden bg-white" style="aspect-ratio: 1/1;">
+              {[1,2,3,4,5,6,7,8,9].map((n, i) => (
+                <img
+                  src={`/uploads/callsun/solutions/5-4kw-gallery/hero-${String(n).padStart(2,'0')}.webp`}
+                  alt={`5.4kW Hybrid Solar Power System - view ${n}`}
+                  data-slide={i}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class={`absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                />
+              ))}
+
+              
+
+              {/* Prev / Next arrows */}
+              <button
+                type="button"
+                data-prev
+                aria-label="Previous image"
+                class="absolute top-1/2 left-3 md:left-6 -translate-y-1/2 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button
+                type="button"
+                data-next
+                aria-label="Next image"
+                class="absolute top-1/2 right-3 md:right-6 -translate-y-1/2 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </button>
+
+                          </div>
+
+            {/* Thumbnail strip */}
+            <div class="grid grid-cols-9 gap-1 p-3 bg-callsun-tint border-t border-callsun-line">
+              {[1,2,3,4,5,6,7,8,9].map((n, i) => (
+                <button
+                  type="button"
+                  data-thumb={i}
+                  aria-label={`Show image ${n}`}
+                  class={`relative aspect-square bg-white border transition-colors ${i === 0 ? 'border-callsun-lime border-2' : 'border-callsun-line hover:border-callsun-ink'}`}
+                >
+                  <img
+                    src={`/uploads/callsun/solutions/5-4kw-gallery/hero-${String(n).padStart(2,'0')}.webp`}
+                    alt=""
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-contain p-1"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: text panel */}
+          <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-between bg-white">
+            <div>
+              <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+                5,4-kW-INSELSET</p>
+              <h2 class="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[0.95] text-callsun-ink whitespace-nowrap">
+                Kompaktes System-Set
+              </h2>
+              <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed">
+                PV-Feld, Hybridwechselrichter und Batteriespeicher — alles in einer B2B-Palette versandt.
+              </p>
+            </div>
+
+            <dl class="mt-8 border-t border-callsun-line">
+              <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">PV-FELD</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">5.4kW</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">HYBRIDWECHSELRICHTER</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">6.5kW</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">BATTERIESPEICHER</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">10kWh</dd>
+              </div>
+              <div class="grid grid-cols-2 gap-4 py-3">
+                <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">SYSTEMTYP</dt>
+                <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">Grid-Tied / Hybrid</dd>
+              </div>
+            </dl>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href="#inquiry"
+                class="inline-flex items-center justify-between gap-3 bg-callsun text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+              >
+                <span>ANGEBOT ANFORDERN</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#downloads"
+                data-tab-link="downloads"
+                class="inline-flex items-center justify-between gap-3 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-panel transition-colors"
+              >
+                <span>HANDBUCH HERUNTERLADEN</span>
+                <span class="text-callsun-lime" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       STICKY TAB BAR — Description / Specs / Includes / Downloads / FAQ / Reviews
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <div data-tabs="kit-5-4kw" class="sticky top-16 z-20 bg-white border-b border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="flex overflow-x-auto no-scrollbar justify-center">
+        {['description','specs','includes','downloads','faq'].map((id, i) => (
+          <button
+            type="button"
+            data-tab={id}
+            class={`relative shrink-0 px-5 md:px-6 py-3 md:py-3.5 text-sm font-medium transition-colors duration-200 ${i === 0 ? 'text-callsun-lime' : 'text-callsun-mute hover:text-callsun-lime'}`}
+          >
+            <span class="relative z-10">
+              {({description:'Description', specs:'Specs', includes:'Includes', downloads:'Downloads', faq:'FAQ'})[id]}
+            </span>
+            <span
+              data-tab-underline
+              class={`absolute bottom-0 left-0 right-0 h-0.5 bg-callsun-lime ${i === 0 ? 'scale-x-100' : 'scale-x-0'}`}
+              aria-hidden="true"
+            ></span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       1) DESCRIPTION — title + hero image + panel intro
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="description" data-panel="description" class="bg-white pt-16 pb-0 md:pt-20 md:pb-0 scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-wide mx-auto">
+        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+          {kit.title}
+        </h2>
+        <p class="mt-6 text-base md:text-lg text-callsun-ink/80 leading-relaxed">
+          {kit.intro}
+        </p>
+      </div>
+
+      <figure class="mt-4">
+        <img
+          src={kit.heroImage}
+          alt="Callsun 5.4kW Hybrid Solar Power System Kit with 6.5kW hybrid inverter and 10kWh LiFePO4 battery"
+          class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+          loading="eager"
+        />
+      </figure>
+
+      <p id="specs-heading" data-panel="specs" class="my-6 text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+        12 Pcs 450W Solar Panels
+      </p>
+
+      <figure>
+        <img
+          src={kit.panel.image}
+          alt="Callsun 450W N-Type bifacial solar panel with 16BB anti-shading design and 25.6% cell efficiency"
+          class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       2) SPECIFICATIONS — panel dl, battery, inverter, applications, wiring
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="specs" data-panel="specs" class="bg-white pt-0 pb-16 md:pt-1 md:pb-20 scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      {/* Panel spec table */}
+      <div class="mt-2">
+        <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
+          <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
+          <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">Mechanical Characteristics(STC)</h3>
+        </div>
+        <dl class="rounded-2xl bg-white border border-callsun-line divide-y divide-callsun-line overflow-hidden rounded-t-none border-t-0">
+          {kit.panel.specs.map((s) => (
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-5 py-3">
+              <dt class="text-sm text-callsun-mute sm:col-span-1">{s.label}</dt>
+              <dd class="text-sm font-semibold text-callsun-ink sm:col-span-2">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="mt-3 text-xs text-callsun-mute">
+          *STC (Standard Test Condition): Irradiance 1000 W/m² · Cell temperature 25°C · Air mass 1.5
+        </p>
+      </div>
+
+      {/* Battery */}
+      <p class="my-6 text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+        14kWh Battery
+      </p>
+      <figure>
+        <img
+          src={kit.battery.image}
+          alt="14.34kWh LiFePO4 battery module for Callsun 5.4kW Hybrid Solar Power System"
+          class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+          loading="lazy"
+        />
+      </figure>
+      <div class="mt-2">
+        <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
+          <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
+          <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">Spezifikationen</h3>
+        </div>
+        <dl class="rounded-2xl bg-white border border-callsun-line divide-y divide-callsun-line overflow-hidden rounded-t-none border-t-0">
+          {kit.battery.specs.map((s) => (
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-5 py-3">
+              <dt class="text-sm text-callsun-mute sm:col-span-1">{s.label}</dt>
+              <dd class="text-sm font-semibold text-callsun-ink sm:col-span-2">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      {/* Inverter divider */}
+      <p class="my-6 text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+        6.5kW Inverter
+      </p>
+      <figure class="mt-3">
+        <img
+          src={kit.inverter.image}
+          alt="Callsun 6.5kW hybrid inverter"
+          class="w-full border border-callsun-line shadow-card bg-white"
+          loading="lazy"
+        />
+      </figure>
+      {kit.inverter.specGroups.map((g) => (
+        <div class="mt-2">
+          <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
+          <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
+            <p class="font-display font-bold text-sm md:text-base text-callsun-ink">{g.name.split('/').map((part) => part.trim().split(/\s+/).map((w) => w.split('').join(' ')).join('\u00A0\u00A0\u00A0')).join(' / ')}</p>
+          </div>
+          <table class="w-full bg-white border border-callsun-line overflow-hidden text-sm md:text-base rounded-t-none border-t-0">
+            <tbody>
+              {g.rows.map((r, i) => (
+                <tr class={i % 2 === 0 ? 'bg-callsun-tint/60' : 'bg-white'}>
+                  <th class="text-left align-top w-1/2 md:w-2/5 px-4 md:px-5 py-3 font-semibold text-callsun-ink border-b border-callsun-line">{r.label}</th>
+                  <td class="align-top px-4 md:px-5 py-3 text-callsun-mute border-b border-callsun-line">{r.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+
+      {/* Applications — tabbed switch (radio + CSS, no JS) */}
+      <div class="scenarios-tabs mt-6">
+        <input type="radio" name="scenarios-5-4kw" id="scenarios-5-4kw-0" class="scenarios-tab-input" checked />
+        <input type="radio" name="scenarios-5-4kw" id="scenarios-5-4kw-1" class="scenarios-tab-input" />
+        <input type="radio" name="scenarios-5-4kw" id="scenarios-5-4kw-2" class="scenarios-tab-input" />
+
+        <div class="scenarios-tabs-menu flex flex-wrap justify-center gap-2 border-b border-callsun-line">
+          {kit.applications.map((a, i) => (
+            <label
+              for={`scenarios-5-4kw-${i}`}
+              class="scenarios-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime"
+            >{a.label.charAt(0) + a.label.slice(1).toLowerCase()}</label>
+          ))}
+        </div>
+
+        {kit.applications.map((a, i) => (
+          <div class="scenarios-tab-panel mt-8" data-idx={i}>
+            <figure>
+              <img
+                src={a.image}
+                alt={`${a.label} solar installation with Callsun 5.4kW system`}
+                class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        ))}
+      </div>
+
+      {/* Wiring — tabbed switch (radio + CSS, no JS) */}
+      <div class="wiring-tabs mt-8">
+        <input type="radio" name="wiring-5-4kw" id="wiring-5-4kw-0" class="wiring-tab-input" checked />
+        <input type="radio" name="wiring-5-4kw" id="wiring-5-4kw-1" class="wiring-tab-input" />
+
+        <div class="wiring-tabs-menu flex flex-wrap justify-center gap-2 border-b border-callsun-line">
+          <label for="wiring-5-4kw-0" class="wiring-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime">Schaltplan</label>
+          <label for="wiring-5-4kw-1" class="wiring-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime">Verdrahtungshinweise</label>
+        </div>
+
+        <div class="wiring-tab-panel mt-8" data-idx="0">
+          <figure>
+            <img
+              src={kit.wiring.diagram}
+              alt="Wiring diagram for Callsun 5.4kW Hybrid Solar Power System"
+              class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+        <div class="wiring-tab-panel mt-8" data-idx="1">
+          <figure>
+            <img
+              src={kit.wiring.instructions}
+              alt="Wiring instructions for Callsun 5.4kW Hybrid Solar Power System"
+              class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">Lieferumfang</h2>
+      </div>
+
+      {/* Single image — matching reference site layout */}
+      <figure class="mt-8 rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
+        <img
+          src={kit.includes.image}
+          alt="Kit contents: 12 × 450W panels, 10kWh battery, 6.5kW hybrid inverter, cables, crimper tool kit"
+          class="w-full h-auto block"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       4) DOWNLOADS
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="downloads" data-panel="downloads" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        {kit.downloads.map((d) => (
+          <a href={d.href} class="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-callsun text-callsun-ink font-display font-extrabold text-sm md:text-base uppercase tracking-wide hover:bg-callsun-limeHi transition-colors">
+            Download Manual
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">FAQ</h2>
+      </div>
+      <div class="mt-10 rounded-2xl border border-callsun-line bg-white shadow-card overflow-hidden">
+        {kit.faq.map((f, i) => (
+          <details class="group border-b border-callsun-line last:border-b-0">
+            <summary class="flex items-start gap-4 md:gap-6 px-6 py-5 md:px-8 md:py-6 cursor-pointer list-none hover:bg-callsun-tint/50 transition-colors">
+              <span class="shrink-0 font-display font-extrabold text-callsun-lime text-lg md:text-xl leading-none pt-0.5">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="flex-1 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug">
+                {f.q}
+              </span>
+              <span class="shrink-0 text-callsun-mute font-display font-extrabold text-2xl leading-none pt-0.5 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-14 md:px-8 md:pb-8 md:pl-20 text-callsun-mute leading-relaxed">
+              {f.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       7) CTA — always visible below tabbed content
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="bg-callsun-ink text-white py-16 md:py-20">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid lg:grid-cols-3 gap-8 items-center">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl lg:text-4xl font-display font-extrabold">Bereit für Ihr nächstes Solar-Paket?</h2>
+          <p class="mt-3 text-white/85 max-w-xl">
+            Send your target market, system size and application. Callsun will help match modules, storage and standard BOM references.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="/contact/" class="px-6 py-3 rounded-md bg-callsun text-callsun-ink font-bold hover:bg-callsun-limeHi transition-colors">
+            Request a Quote
+          </a>
+          <a href="/solutions/" class="px-6 py-3 rounded-md bg-white/10 ring-1 ring-white/20 text-white font-semibold hover:bg-white/20">
+            View Solutions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Gallery + tab interaction script */}
+  <script is:inline>
+    (function () {
+      /* -------- Gallery -------- */
+      const groot = document.querySelector('[data-gallery="kit-5-4kw"]');
+      if (groot) {
+        const slides   = Array.from(groot.querySelectorAll('[data-slide]'));
+        const thumbs   = Array.from(groot.querySelectorAll('[data-thumb]'));
+        const prevBtn  = groot.querySelector('[data-prev]');
+        const nextBtn  = groot.querySelector('[data-next]');
+        const ribbon   = groot.querySelector('[data-ribbon]');
+        const total    = slides.length;
+        let current    = 0;
+
+        function show(i) {
+          current = (i + total) % total;
+          slides.forEach((s, idx) => {
+            s.classList.toggle('opacity-100', idx === current);
+            s.classList.toggle('opacity-0', idx !== current);
+            s.classList.toggle('pointer-events-none', idx !== current);
+          });
+          thumbs.forEach((t, idx) => {
+            if (idx === current) {
+              t.classList.add('border-callsun-lime', 'border-2');
+              t.classList.remove('border-callsun-line');
+            } else {
+              t.classList.remove('border-callsun-lime', 'border-2');
+              t.classList.add('border-callsun-line');
+            }
+          });
+          if (ribbon) ribbon.style.display = current === 0 ? '' : 'none';
+        }
+
+        prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
+        nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
+        thumbs.forEach((t, idx) => t.addEventListener('click', () => show(idx)));
+        groot.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') show(current - 1);
+          if (e.key === 'ArrowRight') show(current + 1);
+        });
+      }
+
+      /* -------- Tabs (navigation-only: scroll to section) -------- */
+      const troot = document.querySelector('[data-tabs="kit-5-4kw"]');
+      if (!troot) return;
+      const tabs   = Array.from(troot.querySelectorAll('[data-tab]'));
+      const panels = Array.from(document.querySelectorAll('[data-panel]'));
+      const ids    = panels.map((p) => p.getAttribute('data-panel'));
+
+      function setActive(id) {
+        tabs.forEach((t) => {
+          const on = t.getAttribute('data-tab') === id;
+          const underline = t.querySelector('[data-tab-underline]');
+          if (on) {
+            t.classList.add('text-callsun-lime');
+            t.classList.remove('text-callsun-mute', 'hover:text-callsun-lime');
+            if (underline) {
+              underline.classList.add('scale-x-100');
+              underline.classList.remove('scale-x-0');
+            }
+          } else {
+            t.classList.remove('text-callsun-lime');
+            t.classList.add('text-callsun-mute', 'hover:text-callsun-lime');
+            if (underline) {
+              underline.classList.add('scale-x-0');
+              underline.classList.remove('scale-x-100');
+            }
+          }
+        });
+      }
+
+      function scrollTo(id) {
+        let panel = document.querySelector('[data-panel="' + id + '"]');
+        if (!panel) return;
+        /* Specs tab scrolls to the panel heading (12 Pcs 450W Solar Panels...) */
+        if (id === 'specs') {
+          const heading = document.getElementById('specs-heading');
+          if (heading) panel = heading;
+        }
+        const header = document.querySelector('header');
+        const headerH = header ? header.getBoundingClientRect().height : 64;
+        const barH = troot.getBoundingClientRect().height;
+        /* Lazy images above the target can still be loading on first visit, so
+           the layout is unstable and we would compute a wrong scroll position.
+           Force-load them and wait, then scroll. */
+        const targetAbsTop = window.scrollY + panel.getBoundingClientRect().top;
+        const pendingImgs = Array.from(document.querySelectorAll('img[loading="lazy"]')).filter((img) => {
+          const r = img.getBoundingClientRect();
+          return r.top + window.scrollY < targetAbsTop && !img.complete;
+        });
+        const go = () => {
+          const y = window.scrollY + panel.getBoundingClientRect().top - headerH - barH - 8;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        };
+        if (pendingImgs.length === 0) {
+          go();
+          return;
+        }
+        pendingImgs.forEach((img) => { img.loading = 'eager'; });
+        let remaining = pendingImgs.length;
+        const done = () => { remaining -= 1; if (remaining === 0) go(); };
+        pendingImgs.forEach((img) => {
+          img.addEventListener('load', done, { once: true });
+          img.addEventListener('error', done, { once: true });
+        });
+        /* Safety net: scroll anyway if an image never fires */
+        setTimeout(go, 1500);
+      }
+
+      /* Click-lock: stop the scroll-spy from fighting the clicked tab */
+      let spyLocked = false;
+      const lockSpy = () => { spyLocked = true; };
+      const unlockSpy = () => { spyLocked = false; };
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', unlockSpy);
+      } else {
+        let scrollTimer = null;
+        window.addEventListener('scroll', () => {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(unlockSpy, 200);
+        }, { passive: true });
+      }
+
+      tabs.forEach((t) => t.addEventListener('click', () => {
+        const id = t.getAttribute('data-tab');
+        setActive(id);
+        history.replaceState(null, '', '#' + id);
+        lockSpy();
+        scrollTo(id);
+      }));
+
+      /* External anchor triggers (e.g. DOWNLOAD MANUAL button) */
+      document.querySelectorAll('[data-tab-link]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          const id = el.getAttribute('data-tab-link');
+          if (!id) return;
+          e.preventDefault();
+          setActive(id);
+          history.replaceState(null, '', '#' + id);
+          lockSpy();
+          scrollTo(id);
+        });
+      });
+
+      /* Update active tab while user scrolls (spy) */
+      const io = new IntersectionObserver((entries) => {
+        if (spyLocked) return;
+        const header = document.querySelector('header');
+        const headerH = header ? header.getBoundingClientRect().height : 64;
+        const barH = troot.getBoundingClientRect().height;
+        const anchor = headerH + barH + 20;
+        /* Find the panel whose top is closest to (headerH + barH) */
+        let bestId = null;
+        let bestTop = Infinity;
+        panels.forEach((p) => {
+          const rect = p.getBoundingClientRect();
+          if (rect.top <= anchor + 40 && rect.bottom > anchor) {
+            const dist = Math.abs(rect.top - anchor);
+            if (dist < bestTop) { bestTop = dist; bestId = p.getAttribute('data-panel'); }
+          }
+        });
+        if (bestId) setActive(bestId);
+      }, { threshold: [0, 0.1, 0.5, 0.9, 1] });
+      panels.forEach((p) => io.observe(p));
+
+      /* Deep-link support: only scroll if hash is explicit; otherwise stay at page top */
+      if (location.hash) {
+        const initial = location.hash.slice(1);
+        if (ids.indexOf(initial) !== -1) {
+          setActive(initial);
+          /* Delay so browser doesn't fight us for the same anchor */
+          lockSpy();
+          setTimeout(() => scrollTo(initial), 100);
+        }
+      } else {
+        /* No hash — activate first tab without scrolling */
+        setActive(ids[0]);
+      }
+    })();
+  </script>
+
+  <style>
+    /* CSS-only scenarios tab switching */
+    .scenarios-tab-input,
+    .wiring-tab-input {
+      position: absolute; opacity: 0; pointer-events: none;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .scenarios-tab-panel,
+    .wiring-tab-panel { display: none; }
+
+    .scenarios-tab-input[id$="-0"]:checked ~ .scenarios-tabs-menu label[for$="-0"],
+    .scenarios-tab-input[id$="-1"]:checked ~ .scenarios-tabs-menu label[for$="-1"],
+    .scenarios-tab-input[id$="-2"]:checked ~ .scenarios-tabs-menu label[for$="-2"] {
+      color: #7CBE22;
+      border-bottom-color: #7CBE22;
+    }
+    .scenarios-tab-input[id$="-0"]:checked ~ .scenarios-tab-panel[data-idx="0"],
+    .scenarios-tab-input[id$="-1"]:checked ~ .scenarios-tab-panel[data-idx="1"],
+    .scenarios-tab-input[id$="-2"]:checked ~ .scenarios-tab-panel[data-idx="2"] {
+      display: block;
+    }
+
+    .wiring-tab-input[id$="-0"]:checked ~ .wiring-tabs-menu label[for$="-0"],
+    .wiring-tab-input[id$="-1"]:checked ~ .wiring-tabs-menu label[for$="-1"] {
+      color: #7CBE22;
+      border-bottom-color: #7CBE22;
+    }
+    .wiring-tab-input[id$="-0"]:checked ~ .wiring-tab-panel[data-idx="0"],
+    .wiring-tab-input[id$="-1"]:checked ~ .wiring-tab-panel[data-idx="1"] {
+      display: block;
+    }
+  </style>
+</BaseLayout>

@@ -6,15 +6,16 @@ import type { FaqItem } from '@/data/faq';
 interface Props {
   items: FaqItem[];
   model: string;
+  heading?: string;
 }
-const { items, model } = Astro.props;
+const { items, model, heading } = Astro.props;
 ---
 <section class="bg-white border-t border-callsun-line">
   <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
     <div class="max-w-3xl">
       <Eyebrow class="mb-3">FAQ</Eyebrow>
       <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-callsun-ink leading-tight">
-        {model} — frequently asked questions
+        {heading ? `${model} — ${heading}` : `${model} — frequently asked questions`}
       </h2>
     </div>
     <div class="mt-8 max-w-3xl divide-y divide-callsun-line border border-callsun-line bg-white">

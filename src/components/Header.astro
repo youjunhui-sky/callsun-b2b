@@ -37,7 +37,7 @@ function isActive(href: string) {
 const navHref = (href: string): string => {
   if (locale === 'en') return href;
   const base = href.split('#')[0];
-  const localized = ['/products/', '/products/standard-modules/', '/products/custom-modules/', '/about/', '/contact/', '/'];
+  const localized = ['/products/', '/products/standard-modules/', '/products/custom-modules/', '/about/', '/solutions/', '/resources/', '/news/', '/contact/', '/'];
   if (localized.includes(base)) {
     const prefixed = `/${locale}${base === '/' ? '/' : base}`;
     return href.includes('#') ? `${prefixed}${'#' + href.split('#')[1]}` : prefixed;

@@ -1,0 +1,122 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SOLUTIONS_L1 } from '@/data/solutions-l1';
+import { SOLUTIONS_L1_DE } from '@/i18n/data/solutions-l1-de';
+
+const de = SOLUTIONS_L1_DE;
+const loc = (slug: string) => `/de/solutions/${slug}/`;
+const kitName = (slug: string) => de.kitNames[slug]?.name || SOLUTIONS_L1.kits.find(k => k.slug === slug)?.short || slug;
+const kitSub = (slug: string) => de.kitNames[slug]?.subtitle || '';
+const kitInline = (slug: string) => de.kitNames[slug]?.inline || '';
+
+const gridTiedKits = SOLUTIONS_L1.kits.filter((k) => k.category === 'grid-tied');
+const offGridKits = SOLUTIONS_L1.kits.filter((k) => k.category === 'off-grid');
+---
+<BaseLayout
+  title={`${de.hero.title} — Callsun`}
+  description={de.hero.subtitle}
+  canonical="/de/solutions/"
+  locale="de"
+>
+  <Header slot="header" locale="de" />
+  <Footer slot="footer" locale="de" />
+
+  <section class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-16 pb-16 md:pt-20 md:pb-20">
+      <div class="mt-8 flex items-start gap-6">
+        <div class="w-1 self-stretch bg-callsun" aria-hidden="true"></div>
+        <div class="flex-1">
+          <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime">
+            {de.hero.eyebrow}
+          </p>
+          <h1 class="mt-3 font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+            {de.hero.title}
+          </h1>
+          <p class="mt-4 text-white/75 text-base md:text-lg leading-relaxed max-w-2xl">
+            {de.hero.subtitle}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Off-Grid featured */}
+  <section class="bg-white border-b border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]" style="aspect-ratio: 1947 / 808;">
+        <img src="/uploads/callsun/solutions/hero-off-grid.webp" alt={kitName(offGridKits[0].slug)} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+      </div>
+      <hr class="mt-16 border-t border-callsun-line" />
+      <Eyebrow class="mt-10 mb-6">{de.offGrid.subEyebrow}</Eyebrow>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {offGridKits.map((k) => (
+          <a href={loc(k.slug)} class="group grid grid-cols-1 md:grid-cols-5 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white">
+            <div class="md:col-span-3 relative bg-white aspect-square">
+              <img src={k.cardImage} alt="" loading="lazy" class="absolute inset-0 w-full h-full object-contain p-4 md:p-6" />
+            </div>
+            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3 bg-callsun-tint">
+              <h4 class="font-display text-lg md:text-xl font-extrabold text-callsun-ink leading-snug">{kitName(k.slug)}</h4>
+              <p class="text-callsun-mute text-sm">{kitInline(k.slug)}</p>
+              <span class="mt-2 inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
+                {de.viewSystem} <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Grid-Tied featured */}
+  <section class="bg-white border-b border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
+      <div class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]" style="aspect-ratio: 1942 / 809;">
+        <img src="/uploads/callsun/solutions/hero-5-4kw-hybrid.webp" alt={kitName(gridTiedKits[0].slug)} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+      </div>
+      <hr class="mt-16 border-t border-callsun-line" />
+      <Eyebrow class="mt-10 mb-6">{de.gridTied.subEyebrow}</Eyebrow>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {gridTiedKits.map((k) => (
+          <a href={loc(k.slug)} class="group grid grid-cols-1 md:grid-cols-5 gap-0 border border-callsun-line hover:border-callsun-ink transition-colors overflow-hidden bg-white">
+            <div class="md:col-span-3 relative bg-white aspect-square">
+              <img src={k.cardImage} alt="" loading="lazy" class="absolute inset-0 w-full h-full object-contain p-4 md:p-6" />
+            </div>
+            <div class="md:col-span-2 p-6 md:p-8 flex flex-col justify-center gap-3 bg-callsun-tint">
+              <h4 class="font-display text-lg md:text-xl font-extrabold text-callsun-ink leading-snug">{kitName(k.slug)}</h4>
+              <p class="text-callsun-mute text-sm">{kitInline(k.slug)}</p>
+              <span class="mt-2 inline-flex items-center gap-2 font-bold text-xs tracking-wider uppercase text-callsun-ink group-hover:text-callsun-lime transition-colors">
+                {de.viewSystem} <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Inquiry CTA */}
+  <section class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-3">
+          <Eyebrow class="mb-3">{de.inquiry.eyebrow}</Eyebrow>
+          <h2 class="font-display whitespace-normal lg:whitespace-nowrap text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
+            {de.inquiry.title}
+          </h2>
+          <p class="mt-4 text-white/70 text-base md:text-lg leading-relaxed max-w-2xl">
+            {de.inquiry.subtitle}
+          </p>
+        </div>
+        <div class="md:col-span-2 md:text-right">
+          <a href="/de/contact/" class="inline-flex items-center gap-2 bg-callsun text-callsun-ink font-bold text-sm tracking-wider px-8 py-4 hover:bg-callsun-limeHi transition-colors">
+            {de.inquiry.ctaLabel} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
