@@ -267,6 +267,11 @@ nohup ./node_modules/.bin/astro dev --host 0.0.0.0 --port 4323 > /tmp/dev.log 2>
 - 已知坑：本地 `/root/.cloudflare-token.env` 的 token **无 D1 权限**（7403），d1 execute 会失败 → 备份脚本 scripts/backup-d1.sh 因此连日失败（已在 2026-09-05 立过修复卡）。**绕行方案**：用 admin token（/root/crm-accounts-2026-09-05.txt）调线上 API；或东家给 token 补 D1 权限后恢复直查。
 - ✅ 已修复（2026-09-07 10:34）：东家在 CF Dashboard 给 token 补了 D1 Edit 权限。实测：`wrangler d1 execute --remote` 直查成功（1ms）、`bash scripts/backup-d1.sh` 手动跑通（导出 8K SQL，30 天滚动保留）。每日备份自此恢复，直查路径畅通。
 
+## 部署授权 + 文件获取协议（2026-09-14 08:34 游军辉拍板）
+
+- **自动部署授权**：网站已交客户维护，本 repo 完工即自动 commit + push（CF Pages 自动部署）+ 线上验收，不再等确认。破坏性动作（D1 schema/删数据/大范围删内容）仍先报。
+- **群文件获取**：飞书文件消息不能带 @，网关只投递文本 → 文件永远到不了会话。解法：用 `tmp-media/feishu_list_msgs.py`（拉群消息列表拿 msg_id/file_key）+ `tmp-media/feishu_download_file.py`（resources API 下载），凭证 `/root/zoupw/inbox/feishu-crosspower-app.env`。群约定：文件拖群里 + 随手发一句「@小天 文件已传」即可，无需重发文件。
+
 ### D1 备份修复·收尾确认（2026-09-07 10:36 cron 复核）
 
 - 复核：D1 list API → HTTP 200 / success:true（callsun-b2b-db 在列），token 已具备 D1 读权限
