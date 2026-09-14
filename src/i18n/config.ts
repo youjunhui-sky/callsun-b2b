@@ -49,8 +49,8 @@ export const LOCALIZED_PATHS = [
 
 // 当前路径在目标语言下的地址；未本地化路径回落该语言首页
 export function localePath(locale: Locale, currentPath: string): string {
-  if (locale === 'en') return currentPath;
   const base = basePathOf(currentPath);
+  if (locale === 'en') return base;
   if (LOCALIZED_PATHS.includes(base)) return `${prefix[locale]}${base === '/' ? '/' : base}`;
   return `${prefix[locale]}/`;
 }
