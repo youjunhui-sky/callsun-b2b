@@ -28,6 +28,7 @@ const faqSchema = {
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
+  schema={faqSchema}
 >
   <Header slot="header" />
   <Footer slot="footer" />
