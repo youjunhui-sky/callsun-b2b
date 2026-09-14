@@ -89,6 +89,7 @@
   <div style="display:flex;gap:8px;margin-bottom:14px">
     <button class="btn lime" id="tabInquiries" onclick="switchTab('inquiries')">📥 INQUIRIES</button>
     <button class="btn ghost" id="tabDue" onclick="switchTab('due')">⏰ FOLLOW-UPS DUE <span id="dueBadge" style="background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:10px;margin-left:2px;display:none"></span></button>
+    <button class="btn ghost" id="tabVisitors" onclick="switchTab('visitors')">🌍 VISITOR STATS</button>
   </div>
 
   <div class="filters" id="filtersBox">
@@ -127,6 +128,19 @@
       <span id="dueSummary" style="font-size:12px;color:var(--mute)"></span>
     </div>
   </div>
+
+  <div class="filters hidden" id="visitorsFiltersBox">
+    <div class="row" style="align-items:center">
+      <span style="font-size:12px;color:var(--mute)">From</span>
+      <input id="pvFrom" type="date" style="width:auto" />
+      <span style="font-size:12px;color:var(--mute)">To</span>
+      <input id="pvTo" type="date" style="width:auto" />
+      <button class="btn ghost" onclick="loadPageviews()">REFRESH</button>
+      <span style="font-size:12px;color:var(--mute)">Cookieless · anonymous sessions · no personal data</span>
+    </div>
+  </div>
+
+  <div id="visitorsBox" class="hidden"></div>
 
   <div id="listBox"></div>
   <div class="pager" id="pagerBox"></div>
@@ -263,12 +277,69 @@ let ACTIVE_TAB = 'inquiries';
 
 function switchTab(tab) {
   ACTIVE_TAB = tab;
-  const isDue = tab === 'due';
-  document.getElementById('tabInquiries').className = isDue ? 'btn ghost' : 'btn lime';
-  document.getElementById('tabDue').className = isDue ? 'btn lime' : 'btn ghost';
-  document.getElementById('filtersBox').classList.toggle('hidden', isDue);
-  document.getElementById('dueFiltersBox').classList.toggle('hidden', !isDue);
-  if (isDue) { loadDue(); } else { loadInquiries(PAGE); }
+  const tabs = { inquiries: 'tabInquiries', due: 'tabDue', visitors: 'tabVisitors' };
+  for (const [t, id] of Object.entries(tabs)) {
+    document.getElementById(id).className = t === tab ? 'btn lime' : 'btn ghost';
+  }
+  document.getElementById('filtersBox').classList.toggle('hidden', tab !== 'inquiries');
+  document.getElementById('dueFiltersBox').classList.toggle('hidden', tab !== 'due');
+  document.getElementById('visitorsFiltersBox').classList.toggle('hidden', tab !== 'visitors');
+  document.getElementById('visitorsBox').classList.toggle('hidden', tab !== 'visitors');
+  document.getElementById('listBox').classList.toggle('hidden', tab === 'visitors');
+  document.getElementById('pagerBox').classList.toggle('hidden', tab === 'visitors');
+  if (tab === 'due') { loadDue(); }
+  else if (tab === 'visitors') { loadPageviews(); }
+  else { loadInquiries(PAGE); }
+}
+
+// ---------- 访客统计（方案②：pageview D1 明细聚合）----------
+async function loadPageviews() {
+  const from = document.getElementById('pvFrom').value || new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+  const to = document.getElementById('pvTo').value || new Date().toISOString().slice(0, 10);
+  document.getElementById('pvFrom').value = from;
+  document.getElementById('pvTo').value = to;
+  const box = document.getElementById('visitorsBox');
+  box.innerHTML = '<p style="color:var(--mute)">Loading…</p>';
+  const r = await api(`/pageviews?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to + 'T23:59:59Z')}`);
+  if (!r || !r.ok) { box.innerHTML = '<p style="color:var(--red)">Failed to load visitor stats.</p>'; return; }
+  const cc = c => ({ CN:'🇨🇳', US:'🇺🇸', DE:'🇩🇪', NL:'🇳🇱', GB:'🇬🇧', FR:'🇫🇷', IN:'🇮🇳', AU:'🇦🇺', CA:'🇨🇦', JP:'🇯🇵', KR:'🇰🇷', BR:'🇧🇷', ES:'🇪🇸', IT:'🇮🇹', MX:'🇲🇽', SG:'🇸🇬', AE:'🇦🇪', SA:'🇸🇦', PL:'🇵🇱', SE:'🇸🇪', RU:'🇷🇺', ID:'🇮🇩', TH:'🇹🇭', VN:'🇻🇳', PH:'🇵🇭', ZA:'🇿🇦', TR:'🇹🇷', EG:'🇪🇬', NG:'🇳🇬', PK:'🇵🇰', BD:'🇧🇩', MY:'🇲🇾' })[c] || '🌍';
+  const bar = (rows, fmt) => {
+    const max = Math.max(...rows.map(x => x.n), 1);
+    return rows.map(x => `
+      <div style="display:flex;align-items:center;gap:8px;margin:6px 0">
+        <div style="width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="${esc(fmt(x))}">${esc(fmt(x))}</div>
+        <div style="flex:1;background:#eef2ee;border-radius:4px;height:20px;position:relative">
+          <div style="width:${Math.max(2, x.n / max * 100)}%;background:#9ACD32;height:100%;border-radius:4px"></div>
+        </div>
+        <div style="width:130px;font-size:12px;color:var(--mute)">${x.n} views · ${x.s} visitors</div>
+      </div>`).join('');
+  };
+  const dayRows = r.byDay.slice(-30);
+  const dmax = Math.max(...dayRows.map(x => x.n), 1);
+  const dayBars = dayRows.map(x => `
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px" title="${x.d}: ${x.n} views / ${x.s} visitors">
+      <div style="width:70%;max-width:34px;background:#9ACD32;border-radius:3px 3px 0 0;height:${Math.max(2, x.n / dmax * 90)}px"></div>
+      <div style="font-size:9px;color:var(--mute)">${x.d.slice(5)}</div>
+    </div>`).join('');
+  box.innerHTML = `
+    <div class="stats">
+      <div class="stat"><div class="stat-num">${r.total}</div><div class="stat-label">Pageviews (${r.from} → ${r.to})</div></div>
+      <div class="stat"><div class="stat-num">${r.sessions}</div><div class="stat-label">Visitor sessions</div></div>
+    </div>
+    <div class="card" style="margin-top:14px;padding:16px">
+      <h3 style="margin:0 0 10px;font-size:14px">📅 Daily trend</h3>
+      <div style="display:flex;align-items:flex-end;gap:4px;height:120px">${dayBars || '<p style="color:var(--mute)">No data yet.</p>'}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+      <div class="card" style="padding:16px">
+        <h3 style="margin:0 0 10px;font-size:14px">🌍 By country / region</h3>
+        ${r.byCountry.length ? bar(r.byCountry, x => `${cc(x.c)} ${x.c}`) : '<p style="color:var(--mute)">No data yet.</p>'}
+      </div>
+      <div class="card" style="padding:16px">
+        <h3 style="margin:0 0 10px;font-size:14px">📄 Top pages</h3>
+        ${r.byPath.length ? bar(r.byPath, x => x.p) : '<p style="color:var(--mute)">No data yet.</p>'}
+      </div>
+    </div>`;
 }
 
 // ---------- 待跟进清单 ----------
