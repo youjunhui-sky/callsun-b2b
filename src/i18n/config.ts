@@ -37,6 +37,7 @@ export const LOCALIZED_PATHS = [
   '/products/',
   '/products/standard-modules/',
   '/products/custom-modules/',
+  '/about/',
   '/contact/',
 ];
 

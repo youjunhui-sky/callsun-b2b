@@ -1,0 +1,247 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import SocialIcons from '@/components/SocialIcons.astro';
+import { ABOUT_ES, STATS_ES, PRINCIPLES_ES, PROCESS_STEPS_ES, PORTFOLIO_ES, QC_TESTS_ES, CUSTOMER_TYPES_ES, APPLICATION_TABS_ES } from '@/i18n/data/about-es';
+
+const c = ABOUT_ES;
+const portfolioTags = (tags: string[] | string) => Array.isArray(tags) ? tags : String(tags).split('|');
+---
+<BaseLayout title={c.title} description={c.description} canonical="/es/about/" locale="es">
+  <Header slot="header" locale="es" />
+  <Footer slot="footer" locale="es" />
+
+  {/* 1) HERO */}
+  <section class="relative text-white py-20 md:py-28 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: url('/uploads/callsun/about/v4-hero.webp'); background-size: cover; background-position: center;" aria-hidden="true"></div>
+    <div class="absolute inset-0 pointer-events-none bg-callsun-ink/65" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+        {c.hero.eyebrow}
+      </p>
+      <h1 class="mt-4 text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-display font-extrabold leading-[1.02]">
+        {c.hero.h1}
+      </h1>
+      <p class="mt-6 text-base md:text-lg text-white/80 max-w-2xl leading-relaxed">
+        {c.hero.intro}
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/es/products/" class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors">
+          {c.hero.cta1}
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/es/contact/" class="inline-flex items-center gap-2 border border-white text-white font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-white hover:text-callsun-ink transition-colors">
+          {c.hero.cta2}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* 2) STATS */}
+  <section class="bg-callsun-panel text-white py-10 md:py-12 border-t border-white/10">
+    <div class="mx-auto px-4 lg:px-6">
+      <div class="flex flex-wrap justify-between gap-x-6 gap-y-10">
+        {STATS_ES.map((s) => (
+          <div class="flex flex-col items-center">
+            <span class="font-display font-extrabold text-callsun-lime text-3xl md:text-4xl lg:text-5xl leading-none whitespace-nowrap">
+              {s.value}
+            </span>
+            <span class="mt-3 text-xs uppercase tracking-eyebrow text-white/60 font-medium">
+              {s.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 3) WHO WE ARE */}
+  <section class="bg-callsun-tint py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div class="lg:col-span-5">
+          <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+            {c.whoWeAre.eyebrow}
+          </p>
+          <h2 class="mt-3 text-3xl md:text-4xl lg:text-4xl font-display font-extrabold text-callsun-ink leading-tight">
+            {c.whoWeAre.h2}
+          </h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-4">
+          <p class="text-base md:text-lg text-callsun-mute leading-relaxed">
+            {c.whoWeAre.intro}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {PRINCIPLES_ES.map((p) => (
+          <div class="bg-white shadow-card p-6 md:p-8 flex flex-col min-h-[220px]">
+            <div class="h-1 w-10 bg-callsun-lime" aria-hidden="true"></div>
+            <span class="mt-6 font-display font-extrabold text-callsun-lime text-sm">
+              {p.step}
+            </span>
+            <h3 class="mt-4 font-display font-extrabold text-callsun-ink text-lg md:text-xl leading-snug flex-1">
+              {p.title}
+            </h3>
+            <p class="mt-5 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
+              {p.eyebrow}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {CUSTOMER_TYPES_ES.map((ct) => (
+          <div class="bg-white border border-callsun-line px-5 py-4 text-sm font-semibold text-callsun-ink text-center">
+            {ct.title}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 4) MANUFACTURING */}
+  <section class="relative text-white py-16 md:py-20 border-t border-white/10 bg-callsun-ink overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background-image: url('/uploads/callsun/about/manufacturing-bg.webp'); background-size: cover; background-position: center;" aria-hidden="true"></div>
+    <div class="absolute inset-0 pointer-events-none bg-callsun-ink/70" aria-hidden="true"></div>
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          {c.manufacturing.eyebrow}
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+          {c.manufacturing.h2}
+        </h2>
+        <p class="mt-4 text-base md:text-lg text-white/70 leading-relaxed">
+          {c.manufacturing.intro}
+        </p>
+      </div>
+      <div class="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 border-t border-white/15 pt-10 md:pt-12">
+        {PROCESS_STEPS_ES.map((s) => (
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-callsun-lime text-3xl md:text-4xl leading-none">
+              {s.step}
+            </span>
+            <h3 class="mt-5 font-display font-bold text-white text-base md:text-lg leading-snug">
+              {s.title}
+            </h3>
+            <p class="mt-3 text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+              {s.eyebrow}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 5) PRODUCT PORTFOLIO */}
+  <section class="bg-callsun-bg py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+        {c.portfolio.h2}
+      </h2>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        {PORTFOLIO_ES.map((card) => (
+          <div class="relative bg-white border border-callsun-line pl-6 md:pl-8 pr-6 md:pr-8 py-8 md:py-10 flex flex-col">
+            <div class="absolute inset-y-0 left-0 w-1 bg-callsun-lime" aria-hidden="true"></div>
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="font-display font-extrabold text-callsun-ink text-2xl md:text-3xl leading-tight">
+                {card.title}
+              </h3>
+              <a href={card.href} class="inline-flex items-center gap-2 shrink-0 bg-callsun text-callsun-ink font-bold text-xs tracking-wider px-4 py-2.5 hover:bg-callsun-limeHi transition-colors">
+                {c.portfolio.viewMore} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <p class="mt-5 text-base text-callsun-mute leading-relaxed">
+              {card.body}
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              {portfolioTags(card.tags).map((p) => (
+                <span class="inline-flex items-center bg-callsun-tint text-callsun-limeLo text-sm font-bold uppercase tracking-wide rounded-full px-4 py-2">
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 6) GLOBAL SUPPLY MAP */}
+  <section class="bg-callsun-bg border-t border-callsun-line">
+    <figure class="relative">
+      <img
+        src="/uploads/callsun/about/global-map.webp"
+        alt="Red global de fabricación y logística de Callsun"
+        class="w-full h-auto block"
+        loading="lazy"
+      />
+    </figure>
+  </section>
+
+  {/* 7) VERIFIED QUALITY */}
+  <section class="bg-white py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          {c.quality.eyebrow}
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight text-callsun-ink">
+          {c.quality.h2}
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {QC_TESTS_ES.map((q) => (
+          <div class="bg-callsun-surface border border-callsun-line shadow-card p-6 md:p-7 border-l-4 border-l-callsun-lime flex flex-col">
+            <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+              {q.eyebrow}
+            </p>
+            <h3 class="mt-3 font-display font-bold text-callsun-ink text-lg md:text-xl leading-snug">
+              {q.title}
+            </h3>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {APPLICATION_TABS_ES.map((tab) => (
+          <a href={tab.href} class="bg-callsun-tint px-4 py-3 hover:bg-callsun-lime transition-colors">
+            <span class="block text-[10px] uppercase tracking-eyebrow text-callsun-lime font-extrabold">{tab.eyebrow}</span>
+            <span class="block mt-1 text-sm font-bold text-callsun-ink">{tab.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 8) CTA */}
+  <section class="relative text-white py-20 md:py-24 border-t border-white/10 overflow-hidden bg-callsun-ink">
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-display font-extrabold leading-tight">
+            {c.cta.h2}
+          </h2>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/es/contact/" class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors">
+              {c.cta.button}
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="lg:justify-self-end">
+          <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold text-center lg:text-right">
+            {c.cta.connect}
+          </p>
+          <SocialIcons align="end" class="mt-5" />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
