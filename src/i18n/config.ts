@@ -47,11 +47,19 @@ export const LOCALIZED_PATHS = [
   '/contact/',
 ];
 
+// 动态路径是否已有本地化版本（详情页等静态清单之外的页面）
+export function isLocalizedPath(base: string): boolean {
+  if (LOCALIZED_PATHS.includes(base)) return true;
+  if (/^\/products\/cn\d+w\/$/.test(base)) return true;
+  if (/^\/solutions\/(5-4kw-off-grid|7-2kw-grid-tied|10-8kw-grid-tied)\/$/.test(base)) return true;
+  return false;
+}
+
 // 当前路径在目标语言下的地址；未本地化路径回落该语言首页
 export function localePath(locale: Locale, currentPath: string): string {
   const base = basePathOf(currentPath);
   if (locale === 'en') return base;
-  if (LOCALIZED_PATHS.includes(base)) return `${prefix[locale]}${base === '/' ? '/' : base}`;
+  if (isLocalizedPath(base)) return `${prefix[locale]}${base === '/' ? '/' : base}`;
   return `${prefix[locale]}/`;
 }
 
@@ -66,7 +74,7 @@ export function basePathOf(path: string): string {
 
 // hreflang alternates：base 路径（无前缀）→ 各语言 URL（含 x-default）
 export function alternatesFor(basePath: string): Array<{ lang: string; href: string }> {
-  if (!LOCALIZED_PATHS.includes(basePath)) return [];
+  if (!isLocalizedPath(basePath)) return [];
   return [
     { lang: 'en-US', href: basePath },
     { lang: 'de-DE', href: `/de${basePath === '/' ? '/' : basePath}` },
