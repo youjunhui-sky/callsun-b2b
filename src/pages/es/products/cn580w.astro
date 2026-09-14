@@ -24,13 +24,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: '580W N-Type Bifacial Double-Glass Solar Module (22.45% efficiency)',
+  description: '580W bifacial double-glass module for larger residential roofs, ground mounts and commercial arrays.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN580W',
+  sku: 'CN580W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '22.45%' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '2278 × 1134 × 30 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '31.42 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
   locale="es"
 >
   <Header slot="header" locale="es" />

@@ -24,13 +24,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: '450W N-Type Bifacial Double-Glass Solar Module (22.52% efficiency)',
+  description: '450W bifacial double-glass module for residential, distributed PV, off-grid and small commercial projects.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN450W',
+  sku: 'CN450W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '22.52%' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '1762 × 1134 × 30 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '23.97 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
   locale="es"
 >
   <Header slot="header" locale="es" />

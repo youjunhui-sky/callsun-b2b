@@ -1,0 +1,46 @@
+# Callsun — PV Module Brand & Manufacturer
+
+> Callsun designs, manufactures and tests standard and custom N-Type bifacial photovoltaic modules (180W–720W) for global B2B buyers: distributors, installers, EPCs, equipment manufacturers and project buyers.
+
+Site: https://callsunenergy.com
+Languages: English (default), German (/de/), Spanish (/es/)
+
+## Products
+
+Standard PV Modules (450W–720W, N-Type bifacial double-glass):
+- [CN450W](https://callsunenergy.com/products/cn450w/): 450W, 22.52% module efficiency, 96 cells, 2.0mm double glass
+- [CN580W](https://callsunenergy.com/products/cn580w/): 580W, 22.45% module efficiency, 144 cells
+- [CN620W](https://callsunenergy.com/products/cn620w/): 620W, 22.95% module efficiency, 132 cells
+- [CN720W](https://callsunenergy.com/products/cn720w/): 720W, 23.18% module efficiency, flagship format
+
+Custom PV Modules (180W–215W, application-specific):
+- [CN180W](https://callsunenergy.com/products/cn180w/): TwinCell anti-shading, RV/vehicle roofs, 12V
+- [CN200W](https://callsunenergy.com/products/cn200w/): ultra-compact high watt density, balcony PV
+- [CN210W](https://callsunenergy.com/products/cn210w/): dual-module parallel, 24V systems, marine/off-grid
+- [CN215W](https://callsunenergy.com/products/cn215w/): 4-zone anti-shading, 12V, vehicle & marine
+
+Localized product overviews: [/de/products/](https://callsunenergy.com/de/products/) · [/es/products/](https://callsunenergy.com/es/products/)
+
+## Solutions
+
+Complete solar kits (PV array + hybrid inverter + LiFePO4 battery):
+- [5.4kW Off-Grid Kit](https://callsunenergy.com/solutions/5-4kw-off-grid/)
+- [7.2kW Off-Grid Kit](https://callsunenergy.com/solutions/7-2kw-grid-tied/)
+- [10.8kW Grid-Tied Kit](https://callsunenergy.com/solutions/10-8kw-grid-tied/)
+
+## Resources
+
+- [Datasheets & Certificates](https://callsunenergy.com/resources/): product datasheets (PDF), CE/RoHS/ETL certificates, video center
+- [Technical Blog & Project References](https://callsunenergy.com/news/): selection guides, technology comparisons, installation cases
+
+## Company
+
+- Manufacturing: ~55,000 m², 4 bases, 180–720W module range
+- Certifications: CE, RoHS, IEC 61215/61730, Intertek ETL Certificate of Compliance (2026)
+- Quality: EL inspection, solar simulator testing, damp heat & thermal cycling, UV aging
+- Markets: United States, United Kingdom, Germany, Saudi Arabia, South Africa, Japan, Vietnam, Indonesia, Australia, Brazil, Canada
+- Contact: sales@callsunsolar.com · https://callsunenergy.com/contact/
+
+## For AI crawlers
+
+Product data is also available as schema.org JSON-LD (Product + FAQPage) on each product page. Data sheets are linked from each product page. Figures above match the official datasheets (2025-09 revisions).

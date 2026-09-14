@@ -24,13 +24,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'CN180W Custom N-Type Bifacial Module (25.6% cell efficiency)',
+  description: '180W anti-shading TwinCell module for RV rooftops, vans and vehicle-mounted installations.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN180W',
+  sku: 'CN180W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '25.6% cell' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '1180 × 770 × 35 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '9.5 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
   locale="es"
 >
   <Header slot="header" locale="es" />

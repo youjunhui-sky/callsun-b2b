@@ -22,13 +22,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'CN210W Custom N-Type Bifacial Module (25.6% cell efficiency)',
+  description: '210W dual-module parallel module tuned for 24V systems — RV, marine, off-grid cabins.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN210W',
+  sku: 'CN210W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '25.6% cell' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '1376 × 766 × 35 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '11.3 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
 >
   <Header slot="header" />
   <Footer slot="footer" />

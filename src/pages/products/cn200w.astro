@@ -22,13 +22,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'CN200W Custom N-Type Bifacial Module (25.6% cell efficiency)',
+  description: '200W ultra-compact module for balcony PV, small off-grid gear and space-constrained roofs.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN200W',
+  sku: 'CN200W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '25.6% cell' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '1304 × 770 × 35 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '10.5 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
 >
   <Header slot="header" />
   <Footer slot="footer" />

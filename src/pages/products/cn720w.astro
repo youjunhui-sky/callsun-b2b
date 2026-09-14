@@ -22,13 +22,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: '720W N-Type Bifacial Dual-Glass Solar Module (23.18% efficiency)',
+  description: '720W flagship bifacial dual-glass module — highest wattage per module in the range, 23.18% efficiency.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN720W',
+  sku: 'CN720W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '23.18%' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '2384 × 1303 × 33 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '38.3 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
 >
   <Header slot="header" />
   <Footer slot="footer" />

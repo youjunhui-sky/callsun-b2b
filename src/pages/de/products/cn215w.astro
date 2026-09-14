@@ -24,13 +24,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'CN215W Custom N-Type Bifacial Module with Anti-Shading (25.6% cell efficiency)',
+  description: '215W 4-zone anti-shading module for 12V systems, vehicles and marine PV.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN215W',
+  sku: 'CN215W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '25.6% cell' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '1422 × 766 × 35 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '11.5 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
   locale="de"
 >
   <Header slot="header" locale="de" />

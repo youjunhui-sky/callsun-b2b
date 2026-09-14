@@ -24,13 +24,30 @@ const faqSchema = {
   })),
 };
 
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: '620W N-Type Bifacial Double-Glass Solar Module (22.95% efficiency)',
+  description: '620W bifacial double-glass module for commercial rooftops and ground mounts.',
+  brand: { '@type': 'Brand', name: 'Callsun' },
+  manufacturer: { '@type': 'Organization', name: 'Callsun' },
+  category: 'Photovoltaic Solar Module',
+  productID: 'CN620W',
+  sku: 'CN620W',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '22.95%' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '2382 × 1134 × 30 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '32.4 kg' },
+  ],
+};
+
 
 ---
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
   canonical={`/products/${sku.slug}/`}
-  schema={faqSchema}
+  schema={[faqSchema, productSchema]}
   locale="es"
 >
   <Header slot="header" locale="es" />
