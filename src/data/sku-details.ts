@@ -120,6 +120,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     certTitle: 'CN450W',
     certifications: [
       '__emph__IEC 61215 · IEC 61730',
+      '__emph__ETL Listed · US & Canada',
     ],
   },
   cn215w: {
@@ -551,6 +552,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     },
     certifications: [
       'IEC 61215 · IEC 61730',
+      'ETL Listed · US & Canada',
       'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
     ],
   },
@@ -638,6 +640,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     },
     certifications: [
       'IEC 61215 · IEC 61730',
+      'ETL Listed · US & Canada',
       'ISO 9001:2015 · ISO 14001:2023 · ISO 45001:2023',
     ],
   },
@@ -725,6 +728,7 @@ export const SKU_DETAILS: Record<string, SkuDetail> = {
     },
     certifications: [
       '__emph__IEC 61215 · IEC 61730',
+      '__emph__ETL Listed · US & Canada',
     ],
   },
 };
