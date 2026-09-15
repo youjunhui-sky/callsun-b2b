@@ -26,7 +26,7 @@ export const SITE = {
   },
   analytics: {
     gtmId: '',
-    cloudflareToken: '', // Cloudflare Web Analytics beacon token；填入后自动启用（方案①）
+    cloudflareToken: 'e8b15aa2324243dda1f6a58c276876aa', // Cloudflare Web Analytics beacon token；填入后自动启用（方案①）2026-09-15 游军辉提供
     plausibleDomain: '',
     turnstileSiteKey: '0x4AAAAAAEMnseRAL5fduk7t', // Cloudflare Turnstile 公开 Site Key（防垃圾验证）
   },
