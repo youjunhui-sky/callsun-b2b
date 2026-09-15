@@ -8,12 +8,12 @@ import FaqAccordion from '@/components/FaqAccordion.astro';
 import { SITE } from '@/data/site';
 import { SKU_DETAILS } from '@/data/sku-details';
 import { PRODUCT_FAQ } from '@/data/faq';
-import { FAQ_ES } from '@/i18n/data/product-detail-es';
-import { LABEL_ES, DETAIL_ES } from '@/i18n/data/product-detail-es';
+import { FAQ_RU } from '@/i18n/data/product-detail-ru';
+import { LABEL_RU, DETAIL_RU } from '@/i18n/data/product-detail-ru';
 
-const sku = SKU_DETAILS.cn580w;
+const sku = SKU_DETAILS.cn200w;
 
-const faqs = FAQ_ES;
+const faqs = FAQ_RU;
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -27,17 +27,17 @@ const faqSchema = {
 const productSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: '580W N-Type Bifacial Double-Glass Solar Module (22.45% efficiency)',
-  description: '580W bifacial double-glass module for larger residential roofs, ground mounts and commercial arrays.',
+  name: 'CN200W Custom N-Type Bifacial Module (25.6% cell efficiency)',
+  description: '200W ultra-compact module for balcony PV, small off-grid gear and space-constrained roofs.',
   brand: { '@type': 'Brand', name: 'Callsun' },
   manufacturer: { '@type': 'Organization', name: 'Callsun' },
   category: 'Photovoltaic Solar Module',
-  productID: 'CN580W',
-  sku: 'CN580W',
+  productID: 'CN200W',
+  sku: 'CN200W',
   additionalProperty: [
-    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '22.45%' },
-    { '@type': 'PropertyValue', name: 'Dimensions', value: '2278 × 1134 × 30 mm' },
-    { '@type': 'PropertyValue', name: 'Weight', value: '31.42 kg' },
+    { '@type': 'PropertyValue', name: 'Module Efficiency', value: '25.6% cell' },
+    { '@type': 'PropertyValue', name: 'Dimensions', value: '1304 × 770 × 35 mm' },
+    { '@type': 'PropertyValue', name: 'Weight', value: '10.5 kg' },
   ],
 };
 
@@ -46,19 +46,19 @@ const productSchema = {
 <BaseLayout
   title={`${sku.model} — ${sku.subtitle} — ${SITE.name}`}
   description={sku.subtitle}
-  canonical={`/es/products/${sku.slug}/`}
+  canonical={`/ru/products/${sku.slug}/`}
   schema={[faqSchema, productSchema]}
-  locale="es"
+  locale="ru"
 >
-  <Header slot="header" locale="es" />
-  <Footer slot="footer" locale="es" />
+  <Header slot="header" locale="ru" />
+  <Footer slot="footer" locale="ru" />
 
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 1: Hero banner (full-width marketing image)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white">
     <img
-      src="/uploads/callsun/products/580w/hero-banner.webp"
+      src="/uploads/callsun/products/200w/hero-banner.webp"
       alt={`${sku.model}`}
       loading="eager"
       class="block w-full h-auto"
@@ -70,7 +70,7 @@ const productSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white">
     <img
-      src="/uploads/callsun/products/580w/features-banner.webp"
+      src="/uploads/callsun/products/200w/features-banner.webp"
       alt={`${sku.model} — Product Features`}
       loading="lazy"
       class="block w-full h-auto"
@@ -82,16 +82,16 @@ const productSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <Eyebrow class="mb-4">ESPECIFICACIONES TÉCNICAS</Eyebrow>
+      <Eyebrow class="mb-4">ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</Eyebrow>
       <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1] max-w-4xl">
-        {sku.model} ficha técnica
+        {sku.model} тех. паспорт
       </h2>
 
       <div class="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         {[
-          { title: 'ELÉCTRICA',              rows: sku.tech.electrical },
-          { title: 'MECÁNICA',              rows: sku.tech.mechanical },
-          { title: 'TEMPERATURA Y ENTREGA',  rows: sku.tech.thermal },
+          { title: 'ЭЛЕКТРИЧЕСКИЕ',              rows: sku.tech.electrical },
+          { title: 'МЕХАНИЧЕСКИЕ',              rows: sku.tech.mechanical },
+          { title: 'ТЕМПЕРАТУРА И ПОСТАВКИ',  rows: sku.tech.thermal },
         ].map((col) => (
           <div class="bg-white/5 border border-white/10 p-6 md:p-7">
             <p class="text-[11px] md:text-xs font-bold tracking-eyebrow uppercase text-callsun-lime mb-5">
@@ -100,7 +100,7 @@ const productSchema = {
             <dl class="grid grid-cols-1 gap-y-3">
               {col.rows.map((r) => (
                 <div class="border-t border-white/10 pt-2">
-                  <dt class="text-[10px] font-bold tracking-eyebrow text-white/60">{LABEL_ES[r.label] || r.label}</dt>
+                  <dt class="text-[10px] font-bold tracking-eyebrow text-white/60">{LABEL_RU[r.label] || r.label}</dt>
                   <dd class="mt-1 font-semibold text-sm text-white">{r.value}</dd>
                 </div>
               ))}
@@ -110,7 +110,7 @@ const productSchema = {
       </div>
 
       <p class="mt-8 text-center text-white/50 text-xs md:text-sm">
-        STC: Irradiancia 1000 W/m² · Temperatura de celda 25 °C · Masa de aire 1,5
+        STC: освещённость 1000 Вт/м² · температура элементов 25 °C · воздушная масса 1,5
       </p>
     </div>
   </section>
@@ -118,7 +118,7 @@ const productSchema = {
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 4: Documents & Inquiry
        ═══════════════════════════════════════════════════════════════════════ */}
-  <FaqAccordion items={faqs} model={sku.model} heading="preguntas frecuentes" />
+  <FaqAccordion items={faqs} model={sku.model} heading="Частые вопросы" />
 
   <section id="inquiry" class="relative bg-callsun-tint overflow-hidden">
     <div
@@ -130,9 +130,9 @@ const productSchema = {
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
         {/* LEFT: documents (lg:col-span-2) */}
         <div class="lg:col-span-2">
-          <Eyebrow class="mb-4">DOCUMENTOS Y CONSULTA</Eyebrow>
+          <Eyebrow class="mb-4">ДОКУМЕНТЫ И ЗАПРОС</Eyebrow>
           <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-callsun-ink leading-[1.1]">
-            {sku.certTitle || `${sku.model} recursos del producto`}
+            {sku.certTitle || `${sku.model} ресурсы продукта`}
           </h2>
 
           <div class="mt-6 space-y-3">
@@ -162,14 +162,14 @@ const productSchema = {
                 rel="noopener"
                 class="inline-flex items-center gap-2 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun hover:text-callsun-ink transition-colors"
               >
-                DESCARGAR FICHA TÉCNICA <span aria-hidden="true">↓</span>
+                СКАЧАТЬ ТЕХ. ПАСПОРТ <span aria-hidden="true">↓</span>
               </a>
             )}
             <a
               href="#inquiry-form"
               class="inline-flex items-center gap-2 bg-white border-2 border-callsun-line text-callsun-ink font-bold text-sm tracking-wider px-6 py-3 hover:border-callsun-ink transition-colors"
             >
-              MANUAL DE INSTALACIÓN <span aria-hidden="true">→</span>
+              РУКОВОДСТВО ПО МОНТАЖУ <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -177,9 +177,9 @@ const productSchema = {
         {/* RIGHT: inquiry form (lg:col-span-3) */}
         <div class="lg:col-span-3" id="inquiry-form">
           <InquiryForm
-            locale="es"
-            formSource={`sku-${sku.slug}-es`}
-            formTitle={`${sku.model} CONSULTA DEL PRODUCTO`}
+            locale="ru"
+            formSource={`sku-${sku.slug}-ru`}
+            formTitle={`${sku.model} ЗАПРОС ПО ПРОДУКЦИИ`}
           />
         </div>
       </div>

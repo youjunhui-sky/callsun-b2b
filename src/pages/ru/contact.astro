@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import InquiryForm from '@/components/InquiryForm.astro';
+import { SITE } from '@/data/site';
+import { CONTACT_RU } from '@/i18n/data/contact-ru';
+
+const c = CONTACT_RU;
+---
+<BaseLayout title={c.title} description={c.description} canonical="/ru/contact/" locale="ru">
+  <Header slot="header" locale="ru" />
+  <Footer slot="footer" locale="ru" />
+
+  <section class="bg-callsun-ink text-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-20 md:py-28">
+      <Eyebrow class="mb-4">{c.hero.eyebrow}</Eyebrow>
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+        {c.hero.h1}
+      </h1>
+      <p class="mt-6 text-white/70 text-base md:text-lg max-w-2xl">
+        {c.hero.intro}
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white border-b border-callsun-line">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-10 lg:gap-16 items-start">
+        <div>
+          <Eyebrow class="mb-3">{c.directContact.eyebrow}</Eyebrow>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold text-callsun-ink">
+            {c.directContact.heading}
+          </h2>
+          <dl class="mt-8 grid gap-5">
+            <div class="border-t border-callsun-line pt-5">
+              <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime">{c.directContact.sales}</dt>
+              <dd class="mt-2 text-callsun-ink font-semibold text-base">
+                <a href={`mailto:${SITE.organization.contact.sales}`}>{SITE.organization.contact.sales}</a>
+              </dd>
+            </div>
+            <div class="border-t border-callsun-line pt-5">
+              <dt class="text-[11px] font-bold tracking-eyebrow uppercase text-callsun-lime">{c.directContact.support}</dt>
+              <dd class="mt-2 text-callsun-ink font-semibold text-base">
+                <a href={`mailto:${SITE.organization.contact.support}`}>{SITE.organization.contact.support}</a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <InquiryForm locale="ru" formSource="contact-page-ru" formTitle={c.formTitle} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

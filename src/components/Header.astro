@@ -1,7 +1,7 @@
 ---
 import { NAV } from '@/data/site';
 import { UI } from '@/i18n/ui';
-import { localePath, basePathOf, LOCALES, localeLabel, type Locale } from '@/i18n/config';
+import { localePath, basePathOf, LOCALES, localeLabel, htmlLang, type Locale } from '@/i18n/config';
 
 interface Props {
   locale?: Locale;
@@ -107,7 +107,7 @@ const otherLocales = LOCALES.filter((l) => l !== locale);
             {i > 0 && <span class="text-white/30" aria-hidden="true">·</span>}
             <a
               href={localePath(l, currentPath)}
-              hreflang={l === 'en' ? 'en-US' : l === 'de' ? 'de-DE' : 'es-ES'}
+              hreflang={htmlLang[l]}
               class:list={[
                 'px-1 py-1 transition-colors',
                 l === locale ? 'text-callsun-lime underline underline-offset-4' : 'text-white/60 hover:text-callsun-lime',

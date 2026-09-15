@@ -1,0 +1,244 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { DOWNLOAD_CATEGORIES, RESOURCE_FAQ, VIDEO_CARDS, DATASHEETS, CERTIFICATES } from '@/data/resources';
+import { RESOURCES_RU } from '@/i18n/data/resources-ru';
+
+const t = RESOURCES_RU;
+
+// Group datasheets by category for the accordion download center
+const DATASHEET_GROUPS: { category: string; items: typeof DATASHEETS }[] = [];
+for (const d of DATASHEETS) {
+  let g = DATASHEET_GROUPS.find((x) => x.category === d.category);
+  if (!g) {
+    g = { category: d.category, items: [] };
+    DATASHEET_GROUPS.push(g);
+  }
+  g.items.push(d);
+}
+---
+
+<BaseLayout title={t.title} description={t.description} canonical="/ru/resources/" locale="ru">
+  <Header slot="header" locale="ru" />
+  <Footer slot="footer" locale="ru" />
+
+  <section class="relative bg-callsun-ink text-white pt-14 md:pt-16 pb-16 md:pb-20 overflow-hidden">
+    <img src="/uploads/callsun/resources/hero.webp" alt="" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 pointer-events-none bg-callsun-ink/65" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <h1 class="mt-3 text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-[0.95]">
+        {t.heroTitle}
+      </h1>
+    </div>
+
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6 my-12 md:my-14">
+      <div class="h-px bg-white/10"></div>
+    </div>
+
+    <div class="relative z-10 max-w-wide mx-auto px-4 lg:px-6">
+      <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+        {t.heroEyebrow}
+      </p>
+      <h2 id="downloads" class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+        {t.downloadsHeading}
+      </h2>
+
+      <div class="mt-8 flex flex-col sm:flex-row bg-white shadow-card">
+        <input
+          type="search"
+          placeholder={t.searchPlaceholder}
+          class="flex-1 px-5 py-4 text-callsun-ink placeholder:text-callsun-mute text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-callsun-lime bg-white"
+          disabled
+        />
+        <button
+          type="button"
+          class="shrink-0 inline-flex items-center gap-2 bg-callsun-ink text-white font-display font-bold text-xs md:text-sm uppercase tracking-eyebrow px-6 py-4 hover:bg-callsun-dark transition-colors"
+        >
+          {t.allDocuments}
+          <span aria-hidden="true">▾</span>
+        </button>
+      </div>
+
+      <div class="mt-8 space-y-4 md:space-y-5">
+        {DOWNLOAD_CATEGORIES.map((c) => {
+          const isDatasheets = c.step === '01';
+          const isCertificates = c.step === '03';
+          const isToggle = isDatasheets || isCertificates;
+          if (isToggle) {
+            return (
+            <details class="group bg-white shadow-card overflow-hidden">
+              <summary class="relative flex flex-col cursor-pointer list-none p-4 md:p-5">
+                <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0" aria-hidden="true"></div>
+                <h3 class="font-display font-extrabold text-callsun-ink text-lg md:text-xl uppercase tracking-wide leading-snug inline-flex items-center gap-2">
+                  {c.title}
+                  <span class="text-callsun-lime group-open:rotate-45 transition-transform text-base" aria-hidden="true">↓</span>
+                </h3>
+              </summary>
+              <div class="px-6 pb-6 md:px-8 md:pb-8 border-t border-callsun-line">
+                <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {(isCertificates ? CERTIFICATES : DATASHEET_GROUPS.flatMap((g) => g.items)).map((d: any) => (
+                    <a
+                      href={d.file}
+                      target="_blank"
+                      rel="noopener"
+                      class="group/item bg-white shadow-card flex items-center gap-4 p-3 md:p-4 hover:shadow-lg transition-shadow rounded"
+                    >
+                      <div class="shrink-0 w-10 h-12 md:w-12 md:h-14 bg-callsun-tint border border-callsun-line flex items-center justify-center text-callsun-ink font-display font-extrabold text-[10px] tracking-wider">
+                        PDF
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="font-display font-extrabold text-callsun-ink text-sm md:text-base leading-snug truncate">
+                          {d.model || d.title}
+                        </div>
+                        <div class="mt-0.5 text-xs text-callsun-mute leading-snug truncate">
+                          {d.spec}
+                        </div>
+                      </div>
+                      <div class="shrink-0 flex flex-col items-end gap-0.5">
+                        <span class="text-[10px] text-callsun-mute">{d.size}</span>
+                        <span class="inline-flex items-center gap-1 font-display font-extrabold text-callsun-ink text-[10px] uppercase tracking-eyebrow group-hover/item:text-callsun-lime transition-colors">
+                          {t.download}
+                          <span class="text-callsun-lime" aria-hidden="true">↓</span>
+                        </span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+                <p class="mt-4 text-xs text-callsun-mute">
+                  {isCertificates ? t.certNote : t.footerNote}
+                </p>
+              </div>
+            </details>
+            );
+          }
+          return (
+          <div class="bg-white shadow-card overflow-hidden">
+            <div class="relative flex flex-col p-4 md:p-5">
+              <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0" aria-hidden="true"></div>
+              <h3 class="font-display font-extrabold text-callsun-ink text-lg md:text-xl uppercase tracking-wide leading-snug inline-flex items-center gap-2">
+                {c.title}
+              </h3>
+            </div>
+          </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl">
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          FAQ
+        </p>
+        <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          {t.faqHeading}
+        </h2>
+      </div>
+
+      <div class="mt-10 border border-callsun-line bg-white shadow-card overflow-hidden">
+        {RESOURCE_FAQ.map((f, i) => (
+          <details class="group border-b border-callsun-line last:border-b-0">
+            <summary class="flex items-start gap-4 md:gap-6 px-6 py-5 md:px-8 md:py-6 cursor-pointer list-none hover:bg-callsun-tint/50 transition-colors">
+              <span class="shrink-0 font-display font-extrabold text-callsun-lime text-lg md:text-xl leading-none pt-0.5">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="flex-1 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug">
+                {f.q}
+              </span>
+              <span class="shrink-0 text-callsun-mute font-display font-extrabold text-2xl leading-none pt-0.5 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-14 md:px-8 md:pb-8 md:pl-20 text-callsun-mute leading-relaxed">
+              {f.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="video-center" class="bg-callsun-bg py-16 md:py-20 border-t border-callsun-line">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div>
+        <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+          {t.videoHeading}
+        </p>
+        <h2 class="mt-3 whitespace-normal lg:whitespace-nowrap text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-callsun-ink leading-tight">
+          Product Reviews and Technical Videos
+        </h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        {VIDEO_CARDS.map((v) => (
+          <a
+            href={v.href}
+            target="_blank"
+            rel="noopener"
+            class="group bg-white shadow-card flex flex-col overflow-hidden"
+          >
+            <div class="relative bg-callsun-ink" style="aspect-ratio: 16/9;">
+              <img
+                src={v.thumb}
+                alt={v.title}
+                class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 bg-callsun-ink text-white text-xs font-display font-extrabold uppercase tracking-eyebrow px-2.5 py-1 z-10">
+                {v.badge}
+              </span>
+              <button
+                type="button"
+                aria-label="Play video"
+                class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
+              >
+                <span class="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/95 shadow-card group-hover:bg-callsun-lime transition-colors">
+                  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" class="text-callsun-ink translate-x-0.5">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div class="p-5 md:p-6 flex flex-col flex-1 border-t border-callsun-line">
+              <h3 class="font-display font-bold text-callsun-ink text-base md:text-lg leading-snug">
+                {v.title}
+              </h3>
+              <p class="mt-3 text-sm text-callsun-mute leading-relaxed flex-1">
+                {v.body}
+              </p>
+              <p class="mt-4 text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+                {v.credit}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-callsun-ink text-white py-16 md:py-20">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+        FAQ
+      </p>
+      <h2 class="mt-3 text-3xl md:text-4xl lg:text-5xl font-display font-extrabold leading-tight">
+        Свяжитесь с командой Callsun
+      </h2>
+      <p class="mt-4 text-base md:text-lg text-white/70 max-w-2xl">
+        {t.footerNote}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/ru/contact/"
+          class="inline-flex items-center gap-2 bg-callsun-lime text-callsun-ink font-display font-extrabold text-sm uppercase tracking-eyebrow px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+        >
+          {t.allDocuments}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -3,7 +3,7 @@
 // 一期范围：/ /products/ /products/standard-modules/ /products/custom-modules/ /contact/
 // 二期（未做）：About、产品详情页、新闻/资源/方案 —— 切语言时回落对应语言首页
 
-export const LOCALES = ['en', 'de', 'es'] as const;
+export const LOCALES = ['en', 'de', 'es', 'ru'] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
 
@@ -11,24 +11,28 @@ export const htmlLang: Record<Locale, string> = {
   en: 'en-US',
   de: 'de-DE',
   es: 'es-ES',
+  ru: 'ru-RU',
 };
 
 export const ogLocale: Record<Locale, string> = {
   en: 'en_US',
   de: 'de_DE',
   es: 'es_ES',
+  ru: 'ru_RU',
 };
 
 export const localeLabel: Record<Locale, string> = {
   en: 'EN',
   de: 'DE',
   es: 'ES',
+  ru: 'RU',
 };
 
 const prefix: Record<Locale, string> = {
   en: '',
   de: '/de',
   es: '/es',
+  ru: '/ru',
 };
 
 // 已本地化的路径（base 路径，无语言前缀）
@@ -65,20 +69,20 @@ export function localePath(locale: Locale, currentPath: string): string {
 
 // 从带语言前缀的路径提取 base 路径
 export function basePathOf(path: string): string {
-  for (const l of ['de', 'es'] as const) {
+  for (const l of ['de', 'es', 'ru'] as const) {
     if (path === `/${l}`) return '/';
     if (path.startsWith(`/${l}/`)) return path.slice(3);
   }
   return path;
 }
 
-// hreflang alternates：base 路径（无前缀）→ 各语言 URL（含 x-default）
+// hreflang alternates：base 路径（无前缀）→ 各语言 URL（含 x-default）——从 LOCALES 动态生成，新增语言自动带上
 export function alternatesFor(basePath: string): Array<{ lang: string; href: string }> {
   if (!isLocalizedPath(basePath)) return [];
-  return [
-    { lang: 'en-US', href: basePath },
-    { lang: 'de-DE', href: `/de${basePath === '/' ? '/' : basePath}` },
-    { lang: 'es-ES', href: `/es${basePath === '/' ? '/' : basePath}` },
-    { lang: 'x-default', href: basePath },
-  ];
+  const alts: Array<{ lang: string; href: string }> = LOCALES.map((l) => ({
+    lang: htmlLang[l],
+    href: l === 'en' ? basePath : `/${l}${basePath === '/' ? '/' : basePath}`,
+  }));
+  alts.push({ lang: 'x-default', href: basePath });
+  return alts;
 }

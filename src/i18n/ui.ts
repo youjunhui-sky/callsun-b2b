@@ -97,4 +97,28 @@ export const UI: Record<Locale, UiStrings> = {
     },
     footer: { tagline: 'Marca y fabricante de módulos FV' },
   },
+  ru: {
+    nav: {
+      home: 'ГЛАВНАЯ', products: 'ПРОДУКЦИЯ', standard: 'Стандартные ФЭ-модули', custom: 'Заказные ФЭ-модули',
+      solutions: 'РЕШЕНИЯ', kit54: 'Комплект 5,4 кВт (автономный)', kit72: 'Сетевой комплект 7,2 кВт', kit108: 'Сетевой комплект 10,8 кВт',
+      resources: 'РЕСУРСЫ', downloads: 'Загрузки', faq: 'Вопросы о продукции и сотрудничестве', videoCenter: 'Видеоканал',
+      news: 'НОВОСТИ И ПРОЕКТЫ', blog: 'Технический блог', projects: 'Список проектов', about: 'О КОМПАНИИ',
+    },
+    cta: { quote: 'ЗАПРОСИТЬ КОТИРОВКУ', submit: 'ОТПРАВИТЬ ЗАПРОС' },
+    home: {
+      standardHeading: 'Стандартные ФЭ-модули', customHeading: 'Заказные ФЭ-модули', productDetails: 'О ПРОДУКТЕ',
+      insightsEyebrow: 'АНАЛИТИКА И ВИДЕО', insightsTitle: 'Технические материалы Callsun',
+      latestArticles: 'ПОСЛЕДНИЕ СТАТЬИ', viewAll: 'СМОТРЕТЬ ВСЕ', featuredVideos: 'ИЗБРАННЫЕ ВИДЕО',
+      videoCenter: 'ВИДЕОКАНАЛ', read: 'ЧИТАТЬ', video: 'ВИДЕО',
+    },
+    productsL2: { viewDetails: 'ПОДРОБНЕЕ О ПРОДУКТЕ', downloadDatasheet: 'СКАЧАТЬ ТЕХ. ПАСПОРТ', viewTechInfo: 'ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ' },
+    form: {
+      name: 'Имя *', email: 'Рабочий e-mail *', company: 'Компания *', country: 'Страна / регион *',
+      productInterest: 'Интересующий продукт', selectProduct: 'Выберите продукт (необязательно)',
+      requirements: 'Спецификация продукта или требования к проекту *', requirementsProduct: 'Требования к продукту или проекту *',
+      attachment: 'Вложение (тех. паспорт / файл проекта, макс. 5 МБ)', chooseFile: 'Выбрать файл', noFile: 'Файл не выбран',
+      kitSolution: 'Комплект / решение', customModule: 'Заказной модуль', other: 'Другое / пока не определился',
+    },
+    footer: { tagline: 'Бренд и производитель ФЭ-модулей' },
+  },
 };

@@ -1,6 +1,6 @@
 ---
 import { SITE } from '@/data/site';
-import { htmlLang, ogLocale, alternatesFor, basePathOf, type Locale } from '@/i18n/config';
+import { htmlLang, ogLocale, alternatesFor, basePathOf, LOCALES, type Locale } from '@/i18n/config';
 import '@/styles/fonts.css';
 
 interface Props {
@@ -32,7 +32,7 @@ const {
 const canonicalUrl = new URL(canonical, SITE.domain).href;
 const ogImageUrl = new URL(ogImage, SITE.domain).href;
 const alternates = alternatesFor(basePathOf(canonical));
-const otherOgLocales = (['en', 'de', 'es'] as const).filter((l) => l !== locale);
+const otherOgLocales = LOCALES.filter((l) => l !== locale);
 
 const defaultOrg = {
   '@context': 'https://schema.org',
