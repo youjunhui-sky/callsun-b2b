@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects/rewrites
+# 2026-09-15: GSC 验证文件要求精确 URL 直接 200（CF Pages pretty-URL 会把 .html 307 掉，这里 rewrite 回来）
+/google46d8a2ad1df50dfc.html /google46d8a2ad1df50dfc 200
