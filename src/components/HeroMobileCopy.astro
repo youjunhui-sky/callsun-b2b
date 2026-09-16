@@ -1,0 +1,64 @@
+---
+// Mobile-only hero copy overlay. Lives inside the hero carousel container
+// (same stacking context as the slides). Slide switching is driven by the
+// carousel script: each layer carries data-slide={n} and is toggled together
+// with the images. Hidden entirely on >=768px (desktop keeps baked-in art).
+import { HERO_MOBILE, type HeroMobileSlide } from '@/i18n/data/hero-mobile';
+
+interface Props {
+  locale?: 'en' | 'de' | 'es' | 'ru';
+}
+const { locale = 'en' } = Astro.props;
+const slides: HeroMobileSlide[] = HERO_MOBILE[locale] ?? HERO_MOBILE.en;
+---
+
+<div class="pointer-events-none absolute inset-0 z-[5] md:hidden">
+  {
+    slides.map((s, i) => (
+      <div
+        class={`absolute inset-0 flex flex-col px-5 transition-opacity duration-700 ${
+          i === 0 ? 'opacity-100' : 'opacity-0'
+        } ${s.pos === 'top' ? 'justify-start pt-7' : 'justify-end pb-16'} ${
+          s.align === 'right' ? 'items-end text-right' : 'items-start text-left'
+        } ${s.dark ? 'text-callsun-ink' : 'text-white'}`}
+        data-slide={i + 1}
+      >
+        {s.scrim && <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />}
+        <div class={`relative ${s.align === 'right' ? 'text-right' : 'text-left'}`}>
+          {s.kicker && (
+            <p class={`text-[11px] font-bold uppercase tracking-[0.16em] ${s.dark ? 'text-callsun/80' : 'text-callsun-lime'}`} style="text-shadow: 0 1px 6px rgba(0,0,0,0.35);">
+              {s.kicker}
+            </p>
+          )}
+          <h2
+            class="mt-1.5 max-w-[21ch] font-display font-extrabold leading-[1.1] text-[30px]"
+            style="text-shadow: 0 2px 12px rgba(0,0,0,0.45);"
+          >
+            {s.title}
+          </h2>
+          {s.sub && (
+            <p class="mt-2 max-w-[32ch] text-[13px] leading-snug opacity-90" style="text-shadow: 0 1px 8px rgba(0,0,0,0.45);">
+              {s.sub}
+            </p>
+          )}
+          <div class="mt-3 flex flex-wrap items-center gap-2">
+            {s.pill && (
+              <span
+                class={`inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wide ${
+                  s.dark ? 'border-callsun-ink/25 bg-white/60 text-callsun-ink' : 'border-callsun-lime/80 bg-black/35 text-white'
+                }`}
+              >
+                {s.pill}
+              </span>
+            )}
+            {s.stat && (
+              <span class={`text-[13px] font-extrabold ${s.dark ? 'text-callsun-ink' : 'text-callsun-lime'}`} style="text-shadow: 0 1px 8px rgba(0,0,0,0.5);">
+                {s.stat}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

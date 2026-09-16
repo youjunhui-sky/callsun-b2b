@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import InquiryForm from '@/components/InquiryForm.astro';
 import SocialIcons from '@/components/SocialIcons.astro';
+import HeroMobileCopy from '@/components/HeroMobileCopy.astro';
 import { SITE } from '@/data/site';
 import {
   HERO,
@@ -37,8 +38,10 @@ const homeSchema = {
        ═══════════════════════════════════════════════════════════════════════ */}
   <section id="hero-carousel" class="relative overflow-hidden text-white">
     {/* Slides: 7 designed hero images (text baked in). Container is fixed 2.2:1 (11/5) so images are cropped consistently on every screen; keep text within the central safe area. */}
-    <div class="relative w-full aspect-[11/5] min-h-[380px]">
+    <div class="relative w-full aspect-[3/4] md:aspect-[11/5] md:min-h-[380px]">
       {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+        <picture>
+        <source media="(max-width: 767px)" srcset={`/uploads/callsun/home/hero-carousel/mobile/${n}.webp`} type="image/webp" />
         <img
           src={`/uploads/callsun/home/hero-carousel/${n}.webp`}
           alt=""
@@ -49,6 +52,7 @@ const homeSchema = {
           style='object-position: center;'
           data-slide={n}
         />
+        </picture>
       ))}
 
       {/* Prev / Next arrows */}
@@ -74,6 +78,7 @@ const homeSchema = {
       </button>
 
       {/* Dot nav removed — arrows only */}
+      <HeroMobileCopy locale="en" />
     </div>
 
   </section>
@@ -330,11 +335,10 @@ const homeSchema = {
         el.classList.remove('opacity-100');
         el.classList.add('opacity-0');
       });
-      const next = document.querySelector(`[data-slide="${n}"]`);
-      if (next) {
-        next.classList.remove('opacity-0');
-        next.classList.add('opacity-100');
-      }
+      document.querySelectorAll(`[data-slide="${n}"]`).forEach((el) => {
+        el.classList.remove('opacity-0');
+        el.classList.add('opacity-100');
+      });
       current = n;
     }
 
