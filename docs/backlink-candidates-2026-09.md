@@ -62,3 +62,21 @@ Cylex / Yalwa / Brownbook / Tupalo 等通用企业目录（免费填表制惯例
 - **我能独立闭环**：注册、填表、产品上传、档案文案、提交后收录状态跟踪
 - **需要一次性协助的点**：① 各站注册的**邮箱验证点击**（若提交邮箱给我 webmail 访问权或配置转发，我可 100% 独立；否则每站需同事点一封验证邮件，约 1 分钟/站）② GBP 的地址明信片/电话验证（Google 打给谁谁接一下）③ 个别站的人工审核回复（如 ENF 抽查电话）
 - **材料依赖不变**：上面 5 样材料齐 = 9 家全部可启动
+
+## 参照案例（2026-09-16，张晓晗要点 2-3 个品牌档案对照）
+- **ENF**：Jiangsu Ocean Solar — https://www.enfsolar.com/ocean-solar-1 （2012 年成立 / 目录页员工数 200 / 工艺标签 Mono, Poly, PERC, Bifacial, TOPCon, Flexible；简介公式=成立年+年限+工艺，3-5 句）；字段总表见 https://www.enfsolar.com/directory/panel （Company/Region/No. Staff/Panel Technology）
+- **EC21**：Jingsun New Energy — https://jingsunpowe.en.ec21.com/ ；属性表样例（Shanghai Yanger）— https://370785199509079660.en.ec21.com/ （Year Established 2007 / Employees 101-500 / Annual Revenue USD 2,000,001-5,000,000 / Location / Main Products）
+  - ⚠️ 材料清单新增⑥：**年营收区间**（EC21 必填字段，找销售要口径）
+  - 教训：两家均为 ~2020 旧店铺，只参照结构；注册后 15 个产品位填满 + 定期登录保活跃
+- **wlw（DACH）**：wlw.de 搜 "Solarmodule"（如 PV Global GmbH）— https://www.wlw.de/de/suche/solarmodule/neuss ；字段=德语简介+员工数(Mitarbeiter)+Lieferung+产品标签；DE/ES 简介由小天随三语初稿产出
+- 注：ENF/EC21 有 Cloudflare 反爬，结构经搜索快照核实（2026-09-16）；链接可直接人工打开
+
+## 全站手机端适配核查（2026-09-16，回应张晓晗 10:26）
+- 390×844 Playwright 实测 5 页型：首页 / 产品列表 / CN450W 详情 / 联系页 / 新闻页 → 均正常
+- 发现 1 个真问题：Solutions 页「System Configuration」区全宽板图在手机端横向溢出被裁（潜在横向滚动）→ 待与 hero P0 一起修
+- 结论：P1 只需 7 张竖版 banner，全站无其他 blocker
+
+## 450W US Inventory 入口（2026-09-16 群内讨论）
+- 游军辉拍板：询盘统一跟进（不做在线支付）
+- 候选实现：首页 banner + 独立询盘页，表单 7 字段（公司名/客户类型/州/托数/是否自提/项目时间/联系方式），走现有询盘 API + Turnstile + 飞书推送 + CRM
+- 待张晓晗拍板形式（banner/入口/两者）+ 销售给仓库位置与现货话术后动工
