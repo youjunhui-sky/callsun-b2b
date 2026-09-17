@@ -43,7 +43,7 @@ const skus = STANDARD_L2.skus.map((s) => ({
   <Header slot="header" locale="ru" />
   <Footer slot="footer" locale="ru" />
 
-  <section class="relative overflow-hidden bg-callsun-ink text-white aspect-[11/5] min-h-[520px]">
+  <section class="relative overflow-hidden bg-callsun-ink text-white aspect-[11/5] w-full min-h-[520px]">
     <img src="/uploads/callsun/products/standard-hero.webp" alt="" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
     <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-10 pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-24">
       <Breadcrumbs items={de.breadcrumb} theme="dark" />
@@ -65,12 +65,12 @@ const skus = STANDARD_L2.skus.map((s) => ({
     {skus.map((sku, i) => {
       const alt = i % 2 === 1;
       const bandBg = i % 2 === 0 ? 'bg-white' : 'bg-callsun-tint';
-      const galleryOrder = alt ? 'order-2 col-span-3' : 'order-1 col-span-3';
-      const textOrder = alt ? 'order-1 col-span-2' : 'order-2 col-span-2';
+      const galleryOrder = alt ? 'order-2 col-span-1 md:col-span-3' : 'order-1 col-span-1 md:col-span-3';
+      const textOrder = alt ? 'order-1 col-span-1 md:col-span-2' : 'order-2 col-span-1 md:col-span-2';
       return (
         <div id={sku.key} class={`${bandBg} border-b border-callsun-line`}>
           <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-14 md:py-20 lg:py-24">
-            <div class="grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
               <div class={galleryOrder}>
                 <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
                   <div class="relative" style="aspect-ratio: 4/3;">
@@ -113,8 +113,8 @@ const skus = STANDARD_L2.skus.map((s) => ({
 
   <section id="inquiry" class="bg-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid grid-cols-5 gap-10 lg:gap-16 items-start">
-        <div class="col-span-2">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-16 items-start">
+        <div class="col-span-1 md:col-span-2">
           <Eyebrow class="mb-3">{de.inquiry.eyebrow}</Eyebrow>
           <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
             {de.inquiry.title}
@@ -123,7 +123,7 @@ const skus = STANDARD_L2.skus.map((s) => ({
             {de.inquiry.intro}
           </p>
         </div>
-        <div class="col-span-3">
+        <div class="col-span-1 md:col-span-3">
           <InquiryForm locale="ru" formSource="standard-l2-ru" formTitle={de.inquiry.formTitle} />
         </div>
       </div>

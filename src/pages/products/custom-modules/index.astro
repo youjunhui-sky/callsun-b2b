@@ -19,7 +19,7 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
   {/* ═══════════════════════════════════════════════════════════════════════
        Section 1: Hero — dark bg + subtle grid overlay
        ═══════════════════════════════════════════════════════════════════════ */}
-  <section class="relative overflow-hidden bg-callsun-ink text-white aspect-[11/5] min-h-[380px]">
+  <section class="relative overflow-hidden bg-callsun-ink text-white aspect-[11/5] w-full min-h-[380px]">
     <img
       src="/uploads/callsun/products/custom-hero.webp"
       alt=""
@@ -55,12 +55,12 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
     {CUSTOM_L2.skus.map((sku, i) => {
       const alt = i % 2 === 1; // SKU 2 → image RIGHT
       const bandBg = i % 2 === 0 ? 'bg-white' : 'bg-callsun-tint';
-      const galleryOrder = alt ? 'order-2 col-span-3' : 'order-1 col-span-3';
-      const textOrder    = alt ? 'order-1 col-span-2' : 'order-2 col-span-2';
+      const galleryOrder = alt ? 'order-2 col-span-1 md:col-span-3' : 'order-1 col-span-1 md:col-span-3';
+      const textOrder    = alt ? 'order-1 col-span-1 md:col-span-2' : 'order-2 col-span-1 md:col-span-2';
       return (
         <div id={sku.key} class={`${bandBg} border-b border-callsun-line`}>
           <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-14 md:py-20 lg:py-24">
-            <div class="grid grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 lg:gap-14 items-start">
               {/* Static single image */}
               <div class={galleryOrder}>
                 <div class="relative bg-white shadow-[0_20px_60px_-24px_rgba(0,0,0,0.35)] overflow-hidden border border-callsun-line/50">
@@ -129,8 +129,8 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
        ═══════════════════════════════════════════════════════════════════════ */}
   <section id="inquiry" class="bg-callsun-ink text-white">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="grid grid-cols-5 gap-10 lg:gap-16 items-start">
-        <div class="col-span-2">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-16 items-start">
+        <div class="col-span-1 md:col-span-2">
           <Eyebrow class="mb-3">{CUSTOM_L2.inquiry.eyebrow}</Eyebrow>
           <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.1]">
             {CUSTOM_L2.inquiry.title}
@@ -139,7 +139,7 @@ import { CUSTOM_L2 } from '@/data/custom-l2';
             {CUSTOM_L2.inquiry.intro}
           </p>
         </div>
-        <div class="col-span-3">
+        <div class="col-span-1 md:col-span-3">
           <InquiryForm formSource="custom-l2" formTitle={CUSTOM_L2.inquiry.formTitle} />
         </div>
       </div>
