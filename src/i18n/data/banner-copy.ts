@@ -87,7 +87,7 @@ export const SKU_BANNERS: Record<string, Record<Locale, { hero: BannerCopy; feat
           loc,
           {
             hero: { kicker: KICKER[loc], title: titles[loc], dark: DARK_SKUS.has(slug) },
-            features: { kicker: slug.replace('cn', 'CN').toUpperCase(), title: FEATURES_TITLE[loc], dark: DARK_SKUS.has(slug) },
+            features: { kicker: slug.replace('cn', 'CN').toUpperCase(), title: FEATURES_TITLE[loc], dark: true },
           },
         ])
       ),
