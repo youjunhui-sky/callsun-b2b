@@ -5,6 +5,7 @@ import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import { SOLUTIONS_L1 } from '@/data/solutions-l1';
 import { SOLUTIONS_L1_ES } from '@/i18n/data/solutions-l1-es';
+import HeroMobileCopy from '@/components/HeroMobileCopy.astro';
 
 const es = SOLUTIONS_L1_ES;
 const loc = (slug: string) => `/es/solutions/${slug}/`;
@@ -45,9 +46,11 @@ const offGridKits = SOLUTIONS_L1.kits.filter((k) => k.category === 'off-grid');
   {/* Off-Grid featured */}
   <section class="bg-white border-b border-callsun-line">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]" style="aspect-ratio: 1947 / 808;">
-        <img src="/uploads/callsun/solutions/hero-off-grid.webp" alt={kitName(offGridKits[0].slug)} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
-      </div>
+      <div class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]" style="aspect-ratio: 1947 / 808; max-md:aspect-ratio: 3 / 4;">
+        <img src="/uploads/callsun/solutions/hero-off-grid.webp" srcset="/uploads/callsun/solutions/hero-5-4kw-off-grid-mobile.webp 767w, /uploads/callsun/solutions/hero-off-grid.webp 768w" sizes="100vw" alt={kitName(offGridKits[0].slug)} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+      
+        <HeroMobileCopy locale="es" />
+        </div>
       <hr class="mt-16 border-t border-callsun-line" />
       <Eyebrow class="mt-10 mb-6">{es.offGrid.subEyebrow}</Eyebrow>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -72,8 +75,8 @@ const offGridKits = SOLUTIONS_L1.kits.filter((k) => k.category === 'off-grid');
   {/* Grid-Tied featured */}
   <section class="bg-white border-b border-callsun-line">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-10 py-16 md:py-20 lg:py-24">
-      <div class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]" style="aspect-ratio: 1942 / 809;">
-        <img src="/uploads/callsun/solutions/hero-5-4kw-hybrid.webp" alt={kitName(gridTiedKits[0].slug)} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="relative overflow-hidden shadow-[0_14px_30px_-14px_rgba(15,15,14,0.28)]" style="aspect-ratio: 1947 / 808; max-md:aspect-ratio: 3 / 4;">
+        <img src="/uploads/callsun/solutions/hero-5-4kw-hybrid.webp" srcset="/uploads/callsun/solutions/hero-10-8kw-grid-tied-mobile.webp 767w, /uploads/callsun/solutions/hero-5-4kw-hybrid.webp 768w" sizes="100vw" alt={kitName(gridTiedKits[0].slug)} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
       </div>
       <hr class="mt-16 border-t border-callsun-line" />
       <Eyebrow class="mt-10 mb-6">{es.gridTied.subEyebrow}</Eyebrow>

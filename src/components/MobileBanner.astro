@@ -1,0 +1,46 @@
+---
+// Mobile-first banner swap: vertical text-free art <768px with 4-locale HTML copy
+// overlay; desktop keeps the original wide (baked-in EN art) banner untouched.
+// Pattern proven on homepage mobile hero (dfc34cf, b30258d).
+import type { BannerCopy } from '@/i18n/data/banner-copy';
+
+interface Props {
+  desktop: string;    // wide banner, desktop (>=768px)
+  mobile: string;     // vertical art, mobile (<768px)
+  copy?: BannerCopy;  // overlay copy rendered only <768px (locale-resolved by caller)
+  alt: string;
+  eager?: boolean;    // hero images: true
+  mh?: number;        // mobile art height (default 1350)
+}
+const { desktop, mobile, copy, alt, eager = false, mh = 1350 } = Astro.props;
+---
+
+<div class="relative overflow-hidden bg-white">
+  <picture>
+    <source media="(max-width: 767px)" srcset={mobile} width="1080" height={mh} />
+    <img
+      src={desktop}
+      alt={alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      class="block w-full h-auto"
+    />
+  </picture>
+  {
+    copy && (
+      <div
+        class={`pointer-events-none absolute inset-x-0 top-0 z-[5] px-5 pt-6 md:hidden ${
+          copy.dark ? 'text-callsun-ink' : 'text-white'
+        }`}
+      >
+        {copy.kicker && (
+          <p class={`text-[11px] font-bold uppercase tracking-[0.16em] ${copy.dark ? 'text-callsun/80' : 'text-callsun-lime'}`}>
+            {copy.kicker}
+          </p>
+        )}
+        <h2 class="mt-1.5 max-w-[22ch] font-display font-extrabold leading-[1.12] text-[26px]">{copy.title}</h2>
+        {copy.sub && <p class={`mt-2 max-w-[34ch] text-[13px] leading-snug ${copy.dark ? 'opacity-80' : 'opacity-90'}`}>{copy.sub}</p>}
+      </div>
+    )
+  }
+</div>

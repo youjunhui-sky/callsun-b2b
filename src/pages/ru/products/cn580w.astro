@@ -7,6 +7,8 @@ import InquiryForm from '@/components/InquiryForm.astro';
 import FaqAccordion from '@/components/FaqAccordion.astro';
 import { SITE } from '@/data/site';
 import { SKU_DETAILS } from '@/data/sku-details';
+import MobileBanner from '@/components/MobileBanner.astro';
+import { SKU_BANNERS } from '@/i18n/data/banner-copy';
 import { PRODUCT_FAQ } from '@/data/faq';
 import { FAQ_RU } from '@/i18n/data/product-detail-ru';
 import { LABEL_RU, DETAIL_RU } from '@/i18n/data/product-detail-ru';
@@ -57,11 +59,12 @@ const productSchema = {
        Section 1: Hero banner (full-width marketing image)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white">
-    <img
-      src="/uploads/callsun/products/580w/hero-banner.webp"
+    <MobileBanner
+      desktop="/uploads/callsun/products/580w/hero-banner.webp"
+      mobile="/uploads/callsun/products/mobile/cn580w-hero.webp"
+      copy={SKU_BANNERS.cn580w.en.hero}
       alt={`${sku.model}`}
-      loading="eager"
-      class="block w-full h-auto"
+      eager
     />
   </section>
 
@@ -69,11 +72,11 @@ const productSchema = {
        Section 2: Product Features (full-width image)
        ═══════════════════════════════════════════════════════════════════════ */}
   <section class="bg-white">
-    <img
-      src="/uploads/callsun/products/580w/features-banner.webp"
+    <MobileBanner
+      desktop="/uploads/callsun/products/580w/features-banner.webp"
+      mobile="/uploads/callsun/products/mobile/cn580w-features.webp"
+      copy={SKU_BANNERS.cn580w.en.features}
       alt={`${sku.model} — Product Features`}
-      loading="lazy"
-      class="block w-full h-auto"
     />
   </section>
 
