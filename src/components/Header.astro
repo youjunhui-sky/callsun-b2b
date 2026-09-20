@@ -188,3 +188,21 @@ const otherLocales = LOCALES.filter((l) => l !== locale);
     </div>
   </div>
 </header>
+
+<script>
+  // Mobile hamburger: toggle the <768px nav drawer (was shipped without a click
+  // handler — menu never opened on phones). 2026-09-20 张晓晗 feedback.
+  const csToggle = document.getElementById('callsun-mobile-toggle');
+  const csNav = document.getElementById('callsun-mobile-nav');
+  if (csToggle && csNav) {
+    csToggle.addEventListener('click', () => {
+      const willOpen = csNav.hasAttribute('hidden');
+      if (willOpen) {
+        csNav.removeAttribute('hidden');
+      } else {
+        csNav.setAttribute('hidden', '');
+      }
+      csToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+  }
+</script>
