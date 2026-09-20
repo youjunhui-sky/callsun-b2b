@@ -41,10 +41,10 @@ const c = ABOUT_RU;
   {/* 2) STATS */}
   <section class="bg-callsun-panel text-white py-10 md:py-12 border-t border-white/10">
     <div class="mx-auto px-4 lg:px-6">
-      <div class="flex flex-wrap justify-between gap-x-6 gap-y-10">
+      <div class="grid grid-cols-2 gap-y-10 md:flex md:flex-wrap md:justify-between md:gap-x-6">
         {STATS_RU.map((s) => (
           <div class="flex flex-col items-center">
-            <span class="font-display font-extrabold text-callsun-lime text-3xl md:text-4xl lg:text-5xl leading-none whitespace-nowrap">
+            <span class="font-display font-extrabold text-callsun-lime text-xl md:text-4xl lg:text-5xl leading-tight md:leading-none whitespace-normal md:whitespace-nowrap">
               {s.value}
             </span>
             <span class="mt-3 text-xs uppercase tracking-eyebrow text-white/60 font-medium">
@@ -75,17 +75,17 @@ const c = ABOUT_RU;
         </div>
       </div>
 
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
         {PRINCIPLES_RU.map((p) => (
-          <div class="bg-white shadow-card p-6 md:p-8 flex flex-col min-h-[220px]">
+          <div class="bg-white shadow-card p-4 md:p-8 flex flex-col md:min-h-[220px]">
             <div class="h-1 w-10 bg-callsun-lime" aria-hidden="true"></div>
-            <span class="mt-6 font-display font-extrabold text-callsun-lime text-sm">
+            <span class="mt-4 md:mt-6 font-display font-extrabold text-callsun-lime text-sm">
               {p.step}
             </span>
-            <h3 class="mt-4 font-display font-extrabold text-callsun-ink text-lg md:text-xl leading-snug flex-1">
+            <h3 class="mt-3 md:mt-4 font-display font-extrabold text-callsun-ink text-base md:text-xl leading-snug flex-1">
               {p.title}
             </h3>
-            <p class="mt-5 text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
+            <p class="mt-3 md:mt-5 text-[11px] md:text-xs uppercase tracking-eyebrow text-callsun-mute font-extrabold">
               {p.eyebrow}
             </p>
           </div>
@@ -195,13 +195,13 @@ const c = ABOUT_RU;
         </h2>
       </div>
 
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
         {QC_TESTS_RU.map((q) => (
-          <div class="bg-callsun-surface border border-callsun-line shadow-card p-6 md:p-7 border-l-4 border-l-callsun-lime flex flex-col">
+          <div class="bg-callsun-surface border border-callsun-line shadow-card p-4 md:p-7 border-l-4 border-l-callsun-lime flex flex-col">
             <p class="text-xs uppercase tracking-eyebrow text-callsun-lime font-extrabold">
               {q.eyebrow}
             </p>
-            <h3 class="mt-3 font-display font-bold text-callsun-ink text-lg md:text-xl leading-snug">
+            <h3 class="mt-3 font-display font-bold text-callsun-ink text-base md:text-xl leading-snug">
               {q.title}
             </h3>
           </div>
