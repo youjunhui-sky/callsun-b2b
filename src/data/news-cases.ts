@@ -20,6 +20,13 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    tag: 'INDUSTRY',
+    date: 'SEP 21, 2026',
+    title: 'Factory Rooftop Solar Projects | Callsun Project Portfolio',
+    thumb: '/blog/2026-09-21-factory-rooftop-solar-projects.webp',
+    href: '/news/2026-09-21-factory-rooftop-solar-projects/',
+  },
+  {
     tag: 'PRODUCT',
     date: 'SEP 05, 2026',
     title: 'Standard vs. Custom Solar Panels: When Does a Project Need Custom Module Engineering?',
