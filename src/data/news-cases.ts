@@ -22,6 +22,20 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     tag: 'INDUSTRY',
     date: 'SEP 21, 2026',
+    title: 'Complex Industrial Rooftop Solar Projects | Callsun Portfolio',
+    thumb: '/blog/2026-09-21-complex-industrial-rooftop-solar-projects.webp',
+    href: '/news/2026-09-21-complex-industrial-rooftop-solar-projects/',
+  },
+  {
+    tag: 'INDUSTRY',
+    date: 'SEP 21, 2026',
+    title: 'Industrial Park Rooftop Solar Projects | Callsun Portfolio',
+    thumb: '/blog/2026-09-21-industrial-park-multi-roof-solar-projects.webp',
+    href: '/news/2026-09-21-industrial-park-multi-roof-solar-projects/',
+  },
+  {
+    tag: 'INDUSTRY',
+    date: 'SEP 21, 2026',
     title: 'Factory Rooftop Solar Projects | Callsun Project Portfolio',
     thumb: '/blog/2026-09-21-factory-rooftop-solar-projects.webp',
     href: '/news/2026-09-21-factory-rooftop-solar-projects/',
