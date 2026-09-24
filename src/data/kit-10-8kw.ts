@@ -208,7 +208,7 @@ export const KIT_10_8KW: KitDetail = {
     ],
   },
   downloads: [
-    { label: 'User Manual (450W Panel)', href: '/uploads/callsun/manuals/CS-450W-Panel-Manual-260409.pdf' },
+    { label: 'User Manual', href: '#inquiry' },
   ],
   faq: [
     {
