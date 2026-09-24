@@ -1,0 +1,541 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { SITE } from '@/data/site';
+import { INVERTER_6_5KW as INV } from '@/data/inverter-6-5kw';
+
+const inv = INV;
+const IMG = '/uploads/callsun/products/inverter-6-5kw';
+---
+<BaseLayout
+  title={`${inv.title} — ${SITE.name}`}
+  description={`${inv.title}. ${inv.intro}`}
+  canonical={`/products/${inv.slug}/`}
+>
+  <Header slot="header" />
+  <Footer slot="footer" />
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       0) HERO — same card structure as Solutions kit hero (gallery left / text right)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section class="bg-white pt-10 md:pt-14">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <nav class="text-sm text-callsun-mute mb-8">
+        <a href="/" class="hover:text-callsun-ink">Home</a>
+        <span class="mx-1">/</span>
+        <a href="/products/" class="hover:text-callsun-ink">Products</a>
+        <span class="mx-1">/</span>
+        <span>INVERTER</span>
+      </nav>
+
+      <div class="rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          {/* LEFT: gallery */}
+          <div class="bg-white border-r border-callsun-line" data-gallery="inverter-6-5kw">
+            <div class="relative overflow-hidden bg-white" style="aspect-ratio: 1/1;">
+              {inv.gallery.map((src, i) => (
+                <img
+                  src={src}
+                  alt={`Callsun 6.5kW Hybrid Solar Inverter - view ${i + 1}`}
+                  data-slide={i}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class={`absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                />
+              ))}
+
+              {/* Prev / Next arrows */}
+              <button
+                type="button"
+                data-prev
+                aria-label="Previous image"
+                class="absolute top-1/2 left-3 md:left-6 -translate-y-1/2 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button
+                type="button"
+                data-next
+                aria-label="Next image"
+                class="absolute top-1/2 right-3 md:right-6 -translate-y-1/2 z-10 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/15 text-white/60 hover:bg-callsun hover:text-callsun-ink transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+
+            {/* Thumbnail strip */}
+            <div class="grid grid-cols-9 gap-1 p-3 bg-callsun-tint border-t border-callsun-line">
+              {inv.gallery.map((src, i) => (
+                <button
+                  type="button"
+                  data-thumb={i}
+                  aria-label={`Show image ${i + 1}`}
+                  class={`relative aspect-square bg-white border transition-colors ${i === 0 ? 'border-callsun-lime border-2' : 'border-callsun-line hover:border-callsun-ink'}`}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-contain p-1"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: text panel */}
+          <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-between bg-white">
+            <div>
+              <p class="text-xs md:text-sm uppercase tracking-eyebrow text-callsun-lime font-extrabold">
+                {inv.eyebrow}
+              </p>
+              <h1 class="mt-4 font-display text-3xl md:text-4xl font-extrabold leading-tight text-callsun-ink">
+                {inv.short.replace(' HYBRID INVERTER', '')}
+                <span class="block text-2xl md:text-3xl mt-1">Hybrid Inverter</span>
+              </h1>
+              <p class="mt-4 text-callsun-mute text-base md:text-lg leading-relaxed">
+                Split-phase pure sine wave output — engineered for home backup, RV and marine power systems.
+              </p>
+            </div>
+
+            <dl class="mt-8 border-t border-callsun-line">
+              {inv.keyStats.map((s) => (
+                <div class="grid grid-cols-2 gap-4 py-3 border-b border-callsun-line last:border-b-0">
+                  <dt class="text-xs md:text-sm uppercase tracking-eyebrow font-semibold text-callsun-mute">{s.label}</dt>
+                  <dd class="font-display text-lg md:text-xl font-extrabold text-callsun-ink text-right">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href="#inquiry"
+                class="inline-flex items-center justify-between gap-3 bg-callsun text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-limeHi transition-colors"
+              >
+                <span>REQUEST A QUOTE</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#downloads"
+                data-tab-link="downloads"
+                class="inline-flex items-center justify-between gap-3 bg-callsun-ink text-white font-bold text-sm tracking-wider px-6 py-3.5 hover:bg-callsun-panel transition-colors"
+              >
+                <span>DOWNLOAD MANUAL</span>
+                <span class="text-callsun-lime" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       STICKY TAB BAR — same behavior as Solutions kit pages
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <div data-tabs="inverter-6-5kw" class="sticky top-16 z-20 bg-white border-b border-callsun-line shadow-[0_2px_8px_-4px_rgba(0,0,0,0.06)]">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="flex overflow-x-auto no-scrollbar justify-center">
+        {['description','specs','includes','downloads','faq'].map((id, i) => (
+          <button
+            type="button"
+            data-tab={id}
+            class={`relative shrink-0 px-5 md:px-6 py-3 md:py-3.5 text-sm font-medium transition-colors duration-200 ${i === 0 ? 'text-callsun-lime' : 'text-callsun-mute hover:text-callsun-lime'}`}
+          >
+            <span class="relative z-10">
+              {({description:'Description', specs:'Specs', includes:'Includes', downloads:'Downloads', faq:'FAQ'})[id]}
+            </span>
+            <span
+              data-tab-underline
+              class={`absolute bottom-0 left-0 right-0 h-0.5 bg-callsun-lime ${i === 0 ? 'scale-x-100' : 'scale-x-0'}`}
+              aria-hidden="true"
+            ></span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       1) DESCRIPTION — key features banner + feature sections
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="description" data-panel="description" class="bg-white pt-16 pb-0 md:pt-20 md:pb-0 scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+          Key Features
+        </h2>
+        <ul class="mt-6 text-left list-disc pl-5 space-y-2 text-base md:text-lg text-callsun-ink/80 leading-relaxed">
+          <li>Dual MPPT Tracking with 99.9% Efficiency and 18A Max Current</li>
+          <li>Split-Phase / Single-Phase Pure Sine Wave Output with 120V/240V</li>
+          <li>Supports 48V Lead-Acid & Lithium-ion Batteries with BMS Communication</li>
+          <li>Expandable up to 6 Units in Parallel Operation for Larger Systems</li>
+        </ul>
+      </div>
+
+      <figure class="mt-8">
+        <img
+          src={`${IMG}/inv-features.webp`}
+          alt="Callsun 6.5kW hybrid inverter key features overview"
+          class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+          loading="eager"
+        />
+      </figure>
+
+      {inv.features.map((f) => (
+        <div class="mt-12">
+          <h3 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+            {f.title}
+          </h3>
+          <p class="mt-4 max-w-3xl mx-auto text-center text-base md:text-lg text-callsun-ink/80 leading-relaxed">
+            {f.body}
+          </p>
+          <figure class="mt-6">
+            <img
+              src={f.image}
+              alt={`${f.title} — Callsun 6.5kW hybrid solar inverter`}
+              class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       2) SPECS — lime-accent group headers + striped tables (Solutions style)
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="specs" data-panel="specs" class="bg-white pt-16 pb-16 md:pt-20 md:pb-20 scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">
+        Specifications
+      </h2>
+
+      <div class="mt-10">
+        {inv.specGroups.map((g) => (
+          <div class="mt-8 first:mt-0">
+            <div class="relative bg-callsun-lime/10 px-5 py-3 rounded-t-2xl">
+              <div class="h-1 w-full bg-callsun-lime absolute top-0 left-0 rounded-t-2xl" aria-hidden="true"></div>
+              <h3 class="font-display font-bold text-sm md:text-base text-callsun-ink">{g.name}</h3>
+            </div>
+            <table class="w-full bg-white border border-callsun-line overflow-hidden text-sm md:text-base rounded-t-none border-t-0">
+              <tbody>
+                {g.rows.map((r, i) => (
+                  <tr class={i % 2 === 0 ? 'bg-callsun-tint/60' : 'bg-white'}>
+                    <th class="text-left align-top w-1/2 md:w-2/5 px-4 md:px-5 py-3 font-semibold text-callsun-ink border-b border-callsun-line">{r.label}</th>
+                    <td class="align-top px-4 md:px-5 py-3 text-callsun-mute border-b border-callsun-line">{r.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+
+      {/* Applications — tabbed switch (radio + CSS, no JS) */}
+      <div class="scenarios-tabs mt-14">
+        <input type="radio" name="scenarios-inverter" id="scenarios-inverter-0" class="scenarios-tab-input" checked />
+        <input type="radio" name="scenarios-inverter" id="scenarios-inverter-1" class="scenarios-tab-input" />
+        <input type="radio" name="scenarios-inverter" id="scenarios-inverter-2" class="scenarios-tab-input" />
+
+        <div class="scenarios-tabs-menu flex flex-wrap justify-center gap-2 border-b border-callsun-line">
+          {inv.applications.map((a, i) => (
+            <label
+              for={`scenarios-inverter-${i}`}
+              class="scenarios-tab-btn px-5 py-3 font-display font-bold text-base md:text-lg lg:text-xl cursor-pointer text-callsun-ink border-b-2 border-transparent -mb-px hover:text-callsun-lime"
+            >{a.label}</label>
+          ))}
+        </div>
+
+        {inv.applications.map((a, i) => (
+          <div class="scenarios-tab-panel mt-8" data-idx={i}>
+            <figure>
+              <img
+                src={a.image}
+                alt={`${a.label} with Callsun 6.5kW hybrid inverter`}
+                class="w-full rounded-2xl border border-callsun-line shadow-card bg-white"
+                loading="lazy"
+              />
+            </figure>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-callsun-mute leading-relaxed">{a.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       3) INCLUDES
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="includes" data-panel="includes" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">Includes</h2>
+      </div>
+      <figure class="mt-8 rounded-2xl border border-callsun-line shadow-card overflow-hidden bg-white">
+        <img
+          src={inv.includes.image}
+          alt="Callsun 6.5kW hybrid inverter package contents"
+          class="w-full h-auto block"
+          loading="lazy"
+        />
+      </figure>
+      <ul class="mt-8 max-w-2xl mx-auto list-disc pl-5 space-y-2 text-callsun-ink/80">
+        {inv.includes.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       4) DOWNLOADS
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="downloads" data-panel="downloads" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        {inv.downloads.map(() => (
+          <a href={inv.downloads[0].href} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-callsun text-callsun-ink font-display font-extrabold text-sm md:text-base uppercase tracking-wide hover:bg-callsun-limeHi transition-colors">
+            Download Manual
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       5) FAQ
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="faq" data-panel="faq" class="bg-white py-16 md:py-20 border-t border-callsun-line scroll-mt-40">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-center text-xl md:text-2xl lg:text-3xl font-display font-extrabold leading-tight text-callsun-ink">FAQ</h2>
+      </div>
+      <div class="mt-10 rounded-2xl border border-callsun-line bg-white shadow-card overflow-hidden">
+        {inv.faq.map((f, i) => (
+          <details class="group border-b border-callsun-line last:border-b-0">
+            <summary class="flex items-start gap-4 md:gap-6 px-6 py-5 md:px-8 md:py-6 cursor-pointer list-none hover:bg-callsun-tint/50 transition-colors">
+              <span class="shrink-0 font-display font-extrabold text-callsun-lime text-lg md:text-xl leading-none pt-0.5">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="flex-1 font-display font-bold text-callsun-ink text-base md:text-lg leading-snug">
+                {f.q}
+              </span>
+              <span class="shrink-0 text-callsun-mute font-display font-extrabold text-2xl leading-none pt-0.5 group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-14 md:px-8 md:pb-8 md:pl-20 text-callsun-mute leading-relaxed">
+              {f.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════════════════════════════════════════════════════════════════
+       6) CTA + INQUIRY FORM — same dark CTA as Solutions kit pages
+       ═══════════════════════════════════════════════════════════════════════ */}
+  <section id="inquiry" class="bg-callsun-ink text-white py-16 md:py-20">
+    <div class="max-w-wide mx-auto px-4 lg:px-6">
+      <div class="grid lg:grid-cols-3 gap-8 items-center">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl lg:text-4xl font-display font-extrabold">Interested in the 6.5kW Hybrid Inverter?</h2>
+          <p class="mt-3 text-white/85 max-w-xl">
+            Send your target market and project requirements. Callsun will support system matching, volume pricing and B2B supply programs.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="/contact/" class="px-6 py-3 rounded-md bg-callsun text-callsun-ink font-bold hover:bg-callsun-limeHi transition-colors">
+            Request a Quote
+          </a>
+          <a href="/solutions/" class="px-6 py-3 rounded-md bg-white/10 ring-1 ring-white/20 text-white font-semibold hover:bg-white/20">
+            View Solutions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Gallery + tab interaction script — same as Solutions kit pages */}
+  <script is:inline>
+    (function () {
+      /* -------- Gallery -------- */
+      const groot = document.querySelector('[data-gallery="inverter-6-5kw"]');
+      if (groot) {
+        const slides   = Array.from(groot.querySelectorAll('[data-slide]'));
+        const thumbs   = Array.from(groot.querySelectorAll('[data-thumb]'));
+        const prevBtn  = groot.querySelector('[data-prev]');
+        const nextBtn  = groot.querySelector('[data-next]');
+        const total    = slides.length;
+        let current    = 0;
+
+        function show(i) {
+          current = (i + total) % total;
+          slides.forEach((s, idx) => {
+            s.classList.toggle('opacity-100', idx === current);
+            s.classList.toggle('opacity-0', idx !== current);
+            s.classList.toggle('pointer-events-none', idx !== current);
+          });
+          thumbs.forEach((t, idx) => {
+            if (idx === current) {
+              t.classList.add('border-callsun-lime', 'border-2');
+              t.classList.remove('border-callsun-line');
+            } else {
+              t.classList.remove('border-callsun-lime', 'border-2');
+              t.classList.add('border-callsun-line');
+            }
+          });
+        }
+
+        prevBtn && prevBtn.addEventListener('click', () => show(current - 1));
+        nextBtn && nextBtn.addEventListener('click', () => show(current + 1));
+        thumbs.forEach((t, idx) => t.addEventListener('click', () => show(idx)));
+        groot.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') show(current - 1);
+          if (e.key === 'ArrowRight') show(current + 1);
+        });
+      }
+
+      /* -------- Tabs (navigation-only: scroll to section) -------- */
+      const troot = document.querySelector('[data-tabs="inverter-6-5kw"]');
+      if (!troot) return;
+      const tabs   = Array.from(troot.querySelectorAll('[data-tab]'));
+      const panels = Array.from(document.querySelectorAll('[data-panel]'));
+      const ids    = panels.map((p) => p.getAttribute('data-panel'));
+
+      function setActive(id) {
+        tabs.forEach((t) => {
+          const on = t.getAttribute('data-tab') === id;
+          const underline = t.querySelector('[data-tab-underline]');
+          if (on) {
+            t.classList.add('text-callsun-lime');
+            t.classList.remove('text-callsun-mute', 'hover:text-callsun-lime');
+            if (underline) {
+              underline.classList.add('scale-x-100');
+              underline.classList.remove('scale-x-0');
+            }
+          } else {
+            t.classList.remove('text-callsun-lime');
+            t.classList.add('text-callsun-mute', 'hover:text-callsun-lime');
+            if (underline) {
+              underline.classList.add('scale-x-0');
+              underline.classList.remove('scale-x-100');
+            }
+          }
+        });
+      }
+
+      function scrollTo(id) {
+        const panel = document.querySelector('[data-panel="' + id + '"]');
+        if (!panel) return;
+        const header = document.querySelector('header');
+        const headerH = header ? header.getBoundingClientRect().height : 64;
+        const barH = troot.getBoundingClientRect().height;
+        const targetAbsTop = window.scrollY + panel.getBoundingClientRect().top;
+        const pendingImgs = Array.from(document.querySelectorAll('img[loading="lazy"]')).filter((img) => {
+          const r = img.getBoundingClientRect();
+          return r.top + window.scrollY < targetAbsTop && !img.complete;
+        });
+        const go = () => {
+          const y = window.scrollY + panel.getBoundingClientRect().top - headerH - barH - 8;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        };
+        if (pendingImgs.length === 0) {
+          go();
+          return;
+        }
+        pendingImgs.forEach((img) => { img.loading = 'eager'; });
+        let remaining = pendingImgs.length;
+        const done = () => { remaining -= 1; if (remaining === 0) go(); };
+        pendingImgs.forEach((img) => {
+          img.addEventListener('load', done, { once: true });
+          img.addEventListener('error', done, { once: true });
+        });
+        setTimeout(go, 1500);
+      }
+
+      let spyLocked = false;
+      const lockSpy = () => { spyLocked = true; };
+      const unlockSpy = () => { spyLocked = false; };
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', unlockSpy);
+      } else {
+        let scrollTimer = null;
+        window.addEventListener('scroll', () => {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(unlockSpy, 200);
+        }, { passive: true });
+      }
+
+      tabs.forEach((t) => t.addEventListener('click', () => {
+        const id = t.getAttribute('data-tab');
+        setActive(id);
+        history.replaceState(null, '', '#' + id);
+        lockSpy();
+        scrollTo(id);
+      }));
+
+      document.querySelectorAll('[data-tab-link]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          const id = el.getAttribute('data-tab-link');
+          if (!id) return;
+          e.preventDefault();
+          setActive(id);
+          history.replaceState(null, '', '#' + id);
+          lockSpy();
+          scrollTo(id);
+        });
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        if (spyLocked) return;
+        const header = document.querySelector('header');
+        const headerH = header ? header.getBoundingClientRect().height : 64;
+        const barH = troot.getBoundingClientRect().height;
+        const anchor = headerH + barH + 20;
+        let bestId = null;
+        let bestTop = Infinity;
+        panels.forEach((p) => {
+          const rect = p.getBoundingClientRect();
+          if (rect.top <= anchor + 40 && rect.bottom > anchor) {
+            const dist = Math.abs(rect.top - anchor);
+            if (dist < bestTop) { bestTop = dist; bestId = p.getAttribute('data-panel'); }
+          }
+        });
+        if (bestId) setActive(bestId);
+      }, { threshold: [0, 0.1, 0.5, 0.9, 1] });
+      panels.forEach((p) => io.observe(p));
+
+      if (location.hash) {
+        const initial = location.hash.slice(1);
+        if (ids.indexOf(initial) !== -1) {
+          setActive(initial);
+          lockSpy();
+          setTimeout(() => scrollTo(initial), 100);
+        }
+      } else {
+        setActive(ids[0]);
+      }
+    })();
+  </script>
+
+  <style>
+    /* CSS-only scenarios tab switching (same pattern as Solutions kit pages) */
+    .scenarios-tab-input {
+      position: absolute; opacity: 0; pointer-events: none;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .scenarios-tab-panel { display: none; }
+
+    .scenarios-tab-input[id$="-0"]:checked ~ .scenarios-tabs-menu label[for$="-0"],
+    .scenarios-tab-input[id$="-1"]:checked ~ .scenarios-tabs-menu label[for$="-1"],
+    .scenarios-tab-input[id$="-2"]:checked ~ .scenarios-tabs-menu label[for$="-2"] {
+      color: #7CBE22;
+      border-bottom-color: #7CBE22;
+    }
+    .scenarios-tab-input[id$="-0"]:checked ~ .scenarios-tab-panel[data-idx="0"],
+    .scenarios-tab-input[id$="-1"]:checked ~ .scenarios-tab-panel[data-idx="1"],
+    .scenarios-tab-input[id$="-2"]:checked ~ .scenarios-tab-panel[data-idx="2"] {
+      display: block;
+    }
+  </style>
+</BaseLayout>

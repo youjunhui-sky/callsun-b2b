@@ -46,6 +46,7 @@ export const NAV = [
     children: [
       { label: 'Standard PV Modules', href: '/products/standard-modules/' },
       { label: 'Custom PV Modules', href: '/products/custom-modules/' },
+      { label: 'Inverter', href: '/products/6-5kw-hybrid-inverter/' },
     ],
   },
   {

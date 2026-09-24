@@ -4,7 +4,7 @@ import type { Locale } from './config';
 export interface UiStrings {
   nav: {
     home: string; products: string; standard: string; custom: string;
-    solutions: string; kit54: string; kit72: string; kit108: string;
+    solutions: string; kit54: string; kit72: string; kit108: string; inverter: string;
     resources: string; downloads: string; faq: string; videoCenter: string;
     news: string; blog: string; projects: string; about: string;
   };
@@ -28,7 +28,7 @@ export const UI: Record<Locale, UiStrings> = {
   en: {
     nav: {
       home: 'HOME', products: 'PRODUCTS', standard: 'Standard PV Modules', custom: 'Custom PV Modules',
-      solutions: 'SOLUTIONS', kit54: '5.4kW Off-Grid Kit', kit72: '7.2kW Grid-Tied Kit', kit108: '10.8kW Grid-Tied Kit',
+      solutions: 'SOLUTIONS', kit54: '5.4kW Off-Grid Kit', kit72: '7.2kW Grid-Tied Kit', kit108: '10.8kW Grid-Tied Kit', inverter: 'Inverter',
       resources: 'RESOURCES', downloads: 'Downloads', faq: 'Product & Cooperation FAQ', videoCenter: 'Video Center',
       news: 'NEWS & CASES', blog: 'Technical Blog', projects: 'Project List', about: 'ABOUT',
     },
@@ -52,7 +52,7 @@ export const UI: Record<Locale, UiStrings> = {
   de: {
     nav: {
       home: 'STARTSEITE', products: 'PRODUKTE', standard: 'Standard-PV-Module', custom: 'Individuelle PV-Module',
-      solutions: 'LÖSUNGEN', kit54: '5,4-kW-Inselset', kit72: '7,2-kW-Netzset', kit108: '10,8-kW-Netzset',
+      solutions: 'LÖSUNGEN', kit54: '5,4-kW-Inselset', kit72: '7,2-kW-Netzset', kit108: '10,8-kW-Netzset', inverter: 'Wechselrichter',
       resources: 'RESSOURCEN', downloads: 'Downloads', faq: 'Produkt- & Kooperations-FAQ', videoCenter: 'Videocenter',
       news: 'NEWS & PROJEKTE', blog: 'Technischer Blog', projects: 'Projektliste', about: 'ÜBER UNS',
     },
@@ -76,7 +76,7 @@ export const UI: Record<Locale, UiStrings> = {
   es: {
     nav: {
       home: 'INICIO', products: 'PRODUCTOS', standard: 'Módulos FV estándar', custom: 'Módulos FV personalizados',
-      solutions: 'SOLUCIONES', kit54: 'Kit aislado de 5,4 kW', kit72: 'Kit de red de 7,2 kW', kit108: 'Kit de red de 10,8 kW',
+      solutions: 'SOLUCIONES', kit54: 'Kit aislado de 5,4 kW', kit72: 'Kit de red de 7,2 kW', kit108: 'Kit de red de 10,8 kW', inverter: 'Inversor',
       resources: 'RECURSOS', downloads: 'Descargas', faq: 'FAQ de producto y cooperación', videoCenter: 'Centro de videos',
       news: 'NOTICIAS Y CASOS', blog: 'Blog técnico', projects: 'Lista de proyectos', about: 'NOSOTROS',
     },
@@ -100,7 +100,7 @@ export const UI: Record<Locale, UiStrings> = {
   ru: {
     nav: {
       home: 'ГЛАВНАЯ', products: 'ПРОДУКЦИЯ', standard: 'Стандартные ФЭ-модули', custom: 'Заказные ФЭ-модули',
-      solutions: 'РЕШЕНИЯ', kit54: 'Комплект 5,4 кВт (автономный)', kit72: 'Сетевой комплект 7,2 кВт', kit108: 'Сетевой комплект 10,8 кВт',
+      solutions: 'РЕШЕНИЯ', kit54: 'Комплект 5,4 кВт (автономный)', kit72: 'Сетевой комплект 7,2 кВт', kit108: 'Сетевой комплект 10,8 кВт', inverter: 'Инвертор',
       resources: 'РЕСУРСЫ', downloads: 'Загрузки', faq: 'Вопросы о продукции и сотрудничестве', videoCenter: 'Видеоканал',
       news: 'НОВОСТИ И ПРОЕКТЫ', blog: 'Технический блог', projects: 'Список проектов', about: 'О КОМПАНИИ',
     },
