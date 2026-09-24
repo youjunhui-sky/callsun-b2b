@@ -46,9 +46,11 @@ export interface DatasheetItem {
   category: 'Standard' | 'Custom';
   file: string;
   size: string;
+  download?: boolean;
 }
 
 export const DATASHEETS: DatasheetItem[] = [
+  { model: 'CS-6.5kW Hybrid Inverter', spec: 'Split-Phase Pure Sine Wave · 48V · Dual MPPT · User Manual V1.2', category: 'Standard', file: '/uploads/callsun/products/inverter-6-5kw/CS-6.5KW-Inverter-User-Manual-V1.2.pdf', size: '19.1 MB', download: true },
   { model: 'CN450W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN450W_Solar_Module_Datasheet.pdf', size: '4.4 MB' },
   { model: 'CN580W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN580W_Solar_Module_Datasheet.pdf', size: '3.8 MB' },
   { model: 'CN620W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN620W_Solar_Module_Datasheet.pdf', size: '4.1 MB' },

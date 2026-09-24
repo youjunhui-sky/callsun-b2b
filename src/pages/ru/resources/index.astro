@@ -81,8 +81,9 @@ for (const d of DATASHEETS) {
                   {(isCertificates ? CERTIFICATES : DATASHEET_GROUPS.flatMap((g) => g.items)).map((d: any) => (
                     <a
                       href={d.file}
-                      target="_blank"
-                      rel="noopener"
+                      target={d.download ? undefined : '_blank'}
+                      rel={d.download ? undefined : 'noopener'}
+                      download={d.download ? '' : undefined}
                       class="group/item bg-white shadow-card flex items-center gap-4 p-3 md:p-4 hover:shadow-lg transition-shadow rounded"
                     >
                       <div class="shrink-0 w-10 h-12 md:w-12 md:h-14 bg-callsun-tint border border-callsun-line flex items-center justify-center text-callsun-ink font-display font-extrabold text-[10px] tracking-wider">
