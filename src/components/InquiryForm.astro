@@ -71,25 +71,25 @@ const options = productOptions.length ? productOptions : [
   <div class="grid md:grid-cols-2 gap-4">
     <label class="grid gap-1.5">
       <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.name}</span>
-      <input required name="name" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+      <input required name="name" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white text-callsun-ink caret-callsun-ink focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
     <label class="grid gap-1.5">
       <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.email}</span>
-      <input required name="email" type="email" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+      <input required name="email" type="email" class="border border-callsun-line px-3 py-2.5 text-sm bg-white text-callsun-ink caret-callsun-ink focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
     <label class="grid gap-1.5">
       <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.company}</span>
-      <input required name="company" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+      <input required name="company" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white text-callsun-ink caret-callsun-ink focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
     <label class="grid gap-1.5">
       <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.country}</span>
-      <input required name="market" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
+      <input required name="market" type="text" class="border border-callsun-line px-3 py-2.5 text-sm bg-white text-callsun-ink caret-callsun-ink focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime" />
     </label>
   </div>
   {!productModel && (
     <label class="grid gap-1.5">
       <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.productInterest}</span>
-      <select name="product_model" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime">
+      <select name="product_model" class="border border-callsun-line px-3 py-2.5 text-sm bg-white text-callsun-ink caret-callsun-ink focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime">
         <option value="">{t.form.selectProduct}</option>
         {options.map((opt) => <option value={opt.value}>{opt.label}</option>)}
       </select>
@@ -99,7 +99,7 @@ const options = productOptions.length ? productOptions : [
     <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">
       {productModel ? t.form.requirementsProduct : t.form.requirements}
     </span>
-    <textarea required name="message" rows="4" class="border border-callsun-line px-3 py-2.5 text-sm bg-white focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime resize-y"></textarea>
+    <textarea required name="message" rows="4" class="border border-callsun-line px-3 py-2.5 text-sm bg-white text-callsun-ink caret-callsun-ink focus:border-callsun-lime focus:outline-none focus:ring-1 focus:ring-callsun-lime resize-y"></textarea>
   </label>
   <div class="grid gap-1.5">
     <span class="text-xs font-semibold tracking-eyebrow uppercase text-callsun-mute">{t.form.attachment}</span>

@@ -52,11 +52,13 @@ const defaultOrg = {
 const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 <!doctype html>
-<html lang={htmlLang[locale]} class="scroll-smooth">
+<html lang={htmlLang[locale]} class="scroll-smooth" style="color-scheme: light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0F0F0E" />
+    <!-- 2026-09-24 张晓晗拍板：表单控件原生样式按浅色渲染（输入文字/光标/下拉菜单黑字），防 UA 深色模式把白底上的字染白 -->
+    <meta name="color-scheme" content="light" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -128,6 +130,20 @@ const schemas = [defaultOrg, ...(Array.isArray(schema) ? schema : schema ? [sche
       /* Hide scrollbars for horizontal tab strips while keeping scrollability */
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      /* 2026-09-24 表单可读性兜底：输入框/下拉/textarea 文字与光标强制黑色，下拉弹层选项黑字白底（iOS/Safari/Windows 深色模式兜底） */
+      form input[type="text"],
+      form input[type="email"],
+      form select,
+      form textarea {
+        color: #0f0f0e;
+        caret-color: #0f0f0e;
+        background-color: #ffffff;
+      }
+      form select option,
+      form select optgroup {
+        color: #0f0f0e;
+        background-color: #ffffff;
+      }
     </style>
   </head>
   <body class={`bg-white text-callsun-ink font-sans antialiased ${bodyClass}`}>
