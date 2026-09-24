@@ -51,14 +51,14 @@ export interface DatasheetItem {
 
 export const DATASHEETS: DatasheetItem[] = [
   { model: 'CS-6.5kW Hybrid Inverter', spec: 'Split-Phase Pure Sine Wave · 48V · Dual MPPT · User Manual V1.2', category: 'Standard', file: '/uploads/callsun/products/inverter-6-5kw/CS-6.5KW-Inverter-User-Manual-V1.2.pdf', size: '19.1 MB', download: true },
-  { model: 'CN450W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN450W_Solar_Module_Datasheet.pdf', size: '4.4 MB' },
-  { model: 'CN580W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN580W_Solar_Module_Datasheet.pdf', size: '3.8 MB' },
-  { model: 'CN620W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN620W_Solar_Module_Datasheet.pdf', size: '4.1 MB' },
-  { model: 'CN720W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN720W_Solar_Module_Datasheet.pdf', size: '1.0 MB' },
-  { model: 'CN180W', spec: 'Anti-Shading TwinCell · N-Type Bifacial', category: 'Custom', file: '/uploads/callsun/datasheets/CN180W_Solar_Module_Datasheet.pdf', size: '8.5 MB' },
-  { model: 'CN200W', spec: 'N-Type 16BB · Bifacial · IP68', category: 'Custom', file: '/uploads/callsun/datasheets/CN200W_Solar_Module_Datasheet.pdf', size: '8.5 MB' },
-  { model: 'CN210W', spec: 'High-Voltage Mono-Glass · N-Type Bifacial (24V)', category: 'Custom', file: '/uploads/callsun/datasheets/CN210W_Solar_Module_Datasheet.pdf', size: '7.0 MB' },
-  { model: 'CN215W', spec: '4-Zone Anti-Shading · 16BB · 12V System', category: 'Custom', file: '/uploads/callsun/datasheets/CN215W_Solar_Module_Datasheet.pdf', size: '7.4 MB' },
+  { model: '450W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN450W_Solar_Module_Datasheet.pdf', size: '4.4 MB' },
+  { model: '580W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN580W_Solar_Module_Datasheet.pdf', size: '3.8 MB' },
+  { model: '620W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN620W_Solar_Module_Datasheet.pdf', size: '4.1 MB' },
+  { model: '720W', spec: 'Bifacial Dual-Glass · N-Type TOPCon', category: 'Standard', file: '/uploads/callsun/datasheets/CN720W_Solar_Module_Datasheet.pdf', size: '1.0 MB' },
+  { model: '180W', spec: 'Anti-Shading TwinCell · N-Type Bifacial', category: 'Custom', file: '/uploads/callsun/datasheets/CN180W_Solar_Module_Datasheet.pdf', size: '8.5 MB' },
+  { model: '200W', spec: 'N-Type 16BB · Bifacial · IP68', category: 'Custom', file: '/uploads/callsun/datasheets/CN200W_Solar_Module_Datasheet.pdf', size: '8.5 MB' },
+  { model: '210W', spec: 'High-Voltage Mono-Glass · N-Type Bifacial (24V)', category: 'Custom', file: '/uploads/callsun/datasheets/CN210W_Solar_Module_Datasheet.pdf', size: '7.0 MB' },
+  { model: '215W', spec: '4-Zone Anti-Shading · 16BB · 12V System', category: 'Custom', file: '/uploads/callsun/datasheets/CN215W_Solar_Module_Datasheet.pdf', size: '7.4 MB' },
 ];
 
 export interface CertificateItem {
